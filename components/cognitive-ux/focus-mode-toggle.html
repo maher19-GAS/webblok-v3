@@ -1,0 +1,91 @@
+<!--
+  FocusModeToggle — Remove distractions, full-screen content
+  2030B Design System · Vol 2
+-->
+<div class="focus-mode-toggle fade-in" id="focus-mode-toggle">
+
+  <div class="fmt-label">Focus Mode</div>
+
+  <div class="fmt-switch-wrap">
+    <label class="fmt-switch" aria-label="Toggle focus mode">
+      <input type="checkbox" id="fmt-checkbox" onchange="FocusMode.toggle(this.checked)">
+      <span class="fmt-slider"></span>
+    </label>
+    <div class="fmt-state-label" id="fmt-state">Off</div>
+  </div>
+
+  <div class="fmt-description">Hides navigation and distractions. Full-screen content only.</div>
+
+  <!-- Quick keyboard hint -->
+  <div class="fmt-shortcut">
+    <kbd class="fmt-key">F</kbd> toggles focus mode
+  </div>
+
+</div>
+
+<style>
+.focus-mode-toggle {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--c-border);
+  border-radius: 14px;
+}
+.fmt-label { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); }
+.fmt-switch-wrap { display: flex; align-items: center; gap: 10px; }
+.fmt-switch { position: relative; display: inline-block; width: 44px; height: 24px; cursor: pointer; }
+.fmt-switch input { opacity: 0; width: 0; height: 0; }
+.fmt-slider {
+  position: absolute; inset: 0; background: rgba(255,255,255,0.1);
+  border-radius: 12px; transition: background 0.3s; border: 1px solid var(--c-border);
+}
+.fmt-slider::after {
+  content: ''; position: absolute;
+  left: 3px; top: 3px; width: 16px; height: 16px;
+  border-radius: 50%; background: rgba(255,255,255,0.5);
+  transition: transform 0.3s, background 0.3s;
+}
+.fmt-switch input:checked ~ .fmt-slider { background: rgba(99,179,237,0.3); border-color: rgba(99,179,237,0.4); }
+.fmt-switch input:checked ~ .fmt-slider::after { transform: translateX(20px); background: #63B3ED; }
+.fmt-state-label { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.4); }
+.fmt-switch input:checked + .fmt-slider + .fmt-state-label { color: #63B3ED; }
+.fmt-description { font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.4; }
+.fmt-shortcut { display: flex; align-items: center; gap: 6px; font-size: 11px; color: rgba(255,255,255,0.3); }
+.fmt-key {
+  background: rgba(255,255,255,0.08); border: 1px solid var(--c-border);
+  border-radius: 5px; padding: 2px 7px; font-size: 11px;
+  font-family: var(--font-mono); color: rgba(255,255,255,0.5);
+}
+</style>
+
+<script>
+const FocusMode = (() => {
+  let active = false;
+
+  function toggle(on) {
+    active = on !== undefined ? on : !active;
+    const body = document.body;
+    const label = document.getElementById('fmt-state');
+    const checkbox = document.getElementById('fmt-checkbox');
+
+    if (active) {
+      body.classList.add('focus-mode-active');
+      if (label) label.textContent = 'On';
+    } else {
+      body.classList.remove('focus-mode-active');
+      if (label) label.textContent = 'Off';
+    }
+    if (checkbox) checkbox.checked = active;
+  }
+
+  // Keyboard shortcut
+  document.addEventListener('keydown', e => {
+    if (e.key === 'f' || e.key === 'F') {
+      if (!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)) {
+        toggle();
+      }
+    }
+  });
+
+  return { toggle, isActive: () => active };
+})();
+</script>

@@ -1,0 +1,135 @@
+<!--
+  FocusSessionOverlay — Active deep-work session timer with checkpoints
+  2030B Design System · Vol 2
+-->
+<div class="focus-overlay fade-in" id="focus-overlay" role="dialog" aria-modal="true" aria-label="Focus session active">
+
+  <div class="fo-backdrop"></div>
+
+  <div class="fo-content">
+
+    <!-- Header -->
+    <div class="fo-header">
+      <div class="fo-mode-badge">🧠 Deep Work Session</div>
+      <button class="fo-exit-btn" onclick="FocusSession.requestExit()" aria-label="Exit session">✕</button>
+    </div>
+
+    <!-- Timer ring -->
+    <div class="fo-timer-wrap">
+      <svg class="fo-ring" viewBox="0 0 120 120" aria-hidden="true">
+        <circle class="fo-ring-track" cx="60" cy="60" r="52" />
+        <circle class="fo-ring-fill" id="fo-ring-fill" cx="60" cy="60" r="52"
+          stroke-dasharray="326.7" stroke-dashoffset="0" />
+      </svg>
+      <div class="fo-timer-display" id="fo-timer-display">25:00</div>
+      <div class="fo-timer-label">remaining</div>
+    </div>
+
+    <!-- Session info -->
+    <div class="fo-session-info">
+      <div class="fo-session-task" id="fo-task-name">{{session_task}}</div>
+      <div class="fo-session-meta">{{music_type}} · Started at {{start_time}}</div>
+    </div>
+
+    <!-- Checkpoint prompt (periodically appears) -->
+    <div class="fo-checkpoint" id="fo-checkpoint" style="display:none">
+      <div class="fo-checkpoint-text">Still focused?</div>
+      <div class="fo-checkpoint-actions">
+        <button class="btn-primary btn-sm" onclick="FocusSession.confirmFocused()">✓ Yes, focused</button>
+        <button class="btn-ghost btn-sm" onclick="FocusSession.takePause()">⏸ Take a pause</button>
+      </div>
+    </div>
+
+    <!-- Exit confirmation -->
+    <div class="fo-exit-confirm" id="fo-exit-confirm" style="display:none">
+      <div class="fo-exit-warning">⚠️ Exiting now will forfeit <strong id="fo-ctc-loss">50 CTC</strong> session bonus.</div>
+      <div class="fo-exit-actions">
+        <button class="btn-danger btn-sm" onclick="FocusSession.confirmExit()">Exit Anyway</button>
+        <button class="btn-primary btn-sm" onclick="FocusSession.cancelExit()">Stay Focused</button>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="fo-progress-bar">
+      <div class="fo-progress-fill" id="fo-progress-fill" style="width:0%"></div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.focus-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+}
+.fo-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(7,10,18,0.92); backdrop-filter: blur(20px);
+}
+.fo-content {
+  position: relative; z-index: 1;
+  background: rgba(18,24,38,0.95);
+  border: 1px solid var(--c-border);
+  border-radius: 24px;
+  padding: 32px 28px;
+  width: min(440px, 92vw);
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.fo-header {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+}
+.fo-mode-badge {
+  background: rgba(99,179,237,0.12); border: 1px solid rgba(99,179,237,0.25);
+  border-radius: 20px; padding: 5px 14px; font-size: 13px; font-weight: 600; color: #63B3ED;
+}
+.fo-exit-btn {
+  background: rgba(255,255,255,0.06); border: 1px solid var(--c-border);
+  border-radius: 8px; width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: rgba(255,255,255,0.4); font-size: 14px;
+}
+.fo-exit-btn:hover { color: #FC8181; border-color: rgba(252,129,129,0.3); }
+.fo-timer-wrap { position: relative; width: 160px; height: 160px; }
+.fo-ring { width: 160px; height: 160px; transform: rotate(-90deg); }
+.fo-ring-track { fill: none; stroke: rgba(255,255,255,0.07); stroke-width: 8; }
+.fo-ring-fill {
+  fill: none; stroke: url(#timerGrad); stroke-width: 8;
+  stroke-linecap: round; transition: stroke-dashoffset 1s linear;
+}
+.fo-timer-display {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-52%);
+  font-size: 34px; font-weight: 800; font-family: var(--font-mono); color: #fff;
+  letter-spacing: -1px;
+}
+.fo-timer-label {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  font-size: 11px; color: rgba(255,255,255,0.35); white-space: nowrap;
+}
+.fo-session-info { text-align: center; }
+.fo-session-task { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.fo-session-meta { font-size: 12px; color: rgba(255,255,255,0.4); }
+.fo-checkpoint {
+  width: 100%; background: rgba(246,173,85,0.07);
+  border: 1px solid rgba(246,173,85,0.25); border-radius: 12px;
+  padding: 14px; display: flex; flex-direction: column; gap: 10px; align-items: center;
+}
+.fo-checkpoint-text { font-size: 15px; font-weight: 600; color: #F6AD55; }
+.fo-checkpoint-actions { display: flex; gap: 8px; }
+.fo-exit-confirm {
+  width: 100%; background: rgba(252,129,129,0.07);
+  border: 1px solid rgba(252,129,129,0.25); border-radius: 12px;
+  padding: 14px; display: flex; flex-direction: column; gap: 10px; align-items: center;
+}
+.fo-exit-warning { font-size: 13px; color: rgba(255,255,255,0.7); text-align: center; line-height: 1.5; }
+.fo-exit-warning strong { color: #FC8181; }
+.fo-exit-actions { display: flex; gap: 8px; }
+.fo-progress-bar {
+  width: 100%; height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden;
+}
+.fo-progress-fill { height: 100%; background: var(--g-primary); border-radius: 2px; transition: width 1s linear; }
+.btn-danger {
+  background: rgba(252,129,129,0.15); border: 1px solid rgba(252,129,129,0.3);
+  border-radius: 10px; padding: 8px 18px; color: #FC8181; font-size: 13px;
+  font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+</style>

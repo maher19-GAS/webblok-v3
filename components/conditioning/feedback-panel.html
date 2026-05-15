@@ -1,0 +1,91 @@
+<!--
+  FeedbackPanel — Post-answer learning moment
+  2030B Design System · Vol 2
+  Shows: correct reasoning, mistake explanation, cognitive model used
+-->
+<div class="feedback-panel fade-in" id="feedback-panel" data-result="{{result}}">
+
+  <!-- Result header -->
+  <div class="fp-result-banner" id="fp-banner">
+    <div class="fp-result-icon" id="fp-result-icon">{{result_icon}}</div>
+    <div class="fp-result-info">
+      <div class="fp-result-title" id="fp-result-title">{{result_title}}</div>
+      <div class="fp-result-sub" id="fp-result-sub">{{result_subtitle}}</div>
+    </div>
+    <div class="fp-ctc-earned" id="fp-ctc">+{{ctc_earned}} CTC</div>
+  </div>
+
+  <!-- Correct reasoning -->
+  <div class="fp-section">
+    <div class="fp-section-label">✅ Correct Reasoning</div>
+    <div class="fp-reasoning" id="fp-reasoning">{{correct_reasoning}}</div>
+  </div>
+
+  <!-- Your mistake (shown only if wrong) -->
+  <div class="fp-section" id="fp-mistake-wrap">
+    <div class="fp-section-label">🔍 What Went Wrong</div>
+    <div class="fp-mistake" id="fp-mistake">{{mistake_explanation}}</div>
+  </div>
+
+  <!-- Cognitive model used -->
+  <div class="fp-model-block">
+    <div class="fp-model-label">📐 Cognitive Model Applied</div>
+    <div class="fp-model-name" id="fp-model-name">{{cognitive_model}}</div>
+    <div class="fp-model-desc" id="fp-model-desc">{{model_description}}</div>
+  </div>
+
+  <!-- Skill improvement -->
+  <div class="fp-skill-gain" id="fp-skill-gain">
+    <span class="fp-skill-name">{{skill_dimension}}</span>
+    <span class="fp-skill-delta">+{{skill_delta}} pts</span>
+  </div>
+
+  <!-- Actions -->
+  <div class="fp-actions">
+    <button class="btn-primary" onclick="Challenge.nextChallenge()">Next Challenge</button>
+    <button class="btn-ghost btn-sm" onclick="Challenge.reviewLesson()">Review Lesson</button>
+    <button class="btn-ghost btn-sm" onclick="Challenge.shareResult()">Share 📤</button>
+  </div>
+
+</div>
+
+<style>
+.feedback-panel {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--c-border);
+  border-radius: 18px; overflow: hidden;
+  display: flex; flex-direction: column; gap: 0;
+}
+.fp-result-banner {
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px 20px;
+  background: rgba(104,211,145,0.06); border-bottom: 1px solid var(--c-border);
+}
+.feedback-panel[data-result="wrong"] .fp-result-banner { background: rgba(252,129,129,0.06); }
+.fp-result-icon { font-size: 28px; }
+.fp-result-info { flex: 1; }
+.fp-result-title { font-size: 16px; font-weight: 700; color: #fff; }
+.fp-result-sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+.fp-ctc-earned {
+  font-size: 15px; font-weight: 800; color: #68D391;
+  font-family: var(--font-mono);
+}
+.feedback-panel[data-result="wrong"] .fp-ctc-earned { color: #FC8181; }
+.fp-section { padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.fp-section-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.fp-reasoning, .fp-mistake { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.8); }
+.fp-model-block {
+  padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.04);
+  background: rgba(159,122,234,0.04);
+}
+.fp-model-label { font-size: 11px; font-weight: 700; color: #9F7AEA; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.fp-model-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.fp-model-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+.fp-skill-gain {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+}
+.fp-skill-name { color: rgba(255,255,255,0.6); }
+.fp-skill-delta { font-weight: 700; color: #68D391; }
+.fp-actions { display: flex; gap: 10px; padding: 16px 20px; flex-wrap: wrap; }
+</style>

@@ -1,0 +1,94 @@
+<!-- COMPONENT: Skill Tree | progression/skill-tree.html -->
+<!-- CRITICAL – renders 7-dimension cognitive skill tree with progress rings -->
+<!-- Props: dimensions[], overall_progress, consciousness_value -->
+<div class="skill-tree-component" style="padding:0 4px">
+
+  <!-- Central Score Ring -->
+  <div style="display:flex;justify-content:center;margin-bottom:20px">
+    <div style="position:relative;width:100px;height:100px">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+        <circle id="skill-ring" cx="50" cy="50" r="42" fill="none" stroke="url(#skillGrad)" stroke-width="8"
+          stroke-dasharray="263.9" stroke-dashoffset="263.9"
+          stroke-linecap="round" transform="rotate(-90 50 50)"
+          style="transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)"/>
+        <defs>
+          <linearGradient id="skillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#63B3ED"/>
+            <stop offset="100%" stop-color="#9F7AEA"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div id="skill-score" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+        <div style="font-size:22px;font-weight:900;color:#fff;line-height:1">--</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.08em">Overall</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dimensions Grid -->
+  <div id="skill-dims-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
+
+  <!-- Consciousness spotlight -->
+  <div id="skill-consciousness" style="margin-top:8px;background:linear-gradient(135deg,rgba(99,179,237,0.08),rgba(159,122,234,0.08));border:1px solid rgba(159,122,234,0.2);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px">
+    <span style="font-size:22px">🌌</span>
+    <div style="flex:1">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.8)">Consciousness</span>
+        <span id="consciousness-val" style="font-size:12px;font-weight:700;color:#9F7AEA">--</span>
+      </div>
+      <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden">
+        <div id="consciousness-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#9F7AEA,#FC8181);border-radius:2px;transition:width 1.2s ease 0.6s"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function initSkillTree(dims, overall) {
+  const grid = document.getElementById('skill-dims-grid');
+  const ring = document.getElementById('skill-ring');
+  const scoreEl = document.getElementById('skill-score');
+  const cVal = document.getElementById('consciousness-val');
+  const cBar = document.getElementById('consciousness-bar');
+
+  if (!dims || !grid) return;
+
+  // Score ring
+  const circumference = 263.9;
+  const offset = circumference - (overall / 100) * circumference;
+  scoreEl.querySelector('div').textContent = overall;
+  setTimeout(() => { ring.style.strokeDashoffset = offset; }, 100);
+
+  // Build dimension nodes (first 6 non-Consciousness)
+  const mainDims = dims.filter(d => !d.name.toLowerCase().includes('consciousness'));
+  const consDim  = dims.find(d => d.name.toLowerCase().includes('consciousness'));
+
+  mainDims.forEach((d, i) => {
+    const el = document.createElement('div');
+    el.className = 'skill-node fade-in';
+    el.style.cssText = `animation-delay:${i * 80}ms;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:10px 12px`;
+    el.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span style="font-size:15px">${d.icon || '🔹'}</span>
+          <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.8)">${d.name}</span>
+        </div>
+        <span style="font-size:12px;font-weight:700;color:#63B3ED">${d.value}</span>
+      </div>
+      <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden">
+        <div class="skill-bar" data-val="${d.value}" style="height:100%;width:0%;background:linear-gradient(90deg,#63B3ED,#9F7AEA);border-radius:2px;transition:width 0.9s ease ${i * 80}ms"></div>
+      </div>`;
+    grid.appendChild(el);
+  });
+
+  setTimeout(() => {
+    document.querySelectorAll('.skill-bar').forEach(b => { b.style.width = b.dataset.val + '%'; });
+  }, 150);
+
+  if (consDim) {
+    cVal.textContent = consDim.value;
+    setTimeout(() => { cBar.style.width = consDim.value + '%'; }, 200);
+  }
+})(window._skillTreeDims || [], window._skillTreeOverall || 0);
+</script>

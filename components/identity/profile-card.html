@@ -1,0 +1,115 @@
+<!--
+  ProfileCard — User identity: tier, certifications, stats
+  2030B Design System · Vol 2
+-->
+<div class="profile-card-v2 fade-in" id="profile-card-v2">
+
+  <!-- Cover gradient -->
+  <div class="pcv2-cover"></div>
+
+  <!-- Avatar section -->
+  <div class="pcv2-avatar-section">
+    <div class="pcv2-avatar-ring">
+      <div class="pcv2-avatar" id="pcv2-avatar">{{avatar_initials}}</div>
+    </div>
+    <div class="pcv2-tier-badge" id="pcv2-tier" data-tier="{{tier}}">
+      <span class="pcv2-tier-icon">{{tier_icon}}</span>
+      <span class="pcv2-tier-name">{{tier_name}}</span>
+    </div>
+  </div>
+
+  <!-- Main info -->
+  <div class="pcv2-info">
+    <div class="pcv2-name" id="pcv2-name">{{user_name}}</div>
+    <div class="pcv2-username" id="pcv2-username">{{username}}</div>
+    <div class="pcv2-location">📍 {{location}} · Joined {{joined}}</div>
+  </div>
+
+  <!-- Cognitive stats -->
+  <div class="pcv2-stats">
+    <div class="pcv2-stat">
+      <div class="pcv2-stat-val" id="ps-level">{{level}}</div>
+      <div class="pcv2-stat-label">Level</div>
+    </div>
+    <div class="pcv2-stat-div"></div>
+    <div class="pcv2-stat">
+      <div class="pcv2-stat-val" id="ps-ctc">{{ctc_balance}}</div>
+      <div class="pcv2-stat-label">CTC</div>
+    </div>
+    <div class="pcv2-stat-div"></div>
+    <div class="pcv2-stat">
+      <div class="pcv2-stat-val" id="ps-rep">{{reputation}}</div>
+      <div class="pcv2-stat-label">Reputation</div>
+    </div>
+    <div class="pcv2-stat-div"></div>
+    <div class="pcv2-stat">
+      <div class="pcv2-stat-val" id="ps-certs">{{cert_count}}</div>
+      <div class="pcv2-stat-label">Certs</div>
+    </div>
+  </div>
+
+  <!-- Certification badges row -->
+  <div class="pcv2-certs" id="pcv2-certs">
+    <div class="pcv2-certs-label">Certifications</div>
+    <div class="pcv2-cert-badges" id="pcv2-cert-badges">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="pcv2-actions">
+    <button class="btn-primary btn-sm" onclick="Profile.editProfile()">Edit Profile</button>
+    <button class="btn-ghost btn-sm" onclick="Profile.shareProfile()">Share ↗</button>
+  </div>
+
+</div>
+
+<style>
+.profile-card-v2 {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--c-border);
+  border-radius: 20px; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.pcv2-cover {
+  height: 72px;
+  background: linear-gradient(135deg, rgba(99,179,237,0.3) 0%, rgba(159,122,234,0.3) 50%, rgba(104,211,145,0.2) 100%);
+}
+.pcv2-avatar-section {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 0 18px; margin-top: -28px; margin-bottom: 12px;
+}
+.pcv2-avatar-ring {
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 3px solid #121826;
+  background: var(--g-primary);
+  display: flex; align-items: center; justify-content: center;
+}
+.pcv2-avatar { font-size: 20px; font-weight: 800; color: #fff; }
+.pcv2-tier-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 11px; font-weight: 700;
+  margin-bottom: 4px;
+}
+.pcv2-tier-badge[data-tier="Explorer"] { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.12); }
+.pcv2-tier-badge[data-tier="Thinker"] { background: rgba(99,179,237,0.15); color: #63B3ED; border: 1px solid rgba(99,179,237,0.3); }
+.pcv2-tier-badge[data-tier="Architect"] { background: rgba(159,122,234,0.15); color: #9F7AEA; border: 1px solid rgba(159,122,234,0.3); }
+.pcv2-tier-badge[data-tier="Visionary"] { background: rgba(246,173,85,0.15); color: #F6AD55; border: 1px solid rgba(246,173,85,0.3); }
+.pcv2-info { padding: 0 18px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.pcv2-name { font-size: 18px; font-weight: 800; color: #fff; }
+.pcv2-username { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.pcv2-location { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 6px; }
+.pcv2-stats { display: flex; padding: 12px 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.pcv2-stat { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px; }
+.pcv2-stat-val { font-size: 16px; font-weight: 800; color: #fff; }
+.pcv2-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.06em; }
+.pcv2-stat-div { width: 1px; background: rgba(255,255,255,0.07); align-self: stretch; margin: 4px 0; }
+.pcv2-certs { padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.pcv2-certs-label { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.pcv2-cert-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.pcv2-cert-chip {
+  background: rgba(255,255,255,0.05); border: 1px solid var(--c-border);
+  border-radius: 20px; padding: 3px 10px; font-size: 11px; color: rgba(255,255,255,0.6);
+}
+.pcv2-actions { display: flex; gap: 8px; padding: 12px 18px; }
+</style>

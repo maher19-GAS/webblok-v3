@@ -1,0 +1,45 @@
+<!-- COMPONENT: Session Summary | cognitive-ux/session-summary.html -->
+<!-- VERY IMPORTANT – post-challenge/session result screen -->
+<div class="session-summary-overlay" style="background:linear-gradient(180deg,rgba(11,15,26,0.97),rgba(11,15,26,1));border-radius:20px;padding:24px 20px;display:flex;flex-direction:column;gap:16px;text-align:center">
+  <div style="display:flex;justify-content:center">
+    <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#63B3ED,#9F7AEA);display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 32px rgba(99,179,237,0.3)">🧠</div>
+  </div>
+  <div>
+    <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.4);margin-bottom:6px">Session Complete</div>
+    <div id="ss-score" style="font-size:42px;font-weight:900;background:linear-gradient(135deg,#63B3ED,#9F7AEA);-webkit-background-clip:text;-webkit-text-fill-color:transparent">--</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px">Challenge Score</div>
+  </div>
+  <div style="display:flex;justify-content:center;gap:20px">
+    <div style="text-align:center">
+      <div id="ss-ctc" style="font-size:18px;font-weight:800;color:#68D391">+0 CTC</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.35)">Earned</div>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,0.08)"></div>
+    <div style="text-align:center">
+      <div id="ss-time" style="font-size:18px;font-weight:800;color:#63B3ED">0:00</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.35)">Duration</div>
+    </div>
+  </div>
+  <div id="ss-dims" style="background:rgba(255,255,255,0.03);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px"></div>
+  <div id="ss-next" style="background:rgba(99,179,237,0.07);border:1px solid rgba(99,179,237,0.15);border-radius:12px;padding:12px">
+    <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px">AI Recommendation</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.75)">Loading...</div>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button onclick="this.closest('.session-summary-overlay').style.display='none'" style="flex:1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);font-size:13px;cursor:pointer">Close</button>
+    <button style="flex:2;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#63B3ED,#9F7AEA);color:#fff;font-size:13px;font-weight:700;cursor:pointer">Next Challenge →</button>
+  </div>
+</div>
+<script>
+(function populateSessionSummary(s) {
+  if (!s) return;
+  const $ = id => document.getElementById(id);
+  if ($('ss-score')) $('ss-score').textContent = s.score || '--';
+  if ($('ss-ctc')) $('ss-ctc').textContent = '+' + (s.ctc_earned?.toLocaleString?.() || s.ctc_earned || 0) + ' CTC';
+  if ($('ss-time')) $('ss-time').textContent = s.duration || '0:00';
+  if (s.dimension_gains?.length && $('ss-dims')) {
+    $('ss-dims').innerHTML = s.dimension_gains.map(g => `<div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:11px;color:rgba(255,255,255,0.55)">${g.name}</span><span style="font-size:11px;font-weight:700;color:#68D391">+${g.gain}</span></div>`).join('');
+  }
+  if (s.next_recommendation && $('ss-next')) $('ss-next').lastElementChild.textContent = s.next_recommendation;
+})(window._sessionSummaryData);
+</script>

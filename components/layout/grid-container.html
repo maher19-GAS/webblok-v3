@@ -1,0 +1,85 @@
+<!--
+  GridContainer — Cognitive layout system: 2-col, 3-col, focus mode
+  2030B Design System · Vol 2
+-->
+<div class="grid-container fade-in" id="grid-container" data-layout="two-col">
+
+  <!-- Layout switcher (optional, shown in dev/demo) -->
+  <div class="grid-layout-switcher" role="group" aria-label="Layout mode">
+    <button class="grid-mode-btn active" data-mode="two-col" title="Content + Context">⬜⬜</button>
+    <button class="grid-mode-btn" data-mode="three-col" title="Dashboard">⬜⬜⬜</button>
+    <button class="grid-mode-btn" data-mode="focus" title="Focus Mode">⬜</button>
+  </div>
+
+  <!-- Columns injected based on layout mode -->
+  <div class="grid-cols" id="grid-cols">
+    <div class="grid-col grid-col-main" id="grid-main">
+      <!-- Primary content -->
+    </div>
+    <div class="grid-col grid-col-context" id="grid-context">
+      <!-- Context / sidebar content -->
+    </div>
+  </div>
+
+</div>
+
+<style>
+.grid-container { width: 100%; }
+.grid-layout-switcher {
+  display: flex; gap: 6px; margin-bottom: 16px;
+  justify-content: flex-end;
+}
+.grid-mode-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--c-border);
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: 11px; color: rgba(255,255,255,0.4); cursor: pointer;
+  transition: all 0.2s;
+}
+.grid-mode-btn.active, .grid-mode-btn:hover {
+  background: rgba(99,179,237,0.12); color: #63B3ED;
+  border-color: rgba(99,179,237,0.3);
+}
+/* Two-column layout */
+.grid-container[data-layout="two-col"] .grid-cols {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+}
+/* Three-column layout */
+.grid-container[data-layout="three-col"] .grid-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+/* Focus mode */
+.grid-container[data-layout="focus"] .grid-cols {
+  display: grid;
+  grid-template-columns: min(680px, 100%);
+  justify-content: center;
+  gap: 0;
+}
+.grid-container[data-layout="focus"] .grid-col-context { display: none; }
+
+.grid-col { min-width: 0; }
+@media (max-width: 900px) {
+  .grid-container[data-layout="two-col"] .grid-cols,
+  .grid-container[data-layout="three-col"] .grid-cols {
+    grid-template-columns: 1fr;
+  }
+  .grid-col-context { display: none; }
+}
+</style>
+
+<script>
+document.querySelectorAll('.grid-mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const gc = btn.closest('.grid-container');
+    gc.dataset.layout = btn.dataset.mode;
+    btn.closest('.grid-layout-switcher').querySelectorAll('.grid-mode-btn')
+      .forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>

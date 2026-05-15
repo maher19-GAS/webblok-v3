@@ -1,0 +1,13 @@
+<!-- components/data/line-chart.html -->
+<div class="glass-card fade-in">
+  <div class="glass-card-header">
+    <span class="glass-card-title">{{title}}</span>
+    <span class="tag-chip green" style="font-size:11px">{{trend}}</span>
+  </div>
+  <div id="line-chart-{{id}}" class="chart-container" style="height:120px;width:100%">
+    <!-- Drawn by AnimationSystem.drawLineChart() -->
+  </div>
+  <div style="display:flex;justify-content:space-between;margin-top:8px">
+    {{xLabels}}
+  </div>
+</div>

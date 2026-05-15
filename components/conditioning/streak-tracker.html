@@ -1,0 +1,87 @@
+<!--
+  StreakTracker — Habit reinforcement with visual timeline
+  2030B Design System · Vol 2
+-->
+<div class="streak-tracker fade-in" id="streak-tracker">
+
+  <div class="st-header">
+    <div class="st-fire-display">
+      <span class="st-fire-icon">🔥</span>
+      <span class="st-streak-count" id="st-count">{{current_streak}}</span>
+      <span class="st-streak-unit">day streak</span>
+    </div>
+    <div class="st-longest">Best: <strong>{{longest_streak}}</strong> days</div>
+  </div>
+
+  <!-- 7-day weekly view -->
+  <div class="st-week-row" id="st-week">
+    <!-- Days rendered by JS -->
+  </div>
+
+  <!-- Milestone track -->
+  <div class="st-milestones" id="st-milestones">
+    <div class="st-milestone-label">Streak Milestones</div>
+    <div class="st-milestone-list" id="st-milestone-list">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+
+  <!-- Next milestone -->
+  <div class="st-next-milestone">
+    <span>🎯 Next milestone:</span>
+    <span class="st-next-name">{{next_milestone_name}}</span>
+    <span class="st-next-days">{{days_to_next}} days away</span>
+  </div>
+
+</div>
+
+<style>
+.streak-tracker {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--c-border);
+  border-radius: 16px; padding: 18px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.st-header { display: flex; align-items: center; justify-content: space-between; }
+.st-fire-display { display: flex; align-items: baseline; gap: 6px; }
+.st-fire-icon { font-size: 22px; }
+.st-streak-count { font-size: 32px; font-weight: 900; color: #F6AD55; line-height: 1; }
+.st-streak-unit { font-size: 13px; color: rgba(255,255,255,0.4); }
+.st-longest { font-size: 12px; color: rgba(255,255,255,0.4); }
+.st-longest strong { color: rgba(255,255,255,0.65); }
+.st-week-row { display: flex; gap: 6px; justify-content: space-between; }
+.st-day {
+  flex: 1; aspect-ratio: 1; border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  font-size: 10px; color: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.2s;
+}
+.st-day.done { background: rgba(246,173,85,0.12); border-color: rgba(246,173,85,0.25); color: #F6AD55; }
+.st-day.today { background: rgba(99,179,237,0.12); border-color: rgba(99,179,237,0.3); color: #63B3ED; font-weight: 700; }
+.st-day-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.05em; }
+.st-day-icon { font-size: 14px; }
+.st-milestone-label { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.st-milestone-list { display: flex; flex-direction: column; gap: 6px; }
+.st-milestone-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; border-radius: 10px;
+  font-size: 12px;
+}
+.st-milestone-item.earned {
+  background: rgba(104,211,145,0.08); border: 1px solid rgba(104,211,145,0.2);
+  color: #68D391;
+}
+.st-milestone-item.pending {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.4);
+}
+.st-milestone-reward { font-weight: 700; }
+.st-next-milestone {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 12px; color: rgba(255,255,255,0.5);
+  padding: 8px 12px; background: rgba(255,255,255,0.03);
+  border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);
+}
+.st-next-name { font-weight: 700; color: #63B3ED; }
+.st-next-days { color: rgba(255,255,255,0.35); }
+</style>

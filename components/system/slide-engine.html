@@ -1,0 +1,59 @@
+<!-- COMPONENT: Slide Engine | system/slide-engine.html -->
+<!-- CRITICAL – drives navigation, state, progress, transitions for the viewer -->
+<!-- This component is embedded in index.html / index2.html viewers -->
+<div id="slide-engine-ui" style="position:fixed;bottom:0;left:0;right:0;z-index:100;pointer-events:none">
+  <!-- Progress bar -->
+  <div id="se-progress-track" style="position:absolute;bottom:80px;left:0;right:0;height:2px;background:rgba(255,255,255,0.04)">
+    <div id="se-progress-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#63B3ED,#9F7AEA);transition:width 0.4s ease"></div>
+  </div>
+</div>
+<script>
+window.SlideEngine = (function() {
+  let _slides = [], _current = 0, _total = 0, _onNavigate = null;
+
+  function init(slides, startIndex, onNavigateCb) {
+    _slides = slides;
+    _current = startIndex || 0;
+    _total = slides.length;
+    _onNavigate = onNavigateCb;
+    updateProgress();
+    bindKeys();
+  }
+
+  function updateProgress() {
+    const fill = document.getElementById('se-progress-fill');
+    if (fill && _total > 1) fill.style.width = ((_current / (_total - 1)) * 100) + '%';
+  }
+
+  function goTo(index) {
+    if (index < 0 || index >= _total) return;
+    _current = index;
+    updateProgress();
+    if (typeof _onNavigate === 'function') _onNavigate(_current, _slides[_current]);
+  }
+
+  function next() { goTo(_current + 1); }
+  function prev() { goTo(_current - 1); }
+  function getCurrent() { return _current; }
+  function getSlide(i) { return _slides[i !== undefined ? i : _current]; }
+
+  function bindKeys() {
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+      if (e.key === 'Home') goTo(0);
+      if (e.key === 'End') goTo(_total - 1);
+    });
+  }
+
+  // Touch swipe support
+  let _touchStartX = 0;
+  document.addEventListener('touchstart', e => { _touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - _touchStartX;
+    if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+  });
+
+  return { init, next, prev, goTo, getCurrent, getSlide };
+})();
+</script>

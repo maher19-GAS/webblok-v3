@@ -1,0 +1,59 @@
+<!--
+  MusicCategoryCard — Browse cognitive music types
+  2030B Design System · Vol 2
+-->
+<div class="music-cat-card fade-in" id="music-cat-card" data-type="{{type_key}}">
+
+  <div class="mcc-icon-wrap">
+    <div class="mcc-icon">{{category_icon}}</div>
+    <div class="mcc-glow"></div>
+  </div>
+
+  <div class="mcc-info">
+    <div class="mcc-name">{{category_name}}</div>
+    <div class="mcc-duration">{{duration_range}}</div>
+  </div>
+
+  <div class="mcc-uses">
+    <div class="mcc-uses-label">Best for:</div>
+    <div class="mcc-use-tags" id="mcc-use-tags">
+      <!-- e.g. <span class="mcc-tag">Deep coding</span> -->
+    </div>
+  </div>
+
+  <button class="mcc-play-btn" onclick="AudioFocus.startCategory('{{type_key}}')">
+    ▶ Start Session
+  </button>
+
+</div>
+
+<style>
+.music-cat-card {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--c-border);
+  border-radius: 16px; padding: 18px;
+  display: flex; flex-direction: column; gap: 12px;
+  cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden;
+}
+.music-cat-card:hover { border-color: rgba(99,179,237,0.3); transform: translateY(-2px); }
+.mcc-icon-wrap { position: relative; align-self: flex-start; }
+.mcc-icon { font-size: 28px; position: relative; z-index: 1; }
+.mcc-glow {
+  position: absolute; inset: -8px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,179,237,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.mcc-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.mcc-duration { font-size: 12px; color: rgba(255,255,255,0.4); }
+.mcc-uses-label { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+.mcc-use-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.mcc-tag {
+  background: rgba(255,255,255,0.06); border: 1px solid var(--c-border);
+  border-radius: 6px; padding: 2px 8px; font-size: 11px; color: rgba(255,255,255,0.5);
+}
+.mcc-play-btn {
+  background: var(--g-primary); border: none; border-radius: 10px;
+  padding: 9px 16px; color: #fff; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: opacity 0.15s; width: 100%;
+}
+.mcc-play-btn:hover { opacity: 0.88; }
+</style>

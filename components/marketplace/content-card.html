@@ -1,0 +1,24 @@
+<!-- COMPONENT: Content Card | marketplace/content-card.html -->
+<!-- Props: item{title, seller, price, rating, category, listings} -->
+<div id="marketplace-cards" style="display:flex;flex-direction:column;gap:10px"></div>
+<script>
+(function renderMarketplace(items) {
+  const c = document.getElementById('marketplace-cards');
+  if (!c || !items) return;
+  const icons = { 'Cognitive Tools':'🛠️','Learning Paths':'📚','Research Data':'🔬','IP Licenses':'⚖️','Skill Templates':'📋','Mentorship Packages':'🎓',
+    'الأدوات الإدراكية':'🛠️','مسارات التعلم':'📚','بيانات الأبحاث':'🔬','تراخيص الملكية الفكرية':'⚖️','قوالب المهارات':'📋','حزم الإرشاد':'🎓'
+  };
+  c.innerHTML = items.map((item, i) => `
+    <div class="mkt-card fade-in" style="animation-delay:${i*60}ms;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+      <div style="width:40px;height:40px;border-radius:10px;background:rgba(99,179,237,0.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">${icons[item.name]||'📦'}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${item.name}</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4)">${item.listings?.toLocaleString()} listings</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:12px;font-weight:700;color:#F6AD55">${item.avg_price}</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3)">avg</div>
+      </div>
+    </div>`).join('');
+})(window._marketplaceItems || []);
+</script>

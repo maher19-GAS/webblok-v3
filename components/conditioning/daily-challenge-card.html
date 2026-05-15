@@ -1,0 +1,89 @@
+<!--
+  DailyChallengeCard — Entry point for daily cognitive conditioning
+  2030B Design System · Vol 2
+  Types: bias / paradox / probability / pattern / lateral
+-->
+<div class="daily-challenge-card fade-in" id="daily-challenge-card" data-type="{{challenge_type}}">
+
+  <div class="dcc-header">
+    <div class="dcc-type-badge" id="dcc-type-badge">
+      <span class="dcc-type-icon">{{type_icon}}</span>
+      <span class="dcc-type-name">{{challenge_type}}</span>
+    </div>
+    <div class="dcc-difficulty-badge" id="dcc-difficulty">{{difficulty}}</div>
+  </div>
+
+  <div class="dcc-title">{{challenge_title}}</div>
+  <div class="dcc-description">{{challenge_description}}</div>
+
+  <div class="dcc-meta-row">
+    <div class="dcc-meta-item">
+      <span class="dcc-meta-icon">⏱</span>
+      <span>{{duration}} min</span>
+    </div>
+    <div class="dcc-meta-item">
+      <span class="dcc-meta-icon">🏆</span>
+      <span>{{ctc_reward}} CTC</span>
+    </div>
+    <div class="dcc-meta-item">
+      <span class="dcc-meta-icon">🧩</span>
+      <span>{{skill_dimension}}</span>
+    </div>
+  </div>
+
+  <!-- Streak context -->
+  <div class="dcc-streak-context" id="dcc-streak">
+    <span class="dcc-streak-fire">🔥</span>
+    <span>Day <strong>{{streak_day}}</strong> streak — keep it alive!</span>
+  </div>
+
+  <div class="dcc-actions">
+    <button class="btn-primary" onclick="DailyChallenge.start('{{challenge_id}}')">
+      Start Challenge
+    </button>
+    <button class="btn-ghost btn-sm" onclick="DailyChallenge.preview('{{challenge_id}}')">Preview</button>
+  </div>
+
+</div>
+
+<style>
+.daily-challenge-card {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--c-border);
+  border-radius: 18px; padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; overflow: hidden;
+}
+.daily-challenge-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--g-primary); opacity: 0.03; pointer-events: none;
+}
+.dcc-header { display: flex; align-items: center; justify-content: space-between; }
+.dcc-type-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(99,179,237,0.12); border: 1px solid rgba(99,179,237,0.25);
+  border-radius: 20px; padding: 4px 12px;
+}
+.dcc-type-icon { font-size: 13px; }
+.dcc-type-name { font-size: 11px; font-weight: 700; color: #63B3ED; text-transform: capitalize; }
+.dcc-difficulty-badge {
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 6px; border: 1px solid;
+}
+.dcc-difficulty-badge[data-level="Beginner"] { color: #68D391; border-color: rgba(104,211,145,0.3); background: rgba(104,211,145,0.08); }
+.dcc-difficulty-badge[data-level="Intermediate"] { color: #F6AD55; border-color: rgba(246,173,85,0.3); background: rgba(246,173,85,0.08); }
+.dcc-difficulty-badge[data-level="Advanced"] { color: #FC8181; border-color: rgba(252,129,129,0.3); background: rgba(252,129,129,0.08); }
+.dcc-title { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.4; }
+.dcc-description { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+.dcc-meta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.dcc-meta-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: rgba(255,255,255,0.55); }
+.dcc-meta-icon { font-size: 13px; }
+.dcc-streak-context {
+  background: rgba(246,173,85,0.07); border: 1px solid rgba(246,173,85,0.2);
+  border-radius: 10px; padding: 8px 12px;
+  font-size: 12px; color: rgba(255,255,255,0.6);
+  display: flex; align-items: center; gap: 8px;
+}
+.dcc-streak-fire { font-size: 16px; }
+.dcc-streak-context strong { color: #F6AD55; }
+.dcc-actions { display: flex; gap: 10px; align-items: center; }
+</style>

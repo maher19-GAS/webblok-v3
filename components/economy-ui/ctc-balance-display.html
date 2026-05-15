@@ -1,0 +1,116 @@
+<!--
+  CTCBalanceDisplay — Always-visible CTC wallet overview
+  2030B Design System · Vol 2
+  Shows: Available, Locked, Lifetime earned
+-->
+<div class="ctc-balance-display fade-in" id="ctc-balance-display">
+
+  <!-- Main balance -->
+  <div class="cbd-main">
+    <div class="cbd-main-label">Total Balance</div>
+    <div class="cbd-main-amount">
+      <span class="cbd-amount" id="cbd-total">{{total_balance}}</span>
+      <span class="cbd-unit">CTC</span>
+    </div>
+    <div class="cbd-rank">Rank: <strong id="cbd-rank">{{rank}}</strong> of {{total_users}}</div>
+  </div>
+
+  <!-- Balance breakdown -->
+  <div class="cbd-breakdown" id="cbd-breakdown">
+    <div class="cbd-item liquid">
+      <div class="cbd-item-icon">💧</div>
+      <div class="cbd-item-info">
+        <div class="cbd-item-label">Available</div>
+        <div class="cbd-item-value" id="cbd-liquid">{{liquid}}</div>
+      </div>
+    </div>
+    <div class="cbd-divider"></div>
+    <div class="cbd-item staked">
+      <div class="cbd-item-icon">💎</div>
+      <div class="cbd-item-info">
+        <div class="cbd-item-label">Locked</div>
+        <div class="cbd-item-value" id="cbd-staked">{{staked}}</div>
+      </div>
+    </div>
+    <div class="cbd-divider"></div>
+    <div class="cbd-item lifetime">
+      <div class="cbd-item-icon">⭐</div>
+      <div class="cbd-item-info">
+        <div class="cbd-item-label">Lifetime</div>
+        <div class="cbd-item-value" id="cbd-lifetime">{{lifetime}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- This month summary -->
+  <div class="cbd-month-summary">
+    <div class="cbd-month-item">
+      <span class="cbd-month-label">Earned this month</span>
+      <span class="cbd-month-val green" id="cbd-earned">+{{earned_month}}</span>
+    </div>
+    <div class="cbd-month-item">
+      <span class="cbd-month-label">Spent this month</span>
+      <span class="cbd-month-val red" id="cbd-spent">−{{spent_month}}</span>
+    </div>
+  </div>
+
+  <!-- Quick actions -->
+  <div class="cbd-actions">
+    <button class="cbd-action-btn" onclick="CTCEngine.openLock()">💎 Lock CTC</button>
+    <button class="cbd-action-btn" onclick="CTCEngine.openSend()">↗ Send</button>
+    <button class="cbd-action-btn" onclick="CTCEngine.openHistory()">📋 History</button>
+  </div>
+
+</div>
+
+<style>
+.ctc-balance-display {
+  background: rgba(99,179,237,0.06); border: 1px solid rgba(99,179,237,0.2);
+  border-radius: 18px; overflow: hidden;
+}
+.cbd-main {
+  padding: 20px 20px 16px;
+  background: rgba(99,179,237,0.04);
+  border-bottom: 1px solid rgba(99,179,237,0.15);
+  text-align: center;
+}
+.cbd-main-label { font-size: 11px; font-weight: 600; color: rgba(99,179,237,0.7); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.cbd-main-amount { display: flex; align-items: baseline; justify-content: center; gap: 6px; margin-bottom: 4px; }
+.cbd-amount { font-size: 36px; font-weight: 900; color: #fff; font-family: var(--font-mono); letter-spacing: -1px; }
+.cbd-unit { font-size: 16px; font-weight: 700; color: #63B3ED; }
+.cbd-rank { font-size: 12px; color: rgba(255,255,255,0.4); }
+.cbd-rank strong { color: rgba(255,255,255,0.65); }
+.cbd-breakdown {
+  display: flex; align-items: stretch;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.cbd-item {
+  flex: 1; display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px;
+}
+.cbd-divider { width: 1px; background: rgba(255,255,255,0.06); flex-shrink: 0; }
+.cbd-item-icon { font-size: 18px; }
+.cbd-item-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+.cbd-item-value { font-size: 14px; font-weight: 700; color: #fff; font-family: var(--font-mono); }
+.cbd-item.liquid .cbd-item-value { color: #68D391; }
+.cbd-item.staked .cbd-item-value { color: #63B3ED; }
+.cbd-month-summary {
+  padding: 12px 20px; display: flex; flex-direction: column; gap: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.cbd-month-item { display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+.cbd-month-label { color: rgba(255,255,255,0.45); }
+.cbd-month-val { font-weight: 700; font-family: var(--font-mono); }
+.cbd-month-val.green { color: #68D391; }
+.cbd-month-val.red { color: #FC8181; }
+.cbd-actions {
+  display: flex; gap: 0; border-top: 1px solid rgba(255,255,255,0.04);
+}
+.cbd-action-btn {
+  flex: 1; background: transparent; border: none; border-right: 1px solid rgba(255,255,255,0.05);
+  padding: 12px 8px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6);
+  cursor: pointer; transition: all 0.15s;
+}
+.cbd-action-btn:last-child { border-right: none; }
+.cbd-action-btn:hover { background: rgba(99,179,237,0.08); color: #63B3ED; }
+</style>

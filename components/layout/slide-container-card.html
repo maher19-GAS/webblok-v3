@@ -1,0 +1,122 @@
+<!--
+  COMPONENT: Slide Container – Card (CRITICAL)
+  Category:  layout
+  Usage:     Centered card layout ideal for single-focus content, stats, profiles
+  Props:     data-card-width (sm/md/lg/xl), data-glass (true/false)
+-->
+<div class="slide-container-card" data-card-width="md" data-glass="true" role="main">
+
+  <!-- Ambient background -->
+  <div class="scc-ambient" aria-hidden="true">
+    <span class="scc-orb scc-orb--1"></span>
+    <span class="scc-orb scc-orb--2"></span>
+    <span class="scc-orb scc-orb--3"></span>
+  </div>
+
+  <!-- Card -->
+  <article class="scc-card">
+    <div class="scc-card__inner">
+      <slot name="badge"></slot>
+      <slot></slot>
+      <slot name="actions"></slot>
+    </div>
+
+    <!-- Shine / shimmer effect -->
+    <div class="scc-card__shine" aria-hidden="true"></div>
+  </article>
+
+</div>
+
+<style>
+/* ── Slide Container Card ─────────────────────────────────── */
+.slide-container-card {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg, #0a0a1a);
+  padding: 2rem 1rem;
+  overflow: hidden;
+}
+
+/* Ambient orbs */
+.scc-ambient { position: absolute; inset: 0; pointer-events: none; }
+.scc-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .35;
+  animation: orbPulse 8s ease-in-out infinite alternate;
+}
+.scc-orb--1 { width: 500px; height: 500px; background: rgba(108,99,255,.5); top: -150px; left: -100px; animation-delay: 0s; }
+.scc-orb--2 { width: 400px; height: 400px; background: rgba(0,212,170,.4); bottom: -120px; right: -80px;  animation-delay: 2.5s; }
+.scc-orb--3 { width: 300px; height: 300px; background: rgba(255,107,107,.3); top: 50%; left: 60%; animation-delay: 5s; }
+
+@keyframes orbPulse {
+  from { transform: scale(1)   translate(0, 0); }
+  to   { transform: scale(1.2) translate(20px, -20px); }
+}
+
+/* Card */
+.scc-card {
+  position: relative;
+  width: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Width variants */
+.slide-container-card[data-card-width="sm"] .scc-card { max-width: 480px; }
+.slide-container-card[data-card-width="md"] .scc-card { max-width: 720px; }
+.slide-container-card[data-card-width="lg"] .scc-card { max-width: 960px; }
+.slide-container-card[data-card-width="xl"] .scc-card { max-width: 1200px; }
+
+/* Glass variant */
+.slide-container-card[data-glass="true"] .scc-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    0 32px 80px rgba(0,0,0,.5);
+}
+
+/* Solid variant */
+.slide-container-card[data-glass="false"] .scc-card {
+  background: var(--color-surface, #141428);
+  box-shadow: 0 24px 60px rgba(0,0,0,.4);
+}
+
+.scc-card__inner {
+  padding: clamp(2rem, 5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Shine */
+.scc-card__shine {
+  position: absolute;
+  top: 0; left: -60%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.04) 50%, transparent 100%);
+  transform: skewX(-12deg);
+  animation: shineSweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes shineSweep {
+  0%   { left: -60%; }
+  50%  { left: 120%; }
+  100% { left: 120%; }
+}
+
+@media (max-width: 768px) {
+  .scc-card__inner { padding: 1.5rem; }
+  .scc-orb--1 { width: 280px; height: 280px; }
+  .scc-orb--2 { width: 220px; height: 220px; }
+}
+</style>

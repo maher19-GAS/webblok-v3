@@ -1,0 +1,29 @@
+<!-- COMPONENT: Roadmap Timeline | ecosystem/roadmap-timeline.html -->
+<!-- Props: phases[] -->
+<div id="roadmap-timeline" style="display:flex;flex-direction:column;gap:0"></div>
+<script>
+(function renderRoadmap(phases) {
+  const c = document.getElementById('roadmap-timeline');
+  if (!c || !phases) return;
+  const statusColors = { active: '#68D391', planned: '#63B3ED', vision: '#9F7AEA' };
+  const statusLabels = { active: 'ACTIVE', planned: 'PLANNED', vision: 'VISION' };
+  c.innerHTML = phases.map((p, i) => `
+    <div class="rm-phase fade-in" style="animation-delay:${i*80}ms;display:flex;gap:12px;padding-bottom:${i<phases.length-1?'18px':'0'}">
+      <!-- Timeline column -->
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px">
+        <div style="width:28px;height:28px;border-radius:50%;background:${statusColors[p.status]||'#63B3ED'}18;border:2px solid ${statusColors[p.status]||'#63B3ED'};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:${statusColors[p.status]||'#63B3ED'}">${p.year?.toString().slice(-2)||'?'}</div>
+        ${i<phases.length-1?`<div style="width:2px;flex:1;background:rgba(255,255,255,0.05);min-height:14px;margin-top:4px"></div>`:''}
+      </div>
+      <!-- Content -->
+      <div style="flex:1;padding-top:2px">
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px">
+          <span style="font-size:12px;font-weight:700;color:#fff">${p.label||p.year}</span>
+          <span style="font-size:9px;padding:1px 6px;border-radius:4px;background:${statusColors[p.status]||'#63B3ED'}15;color:${statusColors[p.status]||'#63B3ED'};font-weight:700">${statusLabels[p.status]||p.status?.toUpperCase()}</span>
+        </div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:3px">
+          ${(p.items||[]).map(item => `<li style="font-size:11px;color:rgba(255,255,255,0.5);display:flex;align-items:flex-start;gap:5px"><span style="color:${statusColors[p.status]||'#63B3ED'};margin-top:1px">›</span>${item}</li>`).join('')}
+        </ul>
+      </div>
+    </div>`).join('');
+})(window._roadmapData || []);
+</script>

@@ -1,0 +1,57 @@
+<!-- COMPONENT: Benchmark Panel | progression/benchmark-panel.html -->
+<!-- Props: percentile, top_strength, growth_area, weekly_summary{} -->
+<div class="benchmark-panel" style="display:flex;flex-direction:column;gap:12px">
+
+  <!-- Percentile Banner -->
+  <div style="background:linear-gradient(135deg,rgba(99,179,237,0.12),rgba(159,122,234,0.12));border:1px solid rgba(99,179,237,0.2);border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px">Global Percentile</div>
+      <div style="font-size:28px;font-weight:900;color:#63B3ED" id="bench-percentile">--</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:11px;color:rgba(255,255,255,0.45)">Top</div>
+      <div style="font-size:16px;font-weight:700;color:#9F7AEA" id="bench-top-pct">--%</div>
+    </div>
+  </div>
+
+  <!-- Strength / Growth -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div style="background:rgba(104,211,145,0.07);border:1px solid rgba(104,211,145,0.15);border-radius:12px;padding:12px">
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Top Strength</div>
+      <div style="font-size:12px;font-weight:700;color:#68D391" id="bench-strength">--</div>
+    </div>
+    <div style="background:rgba(246,173,85,0.07);border:1px solid rgba(246,173,85,0.15);border-radius:12px;padding:12px">
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Growth Area</div>
+      <div style="font-size:12px;font-weight:700;color:#F6AD55" id="bench-growth">--</div>
+    </div>
+  </div>
+
+  <!-- Weekly Stats -->
+  <div id="bench-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center"></div>
+</div>
+
+<script>
+(function renderBenchmark(data) {
+  if (!data) return;
+  const $ = id => document.getElementById(id);
+  if ($('bench-percentile')) $('bench-percentile').textContent = data.percentile || '--';
+  if ($('bench-top-pct')) $('bench-top-pct').textContent = data.percentile ? (100 - data.percentile) + '%' : '--%';
+  if ($('bench-strength')) $('bench-strength').textContent = data.top_strength || '--';
+  if ($('bench-growth')) $('bench-growth').textContent = data.growth_area || '--';
+
+  const stats = data.weekly_summary;
+  if (stats && $('bench-stats')) {
+    const items = [
+      { label: 'Challenges', val: stats.challenges_completed, color: '#63B3ED' },
+      { label: 'CTC Earned', val: stats.ctc_earned?.toLocaleString(), color: '#68D391' },
+      { label: 'Learn Hrs', val: stats.learning_hours, color: '#9F7AEA' },
+      { label: 'Rep Gained', val: '+' + stats.reputation_gained, color: '#F6AD55' }
+    ];
+    $('bench-stats').innerHTML = items.map(i => `
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:8px 4px">
+        <div style="font-size:14px;font-weight:800;color:${i.color}">${i.val}</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px">${i.label}</div>
+      </div>`).join('');
+  }
+})(window._benchmarkData);
+</script>

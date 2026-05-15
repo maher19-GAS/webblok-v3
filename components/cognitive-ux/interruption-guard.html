@@ -1,0 +1,31 @@
+<!-- COMPONENT: Interruption Guard | cognitive-ux/interruption-guard.html -->
+<!-- VERY IMPORTANT – prevents accidental session exits -->
+<div id="interruption-guard-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center">
+  <div style="background:#131929;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px 24px;max-width:340px;text-align:center;margin:0 16px">
+    <div style="font-size:32px;margin-bottom:12px">⚠️</div>
+    <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:8px">Interrupt Session?</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:20px">
+      You're in the middle of an active session. Leaving now will forfeit your current progress and pending CTC rewards.
+    </div>
+    <div style="background:rgba(252,129,129,0.08);border:1px solid rgba(252,129,129,0.15);border-radius:10px;padding:10px 14px;margin-bottom:20px;font-size:11px;color:#FC8181">
+      Potential loss: <strong id="ig-loss">250 CTC</strong> in progress
+    </div>
+    <div style="display:flex;gap:10px">
+      <button onclick="document.getElementById('interruption-guard-overlay').style.display='none'" style="flex:1;padding:11px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#fff;font-size:13px;font-weight:600;cursor:pointer">Stay & Finish</button>
+      <button onclick="confirmInterruption()" style="flex:1;padding:11px;border-radius:10px;border:none;background:rgba(252,129,129,0.15);color:#FC8181;font-size:13px;font-weight:600;cursor:pointer;border:1px solid rgba(252,129,129,0.2)">Leave Anyway</button>
+    </div>
+  </div>
+</div>
+<script>
+function showInterruptionGuard(pendingCTC) {
+  const el = document.getElementById('interruption-guard-overlay');
+  if (!el) return;
+  const loss = document.getElementById('ig-loss');
+  if (loss) loss.textContent = (pendingCTC || 250) + ' CTC';
+  el.style.display = 'flex';
+}
+function confirmInterruption() {
+  document.getElementById('interruption-guard-overlay').style.display = 'none';
+  if (typeof window._onInterruptConfirmed === 'function') window._onInterruptConfirmed();
+}
+</script>

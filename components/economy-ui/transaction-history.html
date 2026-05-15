@@ -1,0 +1,134 @@
+<!--
+  TransactionHistory — Full CTC transaction log with filters
+  2030B Design System · Vol 2
+  Types: earn / spend / burn / lock
+-->
+<div class="tx-history fade-in" id="tx-history">
+
+  <div class="txh-header">
+    <div class="txh-title">Transaction History</div>
+    <div class="txh-export-btn" onclick="TXHistory.export()">↓ Export</div>
+  </div>
+
+  <!-- Filters -->
+  <div class="txh-filters" role="group" aria-label="Filter transactions">
+    <button class="txh-filter active" data-filter="all">All</button>
+    <button class="txh-filter" data-filter="earn">Earned</button>
+    <button class="txh-filter" data-filter="spend">Spent</button>
+    <button class="txh-filter" data-filter="burn">Burned</button>
+    <button class="txh-filter" data-filter="lock">Locked</button>
+  </div>
+
+  <!-- List -->
+  <div class="txh-list" id="txh-list">
+    <!-- Rendered by JS TXHistory.render() -->
+    <!-- Sample static item for preview: -->
+    <div class="txh-item" data-type="earn">
+      <div class="txh-item-icon earn">⚡</div>
+      <div class="txh-item-info">
+        <div class="txh-item-title">Daily Challenge Reward</div>
+        <div class="txh-item-meta">Challenge · Today, 09:14</div>
+      </div>
+      <div class="txh-item-amount earn">+500 CTC</div>
+    </div>
+    <div class="txh-item" data-type="earn">
+      <div class="txh-item-icon earn">🏗️</div>
+      <div class="txh-item-info">
+        <div class="txh-item-title">DVM Cloud Architecture — Sprint 4</div>
+        <div class="txh-item-meta">Project · Yesterday, 18:42</div>
+      </div>
+      <div class="txh-item-amount earn">+850 CTC</div>
+    </div>
+    <div class="txh-item" data-type="spend">
+      <div class="txh-item-icon spend">🛠️</div>
+      <div class="txh-item-info">
+        <div class="txh-item-title">Advanced Analytics Subscription</div>
+        <div class="txh-item-meta">Service · 2 days ago</div>
+      </div>
+      <div class="txh-item-amount spend">−200 CTC</div>
+    </div>
+    <div class="txh-item" data-type="lock">
+      <div class="txh-item-icon lock">💎</div>
+      <div class="txh-item-info">
+        <div class="txh-item-title">CTC Lock (90-day tier)</div>
+        <div class="txh-item-meta">Lock · 5 days ago · Unlocks Mar 30</div>
+      </div>
+      <div class="txh-item-amount lock">⇣4,000 CTC</div>
+    </div>
+  </div>
+
+  <!-- Load more -->
+  <button class="txh-load-more" onclick="TXHistory.loadMore()">Load More</button>
+
+</div>
+
+<style>
+.tx-history {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--c-border);
+  border-radius: 16px; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.txh-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px; border-bottom: 1px solid var(--c-border);
+}
+.txh-title { font-size: 14px; font-weight: 700; color: #fff; }
+.txh-export-btn { font-size: 12px; color: rgba(255,255,255,0.4); cursor: pointer; transition: color 0.15s; }
+.txh-export-btn:hover { color: #63B3ED; }
+.txh-filters {
+  display: flex; gap: 0; border-bottom: 1px solid var(--c-border);
+  overflow-x: auto; scrollbar-width: none;
+}
+.txh-filters::-webkit-scrollbar { display: none; }
+.txh-filter {
+  flex-shrink: 0; background: transparent; border: none;
+  border-bottom: 2px solid transparent;
+  padding: 9px 16px; font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.15s;
+}
+.txh-filter.active, .txh-filter:hover { color: #63B3ED; border-bottom-color: #63B3ED; }
+.txh-list { flex: 1; overflow-y: auto; max-height: 320px; }
+.txh-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.15s;
+}
+.txh-item:hover { background: rgba(255,255,255,0.02); }
+.txh-item:last-child { border-bottom: none; }
+.txh-item-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.txh-item-icon.earn { background: rgba(104,211,145,0.12); }
+.txh-item-icon.spend { background: rgba(252,129,129,0.12); }
+.txh-item-icon.burn { background: rgba(246,173,85,0.12); }
+.txh-item-icon.lock { background: rgba(99,179,237,0.12); }
+.txh-item-info { flex: 1; min-width: 0; }
+.txh-item-title { font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.txh-item-meta { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 1px; }
+.txh-item-amount { font-size: 13px; font-weight: 700; font-family: var(--font-mono); flex-shrink: 0; }
+.txh-item-amount.earn { color: #68D391; }
+.txh-item-amount.spend { color: #FC8181; }
+.txh-item-amount.burn { color: #F6AD55; }
+.txh-item-amount.lock { color: #63B3ED; }
+.txh-load-more {
+  margin: 0; padding: 12px; width: 100%;
+  background: rgba(255,255,255,0.03); border: none; border-top: 1px solid var(--c-border);
+  font-size: 12px; color: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.15s;
+}
+.txh-load-more:hover { background: rgba(99,179,237,0.06); color: #63B3ED; }
+</style>
+
+<script>
+document.querySelectorAll('.txh-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.closest('.txh-filters').querySelectorAll('.txh-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.txh-item').forEach(item => {
+      item.style.display = (f === 'all' || item.dataset.type === f) ? 'flex' : 'none';
+    });
+  });
+});
+</script>

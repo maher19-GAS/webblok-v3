@@ -1,0 +1,131 @@
+<!--
+  COMPONENT: Grid System (CRITICAL)
+  Category:  layout
+  Usage:     Responsive CSS grid with auto-fit columns, gap control, and named areas
+  Props:     data-cols (1–6|auto), data-gap (sm/md/lg), data-dense (true/false)
+-->
+
+<!-- 2-column demo grid -->
+<div class="b-grid" data-cols="auto" data-gap="md" role="list" aria-label="Content grid">
+
+  <!-- Grid Cell -->
+  <div class="b-cell b-cell--span-1" role="listitem">
+    <slot></slot>
+  </div>
+
+  <!-- Wide Cell -->
+  <div class="b-cell b-cell--span-2" role="listitem">
+    <slot name="wide"></slot>
+  </div>
+
+  <!-- Full-width Cell -->
+  <div class="b-cell b-cell--full" role="listitem">
+    <slot name="full"></slot>
+  </div>
+
+</div>
+
+<style>
+/* ── Grid System ────────────────────────────────────────── */
+:root {
+  --grid-cols-auto: repeat(auto-fit, minmax(280px, 1fr));
+  --grid-cols-1: 1fr;
+  --grid-cols-2: repeat(2, 1fr);
+  --grid-cols-3: repeat(3, 1fr);
+  --grid-cols-4: repeat(4, 1fr);
+  --grid-cols-5: repeat(5, 1fr);
+  --grid-cols-6: repeat(6, 1fr);
+  --grid-gap-sm: .75rem;
+  --grid-gap-md: 1.25rem;
+  --grid-gap-lg: 2rem;
+}
+
+.b-grid {
+  display: grid;
+  width: 100%;
+  align-items: start;
+}
+
+/* Column variants */
+.b-grid[data-cols="auto"] { grid-template-columns: var(--grid-cols-auto); }
+.b-grid[data-cols="1"]    { grid-template-columns: var(--grid-cols-1); }
+.b-grid[data-cols="2"]    { grid-template-columns: var(--grid-cols-2); }
+.b-grid[data-cols="3"]    { grid-template-columns: var(--grid-cols-3); }
+.b-grid[data-cols="4"]    { grid-template-columns: var(--grid-cols-4); }
+.b-grid[data-cols="5"]    { grid-template-columns: var(--grid-cols-5); }
+.b-grid[data-cols="6"]    { grid-template-columns: var(--grid-cols-6); }
+
+/* Gap variants */
+.b-grid[data-gap="sm"]  { gap: var(--grid-gap-sm); }
+.b-grid[data-gap="md"]  { gap: var(--grid-gap-md); }
+.b-grid[data-gap="lg"]  { gap: var(--grid-gap-lg); }
+.b-grid[data-gap="none"]{ gap: 0; }
+
+/* Dense packing */
+.b-grid[data-dense="true"] { grid-auto-flow: dense; }
+
+/* Cell span variants */
+.b-cell          { min-width: 0; }
+.b-cell--span-2  { grid-column: span 2; }
+.b-cell--span-3  { grid-column: span 3; }
+.b-cell--span-4  { grid-column: span 4; }
+.b-cell--full    { grid-column: 1 / -1; }
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .b-grid[data-cols="4"] { grid-template-columns: var(--grid-cols-2); }
+  .b-grid[data-cols="5"] { grid-template-columns: var(--grid-cols-3); }
+  .b-grid[data-cols="6"] { grid-template-columns: var(--grid-cols-3); }
+  .b-cell--span-2 { grid-column: span 1; }
+  .b-cell--span-3 { grid-column: span 2; }
+}
+@media (max-width: 768px) {
+  .b-grid[data-cols="2"],
+  .b-grid[data-cols="3"],
+  .b-grid[data-cols="4"],
+  .b-grid[data-cols="5"],
+  .b-grid[data-cols="6"] { grid-template-columns: 1fr; }
+  .b-cell--span-2,
+  .b-cell--span-3,
+  .b-cell--span-4 { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .b-grid[data-gap="md"] { gap: var(--grid-gap-sm); }
+  .b-grid[data-gap="lg"] { gap: var(--grid-gap-md); }
+}
+
+/* ── Named-area helpers (overlay usage) ─────────────────── */
+.b-grid--dashboard {
+  grid-template-areas:
+    "hero   hero   sidebar"
+    "cards  cards  sidebar"
+    "footer footer footer";
+  grid-template-columns: 1fr 1fr 320px;
+  grid-template-rows: auto 1fr auto;
+}
+.b-area--hero    { grid-area: hero; }
+.b-area--sidebar { grid-area: sidebar; }
+.b-area--cards   { grid-area: cards; }
+.b-area--footer  { grid-area: footer; }
+
+@media (max-width: 900px) {
+  .b-grid--dashboard {
+    grid-template-areas: "hero" "sidebar" "cards" "footer";
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+/* Grid System JS helper – auto pips + breakpoint reporter */
+(function () {
+  document.querySelectorAll('.b-grid').forEach(grid => {
+    // Expose current breakpoint as data attribute for JS consumers
+    const ro = new ResizeObserver(entries => {
+      const w = entries[0].contentRect.width;
+      grid.dataset.bp = w < 480 ? 'xs' : w < 768 ? 'sm' : w < 1024 ? 'md' : 'lg';
+    });
+    ro.observe(grid);
+  });
+})();
+</script>

@@ -1,0 +1,128 @@
+<!--
+  AudioPlayer — Focus Mode minimal cognitive music player
+  2030B Design System · Vol 2
+-->
+<div class="audio-player fade-in" id="audio-player" data-focus-mode="true">
+
+  <!-- Track info -->
+  <div class="ap-track-info">
+    <div class="ap-waveform" id="ap-waveform" aria-hidden="true">
+      <span class="ap-wave-bar"></span><span class="ap-wave-bar"></span><span class="ap-wave-bar"></span>
+      <span class="ap-wave-bar"></span><span class="ap-wave-bar"></span><span class="ap-wave-bar"></span>
+      <span class="ap-wave-bar"></span><span class="ap-wave-bar"></span>
+    </div>
+    <div class="ap-meta">
+      <div class="ap-track-name">{{track_name}}</div>
+      <div class="ap-track-type">{{track_type}} · For Deep Work</div>
+    </div>
+    <div class="ap-loop-badge" id="ap-loop-badge" data-looping="false">↺</div>
+  </div>
+
+  <!-- Progress -->
+  <div class="ap-progress-row">
+    <span class="ap-time" id="ap-current">0:00</span>
+    <div class="ap-seek" id="ap-seek-bar">
+      <div class="ap-seek-fill" id="ap-seek-fill" style="width:0%"></div>
+    </div>
+    <span class="ap-time" id="ap-total">{{duration}}</span>
+  </div>
+
+  <!-- Controls -->
+  <div class="ap-controls">
+    <button class="ap-btn" id="ap-loop-btn" onclick="AudioFocus.toggleLoop()" aria-label="Toggle loop">↺</button>
+    <button class="ap-btn ap-play" id="ap-play-btn" onclick="AudioFocus.togglePlay()" aria-label="Play/Pause">▶</button>
+    <div class="ap-volume-wrap">
+      <span class="ap-vol-icon">🔊</span>
+      <input type="range" class="ap-volume" id="ap-volume" min="0" max="100" value="70" aria-label="Volume">
+    </div>
+  </div>
+
+  <!-- Duration selector -->
+  <div class="ap-duration-selector">
+    <span class="ap-dur-label">Session length:</span>
+    <div class="ap-dur-options">
+      <button class="ap-dur-btn" data-min="15">15m</button>
+      <button class="ap-dur-btn active" data-min="25">25m</button>
+      <button class="ap-dur-btn" data-min="45">45m</button>
+      <button class="ap-dur-btn" data-min="90">90m</button>
+    </div>
+  </div>
+
+</div>
+
+<style>
+.audio-player {
+  background: rgba(11,15,26,0.9);
+  border: 1px solid var(--c-border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  max-width: 400px;
+}
+.ap-track-info { display: flex; align-items: center; gap: 12px; }
+.ap-waveform { display: flex; align-items: center; gap: 2px; height: 28px; }
+.ap-wave-bar {
+  display: block; width: 3px; background: #63B3ED; border-radius: 2px;
+  animation: apWave 0.8s ease-in-out infinite alternate;
+  height: 6px;
+}
+.ap-wave-bar:nth-child(1) { animation-delay: 0s; height: 10px; }
+.ap-wave-bar:nth-child(2) { animation-delay: 0.1s; height: 18px; }
+.ap-wave-bar:nth-child(3) { animation-delay: 0.2s; height: 14px; }
+.ap-wave-bar:nth-child(4) { animation-delay: 0.3s; height: 22px; }
+.ap-wave-bar:nth-child(5) { animation-delay: 0.2s; height: 16px; }
+.ap-wave-bar:nth-child(6) { animation-delay: 0.1s; height: 12px; }
+.ap-wave-bar:nth-child(7) { animation-delay: 0.05s; height: 8px; }
+.ap-wave-bar:nth-child(8) { animation-delay: 0s; height: 6px; }
+@keyframes apWave {
+  from { transform: scaleY(1); } to { transform: scaleY(0.3); }
+}
+.audio-player:not([data-playing="true"]) .ap-wave-bar { animation-play-state: paused; }
+.ap-meta { flex: 1; }
+.ap-track-name { font-size: 14px; font-weight: 600; color: #fff; }
+.ap-track-type { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.ap-loop-badge {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--c-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: rgba(255,255,255,0.4); cursor: pointer;
+  transition: all 0.2s;
+}
+.ap-loop-badge[data-looping="true"] { background: rgba(99,179,237,0.15); color: #63B3ED; border-color: rgba(99,179,237,0.3); }
+.ap-progress-row { display: flex; align-items: center; gap: 8px; }
+.ap-time { font-size: 11px; font-family: var(--font-mono); color: rgba(255,255,255,0.4); flex-shrink: 0; }
+.ap-seek {
+  flex: 1; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px;
+  cursor: pointer; position: relative;
+}
+.ap-seek-fill { height: 100%; background: #63B3ED; border-radius: 2px; pointer-events: none; }
+.ap-controls { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.ap-btn {
+  background: rgba(255,255,255,0.06); border: 1px solid var(--c-border);
+  border-radius: 50%; width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: rgba(255,255,255,0.6); font-size: 14px; transition: all 0.2s;
+}
+.ap-btn:hover { background: rgba(99,179,237,0.12); color: #63B3ED; }
+.ap-play {
+  width: 48px; height: 48px; font-size: 18px;
+  background: rgba(99,179,237,0.15); border-color: rgba(99,179,237,0.3); color: #63B3ED;
+}
+.ap-volume-wrap { display: flex; align-items: center; gap: 6px; }
+.ap-vol-icon { font-size: 14px; }
+.ap-volume { width: 80px; accent-color: #63B3ED; cursor: pointer; }
+.ap-duration-selector {
+  display: flex; align-items: center; gap: 10px;
+  border-top: 1px solid var(--c-border); padding-top: 12px;
+}
+.ap-dur-label { font-size: 11px; color: rgba(255,255,255,0.4); flex-shrink: 0; }
+.ap-dur-options { display: flex; gap: 6px; }
+.ap-dur-btn {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--c-border);
+  border-radius: 7px; padding: 4px 10px; font-size: 12px; color: rgba(255,255,255,0.5);
+  cursor: pointer; transition: all 0.2s;
+}
+.ap-dur-btn.active, .ap-dur-btn:hover {
+  background: rgba(99,179,237,0.12); color: #63B3ED; border-color: rgba(99,179,237,0.3);
+}
+</style>

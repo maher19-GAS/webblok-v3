@@ -1,0 +1,107 @@
+<!--
+  SectionWrapper — Groups slides/components with title, progress, collapsible
+  2030B Design System · Vol 2
+-->
+<section class="section-wrapper fade-in" id="section-wrapper" data-collapsed="false">
+
+  <div class="section-header-row">
+    <div class="section-meta">
+      <div class="section-eyebrow">{{eyebrow}}</div>
+      <h2 class="section-title">{{title}}</h2>
+      <p class="section-desc">{{description}}</p>
+    </div>
+    <button class="section-collapse-btn" aria-label="Toggle section" onclick="toggleSection(this)">
+      <span class="collapse-icon">▾</span>
+    </button>
+  </div>
+
+  <!-- Progress indicator -->
+  <div class="section-progress-bar-wrap" id="section-progress">
+    <div class="section-progress-info">
+      <span class="section-progress-label">{{progress_label}}</span>
+      <span class="section-progress-pct">{{progress_pct}}%</span>
+    </div>
+    <div class="section-progress-track">
+      <div class="section-progress-fill" style="width: {{progress_pct}}%"></div>
+    </div>
+  </div>
+
+  <!-- Slot for child components/slides -->
+  <div class="section-body" id="section-body">
+    <!-- injected children -->
+  </div>
+
+</section>
+
+<style>
+.section-wrapper {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--c-border);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.section-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #63B3ED;
+  margin-bottom: 4px;
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 6px;
+}
+.section-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+  line-height: 1.6;
+}
+.section-collapse-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: rgba(255,255,255,0.5);
+  transition: all 0.2s; flex-shrink: 0;
+}
+.section-collapse-btn:hover { background: rgba(99,179,237,0.1); color: #63B3ED; }
+.collapse-icon { transition: transform 0.3s; display: block; }
+.section-wrapper[data-collapsed="true"] .collapse-icon { transform: rotate(-90deg); }
+.section-wrapper[data-collapsed="true"] .section-body,
+.section-wrapper[data-collapsed="true"] .section-progress-bar-wrap { display: none; }
+.section-progress-bar-wrap { margin-bottom: 16px; }
+.section-progress-info {
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 6px;
+}
+.section-progress-pct { color: #63B3ED; font-weight: 600; }
+.section-progress-track {
+  height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px;
+}
+.section-progress-fill {
+  height: 100%; background: var(--g-primary); border-radius: 2px;
+  transition: width 0.8s ease;
+}
+.section-body { display: flex; flex-direction: column; gap: 16px; }
+</style>
+
+<script>
+function toggleSection(btn) {
+  const wrapper = btn.closest('.section-wrapper');
+  const collapsed = wrapper.dataset.collapsed === 'true';
+  wrapper.dataset.collapsed = collapsed ? 'false' : 'true';
+}
+</script>

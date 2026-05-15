@@ -1,0 +1,45 @@
+<!-- COMPONENT: Explainer Slides | public/explainer-slides.html -->
+<!-- Public-facing feature explanation carousel -->
+<div class="explainer-slides" style="position:relative">
+  <div id="exp-container" style="overflow:hidden;border-radius:16px">
+    <div id="exp-track" style="display:flex;transition:transform 0.4s cubic-bezier(.4,0,.2,1)"></div>
+  </div>
+  <!-- Dots -->
+  <div id="exp-dots" style="display:flex;justify-content:center;gap:6px;margin-top:14px"></div>
+</div>
+
+<script>
+(function initExplainer(slides) {
+  if (!slides?.length) return;
+  let current = 0;
+  const track = document.getElementById('exp-track');
+  const dots  = document.getElementById('exp-dots');
+  if (!track) return;
+
+  const gradient = ['linear-gradient(135deg,rgba(99,179,237,0.1),rgba(159,122,234,0.1))','linear-gradient(135deg,rgba(159,122,234,0.1),rgba(104,211,145,0.1))','linear-gradient(135deg,rgba(104,211,145,0.1),rgba(246,173,85,0.1))'];
+  
+  track.innerHTML = slides.map((s, i) => `
+    <div style="min-width:100%;padding:20px;background:${gradient[i%gradient.length]};border:1px solid rgba(255,255,255,0.08);border-radius:16px;box-sizing:border-box;text-align:center">
+      <div style="font-size:32px;margin-bottom:10px">${s.icon||'🚀'}</div>
+      <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px">${s.title}</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.6">${s.desc}</div>
+    </div>`).join('');
+
+  dots.innerHTML = slides.map((_,i) => `<div class="exp-dot" data-i="${i}" style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,${i===0?'0.7':'0.2'});cursor:pointer;transition:background 0.2s"></div>`).join('');
+
+  function goTo(i) {
+    current = i;
+    track.style.transform = `translateX(-${i*100}%)`;
+    document.querySelectorAll('.exp-dot').forEach((d,di) => d.style.background = `rgba(255,255,255,${di===i?'0.7':'0.2'})`);
+  }
+
+  document.querySelectorAll('.exp-dot').forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+
+  // Auto-advance
+  setInterval(() => goTo((current+1)%slides.length), 4000);
+})(window._explainerSlides || [
+  { icon: '🧠', title: 'Enhance Cognition', desc: 'Daily challenges across 7 dimensions of intelligence' },
+  { icon: '💰', title: 'Earn While You Think', desc: 'Every verified contribution earns CTC tokens' },
+  { icon: '🌐', title: 'Shape the Future', desc: 'Vote on governance proposals and platform direction' }
+]);
+</script>

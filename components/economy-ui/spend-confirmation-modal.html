@@ -1,0 +1,138 @@
+<!--
+  SpendConfirmationModal — Prevent impulsive CTC spending
+  2030B Design System · Vol 2
+-->
+<div class="spend-modal-overlay fade-in" id="spend-modal-overlay" role="dialog" aria-modal="true" style="display:none">
+  <div class="spend-modal-backdrop" onclick="SpendModal.cancel()"></div>
+
+  <div class="spend-modal-card">
+    <div class="sm-header">
+      <div class="sm-title">Confirm Spend</div>
+      <button class="sm-close-btn" onclick="SpendModal.cancel()" aria-label="Cancel">✕</button>
+    </div>
+
+    <div class="sm-action-label" id="sm-action-label">{{action_description}}</div>
+
+    <!-- Cost breakdown -->
+    <div class="sm-cost-breakdown">
+      <div class="sm-cost-row">
+        <span class="sm-cost-label">Base cost</span>
+        <span class="sm-cost-val" id="sm-base-cost">{{base_cost}} CTC</span>
+      </div>
+      <div class="sm-cost-row burn">
+        <span class="sm-cost-label">🔥 Burn fee ({{burn_pct}}%)</span>
+        <span class="sm-cost-val red" id="sm-burn">−{{burn_amount}} CTC</span>
+      </div>
+      <div class="sm-cost-divider"></div>
+      <div class="sm-cost-row total">
+        <span class="sm-cost-label">Total deducted</span>
+        <span class="sm-cost-val total-val" id="sm-total">{{total_cost}} CTC</span>
+      </div>
+      <div class="sm-cost-row balance">
+        <span class="sm-cost-label">Remaining balance</span>
+        <span class="sm-cost-val" id="sm-remaining">{{remaining}} CTC</span>
+      </div>
+    </div>
+
+    <!-- What you get -->
+    <div class="sm-result-preview">
+      <div class="sm-result-label">What you get:</div>
+      <div class="sm-result-body" id="sm-result-body">{{result_description}}</div>
+    </div>
+
+    <!-- Warning for large amounts -->
+    <div class="sm-large-warning" id="sm-large-warning" style="display:none">
+      ⚠️ This is a large spend. Are you sure?
+    </div>
+
+    <div class="sm-actions">
+      <button class="btn-ghost" onclick="SpendModal.cancel()">Cancel</button>
+      <button class="btn-primary" id="sm-confirm-btn" onclick="SpendModal.confirm()">
+        Confirm — {{total_cost}} CTC
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+.spend-modal-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: center;
+}
+.spend-modal-backdrop { position: absolute; inset: 0; background: rgba(7,10,18,0.8); backdrop-filter: blur(10px); }
+.spend-modal-card {
+  position: relative; z-index: 1;
+  background: #121826; border: 1px solid var(--c-border);
+  border-radius: 20px; padding: 24px;
+  width: min(420px, 92vw);
+  display: flex; flex-direction: column; gap: 16px;
+}
+.sm-header { display: flex; justify-content: space-between; align-items: center; }
+.sm-title { font-size: 17px; font-weight: 800; color: #fff; }
+.sm-close-btn {
+  background: rgba(255,255,255,0.06); border: 1px solid var(--c-border);
+  border-radius: 8px; width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: rgba(255,255,255,0.5); font-size: 12px;
+}
+.sm-action-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+.sm-cost-breakdown {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--c-border);
+  border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px;
+}
+.sm-cost-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.sm-cost-label { color: rgba(255,255,255,0.55); }
+.sm-cost-val { font-weight: 600; color: #fff; font-family: var(--font-mono); }
+.sm-cost-val.red { color: #FC8181; }
+.sm-cost-row.total .sm-cost-label, .sm-cost-row.total .sm-cost-val { font-size: 15px; font-weight: 800; }
+.sm-cost-row.total .total-val { color: #63B3ED; }
+.sm-cost-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 2px 0; }
+.sm-cost-row.balance .sm-cost-val { color: rgba(255,255,255,0.5); font-weight: 500; }
+.sm-result-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.sm-result-body { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+.sm-large-warning {
+  background: rgba(252,129,129,0.08); border: 1px solid rgba(252,129,129,0.25);
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 12px; color: #FC8181;
+}
+.sm-actions { display: flex; gap: 10px; justify-content: flex-end; }
+</style>
+
+<script>
+const SpendModal = (() => {
+  let _onConfirm = null;
+
+  function open({ action, baseCost, burnPct = 0.5, result, onConfirm }) {
+    const overlay = document.getElementById('spend-modal-overlay');
+    if (!overlay) return;
+    const burn = Math.ceil(baseCost * burnPct / 100);
+    const total = baseCost + burn;
+
+    _onConfirm = onConfirm;
+    document.getElementById('sm-action-label').textContent = action || '';
+    document.getElementById('sm-base-cost').textContent = baseCost.toLocaleString() + ' CTC';
+    document.getElementById('sm-burn').textContent = '−' + burn + ' CTC';
+    document.getElementById('sm-total').textContent = total.toLocaleString() + ' CTC';
+    document.getElementById('sm-confirm-btn').textContent = `Confirm — ${total.toLocaleString()} CTC`;
+    if (result) document.getElementById('sm-result-body').textContent = result;
+
+    const warn = document.getElementById('sm-large-warning');
+    if (warn) warn.style.display = baseCost >= 5000 ? 'block' : 'none';
+
+    overlay.style.display = 'flex';
+  }
+
+  function confirm() {
+    const overlay = document.getElementById('spend-modal-overlay');
+    if (overlay) overlay.style.display = 'none';
+    if (typeof _onConfirm === 'function') _onConfirm();
+  }
+
+  function cancel() {
+    const overlay = document.getElementById('spend-modal-overlay');
+    if (overlay) overlay.style.display = 'none';
+  }
+
+  return { open, confirm, cancel };
+})();
+</script>

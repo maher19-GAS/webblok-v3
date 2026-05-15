@@ -1,0 +1,17 @@
+<!-- COMPONENT: Sector Map | ecosystem/sector-map.html -->
+<!-- Props: sectors[] -->
+<div id="sector-map-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
+<script>
+(function renderSectorMap(sectors) {
+  const c = document.getElementById('sector-map-grid');
+  if (!c || !sectors) return;
+  const colors = ['#63B3ED','#9F7AEA','#68D391','#F6AD55','#FC8181','#76E4F7','#F6AD55','#9F7AEA'];
+  c.innerHTML = sectors.map((s, i) => `
+    <div class="sector-node fade-in" style="animation-delay:${i*60}ms;background:rgba(255,255,255,0.03);border:1px solid ${colors[i%colors.length]}20;border-radius:12px;padding:12px;cursor:pointer;transition:border-color 0.2s,background 0.2s" onmouseover="this.style.borderColor='${colors[i%colors.length]}40';this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.borderColor='${colors[i%colors.length]}20';this.style.background='rgba(255,255,255,0.03)'">
+      <div style="font-size:10px;font-weight:700;color:${colors[i%colors.length]};text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">${s.id}</div>
+      <div style="font-size:11px;font-weight:600;color:#fff;line-height:1.3;margin-bottom:6px">${s.name}</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.4)">${s.projects?.toLocaleString()} projects</div>
+      <div style="font-size:10px;color:${colors[i%colors.length]};margin-top:2px">${s.ctc_pool} CTC pool</div>
+    </div>`).join('');
+})(window._sectorData || []);
+</script>

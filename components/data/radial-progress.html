@@ -1,0 +1,19 @@
+<!-- components/data/radial-progress.html -->
+<div class="radial-container fade-in" data-radial-value="{{value}}" data-radial-radius="52">
+  <svg class="radial-svg" width="130" height="130" viewBox="0 0 130 130">
+    <circle class="radial-bg"   cx="65" cy="65" r="52" stroke-width="10"/>
+    <circle class="radial-fill" cx="65" cy="65" r="52" stroke-width="10"
+      stroke="url(#radialGrad)" stroke-dasharray="326.7" stroke-dashoffset="326.7"
+      style="transition:stroke-dashoffset 1.2s cubic-bezier(0.16,1,0.3,1)"/>
+    <defs>
+      <linearGradient id="radialGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#63B3ED"/>
+        <stop offset="100%" style="stop-color:#9F7AEA"/>
+      </linearGradient>
+    </defs>
+  </svg>
+  <div class="radial-text">
+    <span class="pct">{{value}}%</span>
+    <span class="pct-label">{{label}}</span>
+  </div>
+</div>

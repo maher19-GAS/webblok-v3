@@ -1,0 +1,42 @@
+<!-- COMPONENT: Cognitive Load Indicator | cognitive-ux/cognitive-load-indicator.html -->
+<!-- VERY IMPORTANT – real-time difficulty/fatigue gauge during sessions -->
+<div class="cog-load-indicator" style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px">
+  <div style="display:flex;gap:3px;align-items:flex-end;height:24px">
+    <div id="cl-bar-1" style="width:5px;background:#68D391;border-radius:2px;transition:height 0.5s"></div>
+    <div id="cl-bar-2" style="width:5px;background:#68D391;border-radius:2px;transition:height 0.5s 0.05s"></div>
+    <div id="cl-bar-3" style="width:5px;background:#F6AD55;border-radius:2px;transition:height 0.5s 0.1s"></div>
+    <div id="cl-bar-4" style="width:5px;background:#F6AD55;border-radius:2px;transition:height 0.5s 0.15s"></div>
+    <div id="cl-bar-5" style="width:5px;background:#FC8181;border-radius:2px;transition:height 0.5s 0.2s"></div>
+  </div>
+  <div>
+    <div style="font-size:11px;font-weight:600;color:#fff" id="cl-label">Moderate Load</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.35)" id="cl-sub">Focus optimal</div>
+  </div>
+  <div style="margin-left:auto;font-size:10px;padding:3px 8px;border-radius:6px;background:rgba(246,173,85,0.1);color:#F6AD55;border:1px solid rgba(246,173,85,0.2)" id="cl-badge">Level 3/5</div>
+</div>
+<script>
+(function initCogLoad(level) {
+  const levels = [
+    { label:'Low Load', sub:'Easy mode active', color:'#68D391', badge:'Level 1/5' },
+    { label:'Light Load', sub:'Comfortable pace', color:'#68D391', badge:'Level 2/5' },
+    { label:'Moderate Load', sub:'Focus optimal', color:'#F6AD55', badge:'Level 3/5' },
+    { label:'High Load', sub:'Near your limit', color:'#F6AD55', badge:'Level 4/5' },
+    { label:'Peak Load', sub:'Consider a break', color:'#FC8181', badge:'Level 5/5' }
+  ];
+  const l = Math.min(Math.max((level||3)-1,0),4);
+  const cfg = levels[l];
+  const hMap = [[8,10,6,4,3],[8,14,12,7,4],[8,14,18,12,6],[8,14,20,18,12],[8,14,20,20,20]];
+  const h = hMap[l];
+  for (let i=1;i<=5;i++) {
+    const b = document.getElementById('cl-bar-'+i);
+    if (b) { b.style.height=h[i-1]+'px'; b.style.background = i<=l+1 ? cfg.color : 'rgba(255,255,255,0.08)'; }
+  }
+  ['cl-label','cl-sub','cl-badge'].forEach((id,idx) => {
+    const el=document.getElementById(id);
+    if(!el) return;
+    if(idx===0) el.textContent=cfg.label;
+    if(idx===1) el.textContent=cfg.sub;
+    if(idx===2) { el.textContent=cfg.badge; el.style.color=cfg.color; el.style.background=cfg.color+'15'; el.style.borderColor=cfg.color+'30'; }
+  });
+})(window._cogLoadLevel||3);
+</script>

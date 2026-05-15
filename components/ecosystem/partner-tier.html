@@ -1,0 +1,28 @@
+<!-- COMPONENT: Partner Tier | ecosystem/partner-tier.html -->
+<!-- Props: partners[] -->
+<div id="partner-tier-list" style="display:flex;flex-direction:column;gap:8px"></div>
+<script>
+(function renderPartners(partners) {
+  const c = document.getElementById('partner-tier-list');
+  if (!c || !partners) return;
+  const tierColors = { Platinum: '#E0E0E0', Gold: '#F6AD55', Silver: '#9FB4CC',
+    'بلاتيني': '#E0E0E0', 'ذهبي': '#F6AD55', 'فضي': '#9FB4CC' };
+  const tierIcon  = { Platinum: '💎', Gold: '🥇', Silver: '🥈',
+    'بلاتيني': '💎', 'ذهبي': '🥇', 'فضي': '🥈' };
+  // Group by tier
+  const grouped = {};
+  partners.forEach(p => { (grouped[p.tier] = grouped[p.tier] || []).push(p); });
+  c.innerHTML = Object.entries(grouped).map(([tier, list]) => `
+    <div style="margin-bottom:4px">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+        <span style="font-size:14px">${tierIcon[tier]||'⭐'}</span>
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:${tierColors[tier]||'#fff'}">${tier}</span>
+      </div>
+      ${list.map(p => `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;margin-bottom:5px">
+        <span style="font-size:12px;font-weight:600;color:#fff">${p.name}</span>
+        <span style="font-size:10px;color:rgba(255,255,255,0.4)">${p.role}</span>
+      </div>`).join('')}
+    </div>`).join('');
+})(window._partnerData || []);
+</script>

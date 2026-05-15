@@ -1,0 +1,48 @@
+<!-- COMPONENT: Treasury Panel | governance/treasury-panel.html -->
+<!-- Props: budget_total, allocations[], surplus, next_vote_date -->
+<div class="treasury-panel" style="display:flex;flex-direction:column;gap:12px">
+
+  <!-- Treasury Balance -->
+  <div style="background:linear-gradient(135deg,rgba(104,211,145,0.08),rgba(99,179,237,0.08));border:1px solid rgba(104,211,145,0.15);border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.4);margin-bottom:4px">Treasury Balance</div>
+      <div id="tp-balance" style="font-size:22px;font-weight:900;color:#68D391">--</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:10px;color:rgba(255,255,255,0.35)">Surplus</div>
+      <div id="tp-surplus" style="font-size:14px;font-weight:700;color:#63B3ED">+--</div>
+    </div>
+  </div>
+
+  <!-- Allocation Bars -->
+  <div id="tp-allocations" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px"></div>
+
+  <!-- Next Vote -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(246,173,85,0.05);border:1px solid rgba(246,173,85,0.12);border-radius:10px">
+    <span style="font-size:11px;color:rgba(255,255,255,0.5)">Next Allocation Vote</span>
+    <span id="tp-next-vote" style="font-size:11px;font-weight:700;color:#F6AD55">--</span>
+  </div>
+</div>
+
+<script>
+(function renderTreasury(data) {
+  if (!data) return;
+  const $ = id => document.getElementById(id);
+  if ($('tp-balance')) $('tp-balance').textContent = data.budget_total || '--';
+  if ($('tp-surplus')) $('tp-surplus').textContent = '+' + (data.surplus || '--');
+  if ($('tp-next-vote')) $('tp-next-vote').textContent = data.next_allocation_vote || '--';
+  if (data.allocations && $('tp-allocations')) {
+    $('tp-allocations').innerHTML = data.allocations.map((a, i) => `
+      <div style="animation-delay:${i*60}ms">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:11px;color:rgba(255,255,255,0.6)">${a.category}</span>
+          <span style="font-size:11px;font-weight:700;color:#63B3ED">${a.pct}%</span>
+        </div>
+        <div style="height:4px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden">
+          <div style="height:100%;width:0%;background:linear-gradient(90deg,#63B3ED,#9F7AEA);border-radius:2px;transition:width 0.9s ease ${i*80}ms" data-w="${a.pct}"></div>
+        </div>
+      </div>`).join('');
+    setTimeout(() => { document.querySelectorAll('[data-w]').forEach(b => b.style.width = b.dataset.w + '%'); }, 100);
+  }
+})(window._treasuryData);
+</script>

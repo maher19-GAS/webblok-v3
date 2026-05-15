@@ -1,0 +1,17 @@
+<!-- components/cards/progress-card.html -->
+<div class="progress-card fade-in">
+  <div class="progress-card-title">{{title}}</div>
+  <div class="progress-card-subtitle">{{subtitle}}</div>
+  <div class="progress-row">
+    <div class="progress-row-header">
+      <span class="progress-label">{{progressLabel}}</span>
+      <span class="progress-value">{{value}}%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill {{fillClass}}" data-progress="{{value}}" style="width:0%"></div>
+    </div>
+  </div>
+  <div style="margin-top:10px;font-size:12px;color:rgba(255,255,255,0.5)">
+    🎯 {{milestone}}
+  </div>
+</div>

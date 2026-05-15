@@ -1,0 +1,47 @@
+<!-- COMPONENT: Tier Card | progression/tier-card.html -->
+<!-- Props: tier{name,level,ctc_unlock,features,color}, current_level -->
+<div class="tier-card {{isActive}}" data-tier="{{tier.name}}" style="
+  background: linear-gradient(135deg, {{bgGrad}});
+  border: 1.5px solid {{borderColor}};
+  border-radius: 16px;
+  padding: 18px 16px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+">
+  <!-- Active glow -->
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at top left, {{glowColor}} 0%, transparent 70%);pointer-events:none"></div>
+
+  <!-- Badge -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:36px;height:36px;border-radius:10px;background:{{iconBg}};display:flex;align-items:center;justify-content:center;font-size:18px">{{tier.icon}}</div>
+      <div>
+        <div style="font-size:14px;font-weight:700;color:#fff">{{tier.name}}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45)">Level {{tier.level}}</div>
+      </div>
+    </div>
+    <div class="tier-status-badge" style="font-size:10px;padding:3px 9px;border-radius:6px;background:{{statusBg}};color:{{statusColor}};font-weight:600">{{statusLabel}}</div>
+  </div>
+
+  <!-- CTC Unlock -->
+  <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;padding:8px 10px;background:rgba(255,255,255,0.05);border-radius:8px">
+    <span style="font-size:12px;color:rgba(255,255,255,0.4)">Unlock at</span>
+    <span style="font-size:13px;font-weight:700;color:#F6AD55">{{tier.ctc_unlock | formatNumber}} CTC</span>
+  </div>
+
+  <!-- Features -->
+  <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px">
+    {{#each tier.features}}
+    <li style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.65)">
+      <span style="color:#68D391;font-size:10px">✓</span> {{this}}
+    </li>
+    {{/each}}
+  </ul>
+</div>
+
+<style>
+.tier-card { cursor: pointer; }
+.tier-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.tier-card.active { transform: scale(1.02); }
+</style>

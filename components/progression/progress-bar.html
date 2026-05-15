@@ -1,0 +1,22 @@
+<!-- COMPONENT: Progress Bar | progression/progress-bar.html -->
+<!-- Props: label, value(0-100), color, show_label, animated -->
+<div class="progress-bar-component" style="width:100%">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+    <span class="pb-label" style="font-size:12px;color:rgba(255,255,255,0.65)">{{label}}</span>
+    <span class="pb-value" style="font-size:12px;font-weight:700;color:{{color}}">{{value}}%</span>
+  </div>
+  <div style="height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden">
+    <div class="pb-fill" data-value="{{value}}" style="
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg, {{color}}, {{colorLight}});
+      border-radius:3px;
+      transition:width 1s cubic-bezier(.4,0,.2,1) {{delay}}s;
+    "></div>
+  </div>
+</div>
+<script>
+document.querySelectorAll('.pb-fill[data-value]').forEach(el => {
+  setTimeout(() => { el.style.width = el.dataset.value + '%'; }, 80);
+});
+</script>
