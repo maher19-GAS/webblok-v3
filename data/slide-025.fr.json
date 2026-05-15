@@ -1,0 +1,17 @@
+{
+  "id": 25,
+  "key": "notifications_center",
+  "lang": "fr",
+  "header": "Centre de Notifications",
+  "subtitle": "15 nouvelles mises à jour",
+  "pillars": [
+    { "icon": "🏅", "title": "Réalisation débloquée", "desc": "Badge Maître des motifs gagné ! +200 CTC" },
+    { "icon": "🚀", "title": "Mise à jour projet", "desc": "Architecture Cloud DVM : révision sécurité terminée" },
+    { "icon": "💬", "title": "Nouveau message", "desc": "Dr Sarah Chen : Le module quantique est prêt" },
+    { "icon": "⚙️", "title": "Alerte système", "desc": "Votre niveau cognitif est passé à 67%" }
+  ],
+  "metrics": [
+    { "name": "Nouvelles notifications", "value": "15", "status": "non lues" },
+    { "name": "Cette semaine", "value": "47", "trend": "+12 vs semaine dernière" }
+  ]
+}

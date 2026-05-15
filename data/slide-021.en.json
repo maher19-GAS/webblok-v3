@@ -1,0 +1,13 @@
+{
+  "id": 21,
+  "key": "event_calendar",
+  "lang": "en",
+  "header": "2030B Events",
+  "subtitle": "Upcoming Opportunities",
+  "milestones": [
+    { "title": "Quantum Computing Workshop", "status": "active", "date": "Mar 25 · 2:00 PM UTC · Registered" },
+    { "title": "DVM Architecture Launch", "status": "planned", "date": "Apr 1 · 10:00 AM UTC" },
+    { "title": "Consciousness Seminar Series", "status": "active", "date": "Apr 5 · 4:00 PM UTC · Registered" },
+    { "title": "Innovation Challenge Deadline", "status": "pending", "date": "Mar 30 · 11:59 PM UTC" }
+  ]
+}

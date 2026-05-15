@@ -1,0 +1,19 @@
+{
+  "id": 26,
+  "key": "achievement_showcase",
+  "lang": "ar",
+  "header": "إنجازاتك",
+  "subtitle": "المعالم التي تحدد رحلتك",
+  "achievements": [
+    { "icon": "⭐", "title": "أول مساهمة", "status": "earned", "name": "نوفمبر 2024" },
+    { "icon": "🤝", "title": "لاعب فريق", "status": "earned", "name": "ديسمبر 2024" },
+    { "icon": "💡", "title": "بطل الابتكار", "status": "earned", "name": "يناير 2025" },
+    { "icon": "🔒", "title": "خبير الأمان", "status": "earned", "name": "فبراير 2025" },
+    { "icon": "🧩", "title": "سيد الأنماط", "status": "earned", "name": "مارس 2025" },
+    { "icon": "🏆", "title": "أفضل 1% مساهم", "status": "in_progress", "name": "4,250/5,000 نقطة" }
+  ],
+  "metrics": [
+    { "name": "الإنجازات المفتوحة", "value": "5", "status": "من أصل 12" },
+    { "name": "أندر شارة", "value": "خبير الأمان", "trend": "أفضل 500" }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": 27,
+  "key": "templates_library",
+  "lang": "fr",
+  "header": "Bibliothèque de Modèles",
+  "subtitle": "Démarrez plus vite avec des cadres éprouvés",
+  "pillars": [
+    { "icon": "📊", "title": "Proposition de projet", "desc": "120 utilisations • Modèle de pitch structuré" },
+    { "icon": "🔬", "title": "Cadre de recherche", "desc": "89 utilisations • Structure de recherche scientifique" },
+    { "icon": "🧠", "title": "Protocole cognitif", "desc": "67 utilisations • Conception de programme d'amélioration" },
+    { "icon": "💼", "title": "Business case", "desc": "234 utilisations • Modèle d'analyse ROI et impact" }
+  ],
+  "metrics": [
+    { "name": "Modèles disponibles", "value": "48", "status": "sélectionnés" },
+    { "name": "Vos modèles", "value": "3", "status": "créés" },
+    { "name": "Le plus utilisé", "value": "Business case", "trend": "+12 cette semaine" }
+  ]
+}

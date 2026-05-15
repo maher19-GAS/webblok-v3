@@ -1,0 +1,19 @@
+{
+  "id": 26,
+  "key": "achievement_showcase",
+  "lang": "fr",
+  "header": "Vos Réalisations",
+  "subtitle": "Les jalons qui définissent votre parcours",
+  "achievements": [
+    { "icon": "⭐", "title": "Première contribution", "status": "earned", "name": "Nov 2024" },
+    { "icon": "🤝", "title": "Joueur d'équipe", "status": "earned", "name": "Déc 2024" },
+    { "icon": "💡", "title": "Champion de l'innovation", "status": "earned", "name": "Janv 2025" },
+    { "icon": "🔒", "title": "Expert en sécurité", "status": "earned", "name": "Févr 2025" },
+    { "icon": "🧩", "title": "Maître des motifs", "status": "earned", "name": "Mars 2025" },
+    { "icon": "🏆", "title": "Top 1% contributeur", "status": "in_progress", "name": "4 250/5 000 pts" }
+  ],
+  "metrics": [
+    { "name": "Réalisations débloquées", "value": "5", "status": "sur 12 au total" },
+    { "name": "Badge le plus rare", "value": "Expert en sécurité", "trend": "Top 500" }
+  ]
+}

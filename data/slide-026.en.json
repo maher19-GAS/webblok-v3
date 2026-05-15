@@ -1,0 +1,19 @@
+{
+  "id": 26,
+  "key": "achievement_showcase",
+  "lang": "en",
+  "header": "Your Achievements",
+  "subtitle": "Milestones That Define Your Journey",
+  "achievements": [
+    { "icon": "⭐", "title": "First Contribution", "status": "earned", "name": "Nov 2024" },
+    { "icon": "🤝", "title": "Team Player", "status": "earned", "name": "Dec 2024" },
+    { "icon": "💡", "title": "Innovation Champion", "status": "earned", "name": "Jan 2025" },
+    { "icon": "🔒", "title": "Security Expert", "status": "earned", "name": "Feb 2025" },
+    { "icon": "🧩", "title": "Pattern Master", "status": "earned", "name": "Mar 2025" },
+    { "icon": "🏆", "title": "Top 1% Contributor", "status": "in_progress", "name": "4,250/5,000 pts" }
+  ],
+  "metrics": [
+    { "name": "Achievements Unlocked", "value": "5", "status": "of 12 total" },
+    { "name": "Rarest Badge", "value": "Security Expert", "trend": "Top 500" }
+  ]
+}

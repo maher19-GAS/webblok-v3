@@ -1,0 +1,16 @@
+{
+  "id": 19,
+  "key": "innovation_incubator",
+  "lang": "en",
+  "header": "Submit Your Idea",
+  "subtitle": "Propose New Projects & Initiatives",
+  "pillars": [
+    { "icon": "💡", "title": "Quantum Memory Enhancement", "desc": "234 votes • Under Review • 50K CTC projected" },
+    { "icon": "🌐", "title": "Distributed Consciousness Network", "desc": "189 votes • Approved • 120K CTC projected" }
+  ],
+  "metrics": [
+    { "name": "Innovation Challenge", "value": "500K CTC", "status": "Climate AI" },
+    { "name": "Deadline", "value": "March 30", "trend": "5 days left" }
+  ],
+  "description": "Submit your visionary ideas and shape the future of cognitive enhancement. Each approved idea gets CTC funding from the community treasury."
+}

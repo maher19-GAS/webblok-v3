@@ -1,0 +1,15 @@
+{
+  "id": 6,
+  "key": "project_detail_dvm",
+  "lang": "en",
+  "header": "DVM Cloud Architecture",
+  "subtitle": "Computing Systems • High Priority",
+  "description": "Design next-generation distributed virtual machine infrastructure for 2030B's cognitive processing network.",
+  "your_role": "Security Protocol Designer",
+  "ctc_rate": "2,500 CTC/month",
+  "time_commitment": "15 hrs/week",
+  "progress": 32,
+  "team_size": 12,
+  "challenges": ["Quantum encryption integration", "Zero-latency data transfer", "Multi-reality compatibility"],
+  "deadline": "45 days"
+}

@@ -1,0 +1,19 @@
+{
+  "id": 2,
+  "key": "cognitive_enhancement_status",
+  "lang": "fr",
+  "header": "Votre Profil d'Amélioration",
+  "subtitle": "Suivez votre évolution cognitive",
+  "overall_progress": 67,
+  "dimensions": [
+    { "name": "Mémoire", "value": 72 },
+    { "name": "Logique", "value": 85 },
+    { "name": "Créativité", "value": 61 },
+    { "name": "Intelligence émotionnelle", "value": 58 },
+    { "name": "Reconnaissance de motifs", "value": 79 },
+    { "name": "Pensée systémique", "value": 68 },
+    { "name": "Conscience", "value": 43 }
+  ],
+  "next_milestone": "Niveau 8 – Penseur Quantique",
+  "milestone_reward": "2 000 CTC + Badge spécial"
+}

@@ -1,0 +1,14 @@
+{
+  "id": 11,
+  "key": "learning_hub",
+  "lang": "fr",
+  "header": "Bibliothèque d'Amélioration",
+  "subtitle": "23 modules disponibles",
+  "categories": ["Fondamental", "Avancé", "Spécialisé"],
+  "modules": [
+    { "title": "Fondamentaux de la pensée quantique", "category": "Fondamental", "progress": 100, "duration": "4 h", "ctc_reward": "+200 CTC" },
+    { "title": "Maîtrise de la reconnaissance de motifs", "category": "Avancé", "progress": 67, "duration": "8 h", "ctc_reward": "+500 CTC" },
+    { "title": "Expansion de la conscience 101", "category": "Spécialisé", "progress": 23, "duration": "12 h", "ctc_reward": "+800 CTC" },
+    { "title": "Pensée systémique Pro", "category": "Avancé", "progress": 0, "duration": "6 h", "ctc_reward": "+400 CTC" }
+  ]
+}

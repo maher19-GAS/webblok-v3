@@ -1,0 +1,15 @@
+{
+  "id": 3,
+  "key": "daily_cognitive_challenge",
+  "lang": "fr",
+  "header": "Défi du Jour",
+  "subtitle": "Reconnaissance de motifs : Systèmes quantiques",
+  "timer": "14:32",
+  "difficulty": "Avancé",
+  "hints_available": 3,
+  "hint_cost": "50 CTC",
+  "reward": "500 CTC + 25 Réputation",
+  "leaderboard_position": "#1 247",
+  "previous_score": 82,
+  "difficulties": ["Débutant", "Intermédiaire", "Avancé", "Expert"]
+}

@@ -1,0 +1,16 @@
+{
+  "id": 19,
+  "key": "innovation_incubator",
+  "lang": "fr",
+  "header": "Soumettez Votre Idée",
+  "subtitle": "Proposez de nouveaux projets & initiatives",
+  "pillars": [
+    { "icon": "💡", "title": "Amélioration de la mémoire quantique", "desc": "234 votes • En révision • 50K CTC projeté" },
+    { "icon": "🌐", "title": "Réseau de conscience distribuée", "desc": "189 votes • Approuvé • 120K CTC projeté" }
+  ],
+  "metrics": [
+    { "name": "Défi Innovation", "value": "500K CTC", "status": "IA Climatique" },
+    { "name": "Date limite", "value": "30 mars", "trend": "5 jours restants" }
+  ],
+  "description": "Soumettez vos idées visionnaires et façonnez l'avenir de l'amélioration cognitive. Chaque idée approuvée obtient un financement CTC du trésor communautaire."
+}

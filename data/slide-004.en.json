@@ -1,0 +1,16 @@
+{
+  "id": 4,
+  "key": "ctc_wallet_overview",
+  "lang": "en",
+  "header": "Your Cognitive Token Currency",
+  "subtitle": "Total Balance: 12,450 CTC",
+  "balance": "12,450",
+  "transactions": [
+    { "name": "DVM Cloud Architecture", "type": "Project Contribution", "amount": "+850", "date": "2 hrs ago" },
+    { "name": "Daily Challenge", "type": "Challenge Reward", "amount": "+500", "date": "Today" },
+    { "name": "Neural Link Interface", "type": "Service Purchase", "amount": "-200", "date": "Yesterday" },
+    { "name": "Mentorship Session", "type": "Service Earning", "amount": "+300", "date": "2 days ago" }
+  ],
+  "earnings_breakdown": { "challenges": 35, "projects": 60, "bonuses": 5 },
+  "staking_apy": "12.5%"
+}

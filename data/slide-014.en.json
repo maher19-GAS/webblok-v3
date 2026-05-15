@@ -1,0 +1,16 @@
+{
+  "id": 14,
+  "key": "marketplace",
+  "lang": "en",
+  "header": "Cognitive Marketplace",
+  "subtitle": "Offer Your Enhanced Services",
+  "categories": ["Consulting", "Analysis", "Design", "Research"],
+  "my_listings": [
+    { "title": "Security Architecture Review", "price": "500 CTC/hr", "orders": 3, "rating": 4.9 },
+    { "title": "Quantum System Analysis", "price": "300 CTC/hr", "orders": 7, "rating": 4.7 }
+  ],
+  "service_requests": [
+    { "title": "Cloud Security Audit", "budget": "2,000 CTC", "deadline": "7 days", "requester": "Project Nebula" },
+    { "title": "AI Pattern Analysis", "budget": "1,500 CTC", "deadline": "5 days", "requester": "Team Omega" }
+  ]
+}

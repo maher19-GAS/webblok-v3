@@ -1,0 +1,21 @@
+{
+  "id": 28,
+  "key": "cognitive_health",
+  "lang": "en",
+  "header": "Your Cognitive Health",
+  "subtitle": "Optimal Performance Zone",
+  "metrics": [
+    { "name": "Stress Level", "value": "32%", "status": "Low 🟢" },
+    { "name": "Focus Score", "value": "85%", "trend": "+7%" },
+    { "name": "Energy Level", "value": "78%", "status": "Good" },
+    { "name": "Sleep Quality", "value": "71%", "trend": "+3%" }
+  ],
+  "pillars": [
+    { "icon": "🧘", "title": "Take a Breathing Break", "desc": "5 minutes of deep breathing restores clarity" },
+    { "icon": "💧", "title": "Hydration Reminder", "desc": "Drink water now – dehydration reduces cognition 20%" },
+    { "icon": "🎨", "title": "Schedule Creative Work", "desc": "Afternoon is your peak creativity window" },
+    { "icon": "🚶", "title": "15-Min Walk", "desc": "Increases cognition by 20% immediately" }
+  ],
+  "overall_progress": 85,
+  "description": "Status: Optimal | Burnout Risk: Low – 12%"
+}

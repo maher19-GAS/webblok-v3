@@ -1,0 +1,19 @@
+{
+  "id": 2,
+  "key": "cognitive_enhancement_status",
+  "lang": "ar",
+  "header": "ملف التعزيز الخاص بك",
+  "subtitle": "تتبع تطورك المعرفي",
+  "overall_progress": 67,
+  "dimensions": [
+    { "name": "الذاكرة", "value": 72 },
+    { "name": "المنطق", "value": 85 },
+    { "name": "الإبداع", "value": 61 },
+    { "name": "الذكاء العاطفي", "value": 58 },
+    { "name": "التعرف على الأنماط", "value": 79 },
+    { "name": "التفكير المنهجي", "value": 68 },
+    { "name": "الوعي", "value": 43 }
+  ],
+  "next_milestone": "المستوى 8 – مفكر الكم",
+  "milestone_reward": "2,000 CTC + شارة خاصة"
+}

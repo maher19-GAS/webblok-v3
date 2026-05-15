@@ -1,0 +1,16 @@
+{
+  "id": 14,
+  "key": "marketplace",
+  "lang": "fr",
+  "header": "Marché Cognitif",
+  "subtitle": "Proposez vos services améliorés",
+  "categories": ["Conseil", "Analyse", "Conception", "Recherche"],
+  "my_listings": [
+    { "title": "Révision architecture sécurité", "price": "500 CTC/h", "orders": 3, "rating": 4.9 },
+    { "title": "Analyse système quantique", "price": "300 CTC/h", "orders": 7, "rating": 4.7 }
+  ],
+  "service_requests": [
+    { "title": "Audit sécurité cloud", "budget": "2 000 CTC", "deadline": "7 jours", "requester": "Projet Nebula" },
+    { "title": "Analyse de motifs IA", "budget": "1 500 CTC", "deadline": "5 jours", "requester": "Équipe Omega" }
+  ]
+}

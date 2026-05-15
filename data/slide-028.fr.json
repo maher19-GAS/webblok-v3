@@ -1,0 +1,21 @@
+{
+  "id": 28,
+  "key": "cognitive_health",
+  "lang": "fr",
+  "header": "Votre Santé Cognitive",
+  "subtitle": "Zone de performance optimale",
+  "metrics": [
+    { "name": "Niveau de stress", "value": "32%", "status": "Faible 🟢" },
+    { "name": "Score de concentration", "value": "85%", "trend": "+7%" },
+    { "name": "Niveau d'énergie", "value": "78%", "status": "Bon" },
+    { "name": "Qualité du sommeil", "value": "71%", "trend": "+3%" }
+  ],
+  "pillars": [
+    { "icon": "🧘", "title": "Pause respiratoire", "desc": "5 minutes de respiration profonde restaure la clarté" },
+    { "icon": "💧", "title": "Rappel hydratation", "desc": "Buvez de l'eau maintenant – la déshydratation réduit la cognition de 20%" },
+    { "icon": "🎨", "title": "Planifiez le travail créatif", "desc": "L'après-midi est votre pic de créativité" },
+    { "icon": "🚶", "title": "Marche 15 min", "desc": "Augmente la cognition de 20% immédiatement" }
+  ],
+  "overall_progress": 85,
+  "description": "Statut : Optimal | Risque d'épuisement : Faible – 12%"
+}

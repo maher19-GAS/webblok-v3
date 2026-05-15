@@ -1,0 +1,18 @@
+{
+  "id": 22,
+  "key": "community_forum",
+  "lang": "en",
+  "header": "Community Hub",
+  "subtitle": "Connect with 50K+ Enhanced Contributors",
+  "pillars": [
+    { "icon": "💬", "title": "General Discussion", "desc": "12,450 posts • Active community discussions" },
+    { "icon": "🔧", "title": "Technical Help", "desc": "8,320 posts • Expert Q&A and solutions" },
+    { "icon": "💡", "title": "Project Ideas", "desc": "5,670 posts • Innovative proposals and feedback" },
+    { "icon": "🏅", "title": "Achievements", "desc": "3,210 posts • Celebrate milestones together" }
+  ],
+  "metrics": [
+    { "name": "Your Posts", "value": "34", "status": "published" },
+    { "name": "Your Replies", "value": "127", "status": "interactions" },
+    { "name": "Trending Topics", "value": "3", "status": "active now" }
+  ]
+}

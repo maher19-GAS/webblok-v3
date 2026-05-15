@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "key": "welcome_dashboard",
+  "lang": "en",
+  "header": "Welcome back, Alex",
+  "subtitle": "Your Cognitive Enhancement Journey Continues",
+  "stats": {
+    "ctc_balance": "12,450",
+    "ctc_label": "CTC Balance",
+    "projects_joined": 4,
+    "contributions_made": 127,
+    "reputation_score": "4,250"
+  },
+  "enhancement_level": 67,
+  "challenge_preview": "Pattern Recognition: Quantum Systems",
+  "nav_items": ["Home", "Projects", "Wallet", "Learn", "Profile"]
+}

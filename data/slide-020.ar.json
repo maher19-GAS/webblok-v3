@@ -1,0 +1,18 @@
+{
+  "id": 20,
+  "key": "social_impact_tracker",
+  "lang": "ar",
+  "header": "تأثيرك",
+  "subtitle": "مساهماتك في التحديات العالمية",
+  "impact_metrics": [
+    { "sector": "البيئة", "score": 78, "icon": "🌱", "trend": "+12%" },
+    { "sector": "الاجتماعي", "score": 85, "icon": "👥", "trend": "+8%" },
+    { "sector": "الاقتصادي", "score": 62, "icon": "📈", "trend": "+15%" },
+    { "sector": "العلمي", "score": 91, "icon": "🔬", "trend": "+5%" }
+  ],
+  "metrics": [
+    { "name": "الإنجاز الجماعي", "value": "89%", "status": "نموذج خفض الكربون" },
+    { "name": "ترتيب التأثير الشخصي", "value": "#234", "status": "قائد التأثير العالمي" },
+    { "name": "إجمالي نقاط التأثير", "value": "8,920", "trend": "+420 هذا الشهر" }
+  ]
+}

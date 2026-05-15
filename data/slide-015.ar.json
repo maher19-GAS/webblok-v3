@@ -1,0 +1,13 @@
+{
+  "id": 15,
+  "key": "team_formation",
+  "lang": "ar",
+  "header": "ابنِ فريقك",
+  "subtitle": "ابحث عن المساهمين المتكاملين",
+  "roles_needed": ["مطور واجهة أمامية", "عالم بيانات", "مصمم UX", "خبير متخصص"],
+  "suggested_contributors": [
+    { "name": "صوفيا مارتينيز", "match": 92, "skills": ["React", "UI/UX", "أنظمة التصميم"], "avatar": "SM", "level": 7 },
+    { "name": "جيمس ليو", "match": 88, "skills": ["Python", "تعلم الآلة", "تحليل البيانات"], "avatar": "JL", "level": 9 },
+    { "name": "بريا شارما", "match": 85, "skills": ["خبير متخصص", "بحث", "أنظمة"], "avatar": "PS", "level": 6 }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": 9,
+  "key": "contribution_verification",
+  "lang": "en",
+  "header": "Pending Verifications",
+  "subtitle": "3 Contributions Under Review",
+  "contributions": [
+    { "title": "Security Protocol v2.0", "project": "DVM Cloud Architecture", "status": "under_review", "progress": 65, "estimated_ctc": "+850 CTC", "submitted": "2 days ago" },
+    { "title": "Pattern Analysis Report", "project": "Neural Language Model", "status": "pending", "progress": 20, "estimated_ctc": "+420 CTC", "submitted": "Today" },
+    { "title": "Energy Flow Model", "project": "Quantum Energy Grid", "status": "rejected", "progress": 0, "estimated_ctc": "+0 CTC", "submitted": "5 days ago" }
+  ]
+}

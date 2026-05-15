@@ -1,0 +1,23 @@
+{
+  "id": 10,
+  "key": "reputation_system",
+  "lang": "ar",
+  "header": "نقاط سمعتك",
+  "subtitle": "المستوى 8 • 4,250 نقطة",
+  "level": 8,
+  "level_name": "مفكر الكم",
+  "points": "4,250",
+  "next_level_points": "5,000",
+  "achievements": [
+    { "name": "أول مساهمة", "icon": "⭐", "earned": "نوفمبر 2024", "title": "أول مساهمة" },
+    { "name": "لاعب فريق", "icon": "🤝", "earned": "ديسمبر 2024", "title": "لاعب فريق" },
+    { "name": "بطل الابتكار", "icon": "💡", "earned": "يناير 2025", "title": "بطل الابتكار" },
+    { "name": "خبير الأمان", "icon": "🔒", "earned": "فبراير 2025", "title": "خبير الأمان" },
+    { "name": "سيد الأنماط", "icon": "🧩", "earned": "مارس 2025", "title": "سيد الأنماط" }
+  ],
+  "dimensions": [
+    { "name": "أمان السحابة", "value": 85 },
+    { "name": "تحليل الأنماط", "value": 79 },
+    { "name": "تصميم الأنظمة", "value": 68 }
+  ]
+}

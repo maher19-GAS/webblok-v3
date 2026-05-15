@@ -1,0 +1,16 @@
+{
+  "id": 14,
+  "key": "marketplace",
+  "lang": "ar",
+  "header": "سوق التعزيز المعرفي",
+  "subtitle": "اعرض خدماتك المعززة",
+  "categories": ["استشارات", "تحليل", "تصميم", "بحث"],
+  "my_listings": [
+    { "title": "مراجعة هندسة الأمان", "price": "500 CTC/ساعة", "orders": 3, "rating": 4.9 },
+    { "title": "تحليل الأنظمة الكمية", "price": "300 CTC/ساعة", "orders": 7, "rating": 4.7 }
+  ],
+  "service_requests": [
+    { "title": "تدقيق أمان السحابة", "budget": "2,000 CTC", "deadline": "7 أيام", "requester": "مشروع نيبولا" },
+    { "title": "تحليل أنماط الذكاء الاصطناعي", "budget": "1,500 CTC", "deadline": "5 أيام", "requester": "فريق أوميغا" }
+  ]
+}

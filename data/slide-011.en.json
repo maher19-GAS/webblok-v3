@@ -1,0 +1,14 @@
+{
+  "id": 11,
+  "key": "learning_hub",
+  "lang": "en",
+  "header": "Enhancement Library",
+  "subtitle": "23 Modules Available",
+  "categories": ["Foundational", "Advanced", "Specialized"],
+  "modules": [
+    { "title": "Quantum Thinking Fundamentals", "category": "Foundational", "progress": 100, "duration": "4 hrs", "ctc_reward": "+200 CTC" },
+    { "title": "Pattern Recognition Mastery", "category": "Advanced", "progress": 67, "duration": "8 hrs", "ctc_reward": "+500 CTC" },
+    { "title": "Consciousness Expansion 101", "category": "Specialized", "progress": 23, "duration": "12 hrs", "ctc_reward": "+800 CTC" },
+    { "title": "Systems Thinking Pro", "category": "Advanced", "progress": 0, "duration": "6 hrs", "ctc_reward": "+400 CTC" }
+  ]
+}

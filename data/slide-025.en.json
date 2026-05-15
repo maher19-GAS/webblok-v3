@@ -1,0 +1,17 @@
+{
+  "id": 25,
+  "key": "notifications_center",
+  "lang": "en",
+  "header": "Notifications",
+  "subtitle": "15 New Updates",
+  "pillars": [
+    { "icon": "🏅", "title": "Achievement Unlocked", "desc": "Pattern Master badge earned! +200 CTC" },
+    { "icon": "🚀", "title": "Project Update", "desc": "DVM Cloud Architecture: Security review completed" },
+    { "icon": "💬", "title": "New Message", "desc": "Dr. Sarah Chen: The quantum module is ready" },
+    { "icon": "⚙️", "title": "System Alert", "desc": "Your cognitive level increased to 67%" }
+  ],
+  "metrics": [
+    { "name": "New Notifications", "value": "15", "status": "unread" },
+    { "name": "This Week", "value": "47", "trend": "+12 from last week" }
+  ]
+}

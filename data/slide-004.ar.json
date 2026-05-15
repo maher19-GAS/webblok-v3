@@ -1,0 +1,16 @@
+{
+  "id": 4,
+  "key": "ctc_wallet_overview",
+  "lang": "ar",
+  "header": "عملتك المعرفية الرمزية",
+  "subtitle": "الرصيد الإجمالي: 12,450 CTC",
+  "balance": "12,450",
+  "transactions": [
+    { "name": "بنية DVM السحابية", "type": "مساهمة في المشروع", "amount": "+850", "date": "منذ ساعتين" },
+    { "name": "التحدي اليومي", "type": "مكافأة التحدي", "amount": "+500", "date": "اليوم" },
+    { "name": "واجهة الرابط العصبي", "type": "شراء خدمة", "amount": "-200", "date": "أمس" },
+    { "name": "جلسة الإرشاد", "type": "أرباح الخدمة", "amount": "+300", "date": "منذ يومين" }
+  ],
+  "earnings_breakdown": { "challenges": 35, "projects": 60, "bonuses": 5 },
+  "staking_apy": "12.5%"
+}

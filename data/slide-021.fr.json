@@ -1,0 +1,13 @@
+{
+  "id": 21,
+  "key": "event_calendar",
+  "lang": "fr",
+  "header": "Événements 2030B",
+  "subtitle": "Opportunités à venir",
+  "milestones": [
+    { "title": "Atelier informatique quantique", "status": "active", "date": "25 mars · 14h UTC · Inscrit" },
+    { "title": "Lancement Architecture DVM", "status": "planned", "date": "1 avr · 10h UTC" },
+    { "title": "Série de séminaires sur la conscience", "status": "active", "date": "5 avr · 16h UTC · Inscrit" },
+    { "title": "Date limite défi innovation", "status": "pending", "date": "30 mars · 23h59 UTC" }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": 18,
+  "key": "mentorship_program",
+  "lang": "fr",
+  "header": "Trouvez Votre Mentor",
+  "subtitle": "Connectez-vous avec des contributeurs experts",
+  "tracks": ["Croissance professionnelle", "Compétences techniques", "Leadership", "Conscience"],
+  "modules": [
+    { "title": "Dr. Elena Voss", "category": "Systèmes quantiques", "progress": 4, "duration": "200 CTC/session", "ctc_reward": "Note : 4,98 ⭐" },
+    { "title": "Kai Nakamura", "category": "Architecture IA", "progress": 3, "duration": "150 CTC/session", "ctc_reward": "Note : 4,95 ⭐" },
+    { "title": "Amara Osei", "category": "Dev conscience", "progress": 5, "duration": "Gratuit (Communauté)", "ctc_reward": "Note : 4,97 ⭐" }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": 10,
+  "key": "reputation_system",
+  "lang": "en",
+  "header": "Your Reputation Score",
+  "subtitle": "Level 8 Contributor • 4,250 Points",
+  "level": 8,
+  "level_name": "Quantum Thinker",
+  "points": "4,250",
+  "next_level_points": "5,000",
+  "achievements": [
+    { "name": "First Contribution", "icon": "⭐", "earned": "Nov 2024", "title": "First Contribution" },
+    { "name": "Team Player", "icon": "🤝", "earned": "Dec 2024", "title": "Team Player" },
+    { "name": "Innovation Champion", "icon": "💡", "earned": "Jan 2025", "title": "Innovation Champion" },
+    { "name": "Security Expert", "icon": "🔒", "earned": "Feb 2025", "title": "Security Expert" },
+    { "name": "Pattern Master", "icon": "🧩", "earned": "Mar 2025", "title": "Pattern Master" }
+  ],
+  "dimensions": [
+    { "name": "Cloud Security", "value": 85 },
+    { "name": "Pattern Analysis", "value": 79 },
+    { "name": "Systems Design", "value": 68 }
+  ]
+}

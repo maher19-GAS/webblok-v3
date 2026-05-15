@@ -1,0 +1,19 @@
+{
+  "id": 24,
+  "key": "help_support",
+  "lang": "fr",
+  "header": "Obtenir de l'Aide",
+  "subtitle": "Support disponible 24h/24, 7j/7",
+  "pillars": [
+    { "icon": "💬", "title": "Chat en direct", "desc": "Disponible • Attente : < 2 min" },
+    { "icon": "📧", "title": "Support email", "desc": "Disponible • Attente : < 4 h" },
+    { "icon": "📚", "title": "Base de connaissances", "desc": "1,2M+ articles • Accès instantané" },
+    { "icon": "🎓", "title": "Tutoriels vidéo", "desc": "500+ tutoriels • Débutant à Expert" }
+  ],
+  "modules": [
+    { "title": "Comment gagner des CTC ?", "category": "Portefeuille", "progress": 0, "ctc_reward": "FAQ" },
+    { "title": "Comment ma réputation est-elle calculée ?", "category": "Réputation", "progress": 0, "ctc_reward": "FAQ" },
+    { "title": "Comment rejoindre un projet ?", "category": "Projets", "progress": 0, "ctc_reward": "FAQ" },
+    { "title": "Qu'est-ce que le niveau d'amélioration cognitive ?", "category": "Profil", "progress": 0, "ctc_reward": "FAQ" }
+  ]
+}

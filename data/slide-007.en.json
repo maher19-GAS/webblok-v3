@@ -1,0 +1,13 @@
+{
+  "id": 7,
+  "key": "active_projects_dashboard",
+  "lang": "en",
+  "header": "Your Active Projects",
+  "subtitle": "4 Projects In Progress",
+  "projects": [
+    { "title": "DVM Cloud Architecture", "status": "active", "progress": 32, "next_action": "Submit security report", "ctc_this_week": "+850", "deadline": "45 days" },
+    { "title": "Neural Language Model", "status": "review", "progress": 67, "next_action": "Peer review pending", "ctc_this_week": "+420", "deadline": "30 days" },
+    { "title": "Quantum Energy Grid", "status": "planning", "progress": 12, "next_action": "Team meeting tomorrow", "ctc_this_week": "+0", "deadline": "60 days" },
+    { "title": "Social Impact AI", "status": "active", "progress": 54, "next_action": "Data analysis due", "ctc_this_week": "+600", "deadline": "20 days" }
+  ]
+}

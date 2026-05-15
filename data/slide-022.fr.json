@@ -1,0 +1,18 @@
+{
+  "id": 22,
+  "key": "community_forum",
+  "lang": "fr",
+  "header": "Centre Communautaire",
+  "subtitle": "Connectez-vous avec 50K+ contributeurs améliorés",
+  "pillars": [
+    { "icon": "💬", "title": "Discussion générale", "desc": "12 450 posts • Discussions communautaires actives" },
+    { "icon": "🔧", "title": "Aide technique", "desc": "8 320 posts • Q&R d'experts et solutions" },
+    { "icon": "💡", "title": "Idées de projets", "desc": "5 670 posts • Propositions innovantes et retours" },
+    { "icon": "🏅", "title": "Réalisations", "desc": "3 210 posts • Célébrez les jalons ensemble" }
+  ],
+  "metrics": [
+    { "name": "Vos posts", "value": "34", "status": "publiés" },
+    { "name": "Vos réponses", "value": "127", "status": "interactions" },
+    { "name": "Sujets tendance", "value": "3", "status": "actifs maintenant" }
+  ]
+}

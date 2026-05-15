@@ -1,0 +1,13 @@
+{
+  "id": 15,
+  "key": "team_formation",
+  "lang": "fr",
+  "header": "Construisez Votre Équipe",
+  "subtitle": "Trouvez des contributeurs complémentaires",
+  "roles_needed": ["Développeur Frontend", "Data Scientist", "Designer UX", "Expert du domaine"],
+  "suggested_contributors": [
+    { "name": "Sofia Martinez", "match": 92, "skills": ["React", "UI/UX", "Systèmes de design"], "avatar": "SM", "level": 7 },
+    { "name": "James Liu", "match": 88, "skills": ["Python", "ML", "Analyse de données"], "avatar": "JL", "level": 9 },
+    { "name": "Priya Sharma", "match": 85, "skills": ["Expert domaine", "Recherche", "Systèmes"], "avatar": "PS", "level": 6 }
+  ]
+}

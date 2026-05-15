@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "key": "welcome_dashboard",
+  "lang": "ar",
+  "header": "مرحباً بعودتك، أليكس",
+  "subtitle": "رحلة التعزيز المعرفي تستمر",
+  "stats": {
+    "ctc_balance": "12,450",
+    "ctc_label": "رصيد CTC",
+    "projects_joined": 4,
+    "contributions_made": 127,
+    "reputation_score": "4,250"
+  },
+  "enhancement_level": 67,
+  "challenge_preview": "التعرف على الأنماط: أنظمة الكم",
+  "nav_items": ["الرئيسية", "المشاريع", "المحفظة", "التعلم", "الملف"]
+}

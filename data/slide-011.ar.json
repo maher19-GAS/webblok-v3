@@ -1,0 +1,14 @@
+{
+  "id": 11,
+  "key": "learning_hub",
+  "lang": "ar",
+  "header": "مكتبة التعزيز",
+  "subtitle": "23 وحدة متاحة",
+  "categories": ["تأسيسي", "متقدم", "متخصص"],
+  "modules": [
+    { "title": "أساسيات التفكير الكمي", "category": "تأسيسي", "progress": 100, "duration": "4 ساعات", "ctc_reward": "+200 CTC" },
+    { "title": "إتقان التعرف على الأنماط", "category": "متقدم", "progress": 67, "duration": "8 ساعات", "ctc_reward": "+500 CTC" },
+    { "title": "توسيع الوعي 101", "category": "متخصص", "progress": 23, "duration": "12 ساعة", "ctc_reward": "+800 CTC" },
+    { "title": "التفكير المنهجي الاحترافي", "category": "متقدم", "progress": 0, "duration": "6 ساعات", "ctc_reward": "+400 CTC" }
+  ]
+}

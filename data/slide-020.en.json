@@ -1,0 +1,18 @@
+{
+  "id": 20,
+  "key": "social_impact_tracker",
+  "lang": "en",
+  "header": "Your Impact",
+  "subtitle": "Contributions to Global Challenges",
+  "impact_metrics": [
+    { "sector": "Environmental", "score": 78, "icon": "🌱", "trend": "+12%" },
+    { "sector": "Social", "score": 85, "icon": "👥", "trend": "+8%" },
+    { "sector": "Economic", "score": 62, "icon": "📈", "trend": "+15%" },
+    { "sector": "Scientific", "score": 91, "icon": "🔬", "trend": "+5%" }
+  ],
+  "metrics": [
+    { "name": "Collective Milestone", "value": "89%", "status": "Carbon Reduction Model" },
+    { "name": "Personal Impact Rank", "value": "#234", "status": "Global Impact Leader" },
+    { "name": "Total Impact Score", "value": "8,920", "trend": "+420 this month" }
+  ]
+}

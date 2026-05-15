@@ -1,0 +1,18 @@
+{
+  "id": 8,
+  "key": "project_workspace",
+  "lang": "fr",
+  "header": "Architecture Cloud DVM – Espace de travail",
+  "subtitle": "Équipe : 12 membres",
+  "tabs": ["Chat", "Docs", "Tâches", "Calendrier"],
+  "messages": [
+    { "sender": "Dr. Sarah Chen", "message": "Le module de chiffrement quantique est prêt pour révision.", "time": "10h23", "avatar": "SC" },
+    { "sender": "Marcus Wei", "message": "J'ai mis à jour le document de protocoles de sécurité.", "time": "10h45", "avatar": "MW" },
+    { "sender": "Vous", "message": "Super ! Je réviserai les deux avant la fin de journée.", "time": "11h02", "avatar": "AJ" }
+  ],
+  "milestones": [
+    { "title": "Conception architecture", "status": "completed", "date": "15 janv." },
+    { "title": "Protocoles de sécurité", "status": "in_progress", "date": "20 févr." },
+    { "title": "Tests d'intégration", "status": "pending", "date": "10 mars" }
+  ]
+}

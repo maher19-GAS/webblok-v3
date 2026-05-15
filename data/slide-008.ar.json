@@ -1,0 +1,18 @@
+{
+  "id": 8,
+  "key": "project_workspace",
+  "lang": "ar",
+  "header": "بنية DVM السحابية – مساحة العمل",
+  "subtitle": "الفريق: 12 عضواً",
+  "tabs": ["دردشة", "مستندات", "مهام", "الجدول الزمني"],
+  "messages": [
+    { "sender": "د. سارة تشن", "message": "وحدة التشفير الكمي جاهزة للمراجعة.", "time": "10:23 ص", "avatar": "SC" },
+    { "sender": "ماركوس وي", "message": "لقد حدثت مستند بروتوكولات الأمان.", "time": "10:45 ص", "avatar": "MW" },
+    { "sender": "أنت", "message": "رائع! سأراجع كليهما بنهاية اليوم.", "time": "11:02 ص", "avatar": "AJ" }
+  ],
+  "milestones": [
+    { "title": "تصميم البنية", "status": "completed", "date": "15 يناير" },
+    { "title": "بروتوكولات الأمان", "status": "in_progress", "date": "20 فبراير" },
+    { "title": "اختبار التكامل", "status": "pending", "date": "10 مارس" }
+  ]
+}

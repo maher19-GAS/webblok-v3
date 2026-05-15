@@ -1,0 +1,18 @@
+{
+  "id": 27,
+  "key": "templates_library",
+  "lang": "en",
+  "header": "Template Library",
+  "subtitle": "Accelerate Your Projects with Pre-Built Templates",
+  "pillars": [
+    { "icon": "📊", "title": "Project Proposal", "desc": "120 uses • Structured project pitch template" },
+    { "icon": "🔬", "title": "Research Framework", "desc": "89 uses • Scientific research structure" },
+    { "icon": "🧠", "title": "Cognitive Protocol", "desc": "67 uses • Enhancement program design" },
+    { "icon": "💼", "title": "Business Case", "desc": "234 uses • ROI and impact analysis template" }
+  ],
+  "metrics": [
+    { "name": "Templates Available", "value": "48", "status": "curated" },
+    { "name": "Your Templates", "value": "3", "status": "created" },
+    { "name": "Most Used", "value": "Business Case", "trend": "+12 this week" }
+  ]
+}

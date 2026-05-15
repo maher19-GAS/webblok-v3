@@ -1,0 +1,16 @@
+{
+  "id": 4,
+  "key": "ctc_wallet_overview",
+  "lang": "fr",
+  "header": "Votre Token Cognitif",
+  "subtitle": "Solde total : 12 450 CTC",
+  "balance": "12 450",
+  "transactions": [
+    { "name": "Architecture Cloud DVM", "type": "Contribution projet", "amount": "+850", "date": "Il y a 2h" },
+    { "name": "Défi quotidien", "type": "Récompense défi", "amount": "+500", "date": "Aujourd'hui" },
+    { "name": "Interface Neural Link", "type": "Achat service", "amount": "-200", "date": "Hier" },
+    { "name": "Session de mentorat", "type": "Gains service", "amount": "+300", "date": "Il y a 2 jours" }
+  ],
+  "earnings_breakdown": { "challenges": 35, "projects": 60, "bonuses": 5 },
+  "staking_apy": "12,5%"
+}

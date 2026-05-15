@@ -1,0 +1,18 @@
+{
+  "id": 20,
+  "key": "social_impact_tracker",
+  "lang": "fr",
+  "header": "Votre Impact",
+  "subtitle": "Contributions aux défis mondiaux",
+  "impact_metrics": [
+    { "sector": "Environnemental", "score": 78, "icon": "🌱", "trend": "+12%" },
+    { "sector": "Social", "score": 85, "icon": "👥", "trend": "+8%" },
+    { "sector": "Économique", "score": 62, "icon": "📈", "trend": "+15%" },
+    { "sector": "Scientifique", "score": 91, "icon": "🔬", "trend": "+5%" }
+  ],
+  "metrics": [
+    { "name": "Jalon collectif", "value": "89%", "status": "Modèle réduction carbone" },
+    { "name": "Rang d'impact personnel", "value": "#234", "status": "Leader d'impact mondial" },
+    { "name": "Score d'impact total", "value": "8 920", "trend": "+420 ce mois" }
+  ]
+}

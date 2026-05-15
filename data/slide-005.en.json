@@ -1,0 +1,13 @@
+{
+  "id": 5,
+  "key": "available_projects_discovery",
+  "lang": "en",
+  "header": "Discover Projects",
+  "subtitle": "Matched Opportunities for Your Skills",
+  "filters": ["All", "Tech", "Science", "Social", "Creative"],
+  "projects": [
+    { "title": "DVM Cloud Architecture", "match": 94, "ctc": "2,500/mo", "tags": ["Security", "Cloud", "AI"], "team": 12, "deadline": "45 days" },
+    { "title": "Neural Language Model", "match": 88, "ctc": "1,800/mo", "tags": ["NLP", "Research", "Python"], "team": 8, "deadline": "30 days" },
+    { "title": "Quantum Energy Grid", "match": 76, "ctc": "3,200/mo", "tags": ["Physics", "Energy", "Systems"], "team": 15, "deadline": "60 days" }
+  ]
+}

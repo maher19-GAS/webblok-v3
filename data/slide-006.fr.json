@@ -1,0 +1,15 @@
+{
+  "id": 6,
+  "key": "project_detail_dvm",
+  "lang": "fr",
+  "header": "Architecture Cloud DVM",
+  "subtitle": "Systèmes informatiques • Haute priorité",
+  "description": "Concevoir l'infrastructure de machine virtuelle distribuée de nouvelle génération pour le réseau de traitement cognitif de 2030B.",
+  "your_role": "Concepteur de protocole de sécurité",
+  "ctc_rate": "2 500 CTC/mois",
+  "time_commitment": "15 h/semaine",
+  "progress": 32,
+  "team_size": 12,
+  "challenges": ["Intégration du chiffrement quantique", "Transfert de données sans latence", "Compatibilité multi-réalité"],
+  "deadline": "45 jours"
+}

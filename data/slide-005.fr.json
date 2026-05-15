@@ -1,0 +1,13 @@
+{
+  "id": 5,
+  "key": "available_projects_discovery",
+  "lang": "fr",
+  "header": "Découvrir les Projets",
+  "subtitle": "Opportunités correspondant à vos compétences",
+  "filters": ["Tout", "Tech", "Science", "Social", "Créatif"],
+  "projects": [
+    { "title": "Architecture Cloud DVM", "match": 94, "ctc": "2 500/mois", "tags": ["Sécurité", "Cloud", "IA"], "team": 12, "deadline": "45 jours" },
+    { "title": "Modèle de langage neuronal", "match": 88, "ctc": "1 800/mois", "tags": ["NLP", "Recherche", "Python"], "team": 8, "deadline": "30 jours" },
+    { "title": "Réseau d'énergie quantique", "match": 76, "ctc": "3 200/mois", "tags": ["Physique", "Énergie", "Systèmes"], "team": 15, "deadline": "60 jours" }
+  ]
+}

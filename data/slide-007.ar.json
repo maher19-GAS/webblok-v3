@@ -1,0 +1,13 @@
+{
+  "id": 7,
+  "key": "active_projects_dashboard",
+  "lang": "ar",
+  "header": "مشاريعك النشطة",
+  "subtitle": "4 مشاريع قيد التنفيذ",
+  "projects": [
+    { "title": "بنية DVM السحابية", "status": "نشط", "progress": 32, "next_action": "تقديم تقرير الأمان", "ctc_this_week": "+850", "deadline": "45 يوم" },
+    { "title": "نموذج اللغة العصبي", "status": "مراجعة", "progress": 67, "next_action": "مراجعة الأقران معلقة", "ctc_this_week": "+420", "deadline": "30 يوم" },
+    { "title": "شبكة الطاقة الكمية", "status": "تخطيط", "progress": 12, "next_action": "اجتماع الفريق غداً", "ctc_this_week": "+0", "deadline": "60 يوم" },
+    { "title": "الذكاء الاصطناعي للتأثير الاجتماعي", "status": "نشط", "progress": 54, "next_action": "تحليل البيانات مستحق", "ctc_this_week": "+600", "deadline": "20 يوم" }
+  ]
+}

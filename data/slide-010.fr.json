@@ -1,0 +1,23 @@
+{
+  "id": 10,
+  "key": "reputation_system",
+  "lang": "fr",
+  "header": "Votre Score de Réputation",
+  "subtitle": "Contributeur Niveau 8 • 4 250 points",
+  "level": 8,
+  "level_name": "Penseur Quantique",
+  "points": "4 250",
+  "next_level_points": "5 000",
+  "achievements": [
+    { "name": "Première contribution", "icon": "⭐", "earned": "Nov 2024", "title": "Première contribution" },
+    { "name": "Joueur d'équipe", "icon": "🤝", "earned": "Déc 2024", "title": "Joueur d'équipe" },
+    { "name": "Champion de l'innovation", "icon": "💡", "earned": "Janv 2025", "title": "Champion de l'innovation" },
+    { "name": "Expert en sécurité", "icon": "🔒", "earned": "Févr 2025", "title": "Expert en sécurité" },
+    { "name": "Maître des motifs", "icon": "🧩", "earned": "Mars 2025", "title": "Maître des motifs" }
+  ],
+  "dimensions": [
+    { "name": "Sécurité cloud", "value": 85 },
+    { "name": "Analyse de motifs", "value": 79 },
+    { "name": "Conception de systèmes", "value": 68 }
+  ]
+}

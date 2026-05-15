@@ -1,0 +1,17 @@
+{
+  "id": 16,
+  "key": "knowledge_base",
+  "lang": "fr",
+  "header": "Base de Connaissances 2030B",
+  "subtitle": "Recherchez parmi 1,2M+ d'insights",
+  "categories": ["Systèmes IA", "Informatique quantique", "Conscience", "Énergie", "Biologie"],
+  "modules": [
+    { "title": "Standards de chiffrement quantique 2025", "category": "Informatique quantique", "progress": 2400, "ctc_reward": "2,4K lectures" },
+    { "title": "Protocoles d'amélioration neurale", "category": "Conscience", "progress": 5100, "ctc_reward": "5,1K lectures" },
+    { "title": "Modèles d'architecture cloud distribuée", "category": "Systèmes IA", "progress": 3800, "ctc_reward": "3,8K lectures" }
+  ],
+  "metrics": [
+    { "name": "Signets", "value": "12", "status": "sauvegardés" },
+    { "name": "Contributions", "value": "8", "status": "articles" }
+  ]
+}

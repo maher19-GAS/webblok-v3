@@ -1,0 +1,12 @@
+{
+  "id": 9,
+  "key": "contribution_verification",
+  "lang": "fr",
+  "header": "Vérifications en attente",
+  "subtitle": "3 contributions en cours d'examen",
+  "contributions": [
+    { "title": "Protocole de sécurité v2.0", "project": "Architecture Cloud DVM", "status": "under_review", "progress": 65, "estimated_ctc": "+850 CTC", "submitted": "Il y a 2 jours" },
+    { "title": "Rapport d'analyse de motifs", "project": "Modèle de langage neuronal", "status": "pending", "progress": 20, "estimated_ctc": "+420 CTC", "submitted": "Aujourd'hui" },
+    { "title": "Modèle de flux d'énergie", "project": "Réseau d'énergie quantique", "status": "rejected", "progress": 0, "estimated_ctc": "+0 CTC", "submitted": "Il y a 5 jours" }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": 17,
+  "key": "resource_allocation",
+  "lang": "fr",
+  "header": "Vos Ressources",
+  "subtitle": "Gestion du temps et de l'énergie cognitive",
+  "metrics": [
+    { "name": "Budget temps hebdomadaire", "value": "40 h", "status": "28 utilisées" },
+    { "name": "Charge cognitive", "value": "72%", "trend": "Optimal" },
+    { "name": "Risque d'épuisement", "value": "Faible", "status": "🟢 Sûr" }
+  ],
+  "dimensions": [
+    { "name": "Cloud DVM (haute priorité)", "value": 54 },
+    { "name": "Modèle langage neuronal (moyen)", "value": 29 },
+    { "name": "Réseau quantique (basse priorité)", "value": 18 }
+  ],
+  "description": "Regrouper les tâches similaires, planifier le travail profond de 9h–12h, prendre des pauses de 15 min toutes les 90 minutes."
+}

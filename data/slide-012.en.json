@@ -1,0 +1,17 @@
+{
+  "id": 12,
+  "key": "leaderboards",
+  "lang": "en",
+  "header": "Global Leaderboards",
+  "subtitle": "You're Ranked #1,247 Worldwide",
+  "tabs": ["Overall", "This Week", "By Sector", "By Region"],
+  "top_contributors": [
+    { "rank": 1, "name": "Dr. Elena Voss", "score": "98,450", "badge": "🏆", "avatar": "EV" },
+    { "rank": 2, "name": "Kai Nakamura", "score": "94,320", "badge": "🥈", "avatar": "KN" },
+    { "rank": 3, "name": "Amara Osei", "score": "91,780", "badge": "🥉", "avatar": "AO" },
+    { "rank": 4, "name": "Lena Fischer", "score": "88,200", "badge": "🎖️", "avatar": "LF" },
+    { "rank": 5, "name": "Raj Patel", "score": "85,600", "badge": "🎖️", "avatar": "RP" }
+  ],
+  "your_rank": 1247,
+  "your_score": "4,250"
+}

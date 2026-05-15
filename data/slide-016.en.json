@@ -1,0 +1,17 @@
+{
+  "id": 16,
+  "key": "knowledge_base",
+  "lang": "en",
+  "header": "2030B Knowledge Base",
+  "subtitle": "Search 1.2M+ Insights",
+  "categories": ["AI Systems", "Quantum Computing", "Consciousness", "Energy", "Biology"],
+  "modules": [
+    { "title": "Quantum Encryption Standards 2025", "category": "Quantum Computing", "progress": 2400, "ctc_reward": "2.4K reads" },
+    { "title": "Neural Enhancement Protocols", "category": "Consciousness", "progress": 5100, "ctc_reward": "5.1K reads" },
+    { "title": "Distributed Cloud Architecture Patterns", "category": "AI Systems", "progress": 3800, "ctc_reward": "3.8K reads" }
+  ],
+  "metrics": [
+    { "name": "Bookmarks", "value": "12", "status": "saved" },
+    { "name": "Contributions", "value": "8", "status": "articles" }
+  ]
+}

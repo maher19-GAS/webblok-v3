@@ -1,0 +1,15 @@
+{
+  "id": 3,
+  "key": "daily_cognitive_challenge",
+  "lang": "ar",
+  "header": "تحدي اليوم",
+  "subtitle": "التعرف على الأنماط: أنظمة الكم",
+  "timer": "14:32",
+  "difficulty": "متقدم",
+  "hints_available": 3,
+  "hint_cost": "50 CTC",
+  "reward": "500 CTC + 25 سمعة",
+  "leaderboard_position": "#1,247",
+  "previous_score": 82,
+  "difficulties": ["مبتدئ", "متوسط", "متقدم", "خبير"]
+}

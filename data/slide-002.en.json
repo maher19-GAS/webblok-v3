@@ -1,0 +1,19 @@
+{
+  "id": 2,
+  "key": "cognitive_enhancement_status",
+  "lang": "en",
+  "header": "Your Enhancement Profile",
+  "subtitle": "Track Your Cognitive Evolution",
+  "overall_progress": 67,
+  "dimensions": [
+    { "name": "Memory", "value": 72 },
+    { "name": "Logic", "value": 85 },
+    { "name": "Creativity", "value": 61 },
+    { "name": "Emotional Intelligence", "value": 58 },
+    { "name": "Pattern Recognition", "value": 79 },
+    { "name": "Systems Thinking", "value": 68 },
+    { "name": "Consciousness", "value": 43 }
+  ],
+  "next_milestone": "Level 8 – Quantum Thinker",
+  "milestone_reward": "2,000 CTC + Special Badge"
+}

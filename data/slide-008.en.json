@@ -1,0 +1,18 @@
+{
+  "id": 8,
+  "key": "project_workspace",
+  "lang": "en",
+  "header": "DVM Cloud Architecture – Workspace",
+  "subtitle": "Team: 12 Members",
+  "tabs": ["Chat", "Docs", "Tasks", "Timeline"],
+  "messages": [
+    { "sender": "Dr. Sarah Chen", "message": "The quantum encryption module is ready for review.", "time": "10:23 AM", "avatar": "SC" },
+    { "sender": "Marcus Wei", "message": "I've updated the security protocols doc.", "time": "10:45 AM", "avatar": "MW" },
+    { "sender": "You", "message": "Great! I'll review both by EOD.", "time": "11:02 AM", "avatar": "AJ" }
+  ],
+  "milestones": [
+    { "title": "Architecture Design", "status": "completed", "date": "Jan 15" },
+    { "title": "Security Protocols", "status": "in_progress", "date": "Feb 20" },
+    { "title": "Integration Testing", "status": "pending", "date": "Mar 10" }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": 18,
+  "key": "mentorship_program",
+  "lang": "ar",
+  "header": "ابحث عن مرشدك",
+  "subtitle": "تواصل مع المساهمين الخبراء",
+  "tracks": ["النمو المهني", "المهارات التقنية", "القيادة", "الوعي"],
+  "modules": [
+    { "title": "د. إيلينا فوس", "category": "أنظمة الكم", "progress": 4, "duration": "200 CTC/جلسة", "ctc_reward": "التقييم: 4.98 ⭐" },
+    { "title": "كاي ناكامورا", "category": "هندسة الذكاء الاصطناعي", "progress": 3, "duration": "150 CTC/جلسة", "ctc_reward": "التقييم: 4.95 ⭐" },
+    { "title": "أمارا أوسي", "category": "تطوير الوعي", "progress": 5, "duration": "مجاني (مجتمع)", "ctc_reward": "التقييم: 4.97 ⭐" }
+  ]
+}

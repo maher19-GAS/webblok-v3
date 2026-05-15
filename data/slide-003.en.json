@@ -1,0 +1,15 @@
+{
+  "id": 3,
+  "key": "daily_cognitive_challenge",
+  "lang": "en",
+  "header": "Today's Challenge",
+  "subtitle": "Pattern Recognition: Quantum Systems",
+  "timer": "14:32",
+  "difficulty": "Advanced",
+  "hints_available": 3,
+  "hint_cost": "50 CTC",
+  "reward": "500 CTC + 25 Reputation",
+  "leaderboard_position": "#1,247",
+  "previous_score": 82,
+  "difficulties": ["Beginner", "Intermediate", "Advanced", "Expert"]
+}

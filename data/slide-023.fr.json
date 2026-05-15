@@ -1,0 +1,17 @@
+{
+  "id": 23,
+  "key": "settings",
+  "lang": "fr",
+  "header": "Vos Préférences",
+  "subtitle": "Personnalisez votre expérience",
+  "pillars": [
+    { "icon": "👤", "title": "Profil", "desc": "Modifier profil • Changer avatar • Mettre à jour bio" },
+    { "icon": "🔔", "title": "Notifications", "desc": "Mises à jour projets • Rappels défis • Alertes réalisations" },
+    { "icon": "🔒", "title": "Confidentialité", "desc": "Visibilité profil • Statut activité • Partage données" },
+    { "icon": "🎨", "title": "Apparence", "desc": "Mode sombre • Langue • Taille de police" }
+  ],
+  "metrics": [
+    { "name": "Thème", "value": "Cosmic Dark", "status": "actif" },
+    { "name": "Langues", "value": "5", "status": "EN/AR/ES/ZH/FR" }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": 24,
+  "key": "help_support",
+  "lang": "en",
+  "header": "Get Help",
+  "subtitle": "24/7 Support Available",
+  "pillars": [
+    { "icon": "💬", "title": "Live Chat", "desc": "Available • Wait: < 2 min" },
+    { "icon": "📧", "title": "Email Support", "desc": "Available • Wait: < 4 hrs" },
+    { "icon": "📚", "title": "Knowledge Base", "desc": "1.2M+ articles • Instant access" },
+    { "icon": "🎓", "title": "Video Tutorials", "desc": "500+ tutorials • Beginner to Expert" }
+  ],
+  "modules": [
+    { "title": "How do I earn CTC?", "category": "Wallet", "progress": 0, "ctc_reward": "FAQ" },
+    { "title": "How is my reputation calculated?", "category": "Reputation", "progress": 0, "ctc_reward": "FAQ" },
+    { "title": "How do I join a project?", "category": "Projects", "progress": 0, "ctc_reward": "FAQ" },
+    { "title": "What is cognitive enhancement level?", "category": "Profile", "progress": 0, "ctc_reward": "FAQ" }
+  ]
+}

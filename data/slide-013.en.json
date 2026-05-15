@@ -1,0 +1,19 @@
+{
+  "id": 13,
+  "key": "personal_analytics",
+  "lang": "en",
+  "header": "Your Performance Analytics",
+  "subtitle": "Last 30 Days",
+  "ctc_trend": [820, 1200, 950, 1450, 1100, 1800, 2100, 1600, 2400, 1900, 2800, 3200],
+  "dimensions": [
+    { "name": "Logic (79→85)", "value": 85 },
+    { "name": "Pattern Recognition (71→79)", "value": 79 },
+    { "name": "Memory (65→72)", "value": 72 }
+  ],
+  "metrics": [
+    { "name": "Project Success Rate", "value": "89%", "trend": "+4%" },
+    { "name": "Contribution Quality", "value": "94%", "trend": "+6%" },
+    { "name": "Peak Hours", "value": "9AM–12PM", "status": "Optimal" },
+    { "name": "Total CTC Earned", "value": "8,450", "trend": "+2,200 this month" }
+  ]
+}

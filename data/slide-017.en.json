@@ -1,0 +1,18 @@
+{
+  "id": 17,
+  "key": "resource_allocation",
+  "lang": "en",
+  "header": "Your Resources",
+  "subtitle": "Time & Cognitive Energy Management",
+  "metrics": [
+    { "name": "Weekly Time Budget", "value": "40 hrs", "status": "28 used" },
+    { "name": "Cognitive Load", "value": "72%", "trend": "Optimal" },
+    { "name": "Burnout Risk", "value": "Low", "status": "🟢 Safe" }
+  ],
+  "dimensions": [
+    { "name": "DVM Cloud (high priority)", "value": 54 },
+    { "name": "Neural LM (medium priority)", "value": 29 },
+    { "name": "Quantum Grid (low priority)", "value": 18 }
+  ],
+  "description": "Batch similar tasks, schedule deep work 9–12AM, take 15-minute breaks every 90 minutes for peak cognitive performance."
+}

@@ -1,0 +1,13 @@
+{
+  "id": 21,
+  "key": "event_calendar",
+  "lang": "ar",
+  "header": "فعاليات 2030B",
+  "subtitle": "الفرص القادمة",
+  "milestones": [
+    { "title": "ورشة الحوسبة الكمية", "status": "active", "date": "25 مارس · 2:00 ظ UTC · مسجل" },
+    { "title": "إطلاق بنية DVM", "status": "planned", "date": "1 أبريل · 10:00 ص UTC" },
+    { "title": "سلسلة ندوات الوعي", "status": "active", "date": "5 أبريل · 4:00 م UTC · مسجل" },
+    { "title": "الموعد النهائي لتحدي الابتكار", "status": "pending", "date": "30 مارس · 11:59 م UTC" }
+  ]
+}

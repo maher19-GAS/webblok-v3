@@ -1,0 +1,12 @@
+{
+  "id": 9,
+  "key": "contribution_verification",
+  "lang": "ar",
+  "header": "التحقق المعلق",
+  "subtitle": "3 مساهمات قيد المراجعة",
+  "contributions": [
+    { "title": "بروتوكول الأمان v2.0", "project": "بنية DVM السحابية", "status": "under_review", "progress": 65, "estimated_ctc": "+850 CTC", "submitted": "منذ يومين" },
+    { "title": "تقرير تحليل الأنماط", "project": "نموذج اللغة العصبي", "status": "pending", "progress": 20, "estimated_ctc": "+420 CTC", "submitted": "اليوم" },
+    { "title": "نموذج تدفق الطاقة", "project": "شبكة الطاقة الكمية", "status": "rejected", "progress": 0, "estimated_ctc": "+0 CTC", "submitted": "منذ 5 أيام" }
+  ]
+}
