@@ -1,0 +1,564 @@
+{
+  "brand": {
+    "name": "2030B",
+    "tagline": "Soyez Plus Intelligent",
+    "subtitle": "Écosystème d'Amélioration Cognitive"
+  },
+  "vol": 2,
+  "slides": [
+    {
+      "id": 51,
+      "key": "ecosystem_overview",
+      "header": "L'Écosystème 2030B",
+      "subtitle": "Un réseau vivant d'intelligence",
+      "description": "2030B est un écosystème d'amélioration cognitive entièrement intégré, connectant individus, projets, gouvernance et économie tokenisée en une expérience transparente.",
+      "pillars": [
+        { "icon": "🧠", "title": "Soyez plus intelligent", "desc": "Programmes d'amélioration cognitive pour tous les niveaux" },
+        { "icon": "🏗️", "title": "Projets DVM", "desc": "Projets réels alimentés par l'intelligence humaine" },
+        { "icon": "💰", "title": "Économie CTC", "desc": "Système de récompense et de gouvernance basé sur des jetons" },
+        { "icon": "🌐", "title": "Gouvernance", "desc": "Prise de décision transparente pilotée par la communauté" }
+      ],
+      "stat": { "users": "2,4M", "projects": "18 400", "ctc_in_circulation": "140B", "countries": 97 }
+    },
+    {
+      "id": 52,
+      "key": "vision_2030",
+      "header": "Vision 2030",
+      "subtitle": "Un monde où la pensée est la monnaie",
+      "quote": "Nous croyons que chaque être humain porte un potentiel cognitif inexploité. 2030B existe pour le libérer — et le récompenser équitablement.",
+      "milestones": [
+        { "year": 2025, "title": "Lancement mondial", "status": "active" },
+        { "year": 2026, "title": "10M d'utilisateurs", "status": "planned" },
+        { "year": 2027, "title": "Cotation en bourse CTC", "status": "planned" },
+        { "year": 2028, "title": "Gouvernance décentralisée", "status": "planned" },
+        { "year": 2030, "title": "1B de vies impactées", "status": "vision" }
+      ],
+      "cta": "Rejoignez le mouvement"
+    },
+    {
+      "id": 53,
+      "key": "problem_statement",
+      "header": "Le problème",
+      "subtitle": "Le potentiel humain est sous-utilisé",
+      "problems": [
+        { "icon": "📉", "title": "Inadéquation des talents", "desc": "78 % des personnes qualifiées sont dans de mauvais rôles", "stat": "78 %" },
+        { "icon": "🔒", "title": "Connaissances verrouillées", "desc": "Recherches bloquées derrière des paywalls ou perdues dans des silos", "stat": "90 Mds$" },
+        { "icon": "💸", "title": "Récompenses inéquitables", "desc": "Les créateurs ne capturent que 3 % de la valeur qu'ils génèrent", "stat": "3 %" },
+        { "icon": "🚧", "title": "Accès limité", "desc": "2,4 milliards de personnes n'ont pas accès à un apprentissage de qualité", "stat": "2,4 Mds" }
+      ],
+      "insight": "L'économie cognitive vaut 25 000 milliards de dollars, mais 97 % de sa valeur est captée par des intermédiaires."
+    },
+    {
+      "id": 54,
+      "key": "solution_architecture",
+      "header": "La solution",
+      "subtitle": "Un moteur d'intelligence auto-entretenu",
+      "layers": [
+        { "order": 1, "name": "Couche cognitive", "desc": "Programmes d'amélioration personnalisés, défis et parcours d'apprentissage", "color": "blue" },
+        { "order": 2, "name": "Couche de contribution", "desc": "Projets réels où les compétences cognitives génèrent de la valeur mesurable", "color": "purple" },
+        { "order": 3, "name": "Couche économique", "desc": "Récompenses en jetons CTC, staking et transactions de marché", "color": "cyan" },
+        { "order": 4, "name": "Couche de gouvernance", "desc": "Vote décentralisé, propositions de politiques et trésorerie communautaire", "color": "emerald" }
+      ]
+    },
+    {
+      "id": 55,
+      "key": "security_layer",
+      "header": "Couche de sécurité",
+      "subtitle": "Infrastructure de confiance de niveau entreprise",
+      "features": [
+        { "icon": "🔐", "title": "Chiffrement quantique", "desc": "Protocoles de sécurité de prochaine génération" },
+        { "icon": "🛡️", "title": "Identité décentralisée", "desc": "SSI et vérification blockchain" },
+        { "icon": "👁️", "title": "Transparence totale", "desc": "Toutes les transactions vérifiables sur la chaîne" }
+      ],
+      "certifications": ["ISO 27001", "SOC 2 Type II", "RGPD", "HIPAA"]
+    },
+    {
+      "id": 56,
+      "key": "performance_metrics",
+      "header": "Indicateurs de performance plateforme",
+      "subtitle": "Données en temps réel",
+      "metrics": [
+        { "label": "Temps de disponibilité", "value": "99,97 %", "trend": "stable" },
+        { "label": "Latence API", "value": "< 50 ms", "trend": "amélioration" },
+        { "label": "Transactions/seconde", "value": "12 400", "trend": "+18 %" }
+      ]
+    },
+    {
+      "id": 57,
+      "key": "user_acquisition",
+      "header": "Acquisition d'utilisateurs",
+      "subtitle": "Croissance et stratégie de fidélisation",
+      "channels": [
+        { "name": "Organique", "percentage": 45, "growth": "+34 %" },
+        { "name": "Parrainage", "percentage": 30, "growth": "+67 %" },
+        { "name": "Partenariats", "percentage": 25, "growth": "+22 %" }
+      ],
+      "monthly_active_users": "1,2M",
+      "retention_rate": "78 %"
+    },
+    {
+      "id": 58,
+      "key": "revenue_model",
+      "header": "Modèle de revenus",
+      "subtitle": "Durabilité financière et croissance",
+      "streams": [
+        { "name": "Abonnements Premium", "percentage": 40, "amount": "4,8M$/mois" },
+        { "name": "Frais de transaction", "percentage": 35, "amount": "4,2M$/mois" },
+        { "name": "Services Entreprise", "percentage": 25, "amount": "3,0M$/mois" }
+      ],
+      "mrr": "12M$",
+      "arr": "144M$"
+    },
+    {
+      "id": 59,
+      "key": "market_analysis",
+      "header": "Analyse de marché",
+      "subtitle": "Un marché de 500 Mds$ à saisir",
+      "tam": "500 Mds$",
+      "sam": "85 Mds$",
+      "som": "12 Mds$",
+      "growth_rate": "+34 % CAGR",
+      "key_segments": ["Entreprises", "Éducation", "Gouvernements", "Particuliers"]
+    },
+    {
+      "id": 60,
+      "key": "competitive_landscape",
+      "header": "Paysage concurrentiel",
+      "subtitle": "Position unique sur le marché",
+      "competitors": [
+        { "name": "Coursera", "strength": "Contenu", "weakness": "Pas de récompenses" },
+        { "name": "LinkedIn Learning", "strength": "Réseau", "weakness": "Pas de certification blockchain" }
+      ],
+      "our_advantages": ["Intégration IA cognitive", "Économie CTC", "Approche décentralisée"]
+    },
+    {
+      "id": 61,
+      "key": "partnership_network",
+      "header": "Réseau de partenaires",
+      "subtitle": "240+ partenaires stratégiques mondiaux",
+      "categories": ["Universités", "Entreprises", "Gouvernements", "ONG"],
+      "featured": [
+        { "name": "MIT Media Lab", "type": "Recherche", "since": "2024" },
+        { "name": "NEOM", "type": "Ville intelligente", "since": "2024" }
+      ]
+    },
+    {
+      "id": 62,
+      "key": "global_expansion",
+      "header": "Expansion mondiale",
+      "subtitle": "Présent dans 97 pays",
+      "regions": [
+        { "name": "MENA", "users": "580K", "growth": "+45 %" },
+        { "name": "Asie-Pacifique", "users": "720K", "growth": "+38 %" },
+        { "name": "Europe", "users": "490K", "growth": "+29 %" },
+        { "name": "Amériques", "users": "610K", "growth": "+31 %" }
+      ]
+    },
+    {
+      "id": 63,
+      "key": "mobile_platform",
+      "header": "Plateforme mobile",
+      "subtitle": "Expérience cognitive en déplacement",
+      "platforms": ["iOS", "Android", "HarmonyOS"],
+      "downloads": "4,2M",
+      "rating": 4.8,
+      "features": ["Mode hors ligne", "Sync biométrique", "AR cognitive", "Notifications intelligentes"]
+    },
+    {
+      "id": 64,
+      "key": "desktop_experience",
+      "header": "Expérience bureau",
+      "subtitle": "Station de travail cognitive complète",
+      "os": ["Windows", "macOS", "Linux"],
+      "features": ["Interface multi-fenêtres", "Intégration IDE", "Analyse avancée", "Espace de travail en temps réel"]
+    },
+    {
+      "id": 65,
+      "key": "gamification_engine",
+      "header": "Moteur de gamification",
+      "subtitle": "Apprentissage rendu addictif",
+      "elements": [
+        { "name": "Série quotidienne", "description": "Récompenses pour la cohérence", "impact": "+34 % rétention" },
+        { "name": "Badges de réalisation", "description": "Progression visible", "impact": "+28 % engagement" },
+        { "name": "Classements", "description": "Compétition saine", "impact": "+45 % motivation" }
+      ]
+    },
+    {
+      "id": 66,
+      "key": "ai_integration",
+      "header": "Intégration IA",
+      "subtitle": "Intelligence augmentée pour chaque utilisateur",
+      "models": [
+        { "name": "CORA v3.0", "role": "Tuteur cognitif personnel", "accuracy": "97 %" },
+        { "name": "PatternNet", "role": "Reconnaissance de patterns", "accuracy": "99,2 %" },
+        { "name": "ChainMind", "role": "Gouvernance blockchain", "accuracy": "94 %" }
+      ]
+    },
+    {
+      "id": 67,
+      "key": "research_lab",
+      "header": "Laboratoire de recherche",
+      "subtitle": "À la frontière des sciences cognitives",
+      "active_research": [
+        { "title": "Amélioration cognitive quantique", "lead": "Dr. E. Voss", "stage": "Phase 3" },
+        { "title": "Protocoles d'apprentissage social", "lead": "Dr. K. Nakamura", "stage": "Phase 2" }
+      ],
+      "publications": 47,
+      "patents_filed": 23
+    },
+    {
+      "id": 68,
+      "key": "knowledge_graph",
+      "header": "Graphe de connaissances",
+      "subtitle": "L'atlas de toute la connaissance humaine",
+      "nodes": "2,4M",
+      "connections": "18M",
+      "domains": 847,
+      "daily_additions": "12 400 nouveaux nœuds/jour"
+    },
+    {
+      "id": 69,
+      "key": "beta_features",
+      "header": "Fonctionnalités bêta",
+      "subtitle": "Demain, aujourd'hui",
+      "features": [
+        { "name": "Palais de la mémoire XR", "status": "Bêta ouverte", "users": "24K" },
+        { "name": "Gouvernance on-chain V2", "status": "Bêta fermée", "users": "2,4K" },
+        { "name": "Rendement cognitif", "status": "Alpha", "users": "480" }
+      ]
+    },
+    {
+      "id": 70,
+      "key": "launch_roadmap",
+      "header": "Feuille de route de lancement",
+      "subtitle": "Jalons du T1 2025 au T4 2026",
+      "phases": [
+        { "quarter": "T1 2025", "title": "Lancement mondial", "status": "active" },
+        { "quarter": "T2 2025", "title": "Cotation en bourse CTC", "status": "planned" },
+        { "quarter": "T3 2025", "title": "Expansion mobile", "status": "planned" },
+        { "quarter": "T1 2026", "title": "Protocole décentralisé", "status": "vision" }
+      ]
+    },
+    {
+      "id": 71,
+      "key": "token_economics",
+      "header": "Économie des jetons CTC",
+      "subtitle": "La monnaie de la cognition",
+      "total_supply": "1 000 000 000 CTC",
+      "in_circulation": "140 000 000 CTC",
+      "distribution": [
+        { "category": "Récompenses communautaires", "percentage": 45 },
+        { "category": "Développement écosystème", "percentage": 25 },
+        { "category": "Équipe & Conseillers", "percentage": 15 },
+        { "category": "Réserve de trésorerie", "percentage": 15 }
+      ],
+      "current_price": "0,847$",
+      "market_cap": "118M$"
+    },
+    {
+      "id": 72,
+      "key": "blockchain_layer",
+      "header": "Couche blockchain",
+      "subtitle": "Infrastructure de confiance décentralisée",
+      "chain": "2030B Chain (EVM-compatible)",
+      "tps": "12 400",
+      "finality": "< 2 secondes",
+      "validators": 240,
+      "consensus": "Proof of Cognitive Stake (PoCS)"
+    },
+    {
+      "id": 73,
+      "key": "defi_protocol",
+      "header": "Protocole DeFi",
+      "subtitle": "Finance décentralisée pour l'économie cognitive",
+      "tvl": "45M$",
+      "protocols": [
+        { "name": "Pools de staking CTC", "apy": "12-24 %", "tvl": "28M$" },
+        { "name": "Pools de liquidité", "apy": "8-15 %", "tvl": "12M$" },
+        { "name": "Prêts cognitifs", "apy": "6-9 %", "tvl": "5M$" }
+      ]
+    },
+    {
+      "id": 74,
+      "key": "growth_metrics",
+      "header": "Indicateurs de croissance",
+      "subtitle": "Trajectoire vers 1 milliard d'utilisateurs",
+      "users_growth": [1200, 8500, 45000, 180000, 620000, 1200000, 2400000],
+      "revenue_growth": [50, 280, 1200, 4800, 12000],
+      "next_milestone": "5M d'utilisateurs actifs mensuels d'ici T3 2025"
+    },
+    {
+      "id": 75,
+      "key": "sustainability_model",
+      "header": "Modèle de durabilité",
+      "subtitle": "Impact positif pour toujours",
+      "pillars": [
+        { "icon": "🌱", "title": "Impact environnemental", "desc": "Chaîne blockchain neutre en carbone" },
+        { "icon": "🤝", "title": "Impact social", "desc": "Accès éducatif pour 2,4M de personnes dans les pays en développement" },
+        { "icon": "⚖️", "title": "Impact économique", "desc": "Redistribution juste de la valeur via CTC" }
+      ]
+    },
+    {
+      "id": 76,
+      "key": "education_protocol",
+      "header": "Protocole éducatif",
+      "subtitle": "Réinventer l'apprentissage pour le 21e siècle",
+      "methodology": "Amélioration cognitive adaptative",
+      "accreditations": ["MIT", "Université de Stanford", "Oxford"],
+      "courses_offered": 2400,
+      "completion_rate": "78 %"
+    },
+    {
+      "id": 77,
+      "key": "transparency_report",
+      "header": "Rapport de transparence",
+      "subtitle": "Rien à cacher, tout à partager",
+      "financials": {
+        "revenue_ytd": "144M$",
+        "expenses_ytd": "87M$",
+        "profit_ytd": "57M$"
+      },
+      "governance_votes": 47,
+      "community_proposals": 234
+    },
+    {
+      "id": 78,
+      "key": "governance_v2",
+      "header": "Gouvernance V2",
+      "subtitle": "Démocratie décentralisée à grande échelle",
+      "proposals": [
+        { "id": "GIP-047", "title": "Augmenter les récompenses de staking à 15 %", "votes_for": 67, "votes_against": 33, "status": "voting" },
+        { "id": "GIP-046", "title": "Financer l'expansion Africa Tech Hub", "votes_for": 84, "votes_against": 16, "status": "passed" }
+      ],
+      "total_voters": "840K",
+      "quorum": "10 %"
+    },
+    {
+      "id": 79,
+      "key": "certification_track",
+      "header": "Parcours de certification",
+      "subtitle": "Certifications cognitives vérifiées par blockchain",
+      "certifications": [
+        { "name": "CogniPro Level 1", "holders": "124K", "requirements": "Score min. 75 % en 5 modules" },
+        { "name": "CogniPro Level 2", "holders": "34K", "requirements": "Niveau 1 + 3 projets terminés" },
+        { "name": "CogniPro Expert", "holders": "4,2K", "requirements": "Niveau 2 + contribution à la recherche" }
+      ]
+    },
+    {
+      "id": 80,
+      "key": "access_control",
+      "header": "Contrôle d'accès",
+      "subtitle": "Sécurité et permissions granulaires",
+      "tiers": [
+        { "name": "Gratuit", "features": ["Défi quotidien", "Apprentissage basique", "500 CTC/mois"] },
+        { "name": "Pro", "features": ["Accès complet", "Mentorat prioritaire", "2 500 CTC/mois"], "price": "29$/mois" },
+        { "name": "Entreprise", "features": ["API illimitée", "Gestionnaire dédié", "Revenus partagés"], "price": "Sur demande" }
+      ]
+    },
+    {
+      "id": 81,
+      "key": "compliance_framework",
+      "header": "Cadre de conformité",
+      "subtitle": "Réglementation mondiale respectée",
+      "regulations": ["RGPD (EU)", "CCPA (USA)", "PDPA (Thaïlande)", "DPL (EAU)"],
+      "audits_per_year": 4,
+      "compliance_score": "98,7 %"
+    },
+    {
+      "id": 82,
+      "key": "multi_chain_bridge",
+      "header": "Pont multi-chaîne",
+      "subtitle": "Interopérabilité sans frontières",
+      "supported_chains": ["Ethereum", "BNB Chain", "Polygon", "Solana", "Avalanche"],
+      "bridge_volume": "2,4M CTC/jour",
+      "bridge_fee": "0,1 %"
+    },
+    {
+      "id": 83,
+      "key": "developer_tools",
+      "header": "Outils développeur",
+      "subtitle": "Construire sur le protocole cognitif",
+      "tools": [
+        { "name": "2030B SDK", "language": "JavaScript/Python/Rust", "downloads": "124K" },
+        { "name": "CLI 2030B", "language": "Go", "downloads": "45K" },
+        { "name": "Plugin VSCode", "language": "TypeScript", "downloads": "67K" }
+      ]
+    },
+    {
+      "id": 84,
+      "key": "sdk_overview",
+      "header": "Aperçu du SDK",
+      "subtitle": "Tout ce dont vous avez besoin pour construire",
+      "modules": ["Authentification", "Moteur cognitif", "Intégration CTC", "Gouvernance", "Analytics"],
+      "documentation_quality": "4,9/5",
+      "active_developers": "24K"
+    },
+    {
+      "id": 85,
+      "key": "api_marketplace",
+      "header": "Marché d'APIs",
+      "subtitle": "Monétisez et consommez des APIs cognitives",
+      "featured_apis": [
+        { "name": "API d'analyse cognitive", "price": "0,001$/appel", "calls_per_day": "2,4M" },
+        { "name": "API de matching de compétences", "price": "0,01$/requête", "calls_per_day": "890K" }
+      ]
+    },
+    {
+      "id": 86,
+      "key": "plugin_system",
+      "header": "Système de plugins",
+      "subtitle": "Extension de la plateforme par la communauté",
+      "total_plugins": 847,
+      "categories": ["Productivité", "Visualisation", "Intégrations", "IA", "Gamification"],
+      "most_popular": [
+        { "name": "MindMap Pro", "installs": "124K", "rating": 4.9 },
+        { "name": "CTC Tracker", "installs": "98K", "rating": 4.8 }
+      ]
+    },
+    {
+      "id": 87,
+      "key": "devops_pipeline",
+      "header": "Pipeline DevOps",
+      "subtitle": "Déploiement continu, qualité continue",
+      "deployment_frequency": "12x/jour",
+      "lead_time": "< 4 heures",
+      "change_failure_rate": "< 0,5 %",
+      "mttr": "< 15 minutes"
+    },
+    {
+      "id": 88,
+      "key": "analytics_dashboard",
+      "header": "Tableau de bord analytique",
+      "subtitle": "Données en temps réel pour des décisions éclairées",
+      "kpis": [
+        { "label": "MAU", "value": "1,2M", "trend": "+18 %" },
+        { "label": "Engagement quotidien", "value": "67 %", "trend": "+5 %" },
+        { "label": "Revenu par utilisateur", "value": "9,8$", "trend": "+12 %" }
+      ]
+    },
+    {
+      "id": 89,
+      "key": "future_protocol",
+      "header": "Protocole futur",
+      "subtitle": "Ce qui vient après 2030",
+      "visions": [
+        { "horizon": "2031", "title": "Interfaces cerveau-ordinateur cognitif" },
+        { "horizon": "2035", "title": "Conscience numérique distribuée" },
+        { "horizon": "2040", "title": "Singularité de l'intelligence collective" }
+      ]
+    },
+    {
+      "id": 90,
+      "key": "vision_2025",
+      "header": "Vision 2025",
+      "subtitle": "Prochaines étapes clés",
+      "goals": [
+        { "title": "5M d'utilisateurs actifs", "progress": 48, "target": "Déc 2025" },
+        { "title": "Cotation CTC en bourse", "progress": 67, "target": "T2 2025" },
+        { "title": "100 partenaires universitaires", "progress": 73, "target": "T3 2025" }
+      ]
+    },
+    {
+      "id": 91,
+      "key": "community_growth",
+      "header": "Croissance communautaire",
+      "subtitle": "2,4M de membres, +3 400 nouveaux/jour",
+      "growth_chart": [180000, 340000, 620000, 980000, 1400000, 1900000, 2400000],
+      "engagement_rate": "78 %",
+      "nps_score": 72
+    },
+    {
+      "id": 92,
+      "key": "creator_economy",
+      "header": "Économie des créateurs",
+      "subtitle": "Monétisez votre expertise",
+      "total_creators": "124K",
+      "average_earnings": "2 400 CTC/mois",
+      "top_earners_share": "12 %",
+      "creator_types": ["Instructeurs", "Mentors", "Développeurs", "Chercheurs"]
+    },
+    {
+      "id": 93,
+      "key": "marketplace_v2",
+      "header": "Marché V2",
+      "subtitle": "Nouvelle ère du commerce cognitif",
+      "gmv": "45M CTC/mois",
+      "active_listings": "24K",
+      "buyer_satisfaction": "4,8/5",
+      "new_features": ["Offres groupées IA", "Abonnements", "Royalties NFT cognitifs"]
+    },
+    {
+      "id": 94,
+      "key": "innovation_lab_v2",
+      "header": "Laboratoire d'innovation",
+      "subtitle": "Incubateur d'idées transformatrices",
+      "active_projects": 47,
+      "success_rate": "34 %",
+      "total_investment": "12M CTC",
+      "recent_graduates": ["NeuroTracker Pro", "ChainLearn", "SpatialMind"]
+    },
+    {
+      "id": 95,
+      "key": "deployment_strategy",
+      "header": "Stratégie de déploiement",
+      "subtitle": "Atteindre chaque humain sur Terre",
+      "channels": [
+        { "name": "Partenariats gouvernementaux", "reach": "340M personnes" },
+        { "name": "Intégrations scolaires", "reach": "125M étudiants" },
+        { "name": "Réseau enterprise", "reach": "47M professionnels" }
+      ]
+    },
+    {
+      "id": 96,
+      "key": "privacy_protocol",
+      "header": "Protocole de confidentialité",
+      "subtitle": "Vos données vous appartiennent",
+      "principles": ["Minimisation des données", "Consentement d'abord", "Chiffrement de bout en bout", "Droit à l'oubli"],
+      "privacy_score": "A+",
+      "data_breaches": 0
+    },
+    {
+      "id": 97,
+      "key": "marketing_engine",
+      "header": "Moteur marketing",
+      "subtitle": "Croissance organique alimentée par la communauté",
+      "channels": [
+        { "name": "Bouche-à-oreille", "roi": "480 %", "cac": "2,4$" },
+        { "name": "Parrainage", "roi": "340 %", "cac": "3,8$" },
+        { "name": "Contenu cognitif", "roi": "290 %", "cac": "5,2$" }
+      ]
+    },
+    {
+      "id": 98,
+      "key": "cognitive_os",
+      "header": "Système d'exploitation cognitif",
+      "subtitle": "L'OS de l'esprit humain",
+      "core_functions": ["Gestion de l'attention", "Routage des connaissances", "Optimisation de l'apprentissage", "Synchronisation de la mémoire"],
+      "version": "3.0",
+      "uptime": "99,97 %"
+    },
+    {
+      "id": 99,
+      "key": "speed_optimization",
+      "header": "Optimisation de la vitesse",
+      "subtitle": "Performance cognitive à la vitesse de la pensée",
+      "optimizations": [
+        { "area": "Temps de chargement de l'application", "before": "2,8 s", "after": "0,4 s", "improvement": "-86 %" },
+        { "area": "Délai de livraison d'apprentissage", "before": "24 h", "after": "2 min", "improvement": "-99,9 %" }
+      ]
+    },
+    {
+      "id": 100,
+      "key": "vol2_finale",
+      "header": "La fondation est posée",
+      "subtitle": "Volume 2 complet — Passons au niveau supérieur",
+      "achievements": [
+        "✅ 50 slides complètes documentant l'écosystème",
+        "✅ Architecture technique complète",
+        "✅ Économie CTC définie",
+        "✅ Gouvernance décentralisée active"
+      ],
+      "next": "Volume 3 : Intelligence Neuro-Adaptative & Au-delà"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+/* ═══════════════════════════════════════════
+   THEME: Dark Night (Default) — Dark Mode
+   Primary: Deep Blue · Accent: Electric Blue
+═══════════════════════════════════════════ */
+:root {
+  --bg-primary:    #07091a;
+  --bg-secondary:  #0d1124;
+  --bg-card:       rgba(255,255,255,.04);
+  --bg-nav:        rgba(7,9,26,.96);
+  --border:        rgba(26,79,255,.15);
+  --border-card:   rgba(255,255,255,.07);
+  --text-primary:  #e2e8f0;
+  --text-secondary:#94a3b8;
+  --text-muted:    #475569;
+  --accent:        #1a4fff;
+  --accent-2:      #8b5cf6;
+  --accent-3:      #14b8a6;
+  --accent-light:  #4a7bff;
+  --accent-glow:   rgba(26,79,255,.25);
+  --gold:          #f5c518;
+  --jade:          #2dd4bf;
+  --rose:          #fb7185;
+  --violet:        #a78bfa;
+  --progress-bar:  linear-gradient(90deg,#1a4fff,#8b5cf6,#14b8a6);
+  --slide-bg:      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(26,79,255,.05), transparent);
+  --slide-cur:     radial-gradient(ellipse 70% 40% at 50% 0%, rgba(26,79,255,.14), transparent);
+  --btn-primary:   linear-gradient(135deg,#1a4fff,#8b5cf6);
+  --scrollbar-thumb: #1a4fff44;
+  --overlay:       rgba(0,0,0,.72);
+  --toast-bg:      rgba(10,16,46,.97);
+  --sel-menu-bg:   rgba(8,12,32,.98);
+  --loading-bg:    #07091a;
+}
+/* Dark mode — body keeps its dark variables (no overrides needed) */
+[data-mode="light"]:root,[data-mode="light"] :root {
+  --bg-primary:    #f0f4ff;
+  --bg-secondary:  #e8eeff;
+  --bg-card:       rgba(26,79,255,.05);
+  --bg-nav:        rgba(240,244,255,.97);
+  --border:        rgba(26,79,255,.18);
+  --border-card:   rgba(0,0,0,.09);
+  --text-primary:  #0a0f2e;
+  --text-secondary:#1e3a8a;
+  --text-muted:    #3b5bdb;
+  --accent-glow:   rgba(26,79,255,.12);
+  --toast-bg:      rgba(240,244,255,.97);
+  --sel-menu-bg:   rgba(232,238,255,.98);
+  --loading-bg:    #f0f4ff;
+}

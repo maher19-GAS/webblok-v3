@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebBook SaaS — API Test Suite v2.0</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117; --bg2: #161b22; --bg3: #21262d; --bg4: #2d333b;
+    --border: #30363d; --text: #e6edf3; --text2: #8b949e; --text3: #6e7681;
+    --accent: #58a6ff; --accent2: #1f6feb; --green: #3fb950; --red: #f85149;
+    --orange: #d29922; --purple: #bc8cff; --yellow: #e3b341;
+    --radius: 8px; --shadow: 0 4px 24px rgba(0,0,0,.4);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; min-height: 100vh; }
+
+  /* ── Layout ── */
+  .layout { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+  
+  /* ── Sidebar ── */
+  aside { background: var(--bg2); border-right: 1px solid var(--border); position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 0 0 20px; display: flex; flex-direction: column; }
+  .sidebar-header { padding: 20px 16px 16px; border-bottom: 1px solid var(--border); }
+  .sidebar-logo { font-size: 18px; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+  .sidebar-logo small { font-size: 11px; font-weight: 400; color: var(--text2); background: var(--bg3); padding: 2px 6px; border-radius: 4px; }
+  .api-base-badge { margin-top: 10px; font-size: 11px; color: var(--text3); background: var(--bg); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); word-break: break-all; font-family: 'JetBrains Mono', monospace; }
+  
+  .nav-section { padding: 12px 16px 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); }
+  .nav-item { padding: 7px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 13px; border-left: 2px solid transparent; transition: all .15s; color: var(--text2); }
+  .nav-item:hover { background: var(--bg3); color: var(--text); }
+  .nav-item.active { background: rgba(88,166,255,.1); border-left-color: var(--accent); color: var(--accent); }
+  .nav-item .badge { margin-left: auto; font-size: 10px; padding: 1px 6px; border-radius: 10px; background: var(--bg3); color: var(--text3); }
+  .nav-item .badge.get { background: rgba(63,185,80,.15); color: var(--green); }
+  .nav-item .badge.post { background: rgba(31,111,235,.15); color: var(--accent); }
+  .nav-item .badge.put { background: rgba(210,153,34,.15); color: var(--orange); }
+  .nav-item .badge.patch { background: rgba(188,140,255,.15); color: var(--purple); }
+  .nav-item .badge.delete { background: rgba(248,81,73,.15); color: var(--red); }
+
+  .sidebar-footer { margin-top: auto; padding: 14px 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text3); }
+  .sidebar-footer .status-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--text3); margin-right: 5px; transition: background .3s; }
+  .sidebar-footer .status-dot.ok { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .sidebar-footer .status-dot.err { background: var(--red); }
+
+  /* ── Main ── */
+  main { padding: 28px; overflow-y: auto; }
+  .page { display: none; }
+  .page.active { display: block; }
+  
+  /* ── Cards ── */
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 20px; overflow: hidden; }
+  .card-header { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; background: var(--bg3); }
+  .card-title { font-weight: 600; font-size: 15px; }
+  .card-desc { font-size: 12px; color: var(--text2); margin-left: auto; }
+  .card-body { padding: 18px; }
+
+  /* ── Config ── */
+  .config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 12px; font-weight: 500; color: var(--text2); }
+  .form-group input, .form-group select, .form-group textarea {
+    background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    padding: 8px 12px; border-radius: 6px; font-size: 13px; font-family: inherit;
+    transition: border .15s; outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent2); }
+  .form-group textarea { min-height: 90px; resize: vertical; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+  /* ── Buttons ── */
+  .btn { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border: none; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all .15s; font-family: inherit; }
+  .btn-primary { background: var(--accent2); color: #fff; }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-success { background: rgba(63,185,80,.15); color: var(--green); border: 1px solid rgba(63,185,80,.3); }
+  .btn-success:hover { background: rgba(63,185,80,.25); }
+  .btn-danger { background: rgba(248,81,73,.15); color: var(--red); border: 1px solid rgba(248,81,73,.3); }
+  .btn-danger:hover { background: rgba(248,81,73,.25); }
+  .btn-sm { padding: 5px 10px; font-size: 12px; }
+  .btn-ghost { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
+  .btn-ghost:hover { color: var(--text); border-color: var(--text3); }
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+  /* ── Method badge inline ── */
+  .method { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; }
+  .GET { background: rgba(63,185,80,.15); color: var(--green); }
+  .POST { background: rgba(31,111,235,.15); color: var(--accent); }
+  .PUT { background: rgba(210,153,34,.15); color: var(--orange); }
+  .PATCH { background: rgba(188,140,255,.15); color: var(--purple); }
+  .DELETE { background: rgba(248,81,73,.15); color: var(--red); }
+
+  /* ── Endpoint path ── */
+  .endpoint-path { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); }
+  .endpoint-path .param { color: var(--orange); }
+
+  /* ── Response ── */
+  .response-box { margin-top: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .response-header { padding: 8px 14px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); font-size: 12px; background: var(--bg3); }
+  .status-badge { padding: 2px 8px; border-radius: 4px; font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  .status-2xx { background: rgba(63,185,80,.2); color: var(--green); }
+  .status-4xx { background: rgba(210,153,34,.2); color: var(--orange); }
+  .status-5xx { background: rgba(248,81,73,.2); color: var(--red); }
+  .response-time { color: var(--text3); margin-left: auto; font-family: 'JetBrains Mono', monospace; }
+  .response-body { padding: 14px; max-height: 350px; overflow-y: auto; }
+  pre.json { font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+  
+  /* JSON coloring */
+  .json-key { color: var(--accent); }
+  .json-str { color: var(--green); }
+  .json-num { color: var(--orange); }
+  .json-bool { color: var(--purple); }
+  .json-null { color: var(--text3); }
+
+  /* ── Info boxes ── */
+  .info-box { padding: 10px 14px; border-radius: 6px; font-size: 12px; display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px; }
+  .info-box.info { background: rgba(88,166,255,.1); border: 1px solid rgba(88,166,255,.2); color: var(--accent); }
+  .info-box.warn { background: rgba(210,153,34,.1); border: 1px solid rgba(210,153,34,.2); color: var(--orange); }
+  .info-box.success { background: rgba(63,185,80,.1); border: 1px solid rgba(63,185,80,.2); color: var(--green); }
+  .info-box.error { background: rgba(248,81,73,.1); border: 1px solid rgba(248,81,73,.2); color: var(--red); }
+
+  /* ── Token display ── */
+  .token-box { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; word-break: break-all; color: var(--green); cursor: pointer; position: relative; }
+  .token-box:hover::after { content: 'Click to copy'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 10px; background: var(--bg3); padding: 3px 7px; border-radius: 4px; color: var(--text2); font-family: 'Inter', sans-serif; }
+
+  /* ── Stats row ── */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; text-align: center; }
+  .stat-value { font-size: 28px; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+  .stat-label { font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+  /* ── Dashboard ── */
+  .dashboard-header { margin-bottom: 24px; }
+  .dashboard-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+  .dashboard-header p { color: var(--text2); font-size: 14px; }
+
+  /* ── Loading spinner ── */
+  .spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .6s linear infinite; display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Toast ── */
+  .toast-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 9999; }
+  .toast { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: 13px; display: flex; align-items: center; gap: 10px; min-width: 220px; box-shadow: var(--shadow); animation: slideIn .2s ease; }
+  .toast.success { border-left: 3px solid var(--green); }
+  .toast.error { border-left: 3px solid var(--red); }
+  .toast.info { border-left: 3px solid var(--accent); }
+  @keyframes slideIn { from { transform: translateX(40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+  /* ── Divider ── */
+  .divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--bg3); padding: 8px 12px; text-align: left; font-weight: 600; color: var(--text2); border-bottom: 1px solid var(--border); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg3); }
+
+  /* ── Tags ── */
+  .tag { display: inline-block; padding: 1px 7px; border-radius: 20px; font-size: 11px; font-weight: 500; }
+  .tag-draft { background: rgba(139,148,158,.15); color: var(--text2); }
+  .tag-published { background: rgba(63,185,80,.15); color: var(--green); }
+  .tag-archived { background: rgba(248,81,73,.15); color: var(--red); }
+  .tag-free { background: rgba(88,166,255,.15); color: var(--accent); }
+  .tag-pro { background: rgba(188,140,255,.15); color: var(--purple); }
+  .tag-enterprise { background: rgba(210,153,34,.15); color: var(--orange); }
+
+  /* ── Test runner ── */
+  .test-item { padding: 10px 14px; border-left: 3px solid var(--border); margin-bottom: 8px; border-radius: 0 6px 6px 0; background: var(--bg2); transition: all .2s; }
+  .test-item.running { border-left-color: var(--accent); }
+  .test-item.pass { border-left-color: var(--green); }
+  .test-item.fail { border-left-color: var(--red); }
+  .test-item.skip { border-left-color: var(--text3); }
+  .test-name { font-weight: 500; display: flex; align-items: center; gap: 8px; }
+  .test-result { font-size: 11px; color: var(--text3); margin-top: 3px; font-family: 'JetBrains Mono', monospace; }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { position: fixed; left: -280px; z-index: 100; width: 280px; height: 100vh; transition: left .2s; }
+    aside.open { left: 0; }
+    .config-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<!-- ══════ SIDEBAR ══════ -->
+<aside id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <i class="fa-solid fa-book-open"></i> WebBook SaaS
+      <small>v2.0</small>
+    </div>
+    <div class="api-base-badge" id="apiBaseBadge">https://2030b.com/webbook/api</div>
+  </div>
+
+  <div class="nav-section">Dashboard</div>
+  <div class="nav-item active" onclick="showPage('dashboard')"><i class="fa-solid fa-gauge-high fa-fw"></i> Dashboard</div>
+  <div class="nav-item" onclick="showPage('config')"><i class="fa-solid fa-sliders fa-fw"></i> Configuration</div>
+  <div class="nav-item" onclick="showPage('runner')"><i class="fa-solid fa-vial fa-fw"></i> Auto Test Runner</div>
+
+  <div class="nav-section">Auth API</div>
+  <div class="nav-item" onclick="showPage('auth_register')"><i class="fa-solid fa-user-plus fa-fw"></i> Register <span class="badge post">POST</span></div>
+  <div class="nav-item" onclick="showPage('auth_login')"><i class="fa-solid fa-right-to-bracket fa-fw"></i> Login <span class="badge post">POST</span></div>
+  <div class="nav-item" onclick="showPage('auth_me')"><i class="fa-solid fa-user fa-fw"></i> Me / Profile <span class="badge get">GET</span></div>
+  <div class="nav-item" onclick="showPage('auth_verify')"><i class="fa-solid fa-envelope-circle-check fa-fw"></i> Verify Email <span class="badge post">POST</span></div>
+  <div class="nav-item" onclick="showPage('auth_reset')"><i class="fa-solid fa-key fa-fw"></i> Password Reset <span class="badge post">POST</span></div>
+  <div class="nav-item" onclick="showPage('auth_stats')"><i class="fa-solid fa-chart-line fa-fw"></i> Author Stats <span class="badge get">GET</span></div>
+
+  <div class="nav-section">Books API</div>
+  <div class="nav-item" onclick="showPage('books_list')"><i class="fa-solid fa-list fa-fw"></i> List Books <span class="badge get">GET</span></div>
+  <div class="nav-item" onclick="showPage('books_create')"><i class="fa-solid fa-plus fa-fw"></i> Create Book <span class="badge post">POST</span></div>
+  <div class="nav-item" onclick="showPage('books_manage')"><i class="fa-solid fa-book fa-fw"></i> Get/Update/Delete <span class="badge get">GET</span></div>
+  <div class="nav-item" onclick="showPage('books_analytics')"><i class="fa-solid fa-chart-bar fa-fw"></i> Analytics <span class="badge get">GET</span></div>
+
+  <div class="nav-section">Chapters API</div>
+  <div class="nav-item" onclick="showPage('chapters_list')"><i class="fa-solid fa-list-ul fa-fw"></i> List / Create <span class="badge get">GET</span></div>
+  <div class="nav-item" onclick="showPage('chapters_manage')"><i class="fa-solid fa-file-lines fa-fw"></i> Get / Update / Delete <span class="badge get">GET</span></div>
+  <div class="nav-item" onclick="showPage('chapters_revisions')"><i class="fa-solid fa-clock-rotate-left fa-fw"></i> Revisions <span class="badge get">GET</span></div>
+
+  <div class="nav-section">Sync API</div>
+  <div class="nav-item" onclick="showPage('sync_push')"><i class="fa-solid fa-upload fa-fw"></i> Push / Pull <span class="badge post">POST</span></div>
+  <div class="nav-item" onclick="showPage('sync_stores')"><i class="fa-solid fa-database fa-fw"></i> Stores (kv/anns/etc) <span class="badge put">PUT</span></div>
+
+  <div class="nav-section">Public API</div>
+  <div class="nav-item" onclick="showPage('public_api')"><i class="fa-solid fa-globe fa-fw"></i> Public Endpoints <span class="badge get">GET</span></div>
+
+  <div class="nav-section">Uploads & Webhooks</div>
+  <div class="nav-item" onclick="showPage('uploads')"><i class="fa-solid fa-image fa-fw"></i> File Uploads <span class="badge post">POST</span></div>
+  <div class="nav-item" onclick="showPage('webhooks')"><i class="fa-solid fa-satellite-dish fa-fw"></i> Webhooks <span class="badge get">GET</span></div>
+
+  <div class="nav-section">Admin API</div>
+  <div class="nav-item" onclick="showPage('admin')"><i class="fa-solid fa-shield-halved fa-fw"></i> Admin Panel <span class="badge get">GET</span></div>
+
+  <div class="sidebar-footer">
+    <span class="status-dot" id="statusDot"></span>
+    <span id="statusText">Checking connection…</span>
+  </div>
+</aside>
+
+<!-- ══════ MAIN ══════ -->
+<main>
+
+<!-- ═══ DASHBOARD ═══ -->
+<div class="page active" id="page-dashboard">
+  <div class="dashboard-header">
+    <h1><i class="fa-solid fa-gauge-high" style="color:var(--accent)"></i> API Test Suite</h1>
+    <p>Interactive testing console for WebBook SaaS API v2.0.0</p>
+  </div>
+
+  <div class="stats-row" id="platformStats">
+    <div class="stat-card"><div class="stat-value" id="stat-users">—</div><div class="stat-label">Total Users</div></div>
+    <div class="stat-card"><div class="stat-value" id="stat-books">—</div><div class="stat-label">Total Books</div></div>
+    <div class="stat-card"><div class="stat-value" id="stat-published">—</div><div class="stat-label">Published</div></div>
+    <div class="stat-card"><div class="stat-value" id="stat-readers">—</div><div class="stat-label">Readers</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><i class="fa-solid fa-heartbeat" style="color:var(--green)"></i><div class="card-title">Health Check</div><div class="card-desc"><span class="method GET">GET</span> /</div></div>
+    <div class="card-body">
+      <div class="btn-row">
+        <button class="btn btn-success" onclick="healthCheck()"><i class="fa-solid fa-stethoscope"></i> Run Health Check</button>
+        <button class="btn btn-ghost" onclick="showPage('config')"><i class="fa-solid fa-sliders"></i> Configure API Base</button>
+      </div>
+      <div id="healthResponse"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><i class="fa-solid fa-circle-info" style="color:var(--accent)"></i><div class="card-title">Current Session</div></div>
+    <div class="card-body">
+      <div class="info-box info" id="sessionInfo"><i class="fa-solid fa-circle-info"></i> No active session. Go to <strong>Auth → Login</strong> to authenticate.</div>
+      <div id="tokenDisplay" style="display:none">
+        <div style="margin-bottom:8px;font-size:12px;color:var(--text2)">Bearer Token (click to copy):</div>
+        <div class="token-box" id="tokenBox" onclick="copyToken()"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><i class="fa-solid fa-route" style="color:var(--accent)"></i><div class="card-title">Quick Reference</div></div>
+    <div class="card-body">
+      <table>
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method GET">GET</span></td><td class="endpoint-path">/</td><td>Health check</td></tr>
+          <tr><td><span class="method POST">POST</span></td><td class="endpoint-path">/auth/register</td><td>Register account</td></tr>
+          <tr><td><span class="method POST">POST</span></td><td class="endpoint-path">/auth/login</td><td>Get auth token</td></tr>
+          <tr><td><span class="method GET">GET</span></td><td class="endpoint-path">/auth/me</td><td>Current user profile</td></tr>
+          <tr><td><span class="method GET">GET</span></td><td class="endpoint-path">/auth/me/stats</td><td>Author statistics</td></tr>
+          <tr><td><span class="method GET">GET</span></td><td class="endpoint-path">/books</td><td>List user's books</td></tr>
+          <tr><td><span class="method POST">POST</span></td><td class="endpoint-path">/books</td><td>Create new book</td></tr>
+          <tr><td><span class="method GET">GET</span></td><td class="endpoint-path">/books/<span class="param">{id}</span>/chapters</td><td>List chapters</td></tr>
+          <tr><td><span class="method POST">POST</span></td><td class="endpoint-path">/books/<span class="param">{id}</span>/sync</td><td>Push reader IndexedDB</td></tr>
+          <tr><td><span class="method GET">GET</span></td><td class="endpoint-path">/public/<span class="param">{id}</span>/info</td><td>Public book info (no auth)</td></tr>
+          <tr><td><span class="method GET">GET</span></td><td class="endpoint-path">/admin/stats</td><td>Platform stats (admin)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONFIG ═══ -->
+<div class="page" id="page-config">
+  <div class="dashboard-header"><h1>⚙️ Configuration</h1><p>Set your API base URL and test credentials</p></div>
+  <div class="card">
+    <div class="card-header"><i class="fa-solid fa-server" style="color:var(--accent)"></i><div class="card-title">API Connection</div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group">
+          <label>API Base URL</label>
+          <input id="cfg-base" type="text" value="https://2030b.com/webbook/api" placeholder="https://domain.com/webbook/api">
+        </div>
+        <div class="form-group">
+          <label>Bearer Token (auto-filled on login)</label>
+          <input id="cfg-token" type="text" placeholder="Paste token or login below">
+        </div>
+        <div class="form-group">
+          <label>Book ID (auto-filled on create)</label>
+          <input id="cfg-bookId" type="text" placeholder="UUID of book">
+        </div>
+        <div class="form-group">
+          <label>Chapter ID (auto-filled on create)</label>
+          <input id="cfg-chapterId" type="text" placeholder="UUID of chapter">
+        </div>
+        <div class="form-group">
+          <label>Book API Key (for public/sync)</label>
+          <input id="cfg-apiKey" type="text" placeholder="Book api_key value">
+        </div>
+        <div class="form-group">
+          <label>Reader ID (for anonymous sync)</label>
+          <input id="cfg-readerId" type="text" value="anon-test-reader-001" placeholder="Any UUID string">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="saveConfig()"><i class="fa-solid fa-floppy-disk"></i> Save Config</button>
+        <button class="btn btn-ghost" onclick="clearToken()"><i class="fa-solid fa-trash"></i> Clear Token</button>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><i class="fa-solid fa-info-circle" style="color:var(--accent)"></i><div class="card-title">Instructions</div></div>
+    <div class="card-body">
+      <ol style="padding-left:20px;line-height:2;color:var(--text2);font-size:13px;">
+        <li>Set the <strong style="color:var(--text)">API Base URL</strong> to your server (e.g. <code style="color:var(--accent)">https://2030b.com/webbook/api</code>)</li>
+        <li>Go to <strong style="color:var(--text)">Auth → Register</strong> or <strong style="color:var(--text)">Login</strong> — the token is saved automatically</li>
+        <li>Create a book — the <strong style="color:var(--text)">Book ID</strong> is saved automatically</li>
+        <li>Create a chapter — the <strong style="color:var(--text)">Chapter ID</strong> is saved automatically</li>
+        <li>Use <strong style="color:var(--text)">Auto Test Runner</strong> to run the full test suite in sequence</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AUTO TEST RUNNER ═══ -->
+<div class="page" id="page-runner">
+  <div class="dashboard-header"><h1>🧪 Auto Test Runner</h1><p>Run the complete API test suite in sequence</p></div>
+  <div class="card">
+    <div class="card-header"><i class="fa-solid fa-play" style="color:var(--green)"></i><div class="card-title">Test Suite</div><div class="card-desc" id="runnerSummary"></div></div>
+    <div class="card-body">
+      <div class="info-box warn"><i class="fa-solid fa-triangle-exclamation"></i> This creates test data on the server. Configure API Base URL first.</div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="runAllTests()" id="runBtn"><i class="fa-solid fa-play"></i> Run All Tests</button>
+        <button class="btn btn-ghost" onclick="clearTests()"><i class="fa-solid fa-eraser"></i> Clear Results</button>
+      </div>
+      <div class="divider"></div>
+      <div id="testResults"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AUTH REGISTER ═══ -->
+<div class="page" id="page-auth_register">
+  <div class="dashboard-header"><h1>Register User</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method POST">POST</span><div class="card-title endpoint-path">/auth/register</div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Email</label><input id="reg-email" type="email" value="test@example.com"></div>
+        <div class="form-group"><label>Username</label><input id="reg-username" type="text" value="testuser1"></div>
+        <div class="form-group"><label>Password</label><input id="reg-password" type="text" value="TestPass123!"></div>
+        <div class="form-group"><label>Display Name</label><input id="reg-name" type="text" value="Test User"></div>
+        <div class="form-group"><label>Role</label>
+          <select id="reg-role"><option value="reader">reader</option><option value="author">author</option></select>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="doRegister()"><i class="fa-solid fa-user-plus"></i> Register</button>
+        <button class="btn btn-ghost" onclick="doRegisterAuthor()"><i class="fa-solid fa-pen-nib"></i> Register as Author</button>
+      </div>
+      <div id="regResponse"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AUTH LOGIN ═══ -->
+<div class="page" id="page-auth_login">
+  <div class="dashboard-header"><h1>Login</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method POST">POST</span><div class="card-title endpoint-path">/auth/login</div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Email or Username</label><input id="login-email" type="text" value="test@example.com"></div>
+        <div class="form-group"><label>Password</label><input id="login-password" type="text" value="TestPass123!"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="doLogin()"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+        <button class="btn btn-danger" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      </div>
+      <div id="loginResponse"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/auth/sessions</div></div>
+    <div class="card-body">
+      <div class="btn-row"><button class="btn btn-ghost" onclick="listSessions()"><i class="fa-solid fa-list"></i> List Sessions</button></div>
+      <div id="sessionsResponse"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AUTH ME ═══ -->
+<div class="page" id="page-auth_me">
+  <div class="dashboard-header"><h1>My Profile</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/auth/me</div></div>
+    <div class="card-body">
+      <div class="btn-row"><button class="btn btn-primary" onclick="getMe()"><i class="fa-solid fa-user"></i> Get My Profile</button></div>
+      <div id="meResponse"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="method PUT">PUT</span><div class="card-title endpoint-path">/auth/me</div><div class="card-desc">Update profile</div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Display Name</label><input id="me-name" type="text" placeholder="New display name"></div>
+        <div class="form-group"><label>Bio</label><input id="me-bio" type="text" placeholder="Short bio"></div>
+        <div class="form-group"><label>Website</label><input id="me-website" type="text" placeholder="https://..."></div>
+        <div class="form-group"><label>New Password (optional)</label><input id="me-newpw" type="text" placeholder="New password"></div>
+        <div class="form-group"><label>Current Password (required if changing pw)</label><input id="me-curpw" type="text" placeholder="Current password"></div>
+      </div>
+      <div class="btn-row"><button class="btn btn-primary" onclick="updateMe()"><i class="fa-solid fa-floppy-disk"></i> Update Profile</button></div>
+      <div id="meUpdateResponse"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ VERIFY EMAIL ═══ -->
+<div class="page" id="page-auth_verify">
+  <div class="dashboard-header"><h1>Email Verification</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method POST">POST</span><div class="card-title endpoint-path">/auth/verify/send</div></div>
+    <div class="card-body">
+      <div class="info-box info"><i class="fa-solid fa-circle-info"></i> Requires authentication. Sends a verification email to the logged-in user.</div>
+      <div class="btn-row"><button class="btn btn-primary" onclick="sendVerify()"><i class="fa-solid fa-envelope"></i> Send Verification Email</button></div>
+      <div id="verifyResponse"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/auth/verify/<span class="param">{token}</span></div></div>
+    <div class="card-body">
+      <div class="form-group"><label>Token (from email link)</label><input id="verify-token" type="text" placeholder="64-char hex token"></div>
+      <div class="btn-row"><button class="btn btn-primary" onclick="confirmVerify()"><i class="fa-solid fa-check"></i> Confirm Email</button></div>
+      <div id="verifyConfirmResponse"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PASSWORD RESET ═══ -->
+<div class="page" id="page-auth_reset">
+  <div class="dashboard-header"><h1>Password Reset</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method POST">POST</span><div class="card-title endpoint-path">/auth/reset/request</div></div>
+    <div class="card-body">
+      <div class="form-group"><label>Email</label><input id="reset-email" type="email" placeholder="user@example.com"></div>
+      <div class="btn-row"><button class="btn btn-primary" onclick="requestReset()"><i class="fa-solid fa-envelope"></i> Send Reset Email</button></div>
+      <div id="resetResponse"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="method POST">POST</span><div class="card-title endpoint-path">/auth/reset/<span class="param">{token}</span></div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Token</label><input id="reset-token" type="text" placeholder="64-char hex token"></div>
+        <div class="form-group"><label>New Password</label><input id="reset-newpw" type="text" placeholder="min 8 chars"></div>
+      </div>
+      <div class="btn-row"><button class="btn btn-primary" onclick="confirmReset()"><i class="fa-solid fa-key"></i> Reset Password</button></div>
+      <div id="resetConfirmResponse"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AUTHOR STATS ═══ -->
+<div class="page" id="page-auth_stats">
+  <div class="dashboard-header"><h1>Author Statistics</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/auth/me/stats</div></div>
+    <div class="card-body">
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="apiCall('GET','/auth/me/stats',null,'statsOverviewRes')"><i class="fa-solid fa-chart-line"></i> Overview</button>
+        <button class="btn btn-ghost" onclick="apiCall('GET','/auth/me/stats/books',null,'statsOverviewRes')"><i class="fa-solid fa-book"></i> Books</button>
+        <button class="btn btn-ghost" onclick="apiCall('GET','/auth/me/stats/readers',null,'statsOverviewRes')"><i class="fa-solid fa-users"></i> Readers</button>
+        <button class="btn btn-ghost" onclick="apiCall('GET','/auth/me/stats/activity?days=7',null,'statsOverviewRes')"><i class="fa-solid fa-wave-square"></i> Activity (7d)</button>
+      </div>
+      <div id="statsOverviewRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BOOKS LIST ═══ -->
+<div class="page" id="page-books_list">
+  <div class="dashboard-header"><h1>Books</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/books</div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Status filter</label>
+          <select id="books-status"><option value="">All</option><option>draft</option><option>published</option><option>archived</option></select>
+        </div>
+        <div class="form-group"><label>Page</label><input id="books-page" type="number" value="1" min="1"></div>
+      </div>
+      <div class="btn-row"><button class="btn btn-primary" onclick="listBooks()"><i class="fa-solid fa-list"></i> List Books</button></div>
+      <div id="booksListRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BOOKS CREATE ═══ -->
+<div class="page" id="page-books_create">
+  <div class="dashboard-header"><h1>Create Book</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method POST">POST</span><div class="card-title endpoint-path">/books</div></div>
+    <div class="card-body">
+      <div class="info-box warn"><i class="fa-solid fa-triangle-exclamation"></i> Requires <strong>author</strong> role.</div>
+      <div class="config-grid">
+        <div class="form-group"><label>Title</label><input id="book-title" type="text" value="كتاب اختبار"></div>
+        <div class="form-group"><label>Slug (auto from title)</label><input id="book-slug" type="text" placeholder="Leave empty for auto"></div>
+        <div class="form-group"><label>Description</label><input id="book-desc" type="text" value="كتاب اختبار لـ SaaS"></div>
+        <div class="form-group"><label>Language</label><input id="book-lang" type="text" value="ar"></div>
+        <div class="form-group"><label>Direction</label>
+          <select id="book-dir"><option value="rtl">rtl</option><option value="ltr">ltr</option></select>
+        </div>
+        <div class="form-group"><label>Visibility</label>
+          <select id="book-vis"><option value="private">private</option><option value="unlisted">unlisted</option><option value="public">public</option></select>
+        </div>
+        <div class="form-group"><label>Theme</label>
+          <select id="book-theme">
+            <option value="dark-night">dark-night</option>
+            <option value="dark-ocean">dark-ocean</option>
+            <option value="warm-sepia">warm-sepia</option>
+            <option value="forest-green">forest-green</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-row"><button class="btn btn-primary" onclick="createBook()"><i class="fa-solid fa-plus"></i> Create Book</button></div>
+      <div id="bookCreateRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BOOKS MANAGE ═══ -->
+<div class="page" id="page-books_manage">
+  <div class="dashboard-header"><h1>Book Management</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span></div></div>
+    <div class="card-body">
+      <div class="form-group"><label>Book ID</label><input id="bm-id" placeholder="From config or paste UUID"></div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="getBook()"><i class="fa-solid fa-eye"></i> Get Book</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('bm-id')"><i class="fa-solid fa-paste"></i> Use Config ID</button>
+      </div>
+      <div id="bookGetRes"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="method PUT">PUT</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span></div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Book ID</label><input id="bu-id" placeholder="UUID"></div>
+        <div class="form-group"><label>Status</label>
+          <select id="bu-status"><option value="">— keep —</option><option value="draft">draft</option><option value="published">published</option><option value="archived">archived</option></select>
+        </div>
+        <div class="form-group"><label>Visibility</label>
+          <select id="bu-vis"><option value="">— keep —</option><option value="private">private</option><option value="unlisted">unlisted</option><option value="public">public</option></select>
+        </div>
+        <div class="form-group"><label>Title (optional)</label><input id="bu-title" placeholder="New title"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-success" onclick="updateBook()"><i class="fa-solid fa-floppy-disk"></i> Update Book</button>
+        <button class="btn btn-success" onclick="publishBook()"><i class="fa-solid fa-rocket"></i> Publish Book</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('bu-id')"><i class="fa-solid fa-paste"></i> Use Config ID</button>
+      </div>
+      <div id="bookUpdateRes"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="method DELETE">DELETE</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span></div></div>
+    <div class="card-body">
+      <div class="form-group"><label>Book ID</label><input id="bd-id" placeholder="UUID"></div>
+      <div class="btn-row">
+        <button class="btn btn-danger" onclick="deleteBook(false)"><i class="fa-solid fa-archive"></i> Soft Delete (archive)</button>
+        <button class="btn btn-danger" onclick="deleteBook(true)"><i class="fa-solid fa-trash"></i> Hard Delete</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('bd-id')"><i class="fa-solid fa-paste"></i> Use Config ID</button>
+      </div>
+      <div id="bookDeleteRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BOOKS ANALYTICS ═══ -->
+<div class="page" id="page-books_analytics">
+  <div class="dashboard-header"><h1>Book Analytics</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span>/stats</div></div>
+    <div class="card-body">
+      <div class="form-group"><label>Book ID</label><input id="ba-id" placeholder="UUID"></div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="getBookStats()"><i class="fa-solid fa-users"></i> Reader Stats</button>
+        <button class="btn btn-ghost" onclick="getBookAnalytics()"><i class="fa-solid fa-chart-bar"></i> Analytics (30d)</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('ba-id')"><i class="fa-solid fa-paste"></i> Use Config ID</button>
+      </div>
+      <div id="bookAnalyticsRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CHAPTERS LIST ═══ -->
+<div class="page" id="page-chapters_list">
+  <div class="dashboard-header"><h1>Chapters</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span> / <span class="method POST">POST</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span>/chapters</div></div>
+    <div class="card-body">
+      <div class="form-group" style="margin-bottom:12px"><label>Book ID</label><input id="cl-bookid" placeholder="UUID"></div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="listChapters()"><i class="fa-solid fa-list"></i> List Chapters</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('cl-bookid')"><i class="fa-solid fa-paste"></i> Use Config ID</button>
+      </div>
+      <div id="chaptersListRes"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="method POST">POST</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span>/chapters</div><div class="card-desc">Create</div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Book ID</label><input id="cc-bookid" placeholder="UUID"></div>
+        <div class="form-group"><label>Title</label><input id="cc-title" value="الفصل الأول"></div>
+        <div class="form-group"><label>File ID (slug)</label><input id="cc-fileid" value="ch01"></div>
+        <div class="form-group"><label>Part / Section</label><input id="cc-part" value="الجزء الأول"></div>
+        <div class="form-group" style="grid-column:1/-1">
+          <label>Content (Markdown)</label>
+          <textarea id="cc-content"># الفصل الأول
+
+مرحباً بك في هذا الكتاب الرائع.
+
+## مقدمة
+
+هذا نص تجريبي للاختبار. يمكن أن يحتوي على **نص عريض** و*نص مائل*.
+
+> اقتباس مهم من الكتاب
+
+- عنصر أول
+- عنصر ثاني
+- عنصر ثالث</textarea>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="createChapter()"><i class="fa-solid fa-plus"></i> Create Chapter</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('cc-bookid')"><i class="fa-solid fa-paste"></i> Use Book ID</button>
+      </div>
+      <div id="chapterCreateRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CHAPTERS MANAGE ═══ -->
+<div class="page" id="page-chapters_manage">
+  <div class="dashboard-header"><h1>Chapter Management</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span>/chapters/<span class="param">{chapterId}</span></div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Book ID</label><input id="chg-bookid" placeholder="UUID"></div>
+        <div class="form-group"><label>Chapter ID</label><input id="chg-chapid" placeholder="UUID"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="getChapter()"><i class="fa-solid fa-eye"></i> Get Chapter</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('chg-bookid');useConfigChapterId('chg-chapid')"><i class="fa-solid fa-paste"></i> Use Config IDs</button>
+      </div>
+      <div id="chapterGetRes"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="method PATCH">PATCH</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span>/chapters/<span class="param">{chapterId}</span></div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Book ID</label><input id="chu-bookid" placeholder="UUID"></div>
+        <div class="form-group"><label>Chapter ID</label><input id="chu-chapid" placeholder="UUID"></div>
+        <div class="form-group"><label>Title (optional)</label><input id="chu-title" placeholder="New title"></div>
+        <div class="form-group"><label>Is Published</label>
+          <select id="chu-published"><option value="">— keep —</option><option value="1">Published (1)</option><option value="0">Draft (0)</option></select>
+        </div>
+        <div class="form-group" style="grid-column:1/-1">
+          <label>Content (optional)</label>
+          <textarea id="chu-content" placeholder="New markdown content (leave empty to skip)"></textarea>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-success" onclick="updateChapter()"><i class="fa-solid fa-floppy-disk"></i> Update Chapter</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('chu-bookid');useConfigChapterId('chu-chapid')"><i class="fa-solid fa-paste"></i> Use Config IDs</button>
+      </div>
+      <div id="chapterUpdateRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CHAPTER REVISIONS ═══ -->
+<div class="page" id="page-chapters_revisions">
+  <div class="dashboard-header"><h1>Chapter Revisions</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span>/chapters/<span class="param">{chapterId}</span>/revisions</div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Book ID</label><input id="rev-bookid" placeholder="UUID"></div>
+        <div class="form-group"><label>Chapter ID</label><input id="rev-chapid" placeholder="UUID"></div>
+        <div class="form-group"><label>Limit</label><input id="rev-limit" type="number" value="5" min="1" max="50"></div>
+        <div class="form-group"><label>Include Content</label>
+          <select id="rev-content"><option value="0">No</option><option value="1">Yes</option></select>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="getRevisions()"><i class="fa-solid fa-clock-rotate-left"></i> Get Revisions</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('rev-bookid');useConfigChapterId('rev-chapid')"><i class="fa-solid fa-paste"></i> Use Config IDs</button>
+      </div>
+      <div id="revisionsRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SYNC PUSH/PULL ═══ -->
+<div class="page" id="page-sync_push">
+  <div class="dashboard-header"><h1>Sync — Push / Pull</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method POST">POST</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span>/sync</div><div class="card-desc">Full push</div></div>
+    <div class="card-body">
+      <div class="form-group"><label>Book ID</label><input id="sp-bookid" placeholder="UUID"></div>
+      <div class="form-group" style="margin-top:10px">
+        <label>Payload (JSON)</label>
+        <textarea id="sp-payload">{
+  "kv": [
+    {"k": "sessions", "v": "3", "updated_at": 0},
+    {"k": "slidesRead", "v": "12", "updated_at": 0},
+    {"k": "totalMin", "v": "25", "updated_at": 0},
+    {"k": "lastSlide", "v": "5", "updated_at": 0}
+  ],
+  "activity": [
+    {"type": "slide_view", "label": "Slide 1", "ts": 0}
+  ],
+  "scrollpos": [
+    {"slide_index": 1, "slide_title": "Introduction", "start_ts": 0, "end_ts": 0, "duration_ms": 5000}
+  ]
+}</textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="syncPush()"><i class="fa-solid fa-upload"></i> Push Sync</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('sp-bookid')"><i class="fa-solid fa-paste"></i> Use Config ID</button>
+      </div>
+      <div id="syncPushRes"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/books/<span class="param">{bookId}</span>/sync</div><div class="card-desc">Full pull</div></div>
+    <div class="card-body">
+      <div class="form-group"><label>Book ID</label><input id="sl-bookid" placeholder="UUID"></div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="syncPull()"><i class="fa-solid fa-download"></i> Pull Sync</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('sl-bookid')"><i class="fa-solid fa-paste"></i> Use Config ID</button>
+      </div>
+      <div id="syncPullRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SYNC STORES ═══ -->
+<div class="page" id="page-sync_stores">
+  <div class="dashboard-header"><h1>Sync Stores</h1></div>
+  <div class="card">
+    <div class="card-header"><div class="card-title">Sync KV / Annotations / Replies</div></div>
+    <div class="card-body">
+      <div class="form-group"><label>Book ID</label><input id="ss-bookid" placeholder="UUID"></div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="syncKv()"><i class="fa-solid fa-table"></i> Sync KV</button>
+        <button class="btn btn-ghost" onclick="syncAnns()"><i class="fa-solid fa-highlighter"></i> Sync Annotations</button>
+        <button class="btn btn-ghost" onclick="syncMdcache()"><i class="fa-solid fa-file-code"></i> MD Cache Pull</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('ss-bookid')"><i class="fa-solid fa-paste"></i> Use Config ID</button>
+      </div>
+      <div id="syncStoresRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PUBLIC API ═══ -->
+<div class="page" id="page-public_api">
+  <div class="dashboard-header"><h1>Public API (No Auth)</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/public/<span class="param">{bookId}</span>/info</div></div>
+    <div class="card-body">
+      <div class="form-group"><label>Book ID (must be published + public)</label><input id="pub-bookid" placeholder="UUID"></div>
+      <div class="form-group"><label>API Key (for unlisted books)</label><input id="pub-apikey" placeholder="Optional for unlisted books"></div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="pubInfo()"><i class="fa-solid fa-circle-info"></i> Book Info</button>
+        <button class="btn btn-ghost" onclick="pubChapters()"><i class="fa-solid fa-list"></i> Chapters</button>
+        <button class="btn btn-ghost" onclick="pubMdcache()"><i class="fa-solid fa-file-code"></i> MD Cache</button>
+        <button class="btn btn-ghost" onclick="useConfigBookId('pub-bookid')"><i class="fa-solid fa-paste"></i> Use Config ID</button>
+      </div>
+      <div id="pubRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ UPLOADS ═══ -->
+<div class="page" id="page-uploads">
+  <div class="dashboard-header"><h1>File Uploads</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method POST">POST</span><div class="card-title endpoint-path">/upload/cover</div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>Book ID (optional)</label><input id="uc-bookid" placeholder="UUID"></div>
+        <div class="form-group"><label>Cover Image</label><input id="uc-file" type="file" accept="image/*" style="padding:6px"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="uploadCover()"><i class="fa-solid fa-image"></i> Upload Cover</button>
+        <button class="btn btn-ghost" onclick="uploadAvatar()"><i class="fa-solid fa-user-circle"></i> Upload Avatar</button>
+        <button class="btn btn-ghost" onclick="listUploads()"><i class="fa-solid fa-list"></i> List Uploads</button>
+      </div>
+      <div id="uploadRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ WEBHOOKS ═══ -->
+<div class="page" id="page-webhooks">
+  <div class="dashboard-header"><h1>Webhooks</h1></div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span> / <span class="method POST">POST</span><div class="card-title endpoint-path">/webhooks</div></div>
+    <div class="card-body">
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="apiCall('GET','/webhooks',null,'webhooksRes')"><i class="fa-solid fa-list"></i> List Webhooks</button>
+      </div>
+      <div class="divider"></div>
+      <div class="config-grid">
+        <div class="form-group"><label>URL</label><input id="wh-url" placeholder="https://your-server.com/webhook"></div>
+        <div class="form-group"><label>Book ID (optional)</label><input id="wh-bookid" placeholder="Leave empty for all books"></div>
+      </div>
+      <div class="btn-row"><button class="btn btn-success" onclick="createWebhook()"><i class="fa-solid fa-plus"></i> Create Webhook</button></div>
+      <div id="webhooksRes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADMIN ═══ -->
+<div class="page" id="page-admin">
+  <div class="dashboard-header"><h1>Admin Panel</h1></div>
+  <div class="info-box warn"><i class="fa-solid fa-shield-halved"></i> Requires <strong>admin</strong> role. All calls below will return 403 for non-admin users.</div>
+  <div class="card">
+    <div class="card-header"><span class="method GET">GET</span><div class="card-title endpoint-path">/admin/stats</div></div>
+    <div class="card-body">
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="apiCall('GET','/admin/stats',null,'adminRes')"><i class="fa-solid fa-chart-pie"></i> Platform Stats</button>
+        <button class="btn btn-ghost" onclick="apiCall('GET','/admin/users',null,'adminRes')"><i class="fa-solid fa-users"></i> All Users</button>
+        <button class="btn btn-ghost" onclick="apiCall('GET','/admin/books',null,'adminRes')"><i class="fa-solid fa-book"></i> All Books</button>
+      </div>
+      <div id="adminRes"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="method PATCH">PATCH</span><div class="card-title endpoint-path">/admin/users/<span class="param">{id}</span></div></div>
+    <div class="card-body">
+      <div class="config-grid">
+        <div class="form-group"><label>User ID</label><input id="au-uid" placeholder="UUID"></div>
+        <div class="form-group"><label>Role</label>
+          <select id="au-role"><option value="">— no change —</option><option value="reader">reader</option><option value="author">author</option><option value="admin">admin</option></select>
+        </div>
+        <div class="form-group"><label>Plan</label>
+          <select id="au-plan"><option value="">— no change —</option><option value="free">free</option><option value="pro">pro</option><option value="enterprise">enterprise</option></select>
+        </div>
+        <div class="form-group"><label>Active</label>
+          <select id="au-active"><option value="">— no change —</option><option value="1">Active</option><option value="0">Inactive</option></select>
+        </div>
+      </div>
+      <div class="btn-row"><button class="btn btn-primary" onclick="adminUpdateUser()"><i class="fa-solid fa-user-gear"></i> Update User</button></div>
+      <div id="adminUserRes"></div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- Toast container -->
+<div class="toast-container" id="toasts"></div>
+
+<script>
+// ══════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════
+let CFG = {
+  base: 'https://2030b.com/webbook/api',
+  token: '',
+  bookId: '',
+  chapterId: '',
+  apiKey: '',
+  readerId: 'anon-test-reader-001'
+};
+
+// Load saved config
+try {
+  const saved = JSON.parse(localStorage.getItem('wb_test_cfg') || '{}');
+  Object.assign(CFG, saved);
+} catch(e) {}
+
+// ══════════════════════════════════════════════════
+//  NAV
+// ══════════════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+  const items = document.querySelectorAll('.nav-item');
+  items.forEach(item => {
+    if (item.getAttribute('onclick')?.includes(id)) item.classList.add('active');
+  });
+  // Sync config inputs
+  syncConfigInputs();
+}
+
+function syncConfigInputs() {
+  const f = id => { const el = document.getElementById(id); if (el) el.value = CFG[id.replace('cfg-','')] || ''; };
+  ['cfg-base','cfg-token','cfg-bookId','cfg-chapterId','cfg-apiKey','cfg-readerId'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      const key = id.replace('cfg-','').replace('Id','Id');
+      el.value = CFG[key] || CFG[id.replace('cfg-','')] || '';
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════
+//  CONFIG
+// ══════════════════════════════════════════════════
+function saveConfig() {
+  CFG.base      = document.getElementById('cfg-base').value.replace(/\/$/, '');
+  CFG.token     = document.getElementById('cfg-token').value;
+  CFG.bookId    = document.getElementById('cfg-bookId').value;
+  CFG.chapterId = document.getElementById('cfg-chapterId').value;
+  CFG.apiKey    = document.getElementById('cfg-apiKey').value;
+  CFG.readerId  = document.getElementById('cfg-readerId').value;
+  localStorage.setItem('wb_test_cfg', JSON.stringify(CFG));
+  document.getElementById('apiBaseBadge').textContent = CFG.base;
+  updateSessionDisplay();
+  toast('Config saved', 'success');
+}
+
+function clearToken() {
+  CFG.token = '';
+  document.getElementById('cfg-token').value = '';
+  localStorage.setItem('wb_test_cfg', JSON.stringify(CFG));
+  updateSessionDisplay();
+  toast('Token cleared', 'info');
+}
+
+function useConfigBookId(inputId) {
+  const el = document.getElementById(inputId);
+  if (el && CFG.bookId) { el.value = CFG.bookId; }
+  else toast('No Book ID in config', 'error');
+}
+
+function useConfigChapterId(inputId) {
+  const el = document.getElementById(inputId);
+  if (el && CFG.chapterId) { el.value = CFG.chapterId; }
+  else toast('No Chapter ID in config', 'error');
+}
+
+// ══════════════════════════════════════════════════
+//  SESSION DISPLAY
+// ══════════════════════════════════════════════════
+function updateSessionDisplay() {
+  const info = document.getElementById('sessionInfo');
+  const tokenDisplay = document.getElementById('tokenDisplay');
+  const tokenBox = document.getElementById('tokenBox');
+  if (CFG.token) {
+    if (info) info.style.display = 'none';
+    if (tokenDisplay) tokenDisplay.style.display = 'block';
+    if (tokenBox) tokenBox.textContent = CFG.token;
+  } else {
+    if (info) info.style.display = 'flex';
+    if (tokenDisplay) tokenDisplay.style.display = 'none';
+  }
+}
+
+function copyToken() {
+  navigator.clipboard.writeText(CFG.token).then(() => toast('Token copied!', 'success'));
+}
+
+// ══════════════════════════════════════════════════
+//  API CALL ENGINE
+// ══════════════════════════════════════════════════
+async function apiCall(method, path, body, responseId, extraHeaders = {}) {
+  const resEl = responseId ? document.getElementById(responseId) : null;
+  if (resEl) resEl.innerHTML = '<div class="response-box" style="padding:12px 14px;color:var(--text2)"><span class="spinner"></span> Sending request…</div>';
+
+  const headers = { 'Content-Type': 'application/json', ...extraHeaders };
+  if (CFG.token) headers['Authorization'] = 'Bearer ' + CFG.token;
+
+  const start = Date.now();
+  let status = 0, data = {};
+
+  try {
+    const opts = { method, headers };
+    if (body && method !== 'GET') opts.body = JSON.stringify(body);
+    const res = await fetch(CFG.base + path, opts);
+    status = res.status;
+    const text = await res.text();
+    try { data = JSON.parse(text); } catch { data = { _raw: text }; }
+  } catch(e) {
+    data = { error: e.message };
+    status = 0;
+  }
+
+  const elapsed = Date.now() - start;
+  const cls = status >= 200 && status < 300 ? 'status-2xx' : status >= 400 && status < 500 ? 'status-4xx' : 'status-5xx';
+
+  if (resEl) {
+    resEl.innerHTML = `
+      <div class="response-box">
+        <div class="response-header">
+          <span class="status-badge ${cls}">${status || 'ERR'}</span>
+          <span style="color:var(--text2);font-size:12px">${method} ${path}</span>
+          <span class="response-time">${elapsed}ms</span>
+        </div>
+        <div class="response-body">
+          <pre class="json">${colorizeJSON(data)}</pre>
+        </div>
+      </div>`;
+  }
+  return { status, data };
+}
+
+// ══════════════════════════════════════════════════
+//  JSON COLORIZER
+// ══════════════════════════════════════════════════
+function colorizeJSON(obj) {
+  const str = JSON.stringify(obj, null, 2);
+  return str
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"([^"]+)":/g, '<span class="json-key">"$1"</span>:')
+    .replace(/: "([^"]*)"/g, (_, v) => `: <span class="json-str">"${v}"</span>`)
+    .replace(/: (\d+\.?\d*)/g, ': <span class="json-num">$1</span>')
+    .replace(/: (true|false)/g, ': <span class="json-bool">$1</span>')
+    .replace(/: (null)/g, ': <span class="json-null">$1</span>');
+}
+
+// ══════════════════════════════════════════════════
+//  TOAST
+// ══════════════════════════════════════════════════
+function toast(msg, type = 'info') {
+  const c = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  const icons = { success: 'fa-check-circle', error: 'fa-circle-xmark', info: 'fa-circle-info' };
+  el.innerHTML = `<i class="fa-solid ${icons[type]||'fa-info'}"></i> ${msg}`;
+  c.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+// ══════════════════════════════════════════════════
+//  HEALTH CHECK
+// ══════════════════════════════════════════════════
+async function healthCheck() {
+  const { status, data } = await apiCall('GET', '/', null, 'healthResponse');
+  const dot = document.getElementById('statusDot');
+  const txt = document.getElementById('statusText');
+  if (status === 200 && data.status === 'ok') {
+    dot.className = 'status-dot ok';
+    txt.textContent = 'API Online';
+    // Update platform stats
+    const p = data.platform || {};
+    ['users','books','published','readers'].forEach(k => {
+      const el = document.getElementById('stat-' + k);
+      if (el) el.textContent = p['total_'+k] ?? '—';
+    });
+    document.getElementById('apiBaseBadge').textContent = CFG.base;
+  } else {
+    dot.className = 'status-dot err';
+    txt.textContent = 'API Offline';
+  }
+}
+
+// ══════════════════════════════════════════════════
+//  AUTH
+// ══════════════════════════════════════════════════
+async function doRegister() {
+  const email    = document.getElementById('reg-email').value;
+  const username = document.getElementById('reg-username').value;
+  const password = document.getElementById('reg-password').value;
+  const name     = document.getElementById('reg-name').value;
+  const role     = document.getElementById('reg-role').value;
+  const { status, data } = await apiCall('POST', '/auth/register',
+    { email, username, password, display_name: name, role }, 'regResponse');
+  if (data.token) { CFG.token = data.token; saveCfg(); updateSessionDisplay(); toast('Registered & logged in!', 'success'); }
+}
+
+async function doRegisterAuthor() {
+  document.getElementById('reg-role').value = 'author';
+  await doRegister();
+}
+
+async function doLogin() {
+  const email    = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  const { status, data } = await apiCall('POST', '/auth/login', { email, password }, 'loginResponse');
+  if (data.token) { CFG.token = data.token; saveCfg(); updateSessionDisplay(); toast('Logged in!', 'success'); }
+}
+
+async function doLogout() {
+  await apiCall('POST', '/auth/logout', {}, 'loginResponse');
+  CFG.token = ''; saveCfg(); updateSessionDisplay(); toast('Logged out', 'info');
+}
+
+async function listSessions() { await apiCall('GET', '/auth/sessions', null, 'sessionsResponse'); }
+async function getMe() { await apiCall('GET', '/auth/me', null, 'meResponse'); }
+
+async function updateMe() {
+  const body = {};
+  const n = document.getElementById('me-name').value;
+  const b = document.getElementById('me-bio').value;
+  const w = document.getElementById('me-website').value;
+  const np= document.getElementById('me-newpw').value;
+  const cp= document.getElementById('me-curpw').value;
+  if (n) body.display_name = n;
+  if (b) body.bio = b;
+  if (w) body.website = w;
+  if (np) { body.new_password = np; body.current_password = cp; }
+  await apiCall('PUT', '/auth/me', body, 'meUpdateResponse');
+}
+
+async function sendVerify() { await apiCall('POST', '/auth/verify/send', {}, 'verifyResponse'); }
+async function confirmVerify() {
+  const t = document.getElementById('verify-token').value;
+  await apiCall('GET', `/auth/verify/${t}`, null, 'verifyConfirmResponse');
+}
+async function requestReset() {
+  const email = document.getElementById('reset-email').value;
+  await apiCall('POST', '/auth/reset/request', { email }, 'resetResponse');
+}
+async function confirmReset() {
+  const token = document.getElementById('reset-token').value;
+  const password = document.getElementById('reset-newpw').value;
+  await apiCall('POST', `/auth/reset/${token}`, { password }, 'resetConfirmResponse');
+}
+
+// ══════════════════════════════════════════════════
+//  BOOKS
+// ══════════════════════════════════════════════════
+async function listBooks() {
+  const status = document.getElementById('books-status').value;
+  const page   = document.getElementById('books-page').value;
+  let q = `?page=${page}`;
+  if (status) q += `&status=${status}`;
+  await apiCall('GET', '/books' + q, null, 'booksListRes');
+}
+
+async function createBook() {
+  const body = {
+    title:       document.getElementById('book-title').value,
+    slug:        document.getElementById('book-slug').value || undefined,
+    description: document.getElementById('book-desc').value,
+    language:    document.getElementById('book-lang').value,
+    direction:   document.getElementById('book-dir').value,
+    visibility:  document.getElementById('book-vis').value,
+    theme:       document.getElementById('book-theme').value,
+  };
+  if (!body.slug) delete body.slug;
+  const { status, data } = await apiCall('POST', '/books', body, 'bookCreateRes');
+  if (data.id) { CFG.bookId = data.id; saveCfg(); toast('Book created! ID saved to config.', 'success'); }
+  if (data.api_key) { CFG.apiKey = data.api_key; saveCfg(); }
+}
+
+async function getBook() {
+  const id = document.getElementById('bm-id').value || CFG.bookId;
+  if (!id) return toast('Book ID required', 'error');
+  await apiCall('GET', `/books/${id}`, null, 'bookGetRes');
+}
+
+async function updateBook() {
+  const id = document.getElementById('bu-id').value || CFG.bookId;
+  if (!id) return toast('Book ID required', 'error');
+  const body = {};
+  const s = document.getElementById('bu-status').value;
+  const v = document.getElementById('bu-vis').value;
+  const t = document.getElementById('bu-title').value;
+  if (s) body.status = s;
+  if (v) body.visibility = v;
+  if (t) body.title = t;
+  await apiCall('PUT', `/books/${id}`, body, 'bookUpdateRes');
+}
+
+async function publishBook() {
+  const id = document.getElementById('bu-id').value || CFG.bookId;
+  if (!id) return toast('Book ID required', 'error');
+  const { data } = await apiCall('PUT', `/books/${id}`, { status: 'published', visibility: 'public' }, 'bookUpdateRes');
+  if (data.status === 'published') toast('Book published!', 'success');
+}
+
+async function deleteBook(hard) {
+  const id = document.getElementById('bd-id').value || CFG.bookId;
+  if (!id) return toast('Book ID required', 'error');
+  if (!confirm(`${hard?'Hard':'Soft'} delete book ${id}?`)) return;
+  await apiCall('DELETE', `/books/${id}${hard?'?hard=1':''}`, null, 'bookDeleteRes');
+}
+
+async function getBookStats() {
+  const id = document.getElementById('ba-id').value || CFG.bookId;
+  if (!id) return toast('Book ID required', 'error');
+  await apiCall('GET', `/books/${id}/stats`, null, 'bookAnalyticsRes');
+}
+
+async function getBookAnalytics() {
+  const id = document.getElementById('ba-id').value || CFG.bookId;
+  if (!id) return toast('Book ID required', 'error');
+  await apiCall('GET', `/books/${id}/analytics?days=30`, null, 'bookAnalyticsRes');
+}
+
+// ══════════════════════════════════════════════════
+//  CHAPTERS
+// ══════════════════════════════════════════════════
+async function listChapters() {
+  const id = document.getElementById('cl-bookid').value || CFG.bookId;
+  if (!id) return toast('Book ID required', 'error');
+  await apiCall('GET', `/books/${id}/chapters`, null, 'chaptersListRes');
+}
+
+async function createChapter() {
+  const bookId  = document.getElementById('cc-bookid').value || CFG.bookId;
+  if (!bookId) return toast('Book ID required', 'error');
+  const body = {
+    title:        document.getElementById('cc-title').value,
+    file_id:      document.getElementById('cc-fileid').value,
+    part:         document.getElementById('cc-part').value,
+    content:      document.getElementById('cc-content').value,
+    is_published: 1,
+  };
+  const { data } = await apiCall('POST', `/books/${bookId}/chapters`, body, 'chapterCreateRes');
+  if (data.id) { CFG.chapterId = data.id; saveCfg(); toast('Chapter created! ID saved to config.', 'success'); }
+}
+
+async function getChapter() {
+  const bookId    = document.getElementById('chg-bookid').value || CFG.bookId;
+  const chapterId = document.getElementById('chg-chapid').value || CFG.chapterId;
+  if (!bookId || !chapterId) return toast('Book ID and Chapter ID required', 'error');
+  await apiCall('GET', `/books/${bookId}/chapters/${chapterId}`, null, 'chapterGetRes');
+}
+
+async function updateChapter() {
+  const bookId    = document.getElementById('chu-bookid').value || CFG.bookId;
+  const chapterId = document.getElementById('chu-chapid').value || CFG.chapterId;
+  if (!bookId || !chapterId) return toast('Book ID and Chapter ID required', 'error');
+  const body = {};
+  const t  = document.getElementById('chu-title').value;
+  const p  = document.getElementById('chu-published').value;
+  const c  = document.getElementById('chu-content').value;
+  if (t) body.title = t;
+  if (p !== '') body.is_published = parseInt(p);
+  if (c) body.content = c;
+  await apiCall('PATCH', `/books/${bookId}/chapters/${chapterId}`, body, 'chapterUpdateRes');
+}
+
+async function getRevisions() {
+  const bookId    = document.getElementById('rev-bookid').value || CFG.bookId;
+  const chapterId = document.getElementById('rev-chapid').value || CFG.chapterId;
+  const limit     = document.getElementById('rev-limit').value;
+  const content   = document.getElementById('rev-content').value;
+  if (!bookId || !chapterId) return toast('Book ID and Chapter ID required', 'error');
+  await apiCall('GET', `/books/${bookId}/chapters/${chapterId}/revisions?limit=${limit}&include_content=${content}`, null, 'revisionsRes');
+}
+
+// ══════════════════════════════════════════════════
+//  SYNC
+// ══════════════════════════════════════════════════
+function syncHeaders() {
+  const h = {};
+  if (CFG.apiKey) h['X-WB-Book'] = CFG.apiKey;
+  if (CFG.readerId && !CFG.token) h['X-WB-Reader'] = CFG.readerId;
+  return h;
+}
+
+async function syncPush() {
+  const bookId = document.getElementById('sp-bookid').value || CFG.bookId;
+  if (!bookId) return toast('Book ID required', 'error');
+  let body;
+  try { body = JSON.parse(document.getElementById('sp-payload').value); }
+  catch(e) { return toast('Invalid JSON payload', 'error'); }
+  // Fix timestamps
+  const now = Date.now();
+  if (body.kv) body.kv = body.kv.map(i => ({...i, updated_at: i.updated_at || now}));
+  if (body.activity) body.activity = body.activity.map(i => ({...i, ts: i.ts || now}));
+  if (body.scrollpos) body.scrollpos = body.scrollpos.map(i => ({...i, start_ts: i.start_ts || now, end_ts: i.end_ts || now}));
+  await apiCall('POST', `/books/${bookId}/sync`, body, 'syncPushRes', syncHeaders());
+}
+
+async function syncPull() {
+  const bookId = document.getElementById('sl-bookid').value || CFG.bookId;
+  if (!bookId) return toast('Book ID required', 'error');
+  await apiCall('GET', `/books/${bookId}/sync`, null, 'syncPullRes', syncHeaders());
+}
+
+async function syncKv() {
+  const bookId = document.getElementById('ss-bookid').value || CFG.bookId;
+  if (!bookId) return toast('Book ID required', 'error');
+  const now = Date.now();
+  const body = { kv: [{ k: 'testKey', v: '"testValue"', updated_at: now }] };
+  await apiCall('PUT', `/books/${bookId}/sync/kv`, body, 'syncStoresRes', syncHeaders());
+}
+
+async function syncAnns() {
+  const bookId = document.getElementById('ss-bookid').value || CFG.bookId;
+  if (!bookId) return toast('Book ID required', 'error');
+  const now = Date.now();
+  const id  = crypto.randomUUID();
+  const body = { anns: [{ id, type: 'note', sel_text: 'test selection', note_text: 'test note', slide_idx: 1, hl_id: 'hl-1', created_at: now, updated_at: now, deleted: 0 }] };
+  await apiCall('POST', `/books/${bookId}/sync/anns`, body, 'syncStoresRes', syncHeaders());
+}
+
+async function syncMdcache() {
+  const bookId = document.getElementById('ss-bookid').value || CFG.bookId;
+  if (!bookId) return toast('Book ID required', 'error');
+  await apiCall('GET', `/books/${bookId}/sync/mdcache`, null, 'syncStoresRes', syncHeaders());
+}
+
+// ══════════════════════════════════════════════════
+//  PUBLIC
+// ══════════════════════════════════════════════════
+async function pubInfo() {
+  const id = document.getElementById('pub-bookid').value || CFG.bookId;
+  const key = document.getElementById('pub-apikey').value || CFG.apiKey;
+  if (!id) return toast('Book ID required', 'error');
+  const q = key ? `?api_key=${key}` : '';
+  const h = key ? { 'X-WB-Book': key } : {};
+  await apiCall('GET', `/public/${id}/info${q}`, null, 'pubRes', h);
+}
+
+async function pubChapters() {
+  const id = document.getElementById('pub-bookid').value || CFG.bookId;
+  const key = document.getElementById('pub-apikey').value || CFG.apiKey;
+  if (!id) return toast('Book ID required', 'error');
+  const q = key ? `?api_key=${key}` : '';
+  const h = key ? { 'X-WB-Book': key } : {};
+  await apiCall('GET', `/public/${id}/chapters${q}`, null, 'pubRes', h);
+}
+
+async function pubMdcache() {
+  const id = document.getElementById('pub-bookid').value || CFG.bookId;
+  const key = document.getElementById('pub-apikey').value || CFG.apiKey;
+  if (!id) return toast('Book ID required', 'error');
+  const q = key ? `?api_key=${key}` : '';
+  const h = key ? { 'X-WB-Book': key } : {};
+  await apiCall('GET', `/public/${id}/mdcache${q}`, null, 'pubRes', h);
+}
+
+// ══════════════════════════════════════════════════
+//  UPLOADS
+// ══════════════════════════════════════════════════
+async function uploadCover() {
+  const fileEl = document.getElementById('uc-file');
+  const bookId = document.getElementById('uc-bookid').value || CFG.bookId;
+  if (!fileEl.files[0]) return toast('Select a file first', 'error');
+  const fd = new FormData();
+  fd.append('file', fileEl.files[0]);
+  if (bookId) fd.append('book_id', bookId);
+  const res = document.getElementById('uploadRes');
+  res.innerHTML = '<div style="color:var(--text2);padding:10px"><span class="spinner"></span> Uploading…</div>';
+  const headers = {};
+  if (CFG.token) headers['Authorization'] = 'Bearer ' + CFG.token;
+  const r = await fetch(CFG.base + '/upload/cover', { method: 'POST', headers, body: fd });
+  const data = await r.json().catch(() => ({}));
+  res.innerHTML = `<div class="response-box"><div class="response-header"><span class="status-badge ${r.ok?'status-2xx':'status-4xx'}">${r.status}</span></div><div class="response-body"><pre class="json">${colorizeJSON(data)}</pre></div></div>`;
+  if (data.url) toast('Cover uploaded!', 'success');
+}
+
+async function uploadAvatar() {
+  const fileEl = document.getElementById('uc-file');
+  if (!fileEl.files[0]) return toast('Select a file first', 'error');
+  const fd = new FormData();
+  fd.append('file', fileEl.files[0]);
+  const res = document.getElementById('uploadRes');
+  res.innerHTML = '<div style="color:var(--text2);padding:10px"><span class="spinner"></span> Uploading…</div>';
+  const headers = {};
+  if (CFG.token) headers['Authorization'] = 'Bearer ' + CFG.token;
+  const r = await fetch(CFG.base + '/upload/avatar', { method: 'POST', headers, body: fd });
+  const data = await r.json().catch(() => ({}));
+  res.innerHTML = `<div class="response-box"><div class="response-header"><span class="status-badge ${r.ok?'status-2xx':'status-4xx'}">${r.status}</span></div><div class="response-body"><pre class="json">${colorizeJSON(data)}</pre></div></div>`;
+  if (data.url) toast('Avatar uploaded!', 'success');
+}
+
+async function listUploads() { await apiCall('GET', '/upload/list', null, 'uploadRes'); }
+
+// ══════════════════════════════════════════════════
+//  WEBHOOKS
+// ══════════════════════════════════════════════════
+async function createWebhook() {
+  const url    = document.getElementById('wh-url').value;
+  const bookId = document.getElementById('wh-bookid').value;
+  if (!url) return toast('Webhook URL required', 'error');
+  const body = { url, events: ['book.published','reader.sync'] };
+  if (bookId) body.book_id = bookId;
+  await apiCall('POST', '/webhooks', body, 'webhooksRes');
+}
+
+// ══════════════════════════════════════════════════
+//  ADMIN
+// ══════════════════════════════════════════════════
+async function adminUpdateUser() {
+  const id = document.getElementById('au-uid').value;
+  if (!id) return toast('User ID required', 'error');
+  const body = {};
+  const r = document.getElementById('au-role').value;
+  const p = document.getElementById('au-plan').value;
+  const a = document.getElementById('au-active').value;
+  if (r) body.role = r;
+  if (p) body.plan = p;
+  if (a !== '') body.is_active = parseInt(a);
+  await apiCall('PATCH', `/admin/users/${id}`, body, 'adminUserRes');
+}
+
+// ══════════════════════════════════════════════════
+//  AUTO TEST RUNNER
+// ══════════════════════════════════════════════════
+let testState = {};
+
+function clearTests() {
+  document.getElementById('testResults').innerHTML = '';
+  document.getElementById('runnerSummary').textContent = '';
+}
+
+async function runAllTests() {
+  const btn = document.getElementById('runBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Running…';
+  
+  const results = document.getElementById('testResults');
+  results.innerHTML = '';
+  testState = {};
+
+  const suffix = '_' + Date.now().toString(36);
+  const email  = `test${suffix}@wbtest.local`;
+  const username = `wbtest${suffix}`.substring(0, 20);
+  const password = 'TestPass123!';
+
+  const tests = [
+    {
+      name: '1. Health Check',
+      run: async () => {
+        const r = await fetch(CFG.base + '/');
+        const d = await r.json();
+        if (r.status !== 200 || d.status !== 'ok') throw new Error('Health check failed: ' + r.status);
+        return `Status: ok | Version: ${d.version}`;
+      }
+    },
+    {
+      name: '2. Register Reader',
+      run: async () => {
+        const r = await fetch(CFG.base + '/auth/register', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email, username, password, role: 'reader' })
+        });
+        const d = await r.json();
+        if (!d.token) throw new Error(d.error || 'No token returned');
+        testState.readerToken = d.token;
+        testState.readerId = d.user?.id;
+        return `Reader registered: ${d.user?.username}`;
+      }
+    },
+    {
+      name: '3. Register Author',
+      run: async () => {
+        const e2 = `author${suffix}@wbtest.local`;
+        const u2 = `wbauthor${suffix}`.substring(0,20);
+        const r  = await fetch(CFG.base + '/auth/register', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email: e2, username: u2, password, role: 'author' })
+        });
+        const d = await r.json();
+        if (!d.token) throw new Error(d.error || 'No token returned');
+        testState.authorToken = d.token;
+        testState.authorId = d.user?.id;
+        return `Author registered: ${d.user?.username}`;
+      }
+    },
+    {
+      name: '4. Login (Author)',
+      run: async () => {
+        const e2 = `author${suffix}@wbtest.local`;
+        const r  = await fetch(CFG.base + '/auth/login', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email: e2, password })
+        });
+        const d = await r.json();
+        if (!d.token) throw new Error(d.error || 'Login failed');
+        return `Login OK | Token: ${d.token.substring(0,20)}…`;
+      }
+    },
+    {
+      name: '5. GET /auth/me',
+      run: async () => {
+        const r = await fetch(CFG.base + '/auth/me', { headers: { Authorization: 'Bearer ' + testState.authorToken }});
+        const d = await r.json();
+        if (!d.id) throw new Error(d.error || 'No user returned');
+        return `User: ${d.username} | Role: ${d.role} | Plan: ${d.plan}`;
+      }
+    },
+    {
+      name: '6. Create Book',
+      run: async () => {
+        const r = await fetch(CFG.base + '/books', {
+          method: 'POST',
+          headers: { 'Content-Type':'application/json', Authorization: 'Bearer ' + testState.authorToken },
+          body: JSON.stringify({ title: 'Test Book ' + suffix, language: 'ar', direction: 'rtl', visibility: 'public' })
+        });
+        const d = await r.json();
+        if (!d.id) throw new Error(d.error || 'No book ID returned');
+        testState.bookId = d.id;
+        testState.apiKey = d.api_key;
+        return `Book ID: ${d.id} | Status: ${d.status}`;
+      }
+    },
+    {
+      name: '7. List Books',
+      run: async () => {
+        const r = await fetch(CFG.base + '/books', { headers: { Authorization: 'Bearer ' + testState.authorToken }});
+        const d = await r.json();
+        if (!Array.isArray(d.books)) throw new Error('Expected books array');
+        return `Total books: ${d.total}`;
+      }
+    },
+    {
+      name: '8. Create Chapter',
+      run: async () => {
+        const r = await fetch(CFG.base + '/books/' + testState.bookId + '/chapters', {
+          method: 'POST',
+          headers: { 'Content-Type':'application/json', Authorization: 'Bearer ' + testState.authorToken },
+          body: JSON.stringify({ title: 'Chapter 1', file_id: 'ch01', content: '# Chapter 1\n\nHello World', is_published: 1 })
+        });
+        const d = await r.json();
+        if (!d.id) throw new Error(d.error || 'No chapter ID');
+        testState.chapterId = d.id;
+        return `Chapter ID: ${d.id} | Words: ${d.word_count}`;
+      }
+    },
+    {
+      name: '9. Get Chapter',
+      run: async () => {
+        const r = await fetch(CFG.base + '/books/' + testState.bookId + '/chapters/' + testState.chapterId, {
+          headers: { Authorization: 'Bearer ' + testState.authorToken }
+        });
+        const d = await r.json();
+        if (!d.id) throw new Error('Chapter not found');
+        return `Title: ${d.title} | Published: ${d.is_published}`;
+      }
+    },
+    {
+      name: '10. Publish Book',
+      run: async () => {
+        const r = await fetch(CFG.base + '/books/' + testState.bookId, {
+          method: 'PUT',
+          headers: { 'Content-Type':'application/json', Authorization: 'Bearer ' + testState.authorToken },
+          body: JSON.stringify({ status: 'published', visibility: 'public' })
+        });
+        const d = await r.json();
+        if (d.status !== 'published') throw new Error('Publish failed: ' + d.status);
+        return `Status: published | Published at: ${d.published_at}`;
+      }
+    },
+    {
+      name: '11. Public Info (no auth)',
+      run: async () => {
+        const r = await fetch(CFG.base + '/public/' + testState.bookId + '/info');
+        const d = await r.json();
+        if (!d.id) throw new Error(d.error || 'No book info returned');
+        return `Title: ${d.title} | Language: ${d.language}`;
+      }
+    },
+    {
+      name: '12. Public Chapters (no auth)',
+      run: async () => {
+        const r = await fetch(CFG.base + '/public/' + testState.bookId + '/chapters');
+        const d = await r.json();
+        if (!Array.isArray(d.chapters)) throw new Error('Expected chapters array');
+        return `Published chapters: ${d.total}`;
+      }
+    },
+    {
+      name: '13. Public MD Cache (no auth)',
+      run: async () => {
+        const r = await fetch(CFG.base + '/public/' + testState.bookId + '/mdcache');
+        const d = await r.json();
+        if (!Array.isArray(d.mdcache)) throw new Error('Expected mdcache array');
+        return `Cache entries: ${d.total} | ETag: ${d.etag?.substring(0,8)}…`;
+      }
+    },
+    {
+      name: '14. Sync Push (anonymous)',
+      run: async () => {
+        const now = Date.now();
+        const r = await fetch(CFG.base + '/books/' + testState.bookId + '/sync', {
+          method: 'POST',
+          headers: { 'Content-Type':'application/json', 'X-WB-Reader': 'anon-tester-001' },
+          body: JSON.stringify({
+            kv: [{ k: 'sessions', v: '1', updated_at: now }],
+            activity: [{ type: 'session_start', label: 'Start', ts: now }],
+            scrollpos: [{ slide_index: 0, slide_title: 'Intro', start_ts: now, end_ts: now+5000, duration_ms: 5000 }]
+          })
+        });
+        const d = await r.json();
+        if (!d.ok) throw new Error(d.error || 'Sync push failed');
+        return `Pushed: kv=${d.results?.kv||0}, activity=${d.results?.activity||0}`;
+      }
+    },
+    {
+      name: '15. Sync Pull (anonymous)',
+      run: async () => {
+        const r = await fetch(CFG.base + '/books/' + testState.bookId + '/sync', {
+          headers: { 'X-WB-Reader': 'anon-tester-001' }
+        });
+        const d = await r.json();
+        if (!d.reader_id) throw new Error(d.error || 'Sync pull failed');
+        return `Reader: ${d.reader_id} | KV keys: ${d.kv?.length||0}`;
+      }
+    },
+    {
+      name: '16. Book Stats',
+      run: async () => {
+        const r = await fetch(CFG.base + '/books/' + testState.bookId + '/stats', {
+          headers: { Authorization: 'Bearer ' + testState.authorToken }
+        });
+        const d = await r.json();
+        if (!d.aggregate) throw new Error(d.error || 'No stats');
+        return `Unique readers: ${d.aggregate.unique_readers||0} | Total: ${d.total||0}`;
+      }
+    },
+    {
+      name: '17. Author Stats Overview',
+      run: async () => {
+        const r = await fetch(CFG.base + '/auth/me/stats', {
+          headers: { Authorization: 'Bearer ' + testState.authorToken }
+        });
+        const d = await r.json();
+        if (!d.overview) throw new Error(d.error || 'No overview');
+        return `Books: ${d.overview.total_books} | Published: ${d.overview.published_books}`;
+      }
+    },
+    {
+      name: '18. Chapter Revisions',
+      run: async () => {
+        const r = await fetch(CFG.base + '/books/' + testState.bookId + '/chapters/' + testState.chapterId + '/revisions', {
+          headers: { Authorization: 'Bearer ' + testState.authorToken }
+        });
+        const d = await r.json();
+        if (!Array.isArray(d.revisions)) throw new Error('Expected revisions array');
+        return `Revisions count: ${d.revisions.length}`;
+      }
+    },
+    {
+      name: '19. Webhook Create',
+      run: async () => {
+        const r = await fetch(CFG.base + '/webhooks', {
+          method: 'POST',
+          headers: { 'Content-Type':'application/json', Authorization: 'Bearer ' + testState.authorToken },
+          body: JSON.stringify({ url: 'https://example.com/webhook', events: ['book.published'] })
+        });
+        const d = await r.json();
+        if (!d.id) throw new Error(d.error || 'No webhook ID');
+        testState.webhookId = d.id;
+        return `Webhook ID: ${d.id}`;
+      }
+    },
+    {
+      name: '20. Logout',
+      run: async () => {
+        const r = await fetch(CFG.base + '/auth/logout', {
+          method: 'POST',
+          headers: { Authorization: 'Bearer ' + testState.authorToken }
+        });
+        const d = await r.json();
+        if (!d.ok) throw new Error('Logout failed');
+        return 'Logged out successfully';
+      }
+    },
+  ];
+
+  let pass = 0, fail = 0;
+
+  for (const t of tests) {
+    const el = document.createElement('div');
+    el.className = 'test-item running';
+    el.innerHTML = `<div class="test-name"><span class="spinner"></span> ${t.name}</div><div class="test-result">Running…</div>`;
+    results.appendChild(el);
+    results.scrollTop = results.scrollHeight;
+
+    try {
+      const msg = await t.run();
+      el.className = 'test-item pass';
+      el.querySelector('.test-name').innerHTML = `<i class="fa-solid fa-check" style="color:var(--green)"></i> ${t.name}`;
+      el.querySelector('.test-result').textContent = '✓ ' + msg;
+      pass++;
+    } catch(e) {
+      el.className = 'test-item fail';
+      el.querySelector('.test-name').innerHTML = `<i class="fa-solid fa-xmark" style="color:var(--red)"></i> ${t.name}`;
+      el.querySelector('.test-result').textContent = '✗ ' + e.message;
+      fail++;
+    }
+
+    await new Promise(r => setTimeout(r, 120));
+  }
+
+  document.getElementById('runnerSummary').innerHTML =
+    `<span style="color:var(--green)">${pass} passed</span> / <span style="color:var(--red)">${fail} failed</span> / ${tests.length} total`;
+  
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fa-solid fa-play"></i> Run All Tests';
+
+  if (fail === 0) toast(`All ${pass} tests passed! ✅`, 'success');
+  else toast(`${pass} passed, ${fail} failed`, fail > 0 ? 'error' : 'success');
+}
+
+// ══════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════
+function saveCfg() {
+  localStorage.setItem('wb_test_cfg', JSON.stringify(CFG));
+  document.getElementById('apiBaseBadge').textContent = CFG.base;
+}
+
+function init() {
+  // Load config to inputs
+  document.getElementById('cfg-base').value      = CFG.base;
+  document.getElementById('cfg-token').value     = CFG.token;
+  document.getElementById('cfg-bookId').value    = CFG.bookId;
+  document.getElementById('cfg-chapterId').value = CFG.chapterId;
+  document.getElementById('cfg-apiKey').value    = CFG.apiKey;
+  document.getElementById('cfg-readerId').value  = CFG.readerId;
+  document.getElementById('apiBaseBadge').textContent = CFG.base;
+
+  updateSessionDisplay();
+  healthCheck();
+}
+
+init();
+</script>
+</body>
+</html>

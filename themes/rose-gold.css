@@ -1,0 +1,66 @@
+/* ═══════════════════════════════════════════
+   THEME: Rose Gold — Light Mode
+   Warm White · Rose Red · Gold Accent
+═══════════════════════════════════════════ */
+:root {
+  --bg-primary:    #fff5f7;
+  --bg-secondary:  #fce7ec;
+  --bg-card:       rgba(225,29,72,.04);
+  --bg-nav:        rgba(255,245,247,.97);
+  --border:        rgba(225,29,72,.18);
+  --border-card:   rgba(0,0,0,.09);
+  --text-primary:  #1a0510;
+  --text-secondary:#52202e;
+  --text-muted:    #9f6170;
+  --accent:        #e11d48;
+  --accent-2:      #b5830a;
+  --accent-3:      #f43f5e;
+  --accent-light:  #e11d48;
+  --accent-glow:   rgba(225,29,72,.12);
+  --gold:          #d97706;
+  --jade:          #0f766e;
+  --rose:          #e11d48;
+  --violet:        #9333ea;
+  --progress-bar:  linear-gradient(90deg,#e11d48,#b5830a,#f43f5e);
+  --slide-bg:      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(225,29,72,.04), transparent);
+  --slide-cur:     radial-gradient(ellipse 70% 40% at 50% 0%, rgba(225,29,72,.09), transparent);
+  --btn-primary:   linear-gradient(135deg,#e11d48,#b5830a);
+  --scrollbar-thumb: rgba(225,29,72,.25);
+  --overlay:       rgba(0,0,0,.45);
+  --toast-bg:      rgba(255,245,247,.97);
+  --sel-menu-bg:   rgba(252,231,236,.98);
+  --loading-bg:    #fff5f7;
+}
+body{background:var(--bg-primary)!important;color:var(--text-primary)!important}
+#top-nav,#bottom-nav{background:var(--bg-nav)!important;border-color:var(--border)!important}
+.nav-icon-btn{background:rgba(225,29,72,.06)!important;color:var(--text-secondary)!important;border-color:rgba(225,29,72,.12)!important}
+.nav-icon-btn:hover,.nav-icon-btn.active{background:rgba(225,29,72,.12)!important;color:var(--accent)!important}
+.bnav-btn{background:rgba(225,29,72,.06)!important;color:var(--text-secondary)!important;border-color:rgba(225,29,72,.12)!important}
+.aside-panel{background:var(--bg-secondary)!important;border-color:var(--border)!important}
+.aside-head{border-color:var(--border-card)!important}
+.aside-head h2{color:var(--text-primary)!important}
+.ann-card{background:#ffffff!important;border-color:var(--border-card)!important}
+.ann-card .ac-text,.ann-card .ac-quote{color:var(--text-secondary)!important}
+.stat-card-p{background:#ffffff!important;border-color:var(--border-card)!important}
+.scp-value{color:var(--text-primary)!important}
+.scp-label,.scp-sub,.bc-tot{color:var(--text-muted)!important}
+.bc-cur{color:var(--text-primary)!important}
+.toc-item{color:var(--text-secondary)!important;background:transparent!important}
+.toc-item:hover{background:var(--accent-glow)!important;color:var(--text-primary)!important}
+.toc-item.active{background:var(--accent-glow)!important;color:var(--accent)!important}
+.hist-item{background:rgba(0,0,0,.03)!important;color:var(--text-secondary)!important}
+.hist-item:hover{background:var(--accent-glow)!important;color:var(--text-primary)!important}
+.s-body{color:var(--text-secondary)!important}
+.s-body strong{color:var(--text-primary)!important}
+.s-quote{background:rgba(225,29,72,.06)!important;color:#9f1239!important}
+.s-card{background:#ffffff!important;border-color:var(--border-card)!important}
+.toast{background:var(--toast-bg)!important;color:var(--text-primary)!important;border-color:rgba(0,0,0,.12)!important}
+.spi{background:rgba(0,0,0,.04)!important;color:var(--text-secondary)!important}
+.spi:hover{background:var(--accent-glow)!important;color:var(--text-primary)!important}
+#sel-menu{background:var(--sel-menu-bg)!important;border-color:rgba(0,0,0,.1)!important}
+.skeleton{background:linear-gradient(90deg,#fce7ec 25%,#fff0f3 50%,#fce7ec 75%)!important;background-size:200% 100%!important}
+#loading-overlay{background:var(--loading-bg)!important}
+.lo-logo{color:var(--accent)!important}
+.swal2-popup.swal-wb{background:var(--bg-secondary)!important;color:var(--text-primary)!important;border-color:var(--border)!important}
+.swal2-title{color:var(--text-primary)!important}
+.swal2-input,.swal2-textarea{background:#ffffff!important;color:var(--text-primary)!important;border-color:var(--border-card)!important}

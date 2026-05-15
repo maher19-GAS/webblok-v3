@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>2030B – Be Smarter | A5 · Inline Viewer · AR / EN / FR</title>
+  <meta name="description" content="2030B A5 – Full 150-slide inline viewer (no iframes). 100% responsive, per-slide API docs & JSON copy panel. AR/EN/FR trilingual.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+/* ════════════════════════════════════════════════════════════════════════════
+   A5-INDEX  –  Inline Viewer · 100% width · No iframes · AR/EN/FR
+   All critical styles inlined — no dependency on css/styles.css
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. DESIGN TOKENS ─────────────────────────────────────────────────────── */
+:root {
+  --bg-deep:    #0B0F1A;
+  --bg-mid:     #121826;
+  --bg-surface: #1B2433;
+  --bg-card:    rgba(255,255,255,0.04);
+  --bg-card-h:  rgba(255,255,255,0.07);
+  --border:     rgba(255,255,255,0.08);
+  --border-glow:rgba(99,179,237,0.3);
+
+  --blue:    #63B3ED;
+  --cyan:    #00E5FF;
+  --purple:  #9F7AEA;
+  --teal:    #38B2AC;
+  --gold:    #F6C90E;
+  --green:   #48BB78;
+  --red:     #FC8181;
+  --orange:  #F6AD55;
+
+  --g-bg:      linear-gradient(160deg,#0B0F1A 0%,#121826 50%,#1B2433 100%);
+  --g-primary: linear-gradient(135deg,#63B3ED 0%,#9F7AEA 100%);
+  --g-gold:    linear-gradient(135deg,#F6C90E 0%,#F6AD55 100%);
+  --g-green:   linear-gradient(135deg,#38B2AC 0%,#48BB78 100%);
+
+  --font-en:   'Inter', system-ui, sans-serif;
+  --font-ar:   'Cairo', 'Segoe UI', Tahoma, sans-serif;
+  --font-fr:   'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono','Fira Code','Courier New',monospace;
+
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 20px; --r-full: 9999px;
+  --sh-card: 0 8px 32px rgba(0,0,0,0.4);
+  --sh-float: 0 16px 48px rgba(0,0,0,0.5);
+
+  --ease: cubic-bezier(0.16,1,0.3,1);
+  --trans: 0.22s var(--ease);
+}
+
+/* ── 2. RESET ──────────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--g-bg);min-height:100dvh;overflow:hidden;height:100dvh;
+  font-family:var(--font-en);color:#fff;line-height:1.6;
+}
+[dir="rtl"] body, body[dir="rtl"]{ font-family:var(--font-ar); }
+html[lang="fr"] body { font-family:var(--font-fr); }
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ── 3. APP SHELL ─────────────────────────────────────────────────────────── */
+.app-shell{
+  display:flex; width:100%; height:100dvh;
+  background:var(--g-bg); overflow:hidden; position:relative;
+}
+
+/* ── 4. FIXED ASIDE ───────────────────────────────────────────────────────── */
+.a5-aside{
+  position:relative; width:54px; height:100%;
+  background:rgba(11,15,26,0.98);
+  backdrop-filter:blur(24px) saturate(180%);
+  border-right:1px solid rgba(255,255,255,0.07);
+  display:flex; flex-direction:column;
+  z-index:600; flex-shrink:0;
+  transition:width 0.32s var(--ease);
+  overflow:hidden;
+}
+.a5-aside.open{ width:360px; }
+[dir="rtl"] .a5-aside{
+  border-right:none;border-left:1px solid rgba(255,255,255,0.07);order:2;
+}
+
+/* Aside toggle */
+.aside-toggle{
+  position:absolute; bottom:12px; left:50%; transform:translateX(-50%);
+  width:30px;height:30px; border-radius:var(--r-sm);
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer; font-size:13px; color:rgba(255,255,255,0.4);
+  transition:all var(--trans); z-index:10;
+}
+.aside-toggle:hover{background:rgba(99,179,237,0.15);border-color:var(--border-glow);color:var(--blue)}
+.a5-aside.open .aside-toggle{transform:translateX(-50%) rotate(180deg)}
+[dir="rtl"] .a5-aside.open .aside-toggle{transform:translateX(-50%) rotate(0deg)}
+
+/* Icon bar */
+.aside-icon-bar{
+  width:54px; flex-shrink:0;
+  display:flex;flex-direction:column;align-items:center;
+  padding:10px 0 52px; gap:3px;
+  overflow-y:auto; scrollbar-width:none;
+}
+.aside-icon-bar::-webkit-scrollbar{display:none}
+
+/* Tab buttons */
+.aside-tab-btn{
+  position:relative; width:38px;height:38px; border-radius:var(--r-sm);
+  border:1.5px solid transparent; background:transparent;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px; cursor:pointer; transition:all 0.18s; flex-shrink:0;
+}
+.aside-tab-btn:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1)}
+.aside-tab-btn.active{background:rgba(99,179,237,0.18);border-color:rgba(99,179,237,0.45)}
+
+/* Tooltips */
+.aside-tab-btn .tip{
+  position:absolute; left:calc(100% + 10px); top:50%; transform:translateY(-50%);
+  background:rgba(11,15,26,0.97); border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--r-sm); padding:5px 10px;
+  font-size:11px;font-weight:600;color:rgba(255,255,255,0.85);
+  white-space:nowrap; pointer-events:none; opacity:0; transition:opacity 0.15s;
+  z-index:999; font-family:var(--font-en);
+}
+.aside-tab-btn:hover .tip{opacity:1}
+[dir="rtl"] .aside-tab-btn .tip{left:auto;right:calc(100% + 10px)}
+
+/* Panel content */
+.aside-panel{
+  position:absolute; left:54px; top:0; width:calc(360px - 54px); height:100%;
+  display:flex;flex-direction:column; overflow:hidden;
+  opacity:0; pointer-events:none; transition:opacity 0.25s;
+}
+.a5-aside.open .aside-panel{opacity:1;pointer-events:all}
+[dir="rtl"] .aside-panel{left:auto;right:54px}
+
+/* Panes */
+.aside-pane{display:none;flex-direction:column;height:100%;overflow:hidden}
+.aside-pane.active{display:flex}
+.aside-pane-header{
+  padding:14px 16px 10px; border-bottom:1px solid rgba(255,255,255,0.07); flex-shrink:0;
+}
+.aside-pane-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
+.aside-pane-sub{font-size:10px;color:rgba(255,255,255,0.35);font-family:var(--font-mono)}
+.aside-pane-body{
+  flex:1;overflow-y:auto;padding:12px;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.1) transparent;
+}
+.aside-pane-body::-webkit-scrollbar{width:4px}
+.aside-pane-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+
+/* ── 5. MAIN CONTENT ──────────────────────────────────────────────────────── */
+.main-content{
+  flex:1; display:flex; flex-direction:column;
+  overflow:hidden; min-width:0;
+}
+
+/* ── 6. TOP BAR ───────────────────────────────────────────────────────────── */
+.top-bar{
+  height:54px; background:rgba(11,15,26,0.94);
+  backdrop-filter:blur(20px); border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px; z-index:200; flex-shrink:0;
+}
+.top-bar-brand{display:flex;align-items:center;gap:8px}
+.brand-logo{
+  font-size:20px;font-weight:900;
+  background:var(--g-primary);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.brand-sub{font-size:10px;color:rgba(255,255,255,0.4);font-weight:500}
+.brand-badge{
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  color:#0a0a1a;font-size:9px;font-weight:800;
+  padding:2px 7px;border-radius:var(--r-full);letter-spacing:.5px;
+}
+.top-bar-controls{display:flex;align-items:center;gap:6px}
+
+.vol-nav{display:flex;gap:3px}
+.vol-link{
+  padding:4px 9px;border-radius:var(--r-sm);
+  font-size:10px;font-weight:700; color:rgba(255,255,255,0.45);
+  border:1px solid transparent; cursor:pointer; transition:all 0.18s;
+  text-decoration:none;
+}
+.vol-link:hover{color:#fff;border-color:var(--border)}
+.vol-link.active{color:#fff;background:rgba(99,179,237,0.2);border-color:rgba(99,179,237,0.5)}
+
+.lang-toggle{display:flex;gap:3px}
+.lang-btn{
+  padding:4px 9px;border-radius:var(--r-sm);font-size:10px;font-weight:700;
+  color:rgba(255,255,255,0.45); border:1px solid transparent;
+  cursor:pointer; transition:all 0.18s; user-select:none;
+}
+.lang-btn:hover{color:#fff;border-color:var(--border)}
+.lang-btn.active{color:#fff;background:rgba(99,179,237,0.2);border-color:rgba(99,179,237,0.5)}
+
+.icon-btn{
+  width:34px;height:34px;border-radius:var(--r-sm);
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;cursor:pointer;transition:all 0.18s;color:rgba(255,255,255,0.6);
+}
+.icon-btn:hover{background:rgba(99,179,237,0.15);border-color:rgba(99,179,237,0.4);color:#fff}
+
+/* ── 7. PROGRESS RIBBON ──────────────────────────────────────────────────── */
+.progress-ribbon{height:2px;background:var(--border);flex-shrink:0}
+.progress-ribbon-fill{height:100%;background:var(--g-primary);transition:width 0.4s var(--ease)}
+
+/* ── 8. CHAPTER STRIP ────────────────────────────────────────────────────── */
+.chapter-strip{
+  height:28px; background:rgba(11,15,26,0.5);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  display:flex;align-items:center;padding:0 12px;gap:5px;
+  overflow-x:auto;scrollbar-width:none;flex-shrink:0;
+}
+.chapter-strip::-webkit-scrollbar{display:none}
+.chapter-chip{
+  white-space:nowrap;font-size:10px;font-weight:600;
+  padding:2px 9px;border-radius:var(--r-full);
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
+  color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.18s;
+}
+.chapter-chip:hover,.chapter-chip.active{
+  background:rgba(99,179,237,0.15);border-color:rgba(99,179,237,0.35);color:var(--blue);
+}
+
+/* ── 9. SLIDE AREA ───────────────────────────────────────────────────────── */
+.slide-area{
+  flex:1;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.1) transparent;
+  position:relative;
+}
+.slide-area::-webkit-scrollbar{width:4px}
+.slide-area::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+
+/* ── SLIDE STAGE (the rendered slide content, 100% width) ── */
+.slide-stage{
+  width:100%; min-height:100%;
+  position:relative;
+  background:var(--g-bg);
+  display:flex; flex-direction:column;
+}
+
+/* Slide background glow effect */
+.slide-bg-glow{
+  position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;
+}
+.slide-bg-glow::before{
+  content:'';position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(99,179,237,0.06) 0%,transparent 70%);
+  top:-200px;right:-100px;
+}
+.slide-bg-glow::after{
+  content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(159,122,234,0.05) 0%,transparent 70%);
+  bottom:100px;left:-150px;
+}
+
+/* Slide inner content (z-index above glow) */
+.slide-inner{
+  position:relative;z-index:1;
+  flex:1;display:flex;flex-direction:column;gap:0;
+}
+
+/* ── SLIDE HEADER ── */
+.slide-header{
+  padding:28px 32px 20px; border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.slide-header-meta{
+  display:flex;align-items:center;gap:10px;margin-bottom:12px;
+}
+.slide-num-badge{
+  font-family:var(--font-mono);font-size:10px;font-weight:700;
+  color:rgba(99,179,237,0.7);letter-spacing:2px;text-transform:uppercase;
+}
+.slide-chapter-tag{
+  font-size:10px;font-weight:600;padding:2px 8px;border-radius:var(--r-full);
+  background:rgba(99,179,237,0.12);border:1px solid rgba(99,179,237,0.25);
+  color:rgba(99,179,237,0.8);
+}
+.slide-title{
+  font-size:clamp(24px,4vw,40px);font-weight:800;line-height:1.1;
+  background:var(--g-primary);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:8px;
+}
+.slide-subtitle{
+  font-size:clamp(13px,1.8vw,16px);color:rgba(255,255,255,0.55);
+  font-weight:400;line-height:1.5;max-width:600px;
+}
+
+/* ── SLIDE BODY ── */
+.slide-body{
+  padding:28px 32px 40px;
+  display:flex;flex-direction:column;gap:24px;
+}
+
+/* Responsive padding on mobile */
+@media(max-width:767px){
+  .slide-header{padding:20px 16px 14px}
+  .slide-body{padding:16px 16px 32px;gap:16px}
+  .slide-title{font-size:22px}
+}
+
+/* ── 10. CARD SYSTEM ─────────────────────────────────────────────────────── */
+/* Full-width responsive card grid */
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+.card-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:900px){.card-grid-4{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){
+  .card-grid-2,.card-grid-3,.card-grid-4{grid-template-columns:1fr}
+}
+
+/* Base card */
+.card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--r-lg);
+  padding:20px;
+  transition:all var(--trans);
+}
+.card:hover{background:rgba(255,255,255,0.06);border-color:rgba(99,179,237,0.2)}
+
+/* Stat card */
+.stat-card{
+  display:flex;flex-direction:column;gap:6px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--r-lg);padding:18px 20px;
+  transition:all var(--trans);
+}
+.stat-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(99,179,237,0.25)}
+.stat-icon{font-size:26px;margin-bottom:2px}
+.stat-label{font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:.08em}
+.stat-value{font-size:28px;font-weight:800;color:#fff;font-family:var(--font-mono);line-height:1}
+.stat-trend-pos{font-size:11px;color:var(--green);margin-top:2px}
+.stat-trend-neg{font-size:11px;color:var(--red);margin-top:2px}
+
+/* Glass card */
+.glass-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:var(--r-lg);padding:20px;
+  backdrop-filter:blur(12px);
+}
+
+/* Highlight card */
+.highlight-card{
+  background:rgba(99,179,237,0.08);
+  border:1px solid rgba(99,179,237,0.2);
+  border-radius:var(--r-lg);padding:20px;
+}
+
+/* ── 11. PROGRESS BARS ───────────────────────────────────────────────────── */
+.progress-row{display:flex;flex-direction:column;gap:6px}
+.progress-header{display:flex;justify-content:space-between;align-items:center}
+.progress-label{font-size:13px;font-weight:600;color:rgba(255,255,255,0.75)}
+.progress-pct{font-size:12px;font-family:var(--font-mono);color:var(--blue)}
+.progress-track{
+  height:8px;border-radius:var(--r-full);
+  background:rgba(255,255,255,0.08);overflow:hidden;
+}
+.progress-fill{
+  height:100%;border-radius:var(--r-full);
+  background:var(--g-primary);transition:width 1.1s var(--ease);
+}
+.progress-fill.green{background:var(--g-green)}
+.progress-fill.gold{background:var(--g-gold)}
+
+/* ── 12. TAGS / CHIPS ────────────────────────────────────────────────────── */
+.tag{
+  display:inline-block;font-size:11px;font-weight:600;
+  padding:3px 10px;border-radius:var(--r-full);
+  background:rgba(99,179,237,0.12);border:1px solid rgba(99,179,237,0.25);
+  color:var(--blue);
+}
+.tag.green{background:rgba(72,187,120,0.12);border-color:rgba(72,187,120,0.25);color:var(--green)}
+.tag.purple{background:rgba(159,122,234,0.12);border-color:rgba(159,122,234,0.25);color:var(--purple)}
+.tag.gold{background:rgba(246,201,14,0.12);border-color:rgba(246,201,14,0.25);color:var(--gold)}
+.tag.red{background:rgba(252,129,129,0.12);border-color:rgba(252,129,129,0.25);color:var(--red)}
+.tag.teal{background:rgba(56,178,172,0.12);border-color:rgba(56,178,172,0.25);color:var(--teal)}
+.tag.orange{background:rgba(246,173,85,0.12);border-color:rgba(246,173,85,0.25);color:var(--orange)}
+
+/* ── 13. TIMELINE ────────────────────────────────────────────────────────── */
+.timeline{display:flex;flex-direction:column;gap:0;padding-left:16px;border-left:2px solid rgba(255,255,255,0.08)}
+[dir="rtl"] .timeline{padding-left:0;padding-right:16px;border-left:none;border-right:2px solid rgba(255,255,255,0.08)}
+.timeline-item{
+  position:relative;padding:0 0 16px 20px;
+}
+.timeline-dot{
+  position:absolute;left:-10px;top:4px;
+  width:16px;height:16px;border-radius:50%;
+  background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.2);
+}
+[dir="rtl"] .timeline-dot{left:auto;right:-10px}
+.timeline-dot.done{background:var(--green);border-color:var(--green);box-shadow:0 0 8px rgba(72,187,120,0.4)}
+.timeline-dot.active{background:var(--blue);border-color:var(--blue);box-shadow:0 0 8px rgba(99,179,237,0.4)}
+.timeline-dot.vision{background:var(--purple);border-color:var(--purple)}
+.timeline-title{font-size:14px;font-weight:700;color:#fff;line-height:1.3}
+.timeline-meta{font-size:12px;color:rgba(255,255,255,0.4);margin-top:3px}
+
+/* ── 14. LIST ITEMS ──────────────────────────────────────────────────────── */
+.list-item{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 16px;border-radius:var(--r-md);
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+  transition:all var(--trans);
+}
+.list-item:hover{background:rgba(255,255,255,0.06);border-color:rgba(99,179,237,0.2)}
+.list-icon{font-size:20px;flex-shrink:0}
+.list-body{flex:1;min-width:0}
+.list-title{font-size:14px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-sub{font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px}
+.list-meta{font-size:12px;font-family:var(--font-mono);color:var(--blue);flex-shrink:0;font-weight:600}
+
+/* ── 15. SKELETON ────────────────────────────────────────────────────────── */
+@keyframes skel{
+  0%{background-position:-300% center}
+  100%{background-position:300% center}
+}
+.skel{
+  border-radius:var(--r-md);
+  background:linear-gradient(90deg,rgba(255,255,255,0.04) 25%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0.04) 75%);
+  background-size:300% 100%;
+  animation:skel 1.6s ease infinite;
+}
+.skel-h1{height:44px;width:55%;margin-bottom:10px}
+.skel-h2{height:18px;width:72%;margin-bottom:6px}
+.skel-text{height:14px;width:88%;margin-bottom:8px}
+.skel-card{height:96px}
+.skel-block{height:160px}
+
+/* ── 16. ANIMATIONS ──────────────────────────────────────────────────────── */
+.fade-in{opacity:0;transform:translateY(14px);transition:opacity 0.5s var(--ease),transform 0.5s var(--ease)}
+.fade-in.show{opacity:1;transform:translateY(0)}
+.scale-in{opacity:0;transform:scale(0.94);transition:opacity 0.4s var(--ease),transform 0.4s var(--ease)}
+.scale-in.show{opacity:1;transform:scale(1)}
+
+/* ── 17. SLIDE RAIL ──────────────────────────────────────────────────────── */
+.slide-rail{
+  height:72px; background:rgba(11,15,26,0.95);
+  backdrop-filter:blur(20px); border-top:1px solid var(--border);
+  display:flex;align-items:center;gap:5px;
+  padding:0 12px;overflow-x:auto;scrollbar-width:none;flex-shrink:0;
+}
+.slide-rail::-webkit-scrollbar{display:none}
+.slide-thumb{
+  min-width:48px;height:52px;border-radius:var(--r-sm);
+  border:1.5px solid var(--border);background:rgba(255,255,255,0.03);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;cursor:pointer;transition:all 0.18s;flex-shrink:0;
+}
+.slide-thumb:hover{background:rgba(99,179,237,0.1);border-color:rgba(99,179,237,0.3)}
+.slide-thumb.active{background:rgba(99,179,237,0.2);border-color:var(--blue)}
+.slide-thumb-num{font-family:var(--font-mono);font-size:10px;font-weight:700;color:rgba(255,255,255,0.4)}
+.slide-thumb.active .slide-thumb-num{color:var(--blue)}
+.slide-thumb-icon{font-size:14px}
+.rail-sep{min-width:1px;height:32px;background:rgba(255,255,255,0.07);margin:0 4px;flex-shrink:0}
+
+/* ── 18. COUNTER ─────────────────────────────────────────────────────────── */
+.slide-counter{
+  font-family:var(--font-mono);font-size:11px;color:rgba(255,255,255,0.5);
+  padding:4px 12px;border-radius:var(--r-full);
+  background:rgba(11,15,26,0.85);border:1px solid var(--border);
+  pointer-events:none;
+}
+
+/* ── 19. LOADING OVERLAY ─────────────────────────────────────────────────── */
+#app-loading{
+  position:fixed;inset:0;background:var(--bg-deep);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:9999;gap:20px;transition:opacity 0.5s,visibility 0.5s;
+}
+#app-loading.hidden{opacity:0;visibility:hidden}
+.loading-logo{
+  font-size:52px;font-weight:900;
+  background:var(--g-primary);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.loading-tagline{font-size:14px;font-weight:600;color:rgba(255,255,255,0.45);letter-spacing:2px;text-transform:uppercase}
+.loading-spinner{
+  width:44px;height:44px;
+  border:3px solid rgba(99,179,237,0.15);border-top-color:var(--blue);
+  border-radius:50%;animation:spin .8s linear infinite;
+}
+@keyframes spin{100%{transform:rotate(360deg)}}
+
+/* ── 20. JUMP OVERLAY ────────────────────────────────────────────────────── */
+.jump-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.72);z-index:1000;
+  align-items:center;justify-content:center;
+}
+.jump-box{
+  background:var(--bg-mid);border:1px solid var(--border);
+  border-radius:var(--r-xl);padding:24px;min-width:260px;text-align:center;
+}
+.jump-label{font-size:13px;color:rgba(255,255,255,0.65);margin-bottom:12px}
+.jump-input{
+  width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  border-radius:var(--r-sm);padding:10px;font-size:22px;
+  font-family:var(--font-mono);color:#fff;text-align:center;outline:none;
+}
+.jump-actions{display:flex;gap:8px;margin-top:12px}
+
+/* ── 21. BUTTONS ─────────────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:9px 18px;border-radius:var(--r-sm);font-size:13px;font-weight:600;
+  cursor:pointer;transition:all var(--trans);border:1px solid transparent;
+}
+.btn-primary{
+  background:var(--g-primary);color:#0a0a1a;
+}
+.btn-primary:hover{opacity:0.9;transform:translateY(-1px)}
+.btn-ghost{
+  background:rgba(255,255,255,0.05);border-color:var(--border);color:rgba(255,255,255,0.7);
+}
+.btn-ghost:hover{background:rgba(255,255,255,0.08);color:#fff}
+.btn-sm{padding:6px 14px;font-size:12px}
+
+/* ── 22. ASIDE PANE STYLES ────────────────────────────────────────────────── */
+
+/* Slide index pane */
+.mini-chapter{
+  font-size:9px;font-weight:700;letter-spacing:1px;
+  color:rgba(255,255,255,0.25);text-transform:uppercase;
+  padding:10px 8px 4px;margin-top:4px;
+}
+.mini-slide-item{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 8px;border-radius:var(--r-sm);
+  cursor:pointer;transition:background 0.15s;
+  border:1px solid transparent;
+}
+.mini-slide-item:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.06)}
+.mini-slide-item.active{background:rgba(99,179,237,0.12);border-color:rgba(99,179,237,0.3)}
+.mini-slide-icon{font-size:14px;flex-shrink:0}
+.mini-slide-num{font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.35);flex-shrink:0;min-width:24px}
+.mini-slide-title{font-size:11px;color:rgba(255,255,255,0.7);line-height:1.3}
+.mini-slide-item.active .mini-slide-title{color:#fff}
+.mini-slide-item.active .mini-slide-num{color:var(--blue)}
+
+/* Slide docs / API pane */
+.doc-section{margin-bottom:18px}
+.doc-section-title{
+  font-size:10px;font-weight:700;letter-spacing:1px;
+  color:rgba(99,179,237,0.8);text-transform:uppercase;
+  margin-bottom:8px;padding-bottom:4px;
+  border-bottom:1px solid rgba(99,179,237,0.15);
+}
+.doc-field{
+  display:flex;flex-direction:column;gap:3px;
+  padding:8px 10px;border-radius:var(--r-sm);
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+  margin-bottom:5px;
+}
+.doc-field-name{
+  display:flex;align-items:center;gap:6px;
+}
+.doc-fname{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--purple)}
+.doc-ftype{font-family:var(--font-mono);font-size:9px;color:rgba(72,187,120,0.8);
+  background:rgba(72,187,120,0.08);border:1px solid rgba(72,187,120,0.2);
+  border-radius:4px;padding:1px 5px}
+.doc-fdesc{font-size:10px;color:rgba(255,255,255,0.4);line-height:1.5}
+
+/* JSON copy block */
+.json-lang-tabs{display:flex;gap:4px;margin-bottom:8px}
+.json-lang-tab{
+  padding:3px 10px;border-radius:var(--r-full);font-size:10px;font-weight:700;
+  cursor:pointer;transition:all 0.15s;
+  color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.08);
+  background:transparent;
+}
+.json-lang-tab.active{
+  color:#fff;background:rgba(99,179,237,0.18);border-color:rgba(99,179,237,0.4);
+}
+.json-block{
+  position:relative;
+  background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--r-sm);padding:10px;
+  font-family:var(--font-mono);font-size:9.5px;color:rgba(255,255,255,0.65);
+  line-height:1.65;overflow-x:auto;white-space:pre;max-height:300px;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.1) transparent;
+}
+.json-block::-webkit-scrollbar{width:4px;height:4px}
+.json-block::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+.copy-btn{
+  position:absolute;top:6px;right:6px;
+  padding:3px 8px;border-radius:5px;font-size:9px;font-weight:700;
+  background:rgba(99,179,237,0.2);border:1px solid rgba(99,179,237,0.35);
+  color:var(--blue);cursor:pointer;transition:all 0.15s;font-family:var(--font-mono);
+}
+.copy-btn:hover{background:rgba(99,179,237,0.35);color:#fff}
+.copy-btn.copied{background:rgba(72,187,120,0.25);border-color:rgba(72,187,120,0.4);color:var(--green)}
+
+/* Endpoint reference boxes */
+.endpoint-box{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+  border-radius:var(--r-sm);padding:8px 10px;margin-bottom:6px;
+}
+.endpoint-path{font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.65);margin-bottom:3px}
+.endpoint-desc{font-size:10px;color:rgba(255,255,255,0.4);line-height:1.5}
+.method-badge{
+  display:inline-block;font-size:9px;font-weight:800;
+  padding:1px 6px;border-radius:4px;font-family:var(--font-mono);margin-right:4px;
+}
+.m-get {background:rgba(67,233,123,0.18);color:#43e97b}
+.m-post{background:rgba(99,179,237,0.18);color:var(--blue)}
+.m-put {background:rgba(246,173,85,0.18);color:var(--orange)}
+.m-del {background:rgba(252,129,74,0.18);color:var(--red)}
+.m-fn  {background:rgba(159,122,234,0.18);color:var(--purple)}
+
+/* Settings pane */
+.settings-label{
+  font-size:9px;font-weight:700;letter-spacing:.8px;
+  text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:7px;
+}
+.settings-group{margin-bottom:14px}
+.settings-option{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:7px 9px;border-radius:var(--r-sm);
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+  margin-bottom:4px;cursor:pointer;transition:background 0.15s;
+}
+.settings-option:hover{background:rgba(255,255,255,0.06)}
+.settings-option-label{font-size:11px;color:rgba(255,255,255,0.65)}
+.settings-check{
+  width:16px;height:16px;border-radius:4px;
+  border:1.5px solid rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:9px;
+}
+.settings-check.on{background:rgba(99,179,237,0.25);border-color:var(--blue);color:var(--blue)}
+
+/* Info pane */
+.info-block{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+  border-radius:var(--r-sm);padding:9px 12px;margin-bottom:7px;
+}
+.info-block-label{
+  font-size:9px;font-weight:700;letter-spacing:.8px;
+  text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:3px;
+}
+.info-block-value{font-size:12px;color:rgba(255,255,255,0.7)}
+.info-block-value.hl{
+  font-size:20px;font-weight:800;
+  background:var(--g-primary);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* ── 23. KEYBOARD HINT ────────────────────────────────────────────────────── */
+.keyboard-hint{
+  position:fixed;bottom:86px;right:16px;
+  font-size:10px;color:rgba(255,255,255,0.22);
+  z-index:300;pointer-events:none;
+}
+[dir="rtl"] .keyboard-hint{right:auto;left:16px}
+@media(max-width:767px){.keyboard-hint,.slide-counter-wrap{display:none}}
+
+/* ── 24. MOBILE ASIDE ─────────────────────────────────────────────────────── */
+@media(max-width:767px){
+  .a5-aside{
+    position:fixed;left:0;top:0;height:100%;z-index:700;
+    transform:translateX(-100%);
+    transition:transform 0.3s var(--ease),width 0.3s;
+  }
+  .a5-aside.mobile-visible{transform:translateX(0)}
+  [dir="rtl"] .a5-aside{left:auto;right:0;transform:translateX(100%)}
+  [dir="rtl"] .a5-aside.mobile-visible{transform:translateX(0)}
+  .aside-backdrop{
+    display:none;position:fixed;inset:0;
+    background:rgba(0,0,0,0.6);z-index:690;
+  }
+  .aside-backdrop.visible{display:block}
+}
+
+/* ── 25. NAV ARROWS ──────────────────────────────────────────────────────── */
+.nav-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 16px;background:rgba(11,15,26,0.7);
+  border-bottom:1px solid var(--border);flex-shrink:0;gap:12px;
+}
+.nav-btn{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,0.05);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;cursor:pointer;color:rgba(255,255,255,0.6);
+  transition:all 0.18s;
+}
+.nav-btn:hover{background:rgba(99,179,237,0.18);border-color:rgba(99,179,237,0.4);color:#fff;transform:scale(1.05)}
+.nav-btn:disabled{opacity:0.25;cursor:default;transform:none}
+.nav-center{display:flex;align-items:center;gap:10px;flex:1;justify-content:center}
+  </style>
+</head>
+<body>
+<canvas id="particles-canvas" style="position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.35"></canvas>
+
+<!-- Backdrop -->
+<div class="aside-backdrop" id="asideBackdrop" onclick="closeMobileAside()"></div>
+
+<!-- Loading Screen -->
+<div id="app-loading">
+  <div class="loading-logo">2030B</div>
+  <div class="loading-tagline">A5 · Inline Viewer · AR / EN / FR</div>
+  <div class="loading-spinner"></div>
+  <div style="font-size:11px;color:rgba(255,255,255,.3)">Rendering 150 slides inline…</div>
+</div>
+
+<!-- App Shell -->
+<div class="app-shell">
+
+  <!-- ═══════════════════════════════════
+       FIXED ASIDE
+  ═══════════════════════════════════ -->
+  <aside class="a5-aside" id="a5Aside">
+
+    <!-- Icon Bar -->
+    <div class="aside-icon-bar">
+
+      <div class="aside-tab-btn active" data-tab="docs" onclick="switchTab('docs')">
+        📋 <span class="tip">Slide Docs &amp; JSON</span>
+      </div>
+
+      <div class="aside-tab-btn" data-tab="index" onclick="switchTab('index')">
+        📑 <span class="tip">Slide Index</span>
+      </div>
+
+      <div class="aside-tab-btn" data-tab="volumes" onclick="switchTab('volumes')">
+        📚 <span class="tip">Volumes</span>
+      </div>
+
+      <div class="aside-tab-btn" data-tab="settings" onclick="switchTab('settings')">
+        ⚙️ <span class="tip">Settings</span>
+      </div>
+
+      <div class="aside-tab-btn" data-tab="info" onclick="switchTab('info')">
+        ℹ️ <span class="tip">Project Info</span>
+      </div>
+
+    </div><!-- icon-bar -->
+
+    <!-- Panel -->
+    <div class="aside-panel" id="asidePanel">
+
+      <!-- ── TAB: Slide Docs & JSON ── -->
+      <div class="aside-pane active" id="pane-docs">
+        <div class="aside-pane-header">
+          <div class="aside-pane-title" id="docPaneTitle">Slide 1 – Welcome Dashboard</div>
+          <div class="aside-pane-sub" id="docPaneSub">key: welcome_dashboard · Vol 1</div>
+        </div>
+        <div class="aside-pane-body" id="docPaneBody">
+          <!-- filled by renderSlideDoc(num) -->
+          <div style="padding:24px 0;text-align:center;color:rgba(255,255,255,0.3);font-size:12px">Select a slide to see its docs</div>
+        </div>
+      </div>
+
+      <!-- ── TAB: Slide Index ── -->
+      <div class="aside-pane" id="pane-index">
+        <div class="aside-pane-header">
+          <div class="aside-pane-title">Slide Index</div>
+          <div class="aside-pane-sub">150 slides · 11 chapters</div>
+        </div>
+        <div class="aside-pane-body">
+          <div id="miniSlideList"></div>
+        </div>
+      </div>
+
+      <!-- ── TAB: Volumes ── -->
+      <div class="aside-pane" id="pane-volumes">
+        <div class="aside-pane-header">
+          <div class="aside-pane-title">Volume Navigator</div>
+          <div class="aside-pane-sub">3 volumes · 50 slides each</div>
+        </div>
+        <div class="aside-pane-body">
+          <div onclick="goToSlide(1)" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);cursor:pointer;margin-bottom:6px" onmouseover="this.style.background='rgba(99,179,237,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+            <span style="font-size:20px">📘</span>
+            <div><div style="font-size:12px;font-weight:700;color:#fff">Volume 1</div><div style="font-size:10px;font-family:var(--font-mono);color:rgba(255,255,255,0.35)">Slides 1–50 · en/ar/fr.json</div></div>
+            <span style="margin-left:auto;font-size:10px;color:rgba(67,233,123,0.8);font-weight:700">✓ Live</span>
+          </div>
+          <div onclick="goToSlide(51)" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);cursor:pointer;margin-bottom:6px" onmouseover="this.style.background='rgba(99,179,237,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+            <span style="font-size:20px">📗</span>
+            <div><div style="font-size:12px;font-weight:700;color:#fff">Volume 2</div><div style="font-size:10px;font-family:var(--font-mono);color:rgba(255,255,255,0.35)">Slides 51–100 · en2/ar2/fr2.json</div></div>
+            <span style="margin-left:auto;font-size:10px;color:rgba(67,233,123,0.8);font-weight:700">✓ Live</span>
+          </div>
+          <div onclick="goToSlide(101)" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);cursor:pointer;margin-bottom:6px" onmouseover="this.style.background='rgba(99,179,237,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+            <span style="font-size:20px">📙</span>
+            <div><div style="font-size:12px;font-weight:700;color:#fff">Volume 3</div><div style="font-size:10px;font-family:var(--font-mono);color:rgba(255,255,255,0.35)">Slides 101–150 · en3/ar3/fr3.json</div></div>
+            <span style="margin-left:auto;font-size:10px;color:rgba(67,233,123,0.8);font-weight:700">✓ Live</span>
+          </div>
+          <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06)">
+            <div class="mini-chapter">Other Viewers</div>
+            <div style="margin-top:6px;display:flex;flex-direction:column;gap:4px">
+              <a href="a1-index.html" style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);font-size:11px;color:rgba(255,255,255,0.6)">📺 a1-index.html <span style="margin-left:auto;font-size:9px;color:rgba(255,255,255,0.3)">Vol 1</span></a>
+              <a href="a2-index.html" style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);font-size:11px;color:rgba(255,255,255,0.6)">📺 a2-index.html <span style="margin-left:auto;font-size:9px;color:rgba(255,255,255,0.3)">Vol 2</span></a>
+              <a href="a3-index.html" style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);font-size:11px;color:rgba(255,255,255,0.6)">📺 a3-index.html <span style="margin-left:auto;font-size:9px;color:rgba(255,255,255,0.3)">Vol 3</span></a>
+              <a href="a4-index.html" style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);font-size:11px;color:rgba(255,255,255,0.6)">🌟 a4-index.html <span style="margin-left:auto;font-size:9px;color:rgba(255,255,255,0.3)">A4 Master</span></a>
+              <a href="api-docs.html" style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);font-size:11px;color:rgba(255,255,255,0.6)">📄 api-docs.html <span style="margin-left:auto;font-size:9px;color:rgba(255,255,255,0.3)">Docs</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: Settings ── -->
+      <div class="aside-pane" id="pane-settings">
+        <div class="aside-pane-header">
+          <div class="aside-pane-title">Settings</div>
+          <div class="aside-pane-sub">Viewer preferences</div>
+        </div>
+        <div class="aside-pane-body">
+          <div class="settings-group">
+            <div class="settings-label">Language</div>
+            <div class="settings-option" onclick="switchLang('en')"><span class="settings-option-label">🇬🇧 English</span><span class="settings-check on" id="chk-en">✓</span></div>
+            <div class="settings-option" onclick="switchLang('ar')"><span class="settings-option-label">🇸🇦 العربية</span><span class="settings-check" id="chk-ar"></span></div>
+            <div class="settings-option" onclick="switchLang('fr')"><span class="settings-option-label">🇫🇷 Français</span><span class="settings-check" id="chk-fr"></span></div>
+          </div>
+          <div class="settings-group">
+            <div class="settings-label">Navigation</div>
+            <div class="settings-option" onclick="toggleAutoPlay()"><span class="settings-option-label">Auto-play slides</span><span class="settings-check" id="chk-autoplay"></span></div>
+          </div>
+          <div class="settings-group">
+            <div class="settings-label">Jump to Slide</div>
+            <div style="display:flex;gap:6px;padding:4px 0">
+              <input type="number" id="settingsJumpInput" min="1" max="150" placeholder="1–150"
+                style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px;font-size:13px;font-family:var(--font-mono);color:#fff;text-align:center;outline:none">
+              <button onclick="doSettingsJump()" style="padding:8px 14px;border-radius:8px;background:rgba(99,179,237,0.2);border:1px solid rgba(99,179,237,0.4);color:var(--blue);font-size:12px;font-weight:700;cursor:pointer">Go</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: Info ── -->
+      <div class="aside-pane" id="pane-info">
+        <div class="aside-pane-header">
+          <div class="aside-pane-title">Project Info</div>
+          <div class="aside-pane-sub">2030B · v3.2 · A5 Inline Viewer</div>
+        </div>
+        <div class="aside-pane-body">
+          <div class="info-block"><div class="info-block-label">Total Slides</div><div class="info-block-value hl">150</div></div>
+          <div class="info-block"><div class="info-block-label">Viewer Mode</div><div class="info-block-value">Inline (no iframes) · 100% width</div></div>
+          <div class="info-block"><div class="info-block-label">Languages</div><div class="info-block-value">Arabic · English · French</div></div>
+          <div class="info-block"><div class="info-block-label">Per-Slide JSON</div><div class="info-block-value">slides/data/slide-NNN.{lang}.json</div></div>
+          <div class="info-block"><div class="info-block-label">Per-Slide API Docs</div><div class="info-block-value">Embedded in aside · copy-paste ready</div></div>
+          <div class="info-block"><div class="info-block-label">Version</div><div class="info-block-value" style="color:var(--blue);font-weight:700">a5-index.html · v3.2</div></div>
+          <div style="margin-top:10px">
+            <a href="api-docs.html" style="display:block;text-align:center;padding:10px;border-radius:10px;background:rgba(99,179,237,0.15);border:1px solid rgba(99,179,237,0.35);color:var(--blue);font-size:12px;font-weight:700">📄 Full API Documentation →</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- aside-panel -->
+
+    <button class="aside-toggle" id="asideToggle" onclick="toggleAside()">›</button>
+
+  </aside><!-- a5-aside -->
+
+  <!-- ═══════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════ -->
+  <div class="main-content">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-brand">
+        <div class="brand-logo">2030B</div>
+        <div class="brand-sub">Be Smarter</div>
+        <div class="brand-badge" id="volBadge">VOL 1</div>
+      </div>
+      <div class="top-bar-controls">
+        <div class="vol-nav">
+          <a class="vol-link" href="a1-index.html">V1</a>
+          <a class="vol-link" href="a2-index.html">V2</a>
+          <a class="vol-link" href="a3-index.html">V3</a>
+          <a class="vol-link" href="a4-index.html">V4</a>
+          <a class="vol-link active" href="a5-index.html">V5</a>
+        </div>
+        <div class="lang-toggle" id="langToggle">
+          <div class="lang-btn active" data-lang="en" onclick="switchLang('en')">EN</div>
+          <div class="lang-btn" data-lang="ar" onclick="switchLang('ar')">AR</div>
+          <div class="lang-btn" data-lang="fr" onclick="switchLang('fr')">FR</div>
+        </div>
+        <div class="icon-btn" onclick="toggleSlideInput()" title="Jump to slide">🎯</div>
+        <div class="icon-btn" id="mobileAsideBtn" onclick="openMobileAside()" style="display:none">☰</div>
+      </div>
+    </div>
+
+    <!-- Progress Ribbon -->
+    <div class="progress-ribbon"><div class="progress-ribbon-fill" id="progressRibbon" style="width:0.67%"></div></div>
+
+    <!-- Chapter Strip -->
+    <div class="chapter-strip" id="chapterStrip">
+      <div class="chapter-chip active" data-start="1"   data-end="10"  onclick="goToSlide(1)">🏠 Welcome (1–10)</div>
+      <div class="chapter-chip" data-start="11"  data-end="30"  onclick="goToSlide(11)">🧠 Cognitive (11–30)</div>
+      <div class="chapter-chip" data-start="31"  data-end="50"  onclick="goToSlide(31)">💎 Economy (31–50)</div>
+      <div class="chapter-chip" data-start="51"  data-end="70"  onclick="goToSlide(51)">🌐 Ecosystem (51–70)</div>
+      <div class="chapter-chip" data-start="71"  data-end="100" onclick="goToSlide(71)">🚀 Platform (71–100)</div>
+      <div class="chapter-chip" data-start="101" data-end="110" onclick="goToSlide(101)">🧬 NAE (101–110)</div>
+      <div class="chapter-chip" data-start="111" data-end="118" onclick="goToSlide(111)">🏛️ Spatial (111–118)</div>
+      <div class="chapter-chip" data-start="119" data-end="125" onclick="goToSlide(119)">⛓️ Chain (119–125)</div>
+      <div class="chapter-chip" data-start="126" data-end="132" onclick="goToSlide(126)">📊 CGDP (126–132)</div>
+      <div class="chapter-chip" data-start="133" data-end="139" onclick="goToSlide(133)">🏢 Enterprise (133–139)</div>
+      <div class="chapter-chip" data-start="140" data-end="150" onclick="goToSlide(140)">🔮 Vision (140–150)</div>
+    </div>
+
+    <!-- Nav Bar -->
+    <div class="nav-bar">
+      <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">‹</button>
+      <div class="nav-center">
+        <span class="slide-counter" id="slideCounter">001 / 150</span>
+      </div>
+      <button class="nav-btn" id="nextBtn" onclick="navigate(1)">›</button>
+    </div>
+
+    <!-- Slide Area (scrollable, 100% width, inline rendered) -->
+    <div class="slide-area" id="slideArea">
+      <!-- skeleton shown initially -->
+      <div id="slideSkeleton" style="padding:32px">
+        <div style="display:flex;flex-direction:column;gap:16px;max-width:900px;margin:0 auto">
+          <div class="skel skel-h1"></div>
+          <div class="skel skel-h2"></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+            <div class="skel skel-block"></div>
+            <div class="skel skel-block"></div>
+            <div class="skel skel-block"></div>
+            <div class="skel skel-block"></div>
+          </div>
+          <div class="skel" style="height:80px;border-radius:12px"></div>
+        </div>
+      </div>
+      <!-- real slide content goes here -->
+      <div id="slideContent" style="display:none"></div>
+    </div>
+
+    <!-- Slide Rail -->
+    <div class="slide-rail" id="slideRail"></div>
+
+  </div><!-- main-content -->
+
+</div><!-- app-shell -->
+
+<!-- Keyboard hint -->
+<div class="keyboard-hint">← → Keys | E=EN A=AR F=FR | P=Panel</div>
+
+<!-- Quick Jump Overlay -->
+<div class="jump-overlay" id="jumpOverlay">
+  <div class="jump-box">
+    <div class="jump-label">Jump to Slide (1–150)</div>
+    <input class="jump-input" id="jumpInput" type="number" min="1" max="150" onkeydown="handleJumpKey(event)">
+    <div class="jump-actions">
+      <button class="btn btn-ghost" style="flex:1" onclick="closeJump()">Cancel</button>
+      <button class="btn btn-primary" style="flex:1" onclick="doJump()">Go</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ JS DEPENDENCIES ══ -->
+<script src="js/animations.js"></script>
+<script src="js/loader.js"></script>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════════
+   A5-INDEX VIEWER — Inline slide renderer · No iframes · 100% width
+   Per-slide JSON files · Slide-specific API docs in aside
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+// ── SLIDE METADATA (all 150) ──────────────────────────────────────────────────
+const SLIDES = [
+  // Vol 1
+  {num:1,  icon:'🏠', title:'Welcome Dashboard',        ch:1,  key:'welcome_dashboard'},
+  {num:2,  icon:'🧠', title:'Cognitive Enhancement',    ch:1,  key:'cognitive_enhancement_status'},
+  {num:3,  icon:'🧩', title:'Daily Challenge',          ch:1,  key:'daily_cognitive_challenge'},
+  {num:4,  icon:'💎', title:'CTC Wallet',               ch:1,  key:'ctc_wallet_overview'},
+  {num:5,  icon:'🚀', title:'Projects Discovery',       ch:1,  key:'available_projects_discovery'},
+  {num:6,  icon:'🏗️',title:'Project Detail',           ch:1,  key:'project_detail_dvm'},
+  {num:7,  icon:'📋', title:'Active Projects',          ch:1,  key:'active_projects_dashboard'},
+  {num:8,  icon:'💬', title:'Workspace',                ch:1,  key:'project_workspace'},
+  {num:9,  icon:'✅', title:'Verification',             ch:1,  key:'contribution_verification'},
+  {num:10, icon:'⭐', title:'Reputation',               ch:1,  key:'reputation_system'},
+  {num:11, icon:'📚', title:'Learning Hub',             ch:2,  key:'learning_hub'},
+  {num:12, icon:'🏆', title:'Leaderboards',             ch:2,  key:'leaderboards'},
+  {num:13, icon:'📊', title:'Analytics',                ch:2,  key:'personal_analytics'},
+  {num:14, icon:'🛍️',title:'Marketplace',              ch:2,  key:'marketplace'},
+  {num:15, icon:'👥', title:'Team Formation',           ch:2,  key:'team_formation'},
+  {num:16, icon:'🔍', title:'Knowledge Base',           ch:2,  key:'knowledge_base'},
+  {num:17, icon:'⚙️',title:'Resources',                ch:2,  key:'resource_allocation'},
+  {num:18, icon:'🎓', title:'Mentorship',               ch:2,  key:'mentorship_program'},
+  {num:19, icon:'💡', title:'Innovation',               ch:2,  key:'innovation_incubator'},
+  {num:20, icon:'🌍', title:'Social Impact',            ch:2,  key:'social_impact_tracker'},
+  {num:21, icon:'📅', title:'Events',                   ch:2,  key:'event_calendar'},
+  {num:22, icon:'🗣️',title:'Community',                ch:2,  key:'community_forum'},
+  {num:23, icon:'🔧', title:'Settings',                 ch:2,  key:'settings'},
+  {num:24, icon:'❓', title:'Help Center',              ch:2,  key:'help_support'},
+  {num:25, icon:'🔔', title:'Notifications',            ch:2,  key:'notifications_center'},
+  {num:26, icon:'🏅', title:'Achievements',             ch:2,  key:'achievement_showcase'},
+  {num:27, icon:'📄', title:'Templates',                ch:2,  key:'templates_library'},
+  {num:28, icon:'💚', title:'Cognitive Health',         ch:2,  key:'cognitive_health'},
+  {num:29, icon:'🔗', title:'Synergy Finder',           ch:2,  key:'synergy_finder'},
+  {num:30, icon:'🔎', title:'Advanced Search',          ch:2,  key:'advanced_search'},
+  {num:31, icon:'🔒', title:'CTC Staking',              ch:3,  key:'ctc_staking'},
+  {num:32, icon:'🗺️',title:'Skill Roadmap',            ch:3,  key:'skill_roadmap'},
+  {num:33, icon:'📈', title:'Performance',              ch:3,  key:'performance_analytics'},
+  {num:34, icon:'🚨', title:'Global Challenges',        ch:3,  key:'global_challenges'},
+  {num:35, icon:'⚡', title:'Neural Link',             ch:3,  key:'neural_link'},
+  {num:36, icon:'📦', title:'Resource Exchange',        ch:3,  key:'resource_exchange'},
+  {num:37, icon:'🔮', title:'Predictive Engine',        ch:3,  key:'predictive_engine'},
+  {num:38, icon:'🧿', title:'Consciousness',            ch:3,  key:'consciousness_expansion'},
+  {num:39, icon:'🌐', title:'Multi-Reality',            ch:3,  key:'multi_reality_hub'},
+  {num:40, icon:'✨', title:'Legacy Tracker',           ch:3,  key:'legacy_tracker'},
+  {num:41, icon:'🛡️',title:'Emergency System',         ch:3,  key:'emergency_alert_system'},
+  {num:42, icon:'⚛️',title:'Quantum Portal',           ch:3,  key:'quantum_portal'},
+  {num:43, icon:'🧬', title:'Bio Monitor',              ch:3,  key:'bio_monitor'},
+  {num:44, icon:'🌀', title:'Dimensions',               ch:3,  key:'dimensions_explorer'},
+  {num:45, icon:'🧠', title:'Collective Mind',          ch:3,  key:'collective_mind'},
+  {num:46, icon:'⌛', title:'Time Stream',             ch:3,  key:'time_stream'},
+  {num:47, icon:'🌍', title:'Translator',               ch:3,  key:'translator'},
+  {num:48, icon:'⚡', title:'Energy Flow',             ch:3,  key:'energy_flow'},
+  {num:49, icon:'🌙', title:'Dream Bridge',             ch:3,  key:'dream_bridge'},
+  {num:50, icon:'🚀', title:'Cosmic Mission',           ch:3,  key:'cosmic_mission'},
+  // Vol 2
+  {num:51, icon:'🌐', title:'Ecosystem Overview',       ch:4,  key:'ecosystem_overview'},
+  {num:52, icon:'🏗️',title:'Platform Architecture',    ch:4,  key:'vision_2030'},
+  {num:53, icon:'🔗', title:'The Problem',              ch:4,  key:'problem_statement'},
+  {num:54, icon:'📡', title:'The Solution',             ch:4,  key:'solution_architecture'},
+  {num:55, icon:'🛡️',title:'Security Layer',           ch:4,  key:'security_layer'},
+  {num:56, icon:'⚡', title:'Performance Metrics',     ch:4,  key:'performance_metrics'},
+  {num:57, icon:'🎯', title:'User Acquisition',         ch:4,  key:'user_acquisition'},
+  {num:58, icon:'💰', title:'Revenue Model',            ch:4,  key:'revenue_model'},
+  {num:59, icon:'📊', title:'Market Analysis',          ch:4,  key:'market_analysis'},
+  {num:60, icon:'🏆', title:'Competitive Landscape',    ch:4,  key:'competitive_landscape'},
+  {num:61, icon:'🤝', title:'Partnership Network',      ch:4,  key:'partnership_network'},
+  {num:62, icon:'🌍', title:'Global Expansion',         ch:4,  key:'global_expansion'},
+  {num:63, icon:'📱', title:'Mobile Platform',          ch:4,  key:'mobile_platform'},
+  {num:64, icon:'🖥️',title:'Desktop Experience',       ch:4,  key:'desktop_experience'},
+  {num:65, icon:'🎮', title:'Gamification Engine',      ch:4,  key:'gamification_engine'},
+  {num:66, icon:'🤖', title:'AI Integration',           ch:4,  key:'ai_integration'},
+  {num:67, icon:'🔬', title:'Research Lab',             ch:4,  key:'research_lab'},
+  {num:68, icon:'📚', title:'Knowledge Graph',          ch:4,  key:'knowledge_graph'},
+  {num:69, icon:'🧪', title:'Beta Features',            ch:4,  key:'beta_features'},
+  {num:70, icon:'🚀', title:'Launch Roadmap',           ch:4,  key:'launch_roadmap'},
+  {num:71, icon:'💎', title:'Token Economics',          ch:5,  key:'token_economics'},
+  {num:72, icon:'⛓️',title:'Blockchain Layer',         ch:5,  key:'blockchain_layer'},
+  {num:73, icon:'🏦', title:'DeFi Protocol',            ch:5,  key:'defi_protocol'},
+  {num:74, icon:'📈', title:'Growth Metrics',           ch:5,  key:'growth_metrics'},
+  {num:75, icon:'🌱', title:'Sustainability Model',     ch:5,  key:'sustainability_model'},
+  {num:76, icon:'🎓', title:'Education Protocol',       ch:5,  key:'education_protocol'},
+  {num:77, icon:'👁️',title:'Transparency Report',      ch:5,  key:'transparency_report'},
+  {num:78, icon:'🗳️',title:'Governance V2',            ch:5,  key:'governance_v2'},
+  {num:79, icon:'🏅', title:'Certification Track',      ch:5,  key:'certification_track'},
+  {num:80, icon:'🔑', title:'Access Control',           ch:5,  key:'access_control'},
+  {num:81, icon:'📋', title:'Compliance Framework',     ch:5,  key:'compliance_framework'},
+  {num:82, icon:'🌐', title:'Multi-Chain Bridge',       ch:5,  key:'multi_chain_bridge'},
+  {num:83, icon:'⚙️',title:'Developer Tools',          ch:5,  key:'developer_tools'},
+  {num:84, icon:'📦', title:'SDK Overview',             ch:5,  key:'sdk_overview'},
+  {num:85, icon:'🔌', title:'API Marketplace',          ch:5,  key:'api_marketplace'},
+  {num:86, icon:'🧩', title:'Plugin System',            ch:5,  key:'plugin_system'},
+  {num:87, icon:'🛠️',title:'DevOps Pipeline',          ch:5,  key:'devops_pipeline'},
+  {num:88, icon:'📊', title:'Analytics Dashboard',      ch:5,  key:'analytics_dashboard'},
+  {num:89, icon:'🔮', title:'Future Protocol',          ch:5,  key:'future_protocol'},
+  {num:90, icon:'🌟', title:'Vision 2025',              ch:5,  key:'vision_2025'},
+  {num:91, icon:'👥', title:'Community Growth',         ch:5,  key:'community_growth'},
+  {num:92, icon:'🎨', title:'Creator Economy',          ch:5,  key:'creator_economy'},
+  {num:93, icon:'🏪', title:'Marketplace V2',           ch:5,  key:'marketplace_v2'},
+  {num:94, icon:'💡', title:'Innovation Lab',           ch:5,  key:'innovation_lab_v2'},
+  {num:95, icon:'🚁', title:'Deployment Strategy',      ch:5,  key:'deployment_strategy'},
+  {num:96, icon:'🔒', title:'Privacy Protocol',         ch:5,  key:'privacy_protocol'},
+  {num:97, icon:'📣', title:'Marketing Engine',         ch:5,  key:'marketing_engine'},
+  {num:98, icon:'🧠', title:'Cognitive OS',             ch:5,  key:'cognitive_os'},
+  {num:99, icon:'⚡', title:'Speed Optimization',      ch:5,  key:'speed_optimization'},
+  {num:100,icon:'🚀', title:'Vol 2 Finale',             ch:5,  key:'vol2_finale'},
+  // Vol 3
+  {num:101,icon:'🧬', title:'Vol 3 Intro',              ch:6,  key:'vol3_intro'},
+  {num:102,icon:'🔬', title:'NAE Intro',                ch:6,  key:'neuro_adaptive_intro'},
+  {num:103,icon:'🎯', title:'7 Adaptive Dimensions',    ch:6,  key:'7_adaptive_dimensions'},
+  {num:104,icon:'🌊', title:'Flow State Engineering',   ch:6,  key:'flow_state_engineering'},
+  {num:105,icon:'📡', title:'Biometric Proxy Layer',    ch:6,  key:'biometric_proxy_layer'},
+  {num:106,icon:'📚', title:'Personalized Curriculum',  ch:6,  key:'personalized_curriculum'},
+  {num:107,icon:'🤖', title:'CORA AI Assistant',        ch:6,  key:'cora_ai_assistant'},
+  {num:108,icon:'🎵', title:'Cognitive Music System',   ch:6,  key:'cognitive_music_system'},
+  {num:109,icon:'⏰', title:'Daily Conditioning 3.0',  ch:6,  key:'daily_conditioning_3'},
+  {num:110,icon:'📊', title:'NAE Performance Dashboard',ch:6,  key:'nae_performance_dashboard'},
+  {num:111,icon:'🏛️',title:'Spatial Learning Intro',   ch:7,  key:'spatial_learning_intro'},
+  {num:112,icon:'🏰', title:'Memory Palace System',     ch:7,  key:'memory_palace_system'},
+  {num:113,icon:'🌌', title:'Concept Cosmos',           ch:7,  key:'concept_cosmos'},
+  {num:114,icon:'🖥️',title:'WebXR Architecture',       ch:7,  key:'webxr_architecture'},
+  {num:115,icon:'🤝', title:'Multiplayer Learning',     ch:7,  key:'multiplayer_learning'},
+  {num:116,icon:'🏅', title:'Spatial Certification',    ch:7,  key:'spatial_certification'},
+  {num:117,icon:'🏙️',title:'Spatial Social Hub',       ch:7,  key:'spatial_social_hub'},
+  {num:118,icon:'🗺️',title:'Spatial Roadmap',          ch:7,  key:'spatial_roadmap'},
+  {num:119,icon:'⛓️',title:'Cross-Chain Bridge',       ch:8,  key:'cross_chain_bridge'},
+  {num:120,icon:'💱', title:'DeFi Integration',         ch:8,  key:'defi_integration'},
+  {num:121,icon:'📈', title:'Exchange Listing',         ch:8,  key:'exchange_listing'},
+  {num:122,icon:'💰', title:'Tokenomics V3',            ch:8,  key:'tokenomics_v3'},
+  {num:123,icon:'🌱', title:'Cognitive Yield',          ch:8,  key:'cognitive_yield'},
+  {num:124,icon:'🔒', title:'ZK Identity',              ch:8,  key:'zk_identity'},
+  {num:125,icon:'🗳️',title:'On-Chain Governance V2',   ch:8,  key:'on_chain_governance_v2'},
+  {num:126,icon:'📊', title:'CGDP Index',               ch:9,  key:'cgdp_index'},
+  {num:127,icon:'🔬', title:'CGDP Methodology',         ch:9,  key:'cgdp_methodology'},
+  {num:128,icon:'🏙️',title:'CGDP City Pilot',          ch:9,  key:'cgdp_city_pilot'},
+  {num:129,icon:'🌙', title:'Regional: MENA',           ch:9,  key:'regional_mena'},
+  {num:130,icon:'🌍', title:'Regional: Africa',         ch:9,  key:'regional_africa'},
+  {num:131,icon:'🌐', title:'Universal Basic CTC Intro',ch:9,  key:'ubctc_intro'},
+  {num:132,icon:'🧪', title:'UBCTC Pilot',              ch:9,  key:'ubctc_pilot'},
+  {num:133,icon:'🏢', title:'Enterprise Layer',         ch:10, key:'enterprise_layer'},
+  {num:134,icon:'🤝', title:'Talent API',               ch:10, key:'talent_api'},
+  {num:135,icon:'🎓', title:'University Partnerships',  ch:10, key:'university_partnerships'},
+  {num:136,icon:'🏛️',title:'Government Partnerships',  ch:10, key:'government_partnerships'},
+  {num:137,icon:'🎨', title:'Creator Economy 3.0',      ch:10, key:'creator_economy_3'},
+  {num:138,icon:'💎', title:'IP Marketplace',           ch:10, key:'ip_marketplace'},
+  {num:139,icon:'🛡️',title:'Cognitive Insurance',      ch:10, key:'cognitive_insurance'},
+  {num:140,icon:'🚦', title:'Vision 2030 Status',       ch:11, key:'vision_2030_status'},
+  {num:141,icon:'👥', title:'Team Expansion',           ch:11, key:'team_expansion'},
+  {num:142,icon:'💹', title:'Financial Overview',       ch:11, key:'financial_overview'},
+  {num:143,icon:'🚀', title:'Series B Roadmap',         ch:11, key:'series_b_roadmap'},
+  {num:144,icon:'🛠️',title:'Developer Ecosystem',      ch:11, key:'developer_ecosystem'},
+  {num:145,icon:'🤝', title:'Ecosystem Partnerships',   ch:11, key:'ecosystem_partnerships'},
+  {num:146,icon:'🔮', title:'The Cognitive Future',     ch:11, key:'the_cognitive_future'},
+  {num:147,icon:'📖', title:'Open Source Vision',       ch:11, key:'open_source_vision'},
+  {num:148,icon:'🌍', title:'Global Impact Dashboard',  ch:11, key:'global_impact_dashboard'},
+  {num:149,icon:'📣', title:'Join the Movement',        ch:11, key:'join_the_movement'},
+  {num:150,icon:'🌟', title:'Closing Vision V3',        ch:11, key:'closing_vision_v3'},
+];
+
+// Chapter definitions
+const CHAPTERS = [
+  {id:1, start:1,   end:10,  name:'Welcome'},
+  {id:2, start:11,  end:30,  name:'Cognitive'},
+  {id:3, start:31,  end:50,  name:'Economy'},
+  {id:4, start:51,  end:70,  name:'Ecosystem'},
+  {id:5, start:71,  end:100, name:'Platform'},
+  {id:6, start:101, end:110, name:'NAE'},
+  {id:7, start:111, end:118, name:'Spatial'},
+  {id:8, start:119, end:125, name:'Chain'},
+  {id:9, start:126, end:132, name:'CGDP'},
+  {id:10,start:133, end:139, name:'Enterprise'},
+  {id:11,start:140, end:150, name:'Vision'},
+];
+
+const CHAPTER_NAMES = {
+  1:'Vol 1 · Welcome (1–10)',2:'Vol 1 · Cognitive (11–30)',3:'Vol 1 · Economy (31–50)',
+  4:'Vol 2 · Ecosystem (51–70)',5:'Vol 2 · Platform (71–100)',
+  6:'Vol 3 · NAE (101–110)',7:'Vol 3 · Spatial (111–118)',
+  8:'Vol 3 · Chain (119–125)',9:'Vol 3 · CGDP (126–132)',
+  10:'Vol 3 · Enterprise (133–139)',11:'Vol 3 · Vision (140–150)',
+};
+
+const TOTAL = 150;
+let currentSlide = 1;
+let currentLang  = 'en';
+let asideOpen    = false;
+let activeTab    = 'docs';
+let autoPlayTimer = null;
+let _slideCache  = {}; // {lang_num: data}
+
+// ── JSON FILE HELPERS ─────────────────────────────────────────────────────────
+function slideFilePad(num){ return num < 10 ? String(num).padStart(2,'0') : String(num); }
+function volForSlide(num){ return num >= 101 ? 3 : num >= 51 ? 2 : 1; }
+function jsonFile(lang,vol){ const s = vol > 1 ? String(vol) : ''; return `${lang}${s}.json`; }
+
+// Per-slide JSON: slides/data/slide-NNN.LANG.json
+function perSlideJsonPath(num, lang){
+  const p = String(num).padStart(3,'0');
+  return `slides/data/slide-${p}.${lang}.json`;
+}
+
+// ── DATA LOADING ──────────────────────────────────────────────────────────────
+async function loadSlideData(num, lang) {
+  const ckey = `${lang}_${num}`;
+  if (_slideCache[ckey]) return _slideCache[ckey];
+
+  // 1. Try per-slide JSON first
+  try {
+    const r = await fetch(perSlideJsonPath(num, lang));
+    if (r.ok) {
+      const d = await r.json();
+      _slideCache[ckey] = d;
+      return d;
+    }
+  } catch(e){}
+
+  // 2. Fall back to volume JSON (through Loader if available)
+  if (window.Loader) {
+    try {
+      const d = await window.Loader.getSlideData(num, lang);
+      if (d) { _slideCache[ckey] = d; return d; }
+    } catch(e){}
+  }
+
+  // 3. Try loading volume JSON directly
+  const vol = volForSlide(num);
+  const file = jsonFile(lang, vol);
+  const paths = [file, `../${file}`, `/${file}`];
+  for (const p of paths) {
+    try {
+      const r = await fetch(p);
+      if (r.ok) {
+        const json = await r.json();
+        const found = (json.slides || []).find(s => s.id === num);
+        if (found) { _slideCache[ckey] = found; return found; }
+      }
+    } catch(e){}
+  }
+  return null;
+}
+
+// ── SLIDE RENDERER ────────────────────────────────────────────────────────────
+async function renderSlide(num) {
+  const slide = SLIDES.find(s => s.num === num);
+  if (!slide) return;
+
+  showSkeleton();
+  const data = await loadSlideData(num, currentLang);
+
+  const content = document.getElementById('slideContent');
+  const skeleton = document.getElementById('slideSkeleton');
+
+  // Build chapter tag
+  const ch = CHAPTERS.find(c => num >= c.start && num <= c.end);
+  const chTag = ch ? ch.name : '';
+  const vol = volForSlide(num);
+
+  let bodyHTML = '';
+  if (data) {
+    bodyHTML = buildSlideBody(data, currentLang, num);
+  } else {
+    bodyHTML = buildFallbackBody(num, slide);
+  }
+
+  const header = data ? `
+    <div class="slide-header fade-in">
+      <div class="slide-header-meta">
+        <span class="slide-num-badge">SLIDE ${String(num).padStart(3,'0')} · VOL ${vol}</span>
+        <span class="slide-chapter-tag">${slide.icon} ${chTag}</span>
+      </div>
+      <div class="slide-title">${data.header || slide.title}</div>
+      <div class="slide-subtitle">${data.subtitle || ''}</div>
+    </div>
+  ` : `
+    <div class="slide-header fade-in">
+      <div class="slide-header-meta">
+        <span class="slide-num-badge">SLIDE ${String(num).padStart(3,'0')} · VOL ${vol}</span>
+        <span class="slide-chapter-tag">${slide.icon} ${chTag}</span>
+      </div>
+      <div class="slide-title">${slide.icon} ${slide.title}</div>
+    </div>
+  `;
+
+  content.innerHTML = `
+    <div class="slide-stage">
+      <div class="slide-bg-glow"></div>
+      <div class="slide-inner">
+        ${header}
+        <div class="slide-body">${bodyHTML}</div>
+      </div>
+    </div>`;
+
+  skeleton.style.display = 'none';
+  content.style.display = 'block';
+  content.style.opacity = '0';
+  requestAnimationFrame(() => {
+    content.style.transition = 'opacity 0.4s ease';
+    content.style.opacity = '1';
+    // Animate fade-ins
+    setTimeout(() => {
+      content.querySelectorAll('.fade-in,.scale-in').forEach((el, i) => {
+        setTimeout(() => el.classList.add('show'), i * 60);
+      });
+      // Animate progress bars
+      content.querySelectorAll('.progress-fill[data-progress]').forEach(el => {
+        setTimeout(() => { el.style.width = el.dataset.progress + '%'; }, 300);
+      });
+    }, 100);
+  });
+
+  // Scroll to top
+  document.getElementById('slideArea').scrollTop = 0;
+
+  // Update aside docs pane
+  renderSlideDoc(num, slide, data);
+}
+
+// ── SLIDE BODY BUILDER (inline, 100% width, no aspect-ratio) ──────────────────
+function buildSlideBody(data, lang, num) {
+  const isAr = lang === 'ar';
+  const isFr = lang === 'fr';
+  let html = '';
+
+  // ─── Stats row ───
+  if (data.stats) {
+    const stats = data.stats;
+    const cards = Object.entries(stats).filter(([k]) => !k.endsWith('_label')).map(([k,v]) => {
+      const label = stats[k+'_label'] || k.replace(/_/g,' ');
+      return `<div class="stat-card scale-in">
+        <div class="stat-icon">💡</div>
+        <div class="stat-label">${label}</div>
+        <div class="stat-value">${v}</div>
+      </div>`;
+    }).join('');
+    if (cards) html += `<div class="card-grid">${cards}</div>`;
+  }
+
+  // ─── Enhancement level ───
+  if (typeof data.enhancement_level === 'number') {
+    html += `<div class="card fade-in">
+      <div class="progress-header" style="margin-bottom:10px">
+        <span class="progress-label">${isAr ? 'مستوى التعزيز' : isFr ? 'Niveau d\'amélioration' : 'Enhancement Level'}</span>
+        <span class="progress-pct">${data.enhancement_level}%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" data-progress="${data.enhancement_level}" style="width:0%"></div></div>
+    </div>`;
+  }
+
+  // ─── Overall progress ───
+  if (typeof data.overall_progress === 'number') {
+    html += `<div class="card fade-in">
+      <div class="progress-header" style="margin-bottom:10px">
+        <span class="progress-label">${isAr ? 'التقدم الكلي' : isFr ? 'Progression globale' : 'Overall Progress'}</span>
+        <span class="progress-pct">${data.overall_progress}%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" data-progress="${data.overall_progress}" style="width:0%"></div></div>
+    </div>`;
+  }
+
+  // ─── Dimensions ───
+  if (Array.isArray(data.dimensions) && data.dimensions.length) {
+    const rows = data.dimensions.map(d => `
+      <div class="progress-row fade-in">
+        <div class="progress-header">
+          <span class="progress-label">${d.name}</span>
+          <span class="progress-pct">${d.value}%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" data-progress="${d.value}" style="width:0%"></div></div>
+      </div>`).join('');
+    html += `<div class="card fade-in"><div style="display:flex;flex-direction:column;gap:12px">${rows}</div></div>`;
+  }
+
+  // ─── Pillars / features as card grid ───
+  if (Array.isArray(data.pillars) && data.pillars.length) {
+    const cards = data.pillars.map(p => `
+      <div class="card scale-in">
+        <div style="font-size:28px;margin-bottom:10px">${p.icon||'📌'}</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px">${p.title||p.name||''}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5">${p.desc||p.description||''}</div>
+      </div>`).join('');
+    html += `<div class="card-grid">${cards}</div>`;
+  }
+
+  // ─── Layers (solution architecture) ───
+  if (Array.isArray(data.layers) && data.layers.length) {
+    const items = data.layers.map((l,i) => `
+      <div class="list-item fade-in" style="animation-delay:${i*0.08}s">
+        <div class="list-icon" style="width:28px;height:28px;border-radius:50%;background:rgba(99,179,237,0.15);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--blue)">${l.order}</div>
+        <div class="list-body">
+          <div class="list-title">${l.name}</div>
+          <div class="list-sub">${l.desc}</div>
+        </div>
+      </div>`).join('');
+    html += `<div style="display:flex;flex-direction:column;gap:8px">${items}</div>`;
+  }
+
+  // ─── Problems ───
+  if (Array.isArray(data.problems) && data.problems.length) {
+    const cards = data.problems.map(p => `
+      <div class="card scale-in">
+        <div style="font-size:28px;margin-bottom:8px">${p.icon}</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:4px">${p.title}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5;margin-bottom:8px">${p.desc}</div>
+        <div style="font-size:20px;font-weight:900;color:var(--red)">${p.stat}</div>
+      </div>`).join('');
+    html += `<div class="card-grid">${cards}</div>`;
+    if (data.insight) {
+      html += `<div class="highlight-card fade-in"><div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,0.8);font-style:italic">"${data.insight}"</div></div>`;
+    }
+  }
+
+  // ─── Milestones / timeline ───
+  if (Array.isArray(data.milestones) && data.milestones.length) {
+    const items = data.milestones.map(m => {
+      const dotClass = m.status==='completed'||m.status==='active'? (m.status==='active'?'active':'done') : m.status==='vision'?'vision':'';
+      const yr = m.year || m.date || m.eta || '';
+      return `<div class="timeline-item">
+        <div class="timeline-dot ${dotClass}"></div>
+        <div class="timeline-title">${m.title||m.event||''}</div>
+        <div class="timeline-meta">${yr}${m.status?' · '+m.status.replace('_',' '):''}</div>
+      </div>`;
+    }).join('');
+    html += `<div class="card fade-in"><div class="timeline">${items}</div></div>`;
+  }
+
+  // ─── Projects list ───
+  if (Array.isArray(data.projects) && data.projects.length) {
+    const items = data.projects.map(p => `
+      <div class="list-item fade-in">
+        <div class="list-icon">🚀</div>
+        <div class="list-body">
+          <div class="list-title">${p.title}</div>
+          <div class="list-sub">${p.type||p.status||p.next_action||''}</div>
+        </div>
+        <div class="list-meta">${p.ctc||p.ctc_this_week||p.match||''}</div>
+      </div>`).join('');
+    html += `<div style="display:flex;flex-direction:column;gap:6px">${items}</div>`;
+  }
+
+  // ─── Modules ───
+  if (Array.isArray(data.modules) && data.modules.length) {
+    const items = data.modules.map(m => `
+      <div class="list-item fade-in">
+        <div class="list-icon">📚</div>
+        <div class="list-body">
+          <div class="list-title">${m.title||m.name}</div>
+          <div class="list-sub">${m.category||''} ${m.duration?'· '+m.duration:''}</div>
+        </div>
+        <div class="list-meta">${m.ctc_reward||m.progress||''}</div>
+      </div>`).join('');
+    html += `<div style="display:flex;flex-direction:column;gap:6px">${items}</div>`;
+  }
+
+  // ─── Top contributors ───
+  if (Array.isArray(data.top_contributors) && data.top_contributors.length) {
+    const items = data.top_contributors.map(c => `
+      <div class="list-item fade-in">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--g-primary);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#0a0a1a;flex-shrink:0">${c.avatar||c.name.slice(0,2)}</div>
+        <div class="list-body">
+          <div class="list-title">${c.badge||''} ${c.name}</div>
+          <div class="list-sub">${isAr?'المرتبة':'Rank'} #${c.rank}</div>
+        </div>
+        <div class="list-meta">${c.score} CTC</div>
+      </div>`).join('');
+    html += `<div style="display:flex;flex-direction:column;gap:6px">${items}</div>`;
+  }
+
+  // ─── Regions / stats grid ───
+  if (Array.isArray(data.regions) && data.regions.length && typeof data.regions[0] === 'object') {
+    const cards = data.regions.map(r => `
+      <div class="stat-card scale-in">
+        <div class="stat-label">${r.name||r.region||''}</div>
+        <div class="stat-value" style="font-size:22px">${r.users||r.participants||''}</div>
+        ${r.growth?`<div class="stat-trend-pos">↑ ${r.growth}</div>`:''}
+        ${r.cognitive_improvement?`<div class="stat-trend-pos">↑ ${r.cognitive_improvement}</div>`:''}
+      </div>`).join('');
+    html += `<div class="card-grid">${cards}</div>`;
+  }
+
+  // ─── Stat-like object fields (market data, etc.) ───
+  if (data.stat && typeof data.stat === 'object') {
+    const cards = Object.entries(data.stat).map(([k,v]) => `
+      <div class="stat-card scale-in">
+        <div class="stat-label">${k.replace(/_/g,' ')}</div>
+        <div class="stat-value" style="font-size:22px">${v}</div>
+      </div>`).join('');
+    html += `<div class="card-grid">${cards}</div>`;
+  }
+
+  // ─── Metrics array ───
+  if (Array.isArray(data.metrics) && data.metrics.length) {
+    const cards = data.metrics.map(m => `
+      <div class="stat-card scale-in">
+        <div class="stat-label">${m.name||m.label||Object.keys(m)[0]}</div>
+        <div class="stat-value" style="font-size:22px">${m.value||m.current||m.score||''}</div>
+        ${m.status?`<div style="font-size:11px;color:var(--teal);margin-top:4px">${m.status}</div>`:''}
+        ${m.trend?`<div class="stat-trend-pos">${m.trend}</div>`:''}
+      </div>`).join('');
+    html += `<div class="card-grid">${cards}</div>`;
+  }
+
+  // ─── Impact metrics ───
+  if (Array.isArray(data.impact_metrics) && data.impact_metrics.length) {
+    const cards = data.impact_metrics.map(m => `
+      <div class="stat-card scale-in">
+        <div class="stat-icon">${m.icon||'📊'}</div>
+        <div class="stat-label">${m.label||m.sector||''}</div>
+        <div class="stat-value" style="font-size:22px">${m.value||m.score||''}</div>
+        ${m.trend?`<div class="stat-trend-pos">↑ ${m.trend}</div>`:''}
+      </div>`).join('');
+    html += `<div class="card-grid">${cards}</div>`;
+  }
+
+  // ─── Description / quote ───
+  if (data.description) {
+    html += `<div class="glass-card fade-in"><p style="font-size:14px;line-height:1.75;color:rgba(255,255,255,0.8)">${data.description}</p></div>`;
+  }
+  if (data.quote) {
+    html += `<div class="highlight-card fade-in"><p style="font-size:14px;line-height:1.75;color:rgba(255,255,255,0.85);font-style:italic">"${data.quote}"</p></div>`;
+  }
+  if (data.closing_statement) {
+    html += `<div class="highlight-card fade-in"><p style="font-size:14px;line-height:1.75;color:rgba(255,255,255,0.85);font-style:italic">"${data.closing_statement}"</p></div>`;
+  }
+
+  // ─── Repositories ───
+  if (Array.isArray(data.repositories) && data.repositories.length) {
+    const items = data.repositories.map(r => `
+      <div class="list-item fade-in">
+        <div class="list-icon">🐙</div>
+        <div class="list-body">
+          <div class="list-title">${r.name}</div>
+          <div class="list-sub">⭐ ${r.stars} · ⑂ ${r.forks} · ${r.license}</div>
+        </div>
+      </div>`).join('');
+    html += `<div style="display:flex;flex-direction:column;gap:6px">${items}</div>`;
+  }
+
+  // ─── KPIs ───
+  if (Array.isArray(data.kpis) && data.kpis.length) {
+    const cards = data.kpis.map(k => `
+      <div class="stat-card scale-in">
+        <div class="stat-label">${k.label}</div>
+        <div class="stat-value" style="font-size:24px">${k.value}</div>
+        ${k.trend?`<div class="stat-trend-pos">↑ ${k.trend}</div>`:''}
+      </div>`).join('');
+    html += `<div class="card-grid">${cards}</div>`;
+  }
+
+  // ─── Reasons (join movement) ───
+  if (Array.isArray(data.reasons) && data.reasons.length) {
+    const cards = data.reasons.map(r => `
+      <div class="card scale-in">
+        <div style="font-size:28px;margin-bottom:8px">${r.icon}</div>
+        <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">${r.title}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.5)">${r.desc}</div>
+      </div>`).join('');
+    html += `<div class="card-grid">${cards}</div>`;
+    if (data.social_proof) html += `<div class="glass-card fade-in" style="text-align:center"><span style="font-size:13px;color:rgba(255,255,255,0.6)">${data.social_proof}</span></div>`;
+  }
+
+  // ─── Closing stats array ───
+  if (Array.isArray(data.stats) && data.stats.length && typeof data.stats[0] === 'object' && data.stats[0].label) {
+    const cards = data.stats.map(s => `
+      <div class="stat-card scale-in">
+        <div class="stat-label">${s.label}</div>
+        <div class="stat-value" style="font-size:22px">${s.value}</div>
+      </div>`).join('');
+    html += `<div class="card-grid">${cards}</div>`;
+  }
+
+  // ─── Use of funds / distribution arrays ───
+  if (Array.isArray(data.use_of_funds) && data.use_of_funds.length) {
+    const items = data.use_of_funds.map(f => `
+      <div class="progress-row fade-in">
+        <div class="progress-header"><span class="progress-label">${f.area}</span><span class="progress-pct">${f.percentage}%</span></div>
+        <div class="progress-track"><div class="progress-fill" data-progress="${f.percentage}" style="width:0%"></div></div>
+      </div>`).join('');
+    html += `<div class="card fade-in"><div style="display:flex;flex-direction:column;gap:12px">${items}</div></div>`;
+  }
+
+  // ─── Achievements ───
+  if (Array.isArray(data.achievements) && data.achievements.length && data.achievements[0].title) {
+    const items = data.achievements.map(a => `
+      <div class="list-item fade-in">
+        <div class="list-icon">${a.icon||'🏅'}</div>
+        <div class="list-body"><div class="list-title">${a.title||a.name}</div></div>
+        <span class="tag green" style="font-size:10px">${a.status||a.earned||''}</span>
+      </div>`).join('');
+    html += `<div style="display:flex;flex-direction:column;gap:6px">${items}</div>`;
+  }
+
+  // If nothing rendered, show raw key-value summary
+  if (!html) html = buildFallbackBody(num, SLIDES.find(s=>s.num===num));
+
+  return html;
+}
+
+function buildFallbackBody(num, slide) {
+  return `
+    <div class="card fade-in" style="text-align:center;padding:40px 24px">
+      <div style="font-size:56px;margin-bottom:16px">${slide ? slide.icon : '📋'}</div>
+      <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:8px">${slide ? slide.title : 'Slide '+num}</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6">
+        This slide's content is rendered from<br>
+        <code style="color:var(--blue);font-family:var(--font-mono)">slides/data/slide-${String(num).padStart(3,'0')}.${currentLang}.json</code><br>
+        <span style="font-size:11px;margin-top:8px;display:block">or the volume JSON files (en/ar/fr.json)</span>
+      </div>
+    </div>`;
+}
+
+// ── SKELETON ─────────────────────────────────────────────────────────────────
+function showSkeleton() {
+  const sk = document.getElementById('slideSkeleton');
+  const ct = document.getElementById('slideContent');
+  if (sk) sk.style.display = 'block';
+  if (ct) ct.style.display = 'none';
+}
+
+// ── SLIDE DOC PANE ────────────────────────────────────────────────────────────
+// Renders per-slide API documentation + JSON per language in the aside
+function renderSlideDoc(num, slide, data) {
+  const paneTitle = document.getElementById('docPaneTitle');
+  const paneSub   = document.getElementById('docPaneSub');
+  const paneBody  = document.getElementById('docPaneBody');
+
+  if (!paneTitle || !paneBody) return;
+
+  if (!slide) slide = SLIDES.find(s => s.num === num);
+  const vol = volForSlide(num);
+
+  paneTitle.textContent = `Slide ${String(num).padStart(3,'0')} – ${slide ? slide.title : ''}`;
+  paneSub.textContent   = `key: ${slide ? slide.key : ''} · Vol ${vol}`;
+
+  // ── Build field docs from data keys ──
+  let fieldsHTML = '';
+  if (data) {
+    const fieldDefs = buildFieldDefs(data);
+    fieldsHTML = fieldDefs.map(f => `
+      <div class="doc-field">
+        <div class="doc-field-name">
+          <span class="doc-fname">${f.name}</span>
+          <span class="doc-ftype">${f.type}</span>
+        </div>
+        <div class="doc-fdesc">${f.desc}</div>
+      </div>`).join('');
+  } else {
+    fieldsHTML = `<div style="font-size:10px;color:rgba(255,255,255,0.3);padding:8px 0">No data loaded for current language. Check JSON files.</div>`;
+  }
+
+  // ── JSON per language tabs ──
+  const jsonTabsHTML = `
+    <div class="json-lang-tabs">
+      <div class="json-lang-tab active" onclick="switchJsonTab('en',${num},this)">EN</div>
+      <div class="json-lang-tab" onclick="switchJsonTab('ar',${num},this)">AR</div>
+      <div class="json-lang-tab" onclick="switchJsonTab('fr',${num},this)">FR</div>
+    </div>
+    <div id="jsonDisplay-${num}" style="position:relative">
+      <pre class="json-block" id="jsonBlock-${num}">${data ? escapeHtml(JSON.stringify(data, null, 2)) : '// Loading...'}</pre>
+      <button class="copy-btn" id="copyBtn-${num}" onclick="copyJson(${num})">Copy</button>
+    </div>`;
+
+  // ── Path references ──
+  const pathsHTML = `
+    <div class="doc-section">
+      <div class="doc-section-title">File Paths</div>
+      <div class="endpoint-box">
+        <div class="endpoint-path"><span class="method-badge m-get">JSON</span>slides/data/slide-${String(num).padStart(3,'0')}.en.json</div>
+        <div class="endpoint-desc">Per-slide English data file</div>
+      </div>
+      <div class="endpoint-box">
+        <div class="endpoint-path"><span class="method-badge m-post">JSON</span>slides/data/slide-${String(num).padStart(3,'0')}.ar.json</div>
+        <div class="endpoint-desc">Per-slide Arabic data file</div>
+      </div>
+      <div class="endpoint-box">
+        <div class="endpoint-path"><span class="method-badge m-fn">JSON</span>slides/data/slide-${String(num).padStart(3,'0')}.fr.json</div>
+        <div class="endpoint-desc">Per-slide French data file</div>
+      </div>
+    </div>`;
+
+  // ── Loader API reference for this slide ──
+  const apiHTML = `
+    <div class="doc-section">
+      <div class="doc-section-title">Loader API</div>
+      <div class="endpoint-box">
+        <div class="endpoint-path"><span class="method-badge m-get">ASYNC</span>Loader.getSlideData(${num}, lang)</div>
+        <div class="endpoint-desc">Fetch slide ${num} data. Auto-routes to vol ${vol} JSON.</div>
+      </div>
+      <div class="endpoint-box">
+        <div class="endpoint-path"><span class="method-badge m-fn">FN</span>Loader.switchLanguage('en'|'ar'|'fr')</div>
+        <div class="endpoint-desc">Switch language globally + dispatch langChange event.</div>
+      </div>
+    </div>`;
+
+  paneBody.innerHTML = `
+    <div class="doc-section">
+      <div class="doc-section-title">Slide ${num} – Data Fields</div>
+      ${fieldsHTML}
+    </div>
+    <div class="doc-section">
+      <div class="doc-section-title">JSON Data (${currentLang.toUpperCase()})</div>
+      ${jsonTabsHTML}
+    </div>
+    ${pathsHTML}
+    ${apiHTML}`;
+}
+
+// Inspect data object and produce field descriptors
+function buildFieldDefs(data) {
+  const TYPE_MAP = { string:'text', number:'number', boolean:'bool', object:'object', undefined:'—' };
+  return Object.entries(data).map(([k, v]) => {
+    let type = Array.isArray(v) ? 'array' : TYPE_MAP[typeof v] || typeof v;
+    let desc = '';
+    if (k === 'id')       desc = 'Unique slide identifier (matches slide number)';
+    else if (k === 'key') desc = 'Machine-readable slug for this slide';
+    else if (k === 'header')   desc = 'Main heading displayed at top of slide';
+    else if (k === 'subtitle') desc = 'Secondary heading / context line';
+    else if (k === 'description') desc = 'Long-form body text for this slide';
+    else if (k === 'stats' && type==='object') desc = 'Key metric counters { label → value }';
+    else if (k === 'milestones') desc = 'Array of timeline events { title, status, year/date }';
+    else if (k === 'pillars')    desc = 'Array of feature pillars { icon, title, desc }';
+    else if (k === 'dimensions') desc = 'Array of cognitive dimensions { name, value:0-100 }';
+    else if (k === 'projects')   desc = 'Array of project objects';
+    else if (k === 'modules')    desc = 'Learning module objects { title, category, progress }';
+    else if (k === 'metrics')    desc = 'Performance metric objects { name/label, value, status }';
+    else if (k === 'regions')    desc = 'Geographic data objects';
+    else if (k === 'achievements') desc = 'Achievement badge objects';
+    else desc = `${type === 'array' ? Array.isArray(v) ? v.length+' items' : '' : String(v).slice(0,50)}`;
+    return { name: k, type, desc };
+  });
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Switch JSON tab language in docs pane
+async function switchJsonTab(lang, num, el) {
+  el.parentElement.querySelectorAll('.json-lang-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  const block = document.getElementById(`jsonBlock-${num}`);
+  if (!block) return;
+  block.textContent = '// Loading…';
+  const d = await loadSlideData(num, lang);
+  block.textContent = d ? JSON.stringify(d, null, 2) : `// No data found for lang="${lang}" slide=${num}`;
+}
+
+async function copyJson(num) {
+  const block = document.getElementById(`jsonBlock-${num}`);
+  const btn   = document.getElementById(`copyBtn-${num}`);
+  if (!block || !btn) return;
+  try {
+    await navigator.clipboard.writeText(block.textContent);
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  } catch(e) {
+    // fallback
+    const sel = window.getSelection(); const range = document.createRange();
+    range.selectNodeContents(block); sel.removeAllRanges(); sel.addRange(range);
+    document.execCommand('copy');
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  }
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+function goToSlide(num) {
+  num = Math.max(1, Math.min(TOTAL, num));
+  currentSlide = num;
+
+  // Counter
+  document.getElementById('slideCounter').textContent = `${String(num).padStart(3,'0')} / ${TOTAL}`;
+
+  // Progress ribbon
+  document.getElementById('progressRibbon').style.width = `${(num/TOTAL)*100}%`;
+
+  // Rail
+  document.querySelectorAll('.slide-thumb').forEach(t => t.classList.remove('active'));
+  const th = document.getElementById(`thumb-${num}`);
+  if (th) { th.classList.add('active'); th.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}); }
+
+  // Mini list
+  document.querySelectorAll('.mini-slide-item').forEach(t => t.classList.remove('active'));
+  const mi = document.getElementById(`mini-${num}`);
+  if (mi) { mi.classList.add('active'); mi.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+
+  // Chapter strip
+  document.querySelectorAll('.chapter-chip').forEach(chip => {
+    const s = parseInt(chip.dataset.start), e = parseInt(chip.dataset.end);
+    chip.classList.toggle('active', num>=s && num<=e);
+  });
+
+  // Vol badge
+  const vol = volForSlide(num);
+  document.getElementById('volBadge').textContent = `VOL ${vol}`;
+
+  // Render slide inline
+  renderSlide(num);
+}
+
+function navigate(dir) { goToSlide(currentSlide + dir); }
+
+// ── LANGUAGE ──────────────────────────────────────────────────────────────────
+function switchLang(lang) {
+  currentLang = lang;
+  const isRTL = lang === 'ar';
+  document.documentElement.setAttribute('lang', lang);
+  document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+  document.body.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+  localStorage.setItem('2030b_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  ['en','ar','fr'].forEach(l => {
+    const el = document.getElementById(`chk-${l}`);
+    if (el) { el.classList.toggle('on', l===lang); el.textContent = l===lang?'✓':''; }
+  });
+  if (window.Loader) window.Loader.switchLanguage(lang);
+  renderSlide(currentSlide);
+}
+
+// ── ASIDE ─────────────────────────────────────────────────────────────────────
+function toggleAside() {
+  asideOpen = !asideOpen;
+  document.getElementById('a5Aside').classList.toggle('open', asideOpen);
+}
+function openMobileAside() {
+  document.getElementById('a5Aside').classList.add('open','mobile-visible');
+  document.getElementById('asideBackdrop').classList.add('visible');
+}
+function closeMobileAside() {
+  document.getElementById('a5Aside').classList.remove('open','mobile-visible');
+  document.getElementById('asideBackdrop').classList.remove('visible');
+}
+function switchTab(tabId) {
+  activeTab = tabId;
+  document.querySelectorAll('.aside-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+  document.querySelectorAll('.aside-pane').forEach(p => p.classList.toggle('active', p.id === `pane-${tabId}`));
+  if (!asideOpen) toggleAside();
+}
+
+// ── SETTINGS ──────────────────────────────────────────────────────────────────
+function toggleAutoPlay() {
+  const chk = document.getElementById('chk-autoplay');
+  if (autoPlayTimer) {
+    clearInterval(autoPlayTimer); autoPlayTimer = null;
+    chk.classList.remove('on'); chk.textContent = '';
+  } else {
+    autoPlayTimer = setInterval(() => navigate(1), 5000);
+    chk.classList.add('on'); chk.textContent = '✓';
+  }
+}
+function doSettingsJump() {
+  const v = parseInt(document.getElementById('settingsJumpInput').value);
+  if (v>=1 && v<=TOTAL) goToSlide(v);
+}
+
+// ── QUICK JUMP ────────────────────────────────────────────────────────────────
+function toggleSlideInput() {
+  document.getElementById('jumpOverlay').style.display = 'flex';
+  setTimeout(() => document.getElementById('jumpInput').focus(), 80);
+}
+function closeJump() { document.getElementById('jumpOverlay').style.display = 'none'; }
+function doJump() {
+  const v = parseInt(document.getElementById('jumpInput').value);
+  if (v>=1 && v<=TOTAL) goToSlide(v);
+  closeJump();
+}
+function handleJumpKey(e) { if(e.key==='Enter') doJump(); if(e.key==='Escape') closeJump(); }
+
+// ── KEYBOARD ──────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (document.getElementById('jumpOverlay').style.display === 'flex') return;
+  if (e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ') { e.preventDefault(); navigate(1); }
+  else if (e.key==='ArrowLeft'||e.key==='ArrowUp') { e.preventDefault(); navigate(-1); }
+  else if (e.key==='e'||e.key==='E') switchLang('en');
+  else if (e.key==='a'||e.key==='A') switchLang('ar');
+  else if (e.key==='f'||e.key==='F') switchLang('fr');
+  else if (e.key==='p'||e.key==='P'||e.key==='\\') toggleAside();
+});
+
+// ── TOUCH ─────────────────────────────────────────────────────────────────────
+let tx=0, ty=0;
+document.getElementById('slideArea').addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+document.getElementById('slideArea').addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+  if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50) navigate(dx<0?1:-1);
+},{passive:true});
+
+// ── BUILD RAIL ────────────────────────────────────────────────────────────────
+function buildRail() {
+  const rail = document.getElementById('slideRail');
+  let lastVol = 0;
+  rail.innerHTML = SLIDES.map(s => {
+    const v = volForSlide(s.num);
+    const sep = v!==lastVol && lastVol!==0 ? '<div class="rail-sep"></div>' : '';
+    lastVol = v;
+    return `${sep}<div class="slide-thumb ${s.num===currentSlide?'active':''}" id="thumb-${s.num}" onclick="goToSlide(${s.num})" title="${s.title}">
+      <span class="slide-thumb-icon">${s.icon}</span>
+      <span class="slide-thumb-num">${s.num}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── BUILD MINI SLIDE LIST ─────────────────────────────────────────────────────
+function buildMiniSlideList() {
+  const el = document.getElementById('miniSlideList');
+  if (!el) return;
+  let html = ''; let lastCh = -1;
+  SLIDES.forEach(s => {
+    if (s.ch !== lastCh) {
+      html += `<div class="mini-chapter">${CHAPTER_NAMES[s.ch]||''}</div>`;
+      lastCh = s.ch;
+    }
+    html += `<div class="mini-slide-item ${s.num===currentSlide?'active':''}" id="mini-${s.num}" onclick="goToSlide(${s.num})">
+      <span class="mini-slide-icon">${s.icon}</span>
+      <span class="mini-slide-num">${String(s.num).padStart(3,'0')}</span>
+      <span class="mini-slide-title">${s.title}</span>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+// ── RESPONSIVE ───────────────────────────────────────────────────────────────
+function checkMobile() {
+  const btn = document.getElementById('mobileAsideBtn');
+  if (btn) btn.style.display = window.innerWidth <= 767 ? 'flex' : 'none';
+}
+window.addEventListener('resize', checkMobile);
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('2030b_lang') || 'en';
+  currentLang = saved;
+  if (saved !== 'en') {
+    const isRTL = saved === 'ar';
+    document.documentElement.setAttribute('lang', saved);
+    document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    document.body.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === saved));
+    ['en','ar','fr'].forEach(l => {
+      const el = document.getElementById(`chk-${l}`);
+      if (el) { el.classList.toggle('on', l===saved); el.textContent = l===saved?'✓':''; }
+    });
+  }
+
+  buildRail();
+  buildMiniSlideList();
+  checkMobile();
+
+  if (typeof AnimationSystem !== 'undefined') {
+    AnimationSystem.initParticles('particles-canvas', 20);
+  }
+
+  setTimeout(() => {
+    document.getElementById('app-loading').classList.add('hidden');
+    goToSlide(1);
+  }, 900);
+});
+</script>
+</body>
+</html>

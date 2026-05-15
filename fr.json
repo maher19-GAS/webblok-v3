@@ -1,0 +1,608 @@
+{
+  "brand": {
+    "name": "2030B",
+    "tagline": "Soyez Plus Intelligent",
+    "subtitle": "Écosystème d'Amélioration Cognitive"
+  },
+  "slides": [
+    {
+      "id": 1,
+      "key": "welcome_dashboard",
+      "header": "Bon retour, Alex",
+      "subtitle": "Votre parcours d'amélioration cognitive continue",
+      "stats": {
+        "ctc_balance": "12 450",
+        "ctc_label": "Solde CTC",
+        "projects_joined": 4,
+        "contributions_made": 127,
+        "reputation_score": "4 250"
+      },
+      "enhancement_level": 67,
+      "challenge_preview": "Reconnaissance de formes : Systèmes quantiques",
+      "nav_items": ["Accueil", "Projets", "Portefeuille", "Apprendre", "Profil"]
+    },
+    {
+      "id": 2,
+      "key": "cognitive_enhancement_status",
+      "header": "Votre profil d'amélioration",
+      "subtitle": "Suivez votre évolution cognitive",
+      "overall_progress": 67,
+      "dimensions": [
+        { "name": "Mémoire", "value": 72 },
+        { "name": "Logique", "value": 85 },
+        { "name": "Créativité", "value": 61 },
+        { "name": "Intelligence émotionnelle", "value": 58 },
+        { "name": "Reconnaissance de formes", "value": 79 },
+        { "name": "Pensée systémique", "value": 68 },
+        { "name": "Conscience", "value": 43 }
+      ],
+      "next_milestone": "Niveau 8 – Penseur quantique",
+      "milestone_reward": "2 000 CTC + Badge spécial"
+    },
+    {
+      "id": 3,
+      "key": "daily_cognitive_challenge",
+      "header": "Défi du jour",
+      "subtitle": "Reconnaissance de formes : Systèmes quantiques",
+      "timer": "14:32",
+      "difficulty": "Avancé",
+      "hints_available": 3,
+      "hint_cost": "50 CTC",
+      "reward": "500 CTC + 25 Réputation",
+      "leaderboard_position": "#1 247",
+      "previous_score": 82,
+      "difficulties": ["Débutant", "Intermédiaire", "Avancé", "Expert"]
+    },
+    {
+      "id": 4,
+      "key": "ctc_wallet_overview",
+      "header": "Votre monnaie à jetons cognitifs",
+      "subtitle": "Solde total : 12 450 CTC",
+      "balance": "12 450",
+      "transactions": [
+        { "name": "Architecture cloud DVM", "type": "Contribution projet", "amount": "+850", "date": "Il y a 2 h" },
+        { "name": "Défi quotidien", "type": "Récompense défi", "amount": "+500", "date": "Aujourd'hui" },
+        { "name": "Interface Neural Link", "type": "Achat service", "amount": "-200", "date": "Hier" },
+        { "name": "Session de mentorat", "type": "Revenu service", "amount": "+300", "date": "Il y a 2 jours" }
+      ],
+      "earnings_breakdown": { "challenges": 35, "projects": 60, "bonuses": 5 },
+      "staking_apy": "12,5 %"
+    },
+    {
+      "id": 5,
+      "key": "available_projects_discovery",
+      "header": "Découvrir des projets",
+      "subtitle": "Opportunités adaptées à vos compétences",
+      "filters": ["Tous", "Tech", "Science", "Social", "Créatif"],
+      "projects": [
+        { "title": "Architecture cloud DVM", "match": 94, "ctc": "2 500/mois", "tags": ["Sécurité", "Cloud", "IA"], "team": 12, "deadline": "45 jours" },
+        { "title": "Modèle de langage neuronal", "match": 88, "ctc": "1 800/mois", "tags": ["TAL", "Recherche", "Python"], "team": 8, "deadline": "30 jours" },
+        { "title": "Réseau énergétique quantique", "match": 76, "ctc": "3 200/mois", "tags": ["Physique", "Énergie", "Systèmes"], "team": 15, "deadline": "60 jours" }
+      ]
+    },
+    {
+      "id": 6,
+      "key": "project_detail_dvm",
+      "header": "Architecture cloud DVM",
+      "subtitle": "Systèmes informatiques • Priorité haute",
+      "description": "Conception d'une infrastructure de machines virtuelles distribuées de prochaine génération pour le réseau de traitement cognitif de 2030B.",
+      "your_role": "Concepteur de protocoles de sécurité",
+      "ctc_rate": "2 500 CTC/mois",
+      "time_commitment": "15 h/semaine",
+      "progress": 32,
+      "team_size": 12,
+      "challenges": ["Intégration du chiffrement quantique", "Transfert de données à latence nulle", "Compatibilité multi-réalité"],
+      "deadline": "45 jours"
+    },
+    {
+      "id": 7,
+      "key": "active_projects_dashboard",
+      "header": "Vos projets actifs",
+      "subtitle": "4 projets en cours",
+      "projects": [
+        { "title": "Architecture cloud DVM", "status": "active", "progress": 32, "next_action": "Soumettre rapport de sécurité", "ctc_this_week": "+850", "deadline": "45 jours" },
+        { "title": "Modèle de langage neuronal", "status": "review", "progress": 67, "next_action": "Révision par les pairs en attente", "ctc_this_week": "+420", "deadline": "30 jours" },
+        { "title": "Réseau énergétique quantique", "status": "planning", "progress": 12, "next_action": "Réunion d'équipe demain", "ctc_this_week": "+0", "deadline": "60 jours" },
+        { "title": "IA d'impact social", "status": "active", "progress": 54, "next_action": "Analyse de données requise", "ctc_this_week": "+600", "deadline": "20 jours" }
+      ]
+    },
+    {
+      "id": 8,
+      "key": "project_workspace",
+      "header": "Architecture cloud DVM – Espace de travail",
+      "subtitle": "Équipe : 12 membres",
+      "tabs": ["Chat", "Docs", "Tâches", "Calendrier"],
+      "messages": [
+        { "sender": "Dr. Sarah Chen", "message": "Le module de chiffrement quantique est prêt à être révisé.", "time": "10:23", "avatar": "SC" },
+        { "sender": "Marcus Wei", "message": "J'ai mis à jour le document sur les protocoles de sécurité.", "time": "10:45", "avatar": "MW" },
+        { "sender": "Vous", "message": "Super ! Je réviserai les deux avant la fin de la journée.", "time": "11:02", "avatar": "AJ" }
+      ],
+      "milestones": [
+        { "title": "Conception de l'architecture", "status": "completed", "date": "15 jan." },
+        { "title": "Protocoles de sécurité", "status": "in_progress", "date": "20 fév." },
+        { "title": "Tests d'intégration", "status": "pending", "date": "10 mars" }
+      ]
+    },
+    {
+      "id": 9,
+      "key": "contribution_verification",
+      "header": "Vérifications en attente",
+      "subtitle": "3 contributions en cours d'examen",
+      "contributions": [
+        { "title": "Protocole de sécurité v2.0", "project": "Architecture cloud DVM", "status": "under_review", "progress": 65, "estimated_ctc": "+850 CTC", "submitted": "Il y a 2 jours" },
+        { "title": "Rapport d'analyse de patterns", "project": "Modèle de langage neuronal", "status": "pending", "progress": 20, "estimated_ctc": "+420 CTC", "submitted": "Aujourd'hui" },
+        { "title": "Modèle de flux énergétique", "project": "Réseau énergétique quantique", "status": "rejected", "progress": 0, "estimated_ctc": "+0 CTC", "submitted": "Il y a 5 jours" }
+      ]
+    },
+    {
+      "id": 10,
+      "key": "reputation_system",
+      "header": "Votre score de réputation",
+      "subtitle": "Contributeur niveau 8 • 4 250 points",
+      "level": 8,
+      "level_name": "Penseur quantique",
+      "points": "4 250",
+      "next_level_points": "5 000",
+      "achievements": [
+        { "name": "Première contribution", "icon": "⭐", "earned": "Nov 2024" },
+        { "name": "Joueur d'équipe", "icon": "🤝", "earned": "Déc 2024" },
+        { "name": "Champion de l'innovation", "icon": "💡", "earned": "Jan 2025" },
+        { "name": "Expert en sécurité", "icon": "🔒", "earned": "Fév 2025" },
+        { "name": "Maître des patterns", "icon": "🧩", "earned": "Mars 2025" }
+      ],
+      "specializations": [
+        { "area": "Sécurité cloud", "proficiency": 85 },
+        { "area": "Analyse de patterns", "proficiency": 79 },
+        { "area": "Conception de systèmes", "proficiency": 68 }
+      ]
+    },
+    {
+      "id": 11,
+      "key": "learning_hub",
+      "header": "Bibliothèque d'amélioration",
+      "subtitle": "23 modules disponibles",
+      "categories": ["Fondamental", "Avancé", "Spécialisé"],
+      "modules": [
+        { "title": "Fondamentaux de la pensée quantique", "category": "Fondamental", "progress": 100, "duration": "4 h", "ctc_reward": "+200 CTC" },
+        { "title": "Maîtrise de la reconnaissance de patterns", "category": "Avancé", "progress": 67, "duration": "8 h", "ctc_reward": "+500 CTC" },
+        { "title": "Expansion de la conscience 101", "category": "Spécialisé", "progress": 23, "duration": "12 h", "ctc_reward": "+800 CTC" },
+        { "title": "Pensée systémique Pro", "category": "Avancé", "progress": 0, "duration": "6 h", "ctc_reward": "+400 CTC" }
+      ]
+    },
+    {
+      "id": 12,
+      "key": "leaderboards",
+      "header": "Classements mondiaux",
+      "subtitle": "Vous êtes classé #1 247 mondialement",
+      "tabs": ["Global", "Cette semaine", "Par secteur", "Par région"],
+      "top_contributors": [
+        { "rank": 1, "name": "Dr. Elena Voss", "score": "98 450", "badge": "🏆", "avatar": "EV" },
+        { "rank": 2, "name": "Kai Nakamura", "score": "94 320", "badge": "🥈", "avatar": "KN" },
+        { "rank": 3, "name": "Amara Osei", "score": "91 780", "badge": "🥉", "avatar": "AO" },
+        { "rank": 4, "name": "Lena Fischer", "score": "88 200", "badge": "", "avatar": "LF" },
+        { "rank": 5, "name": "Raj Patel", "score": "85 600", "badge": "", "avatar": "RP" }
+      ],
+      "your_rank": 1247,
+      "your_score": "4 250"
+    },
+    {
+      "id": 13,
+      "key": "personal_analytics",
+      "header": "Vos analyses de performance",
+      "subtitle": "30 derniers jours",
+      "ctc_trend": [820, 1200, 950, 1450, 1100, 1800, 2100, 1600, 2400, 1900, 2800, 3200],
+      "capability_improvement": [
+        { "name": "Logique", "before": 79, "after": 85 },
+        { "name": "Reconnaissance de patterns", "before": 71, "after": 79 }
+      ]
+    },
+    {
+      "id": 14,
+      "key": "marketplace_overview",
+      "header": "Marché cognitif",
+      "subtitle": "Services, outils et ressources",
+      "categories": ["Tous", "Outils IA", "Tutoriels", "Services", "Templates"],
+      "items": [
+        { "title": "Amplificateur de mémoire Pro", "price": "500 CTC", "rating": 4.9, "reviews": 1243, "badge": "Populaire" },
+        { "title": "Suite d'analyse de patterns", "price": "300 CTC", "rating": 4.7, "reviews": 892, "badge": "" },
+        { "title": "Lab de pensée quantique", "price": "1 200 CTC", "rating": 4.8, "reviews": 567, "badge": "Premium" }
+      ]
+    },
+    {
+      "id": 15,
+      "key": "team_formation",
+      "header": "Formation d'équipe",
+      "subtitle": "Trouvez vos co-créateurs parfaits",
+      "your_profile": { "skills": ["Sécurité cloud", "IA", "Systèmes"], "seeking": ["Développeur front-end", "Designer UX"] },
+      "matches": [
+        { "name": "Yuki Tanaka", "skills": ["React", "UX", "Mobile"], "match": 92, "avatar": "YT", "online": true },
+        { "name": "Omar Hassan", "skills": ["Design", "Figma", "3D"], "match": 88, "avatar": "OH", "online": false }
+      ]
+    },
+    {
+      "id": 16,
+      "key": "knowledge_base",
+      "header": "Base de connaissances",
+      "subtitle": "Références et documentation",
+      "categories": ["Tous", "Guides", "Références API", "Tutoriels", "Meilleures pratiques"],
+      "articles": [
+        { "title": "Démarrer avec 2030B", "category": "Guide", "views": "12K", "rating": 4.9 },
+        { "title": "Référence de l'économie CTC", "category": "Référence", "views": "8.4K", "rating": 4.8 },
+        { "title": "Stratégies de maximisation cognitive", "category": "Tutoriel", "views": "15K", "rating": 4.7 }
+      ]
+    },
+    {
+      "id": 17,
+      "key": "resource_hub",
+      "header": "Hub de ressources",
+      "subtitle": "Outils et actifs cognitifs",
+      "resource_types": ["Modèles IA", "Jeux de données", "APIs", "SDK", "Templates"],
+      "featured": [
+        { "name": "SDK d'amélioration cognitive", "type": "SDK", "downloads": "45K", "version": "3.2.1" },
+        { "name": "API de correspondance de patterns", "type": "API", "calls": "2.4M/jour", "version": "2.0" }
+      ]
+    },
+    {
+      "id": 18,
+      "key": "mentorship_network",
+      "header": "Réseau de mentorat",
+      "subtitle": "Apprenez des experts",
+      "mentors": [
+        { "name": "Dr. Elena Voss", "specialty": "Neurosciences quantiques", "rating": 4.97, "sessions": 342, "available": true, "avatar": "EV" },
+        { "name": "Marcus Wei", "specialty": "Architecture de systèmes IA", "rating": 4.92, "sessions": 218, "available": false, "avatar": "MW" }
+      ],
+      "your_mentor_sessions": 7,
+      "next_session": "Lundi 15h00"
+    },
+    {
+      "id": 19,
+      "key": "innovation_lab",
+      "header": "Laboratoire d'innovation",
+      "subtitle": "De l'idée à l'impact",
+      "your_ideas": [
+        { "title": "Interface cérébrale quantique", "status": "in_progress", "votes": 234, "stage": "Prototype" },
+        { "title": "IA de prédiction de conscience", "status": "ideation", "votes": 89, "stage": "Idéation" }
+      ],
+      "trending": [
+        { "title": "Protocole de mémoire collective", "votes": 1240 },
+        { "title": "Système de crédit de connaissance", "votes": 987 }
+      ]
+    },
+    {
+      "id": 20,
+      "key": "social_impact_tracker",
+      "header": "Tableau de bord d'impact social",
+      "subtitle": "Votre contribution au monde",
+      "impact_score": 8750,
+      "lives_affected": "1,240",
+      "regions": ["MENA", "Afrique", "Asie du Sud"],
+      "goals": [
+        { "title": "Alphabétisation numérique", "progress": 34, "target": "1M personnes" },
+        { "title": "Accès à l'éducation", "progress": 67, "target": "500K étudiants" }
+      ]
+    },
+    {
+      "id": 21,
+      "key": "events_calendar",
+      "header": "Événements cognitifs",
+      "subtitle": "Hackathons, conférences et ateliers",
+      "upcoming": [
+        { "title": "Sommet mondial 2030B", "date": "15 mars 2025", "type": "Conférence", "attendees": 12000, "virtual": true },
+        { "title": "Hackathon IA & Cognition", "date": "22 mars 2025", "type": "Hackathon", "prize": "50K CTC", "virtual": false }
+      ]
+    },
+    {
+      "id": 22,
+      "key": "community_hub",
+      "header": "Hub communautaire",
+      "subtitle": "2,4M de membres actifs",
+      "channels": [
+        { "name": "Général", "members": 245000, "activity": "très actif" },
+        { "name": "Projets", "members": 180000, "activity": "actif" },
+        { "name": "Recherche", "members": 92000, "activity": "modéré" }
+      ],
+      "trending_topics": ["Cognition quantique", "IA et conscience", "Gouvernance CTC"]
+    },
+    {
+      "id": 23,
+      "key": "settings_dashboard",
+      "header": "Paramètres et préférences",
+      "subtitle": "Personnalisez votre expérience",
+      "sections": ["Compte", "Notifications", "Confidentialité", "Apparence", "Langue"]
+    },
+    {
+      "id": 24,
+      "key": "help_center",
+      "header": "Centre d'aide",
+      "subtitle": "Trouvez des réponses rapidement",
+      "popular_topics": ["Démarrer", "Gagner des CTC", "Vérification des contributions", "Participation aux projets"],
+      "support_hours": "24/7"
+    },
+    {
+      "id": 25,
+      "key": "notifications_center",
+      "header": "Centre de notifications",
+      "subtitle": "12 nouvelles notifications",
+      "notifications": [
+        { "type": "reward", "message": "Vous avez gagné 850 CTC pour votre contribution", "time": "Il y a 2 h" },
+        { "type": "project", "message": "L'architecture cloud DVM nécessite votre attention", "time": "Il y a 4 h" },
+        { "type": "achievement", "message": "Nouveau badge débloqué : Maître de sécurité", "time": "Hier" }
+      ]
+    },
+    {
+      "id": 26,
+      "key": "achievements_gallery",
+      "header": "Galerie des réalisations",
+      "subtitle": "23 badges gagnés sur 85",
+      "categories": ["Toutes", "Cognitives", "Projets", "Communauté", "Spéciales"],
+      "featured": [
+        { "name": "Penseur quantique", "icon": "⚛️", "rarity": "Légendaire", "earned": "Fév 2025" },
+        { "name": "Maître de patterns", "icon": "🧩", "rarity": "Épique", "earned": "Mars 2025" }
+      ]
+    },
+    {
+      "id": 27,
+      "key": "templates_library",
+      "header": "Bibliothèque de templates",
+      "subtitle": "Démarrez plus vite",
+      "categories": ["Tous", "Projets", "Propositions", "Rapports", "Présentations"],
+      "templates": [
+        { "name": "Template de projet cognitif", "uses": 15400, "rating": 4.8 },
+        { "name": "Proposition de recherche", "uses": 8900, "rating": 4.7 }
+      ]
+    },
+    {
+      "id": 28,
+      "key": "cognitive_health",
+      "header": "Tableau de bord de santé cognitive",
+      "subtitle": "Votre bien-être mental aujourd'hui",
+      "overall_score": 78,
+      "metrics": [
+        { "name": "Clarté mentale", "value": 82 },
+        { "name": "Niveau de stress", "value": 35 },
+        { "name": "Qualité du sommeil", "value": 71 }
+      ],
+      "recommendation": "Prenez une pause de 10 min et pratiquez la pleine conscience"
+    },
+    {
+      "id": 29,
+      "key": "synergy_finder",
+      "header": "Trouveur de synergie",
+      "subtitle": "Connexions cognitives au-delà des frontières",
+      "matches": [
+        { "name": "Dr. Aisha Rahman", "synergy": 97, "domains": ["Neurosciences", "IA"], "country": "Émirats Arabes Unis" },
+        { "name": "Carlos Mendez", "synergy": 94, "domains": ["Physique quantique", "Cloud"], "country": "Brésil" }
+      ]
+    },
+    {
+      "id": 30,
+      "key": "advanced_search",
+      "header": "Recherche avancée",
+      "subtitle": "Trouvez tout dans l'écosystème 2030B",
+      "filters": ["Projets", "Contributeurs", "Ressources", "Événements", "Connaissances"],
+      "recent_searches": ["Architecture cloud", "Pensée quantique", "Gouvernance CTC"]
+    },
+    {
+      "id": 31,
+      "key": "ctc_staking",
+      "header": "Staking CTC",
+      "subtitle": "Faites fructifier vos jetons",
+      "your_staked": "5,000",
+      "apy": "12.5%",
+      "rewards_earned": "625 CTC",
+      "tiers": [
+        { "name": "Bronze", "min": "1,000 CTC", "apy": "8%", "active": false },
+        { "name": "Argent", "min": "5,000 CTC", "apy": "12.5%", "active": true },
+        { "name": "Or", "min": "25,000 CTC", "apy": "18%", "active": false },
+        { "name": "Platine", "min": "100,000 CTC", "apy": "24%", "active": false }
+      ]
+    },
+    {
+      "id": 32,
+      "key": "skill_roadmap",
+      "header": "Feuille de route des compétences",
+      "subtitle": "Votre chemin vers l'excellence cognitive",
+      "current_level": "Penseur quantique",
+      "next_level": "Architecte de systèmes",
+      "milestones": [
+        { "title": "Maîtrise de la mémoire", "status": "completed" },
+        { "title": "Maîtrise de la logique", "status": "completed" },
+        { "title": "Pensée créative", "status": "in_progress" },
+        { "title": "Intelligence artificielle", "status": "planned" }
+      ]
+    },
+    {
+      "id": 33,
+      "key": "performance_analytics",
+      "header": "Analytics de performance",
+      "subtitle": "Aperçu de 90 jours",
+      "kpis": [
+        { "label": "CTC gagnés", "value": "24,500", "trend": "+32%" },
+        { "label": "Projets terminés", "value": "7", "trend": "+3" },
+        { "label": "Score de réputation", "value": "4,250", "trend": "+580" }
+      ]
+    },
+    {
+      "id": 34,
+      "key": "global_challenges",
+      "header": "Défis mondiaux",
+      "subtitle": "Résolvez des problèmes de portée planétaire",
+      "challenges": [
+        { "title": "Accessibilité à l'eau propre", "difficulty": "Extrême", "prize": "500K CTC", "teams": 234 },
+        { "title": "Transition énergétique propre", "difficulty": "Expert", "prize": "300K CTC", "teams": 189 }
+      ]
+    },
+    {
+      "id": 35,
+      "key": "neural_link",
+      "header": "Interface Neural Link",
+      "subtitle": "Cognition améliorée par la technologie",
+      "features": ["Biofeedback temps réel", "Sessions de méditation guidées", "Surveillance de concentration"],
+      "status": "Actif",
+      "enhancement_multiplier": "2.3×"
+    },
+    {
+      "id": 36,
+      "key": "resource_exchange",
+      "header": "Bourse de ressources",
+      "subtitle": "Échangez des actifs cognitifs",
+      "listed_resources": [
+        { "name": "Jeu de données d'entraînement IA", "price": "2,000 CTC", "seller": "DataLab Pro" },
+        { "name": "Plugin de gestion de mémoire", "price": "800 CTC", "seller": "NeuroTools" }
+      ]
+    },
+    {
+      "id": 37,
+      "key": "predictive_engine",
+      "header": "Moteur prédictif",
+      "subtitle": "IA qui anticipe vos besoins cognitifs",
+      "predictions": [
+        { "insight": "Vous atteindrez le niveau 9 dans 23 jours", "confidence": 94 },
+        { "insight": "Votre pic de productivité : 09h00–11h00", "confidence": 87 }
+      ]
+    },
+    {
+      "id": 38,
+      "key": "consciousness_expansion",
+      "header": "Expansion de la conscience",
+      "subtitle": "Explorer les dimensions cognitives supérieures",
+      "dimensions": [
+        { "name": "Méta-conscience", "level": 43, "description": "Conscience de ses propres processus mentaux" },
+        { "name": "Conscience collective", "level": 28, "description": "Connexion aux réseaux cognitifs partagés" }
+      ]
+    },
+    {
+      "id": 39,
+      "key": "multi_reality_hub",
+      "header": "Hub multi-réalité",
+      "subtitle": "Au-delà des frontières physiques",
+      "environments": [
+        { "name": "Espace cognitif virtuel", "users": "124K", "type": "VR" },
+        { "name": "Couche RA cognitive", "users": "87K", "type": "AR" },
+        { "name": "Lab de pensée spatiale", "users": "45K", "type": "XR" }
+      ]
+    },
+    {
+      "id": 40,
+      "key": "legacy_tracker",
+      "header": "Suivi de l'héritage",
+      "subtitle": "Votre impact durable sur le monde",
+      "legacy_score": 8750,
+      "contributions_archived": 127,
+      "knowledge_preserved": "2,4 Mo",
+      "future_generations_reached": "Est. 24,000"
+    },
+    {
+      "id": 41,
+      "key": "emergency_alert_system",
+      "header": "Système d'alerte d'urgence",
+      "subtitle": "Réseau de réponse cognitive mondial",
+      "active_alerts": 2,
+      "alerts": [
+        { "severity": "high", "title": "Défi cognitif critique", "region": "Global", "responders": 1240 },
+        { "severity": "medium", "title": "Optimisation de ressources requise", "region": "MENA", "responders": 456 }
+      ]
+    },
+    {
+      "id": 42,
+      "key": "quantum_portal",
+      "header": "Portail quantique",
+      "subtitle": "Interface vers les domaines cognitifs avancés",
+      "states": [
+        { "name": "Superposition cognitive", "stability": 94 },
+        { "name": "Intrication de connaissances", "stability": 78 },
+        { "name": "Tunneling d'information", "stability": 65 }
+      ]
+    },
+    {
+      "id": 43,
+      "key": "bio_monitor",
+      "header": "Bio-Moniteur",
+      "subtitle": "Indicateurs biologiques de la performance cognitive",
+      "metrics": [
+        { "name": "Ondes alpha", "value": "8-12 Hz", "status": "Optimal" },
+        { "name": "Cohérence HRV", "value": 76, "status": "Bon" },
+        { "name": "Qualité du sommeil", "value": 71, "status": "Modéré" }
+      ]
+    },
+    {
+      "id": 44,
+      "key": "dimensions_explorer",
+      "header": "Explorateur de dimensions",
+      "subtitle": "Naviguer dans l'espace cognitif multi-dimensionnel",
+      "dimensions": [
+        { "id": 1, "name": "Espace physique", "accessibility": 100 },
+        { "id": 2, "name": "Espace numérique", "accessibility": 94 },
+        { "id": 3, "name": "Espace cognitif", "accessibility": 67 },
+        { "id": 4, "name": "Espace quantique", "accessibility": 23 }
+      ]
+    },
+    {
+      "id": 45,
+      "key": "collective_mind",
+      "header": "Esprit collectif",
+      "subtitle": "La somme de toutes les intelligences",
+      "network_size": "2.4M",
+      "collective_iq": 847,
+      "shared_problems_solved": 12400,
+      "sync_rate": "94%"
+    },
+    {
+      "id": 46,
+      "key": "time_stream",
+      "header": "Flux temporel",
+      "subtitle": "Apprentissage à travers le temps",
+      "past_milestones": [
+        { "year": 2020, "event": "Fondation de 2030B" },
+        { "year": 2022, "event": "Lancement de la plateforme" }
+      ],
+      "future_projections": [
+        { "year": 2025, "event": "Lancement mondial" },
+        { "year": 2030, "event": "1 milliard de vies impactées" }
+      ]
+    },
+    {
+      "id": 47,
+      "key": "translator",
+      "header": "Traducteur cognitif",
+      "subtitle": "Communication sans frontières",
+      "supported_languages": 47,
+      "cognitive_dialects": 12,
+      "translation_accuracy": "99.2%",
+      "real_time": true
+    },
+    {
+      "id": 48,
+      "key": "energy_flow",
+      "header": "Flux d'énergie",
+      "subtitle": "Optimisation de votre énergie cognitive",
+      "current_level": 78,
+      "peak_hours": ["09:00–11:00", "15:00–17:00"],
+      "energy_sources": [
+        { "name": "Focus profond", "contribution": 45 },
+        { "name": "Apprentissage social", "contribution": 30 },
+        { "name": "Défis créatifs", "contribution": 25 }
+      ]
+    },
+    {
+      "id": 49,
+      "key": "dream_bridge",
+      "header": "Pont des rêves",
+      "subtitle": "Amélioration cognitive pendant le sommeil",
+      "sleep_score": 71,
+      "dream_sessions": 7,
+      "insights_from_dreams": ["Connexions créatives", "Consolidation de mémoire", "Résolution de problèmes"],
+      "next_session": "Cette nuit à 22h30"
+    },
+    {
+      "id": 50,
+      "key": "cosmic_mission",
+      "header": "Mission cosmique",
+      "subtitle": "Votre rôle dans le futur de l'humanité",
+      "mission_alignment": 94,
+      "impact_projection": "1.2M vies d'ici 2030",
+      "cosmic_rank": "Architecte cognitif",
+      "universe_contribution": "0.024%"
+    }
+  ]
+}

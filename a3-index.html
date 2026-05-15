@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>2030B – Be Smarter | Volume 3 · Slides 101–150</title>
+  <meta name="description" content="2030B Be Smarter – Volume 3 viewer. Slides 101–150 covering NAE, Spatial Learning, Cross-Chain, CGDP, Universal Basic CTC, Enterprise Layer, and The 2030 Vision.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { overflow: hidden; height: 100dvh; }
+
+    .app-wrapper {
+      width: 100%; height: 100dvh;
+      display: flex; flex-direction: column;
+      background: var(--g-bg); position: relative; overflow: hidden;
+    }
+
+    /* ─── TOP BAR ─── */
+    .top-bar {
+      height: 56px;
+      background: rgba(11,15,26,0.9); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--c-border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; z-index: 200; flex-shrink: 0;
+    }
+    .top-bar-brand { display: flex; align-items: center; gap: 10px; }
+    .brand-logo {
+      font-size: 22px; font-weight: 900;
+      background: var(--g-primary);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .brand-sub { font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 500; }
+    .vol-badge {
+      background: linear-gradient(135deg,#43e97b,#38f9d7);
+      color: #0a0a1a; font-size: 10px; font-weight: 800;
+      padding: 2px 8px; border-radius: 20px; letter-spacing: .5px;
+    }
+    .top-bar-controls { display: flex; align-items: center; gap: 8px; }
+
+    .vol-nav { display: flex; gap: 4px; }
+    .vol-link {
+      padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,.5); border: 1px solid transparent;
+      text-decoration: none; transition: all .2s;
+    }
+    .vol-link:hover { color:#fff; border-color: var(--c-border); }
+    .vol-link.active {
+      color: #0a0a1a; background: linear-gradient(135deg,#43e97b,#38f9d7);
+      border-color: transparent;
+    }
+
+    /* ─── CAROUSEL ─── */
+    .carousel-wrapper {
+      flex:1; overflow:hidden;
+      display:flex; align-items:center; justify-content:center;
+      position:relative; user-select:none; -webkit-user-select:none;
+    }
+    .slide-iframe-container {
+      position:relative; width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .slide-iframe {
+      border:none; border-radius:0;
+      width:100%; height:100%; background:#0B0F1A;
+    }
+    @media (min-width:768px) {
+      .slide-iframe {
+        aspect-ratio:9/16; width:auto; height:100%;
+        max-height:90vh; border-radius:24px;
+        box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 24px 80px rgba(0,0,0,.6);
+      }
+    }
+
+    .slide-counter {
+      position:absolute; top:16px; left:50%; transform:translateX(-50%);
+      background:rgba(11,15,26,.85); border:1px solid var(--c-border);
+      border-radius:20px; padding:5px 14px;
+      font-size:12px; font-family:var(--font-mono); color:rgba(255,255,255,.5);
+      backdrop-filter:blur(10px); z-index:300; pointer-events:none;
+    }
+
+    .nav-arrow {
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:48px; height:48px; border-radius:50%;
+      background:rgba(11,15,26,.85); border:1px solid var(--c-border);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; font-size:20px; color:rgba(255,255,255,.6);
+      transition:all .2s; backdrop-filter:blur(10px); z-index:300;
+    }
+    .nav-arrow:hover {
+      background:rgba(67,233,123,.2); border-color:rgba(67,233,123,.5); color:#fff;
+      transform:translateY(-50%) scale(1.05);
+    }
+    .nav-prev { left:16px; }
+    .nav-next { right:16px; }
+    @media (max-width:767px) { .nav-arrow { display:none; } }
+
+    /* ─── SLIDE RAIL ─── */
+    .slide-rail {
+      height:80px; background:rgba(11,15,26,.92);
+      backdrop-filter:blur(20px); border-top:1px solid var(--c-border);
+      display:flex; align-items:center; gap:6px; padding:0 16px;
+      overflow-x:auto; scrollbar-width:none; flex-shrink:0;
+    }
+    .slide-rail::-webkit-scrollbar { display:none; }
+    .slide-thumb {
+      min-width:52px; height:56px; border-radius:10px;
+      border:1.5px solid var(--c-border); background:rgba(255,255,255,.04);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:2px; cursor:pointer; transition:all .2s; flex-shrink:0;
+    }
+    .slide-thumb:hover { background:rgba(67,233,123,.1); border-color:rgba(67,233,123,.3); }
+    .slide-thumb.active { background:rgba(67,233,123,.2); border-color:#43e97b; }
+    .slide-thumb-num {
+      font-family:var(--font-mono); font-size:11px; font-weight:700;
+      color:rgba(255,255,255,.5);
+    }
+    .slide-thumb.active .slide-thumb-num { color:#43e97b; }
+    .slide-thumb-icon { font-size:16px; }
+
+    /* ─── PROGRESS ─── */
+    .progress-ribbon { height:2px; background:var(--c-border); flex-shrink:0; }
+    .progress-ribbon-fill { height:100%; background:linear-gradient(90deg,#43e97b,#38f9d7); transition:width .4s ease; }
+
+    /* ─── CHAPTER STRIP ─── */
+    .chapter-strip {
+      height: 28px;
+      background: rgba(67,233,123,.06);
+      border-bottom: 1px solid rgba(67,233,123,.12);
+      display: flex; align-items: center;
+      padding: 0 16px; gap: 6px; overflow-x: auto;
+      scrollbar-width: none; flex-shrink: 0;
+    }
+    .chapter-strip::-webkit-scrollbar { display:none; }
+    .chapter-chip {
+      white-space: nowrap; font-size: 10px; font-weight: 600;
+      padding: 2px 10px; border-radius: 12px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.45); cursor: pointer; transition: all .2s;
+    }
+    .chapter-chip:hover,
+    .chapter-chip.active {
+      background: rgba(67,233,123,.15); border-color: rgba(67,233,123,.4); color:#43e97b;
+    }
+
+    /* ─── SLIDE SKELETON (inside carousel) ─── */
+    .slide-skeleton {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .slide-skeleton-inner {
+      background: #0a1a12;
+      border-radius: 24px;
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 28px 20px;
+      gap: 14px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 24px 80px rgba(0,0,0,.5);
+      transition: opacity 0.3s ease;
+    }
+    @media (min-width: 768px) {
+      .slide-skeleton-inner {
+        aspect-ratio: 9/16;
+        width: auto;
+        max-height: 90vh;
+        height: 100%;
+      }
+    }
+    .slide-skeleton.hidden { opacity: 0; pointer-events: none; }
+    @keyframes skel-shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    .skel-block {
+      border-radius: 10px;
+      background: linear-gradient(90deg,
+        rgba(67,233,123,.05) 25%,
+        rgba(67,233,123,.14) 50%,
+        rgba(67,233,123,.05) 75%
+      );
+      background-size: 200% 100%;
+      animation: skel-shimmer 1.6s infinite;
+    }
+    .skel-header  { height: 48px; width: 55%; }
+    .skel-sub     { height: 16px; width: 75%; }
+    .skel-row     { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; }
+    .skel-card    { border-radius: 12px; }
+    .skel-bottom  { height: 52px; width: 100%; margin-top: auto; }
+
+    /* ─── LOADING ─── */
+    #app-loading {
+      position:fixed; inset:0; background:var(--c-bg-deep);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      z-index:9999; gap:24px; transition:opacity .5s, visibility .5s;
+    }
+    #app-loading.hidden { opacity:0; visibility:hidden; }
+    .loading-brand { display:flex; flex-direction:column; align-items:center; gap:8px; }
+    .loading-brand .logo-text {
+      font-size:52px; font-weight:900;
+      background: linear-gradient(135deg,#43e97b,#38f9d7);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .loading-brand .tagline {
+      font-size:14px; font-weight:600; color:rgba(255,255,255,.5);
+      letter-spacing:2px; text-transform:uppercase;
+    }
+    .loading-spinner {
+      width:44px; height:44px;
+      border:3px solid rgba(67,233,123,.15); border-top-color:#43e97b;
+      border-radius:50%; animation:spin .8s linear infinite;
+    }
+    @keyframes spin { 100% { transform:rotate(360deg); } }
+
+    .keyboard-hint {
+      position:fixed; bottom:96px; right:20px;
+      font-size:11px; color:rgba(255,255,255,.25);
+      z-index:300; pointer-events:none;
+    }
+    @media (max-width:767px) { .keyboard-hint { display:none; } }
+  </style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+
+<!-- Loading Screen -->
+<div id="app-loading">
+  <div class="loading-brand">
+    <div class="logo-text">2030B</div>
+    <div class="tagline">Volume 3 · Next Frontier</div>
+  </div>
+  <div class="loading-spinner"></div>
+  <div style="font-size:13px;color:rgba(255,255,255,.3)">Loading Slides 101 – 150…</div>
+</div>
+
+<!-- App Wrapper -->
+<div class="app-wrapper">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-brand">
+      <div class="brand-logo">2030B</div>
+      <div class="brand-sub">Be Smarter</div>
+      <div class="vol-badge">VOL 3</div>
+    </div>
+    <div class="top-bar-controls">
+      <div class="vol-nav">
+        <a class="vol-link" href="a1-index.html">V1</a>
+        <a class="vol-link" href="a2-index.html">V2</a>
+        <a class="vol-link active" href="a3-index.html">V3</a>
+      </div>
+      <div class="lang-toggle" id="langToggle">
+        <div class="lang-btn active" data-lang="en" onclick="switchLang('en')">EN</div>
+        <div class="lang-btn" data-lang="ar" onclick="switchLang('ar')">AR</div>
+      </div>
+      <div class="icon-btn" onclick="toggleSlideInput()" title="Jump to slide">🎯</div>
+    </div>
+  </div>
+
+  <!-- Progress Ribbon -->
+  <div class="progress-ribbon">
+    <div class="progress-ribbon-fill" id="progressRibbon" style="width:2%"></div>
+  </div>
+
+  <!-- Chapter Strip -->
+  <div class="chapter-strip" id="chapterStrip">
+    <div class="chapter-chip active" data-start="101" onclick="goToSlide(101)">🧬 NAE (101–110)</div>
+    <div class="chapter-chip" data-start="111" onclick="goToSlide(111)">🏛️ Spatial (111–118)</div>
+    <div class="chapter-chip" data-start="119" onclick="goToSlide(119)">⛓️ Cross-Chain (119–125)</div>
+    <div class="chapter-chip" data-start="126" onclick="goToSlide(126)">📊 CGDP (126–132)</div>
+    <div class="chapter-chip" data-start="133" onclick="goToSlide(133)">🏢 Enterprise (133–139)</div>
+    <div class="chapter-chip" data-start="140" onclick="goToSlide(140)">🚀 Vision (140–150)</div>
+  </div>
+
+  <!-- Carousel -->
+  <div class="carousel-wrapper" id="carouselWrapper">
+    <div class="slide-counter" id="slideCounter">101 / 150</div>
+    <button class="nav-arrow nav-prev" onclick="navigate(-1)">‹</button>
+    <div class="slide-iframe-container" id="slideContainer">
+
+      <!-- Skeleton placeholder (shown while iframe loads) -->
+      <div class="slide-skeleton" id="slideSkeleton">
+        <div class="slide-skeleton-inner">
+          <div class="skel-block skel-header"></div>
+          <div class="skel-block skel-sub"></div>
+          <div class="skel-row">
+            <div class="skel-block skel-card"></div>
+            <div class="skel-block skel-card"></div>
+            <div class="skel-block skel-card"></div>
+            <div class="skel-block skel-card"></div>
+          </div>
+          <div class="skel-block skel-bottom"></div>
+        </div>
+      </div>
+
+      <iframe class="slide-iframe" id="slideIframe" src="about:blank" allowfullscreen></iframe>
+    </div>
+    <button class="nav-arrow nav-next" onclick="navigate(1)">›</button>
+  </div>
+
+  <!-- Slide Rail -->
+  <div class="slide-rail" id="slideRail"></div>
+</div>
+
+<div class="keyboard-hint">← → Arrow Keys | Space</div>
+
+<!-- Quick Jump -->
+<div id="jumpOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;align-items:center;justify-content:center">
+  <div style="background:var(--c-bg-mid);border:1px solid var(--c-border);border-radius:16px;padding:24px;min-width:240px;text-align:center">
+    <div style="font-size:14px;color:rgba(255,255,255,.7);margin-bottom:12px">Jump to Slide (101–150)</div>
+    <input id="jumpInput" type="number" min="101" max="150"
+      style="width:100%;background:rgba(255,255,255,.05);border:1px solid var(--c-border);border-radius:8px;padding:10px;font-size:20px;font-family:var(--font-mono);color:#fff;text-align:center;outline:none"
+      onkeydown="handleJumpKey(event)">
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-ghost" style="flex:1" onclick="closeJump()">Cancel</button>
+      <button class="btn btn-primary" style="flex:1" onclick="doJump()">Go</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/animations.js"></script>
+<script src="js/loader.js"></script>
+<script src="js/slide-utils.js"></script>
+<script>
+  // ─── SLIDE METADATA Vol 3 (101–150) ────────────────────────────
+  const SLIDES = [
+    { num:101, icon:'🧬', title:'Vol 3 Intro' },
+    { num:102, icon:'🔬', title:'NAE Intro' },
+    { num:103, icon:'🎯', title:'7 Adaptive Dimensions' },
+    { num:104, icon:'🌊', title:'Flow State Engineering' },
+    { num:105, icon:'📡', title:'Biometric Proxy Layer' },
+    { num:106, icon:'📚', title:'Personalized Curriculum' },
+    { num:107, icon:'🤖', title:'CORA AI Assistant' },
+    { num:108, icon:'🎵', title:'Cognitive Music System' },
+    { num:109, icon:'⏰', title:'Daily Conditioning 3.0' },
+    { num:110, icon:'📊', title:'NAE Performance Dashboard' },
+    { num:111, icon:'🏛️', title:'Spatial Learning Intro' },
+    { num:112, icon:'🏰', title:'Memory Palace System' },
+    { num:113, icon:'🌌', title:'Concept Cosmos' },
+    { num:114, icon:'🖥️', title:'WebXR Architecture' },
+    { num:115, icon:'🤝', title:'Multiplayer Learning' },
+    { num:116, icon:'🏅', title:'Spatial Certification' },
+    { num:117, icon:'🏙️', title:'Spatial Social Hub' },
+    { num:118, icon:'🗺️', title:'Spatial Roadmap' },
+    { num:119, icon:'⛓️', title:'Cross-Chain Bridge' },
+    { num:120, icon:'💱', title:'DeFi Integration' },
+    { num:121, icon:'📈', title:'Exchange Listing' },
+    { num:122, icon:'💰', title:'Tokenomics V3' },
+    { num:123, icon:'🌱', title:'Cognitive Yield' },
+    { num:124, icon:'🔒', title:'ZK Identity' },
+    { num:125, icon:'🗳️', title:'On-Chain Governance V2' },
+    { num:126, icon:'📊', title:'CGDP Index' },
+    { num:127, icon:'🔬', title:'CGDP Methodology' },
+    { num:128, icon:'🏙️', title:'CGDP City Pilot' },
+    { num:129, icon:'🌙', title:'Regional: MENA' },
+    { num:130, icon:'🌍', title:'Regional: Africa' },
+    { num:131, icon:'🌐', title:'Universal Basic CTC Intro' },
+    { num:132, icon:'🧪', title:'UBCTC Pilot' },
+    { num:133, icon:'🏢', title:'Enterprise Layer' },
+    { num:134, icon:'🤝', title:'Talent API' },
+    { num:135, icon:'🎓', title:'University Partnerships' },
+    { num:136, icon:'🏛️', title:'Government Partnerships' },
+    { num:137, icon:'🎨', title:'Creator Economy 3.0' },
+    { num:138, icon:'💎', title:'IP Marketplace' },
+    { num:139, icon:'🛡️', title:'Cognitive Insurance' },
+    { num:140, icon:'🚦', title:'Vision 2030 Status' },
+    { num:141, icon:'👥', title:'Team Expansion' },
+    { num:142, icon:'💹', title:'Financial Overview' },
+    { num:143, icon:'🚀', title:'Series B Roadmap' },
+    { num:144, icon:'🛠️', title:'Developer Ecosystem' },
+    { num:145, icon:'🤝', title:'Ecosystem Partnerships' },
+    { num:146, icon:'🔮', title:'The Cognitive Future' },
+    { num:147, icon:'📖', title:'Open Source Vision' },
+    { num:148, icon:'🌍', title:'Global Impact Dashboard' },
+    { num:149, icon:'📣', title:'Join the Movement' },
+    { num:150, icon:'🌟', title:'Closing Vision V3' },
+  ];
+
+  const TOTAL  = 150;
+  const OFFSET = 101;
+  let currentSlide = 101;
+  let currentLang  = 'en';
+
+  // Chapter ranges for strip highlighting
+  const CHAPTERS = [
+    { start:101, end:110 },
+    { start:111, end:118 },
+    { start:119, end:125 },
+    { start:126, end:132 },
+    { start:133, end:139 },
+    { start:140, end:150 },
+  ];
+
+  function updateChapterStrip(num) {
+    document.querySelectorAll('.chapter-chip').forEach(chip => {
+      const s = parseInt(chip.dataset.start);
+      const ch = CHAPTERS.find(c => c.start === s);
+      chip.classList.toggle('active', ch && num >= ch.start && num <= ch.end);
+    });
+  }
+
+  function buildRail() {
+    const rail = document.getElementById('slideRail');
+    rail.innerHTML = SLIDES.map(s => `
+      <div class="slide-thumb ${s.num === currentSlide ? 'active' : ''}"
+           id="thumb-${s.num}" onclick="goToSlide(${s.num})" title="${s.title}">
+        <span class="slide-thumb-icon">${s.icon}</span>
+        <span class="slide-thumb-num">${s.num}</span>
+      </div>`).join('');
+  }
+
+  // ─── SKELETON helpers ──────────────────────────────────────────
+  function showSkeleton() {
+    const sk = document.getElementById('slideSkeleton');
+    if (sk) { sk.style.opacity = '1'; sk.style.pointerEvents = 'none'; sk.classList.remove('hidden'); }
+  }
+  function hideSkeleton() {
+    const sk = document.getElementById('slideSkeleton');
+    if (!sk) return;
+    sk.style.transition = 'opacity 0.35s ease';
+    sk.style.opacity = '0';
+    setTimeout(() => sk.classList.add('hidden'), 360);
+  }
+
+  function goToSlide(num) {
+    num = Math.max(OFFSET, Math.min(TOTAL, num));
+    currentSlide = num;
+
+    // Show skeleton immediately
+    showSkeleton();
+
+    const padded = String(num).padStart(3, '0');
+    const iframe = document.getElementById('slideIframe');
+
+    // Hide skeleton once iframe content loads
+    iframe.onload = () => {
+      hideSkeleton();
+      try { iframe.contentWindow.Loader && iframe.contentWindow.Loader.switchLanguage(currentLang); } catch(e) {}
+    };
+    iframe.src = `slides/slide-${padded}.html`;
+
+    document.getElementById('slideCounter').textContent = `${num} / ${TOTAL}`;
+    document.querySelectorAll('.slide-thumb').forEach(t => t.classList.remove('active'));
+    const th = document.getElementById(`thumb-${num}`);
+    if (th) { th.classList.add('active'); th.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' }); }
+    document.getElementById('progressRibbon').style.width = `${((num - OFFSET + 1) / (TOTAL - OFFSET + 1)) * 100}%`;
+    updateChapterStrip(num);
+  }
+
+  function navigate(dir) { goToSlide(currentSlide + dir); }
+
+  function switchLang(lang) {
+    currentLang = lang;
+    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    localStorage.setItem('2030b_lang', lang);
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+
+    // Reload slide with skeleton during lang switch
+    showSkeleton();
+    const padded = String(currentSlide).padStart(3, '0');
+    const iframe = document.getElementById('slideIframe');
+    iframe.onload = () => {
+      hideSkeleton();
+      try { iframe.contentWindow.Loader && iframe.contentWindow.Loader.switchLanguage(lang); } catch(e) {}
+    };
+    iframe.src = `slides/slide-${padded}.html`;
+  }
+
+  function toggleSlideInput() {
+    document.getElementById('jumpOverlay').style.display = 'flex';
+    setTimeout(() => document.getElementById('jumpInput').focus(), 100);
+  }
+  function closeJump() { document.getElementById('jumpOverlay').style.display = 'none'; }
+  function doJump() {
+    const val = parseInt(document.getElementById('jumpInput').value);
+    if (val >= OFFSET && val <= TOTAL) goToSlide(val);
+    closeJump();
+  }
+  function handleJumpKey(e) { if(e.key==='Enter') doJump(); if(e.key==='Escape') closeJump(); }
+
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('jumpOverlay').style.display === 'flex') return;
+    if (e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ') { e.preventDefault(); navigate(1); }
+    else if (e.key==='ArrowLeft'||e.key==='ArrowUp') { e.preventDefault(); navigate(-1); }
+  });
+
+  let touchStartX = 0, touchStartY = 0;
+  document.getElementById('carouselWrapper').addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY;
+  }, { passive:true });
+  document.getElementById('carouselWrapper').addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  }, { passive:true });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('2030b_lang') || 'en';
+    currentLang = savedLang;
+    if (savedLang === 'ar') {
+      document.documentElement.setAttribute('dir','rtl');
+      document.documentElement.setAttribute('lang','ar');
+      document.body.setAttribute('dir','rtl');
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === savedLang));
+    }
+    buildRail();
+    AnimationSystem.initParticles('particles-canvas', 20);
+    setTimeout(() => {
+      document.getElementById('app-loading').classList.add('hidden');
+      goToSlide(101);
+    }, 1200);
+  });
+</script>
+</body>
+</html>

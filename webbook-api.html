@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>WebBook v2 — Complete API Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#07091a; --bg2:#0d1124; --bg3:#111827;
+      --border:rgba(255,255,255,.07); --border2:rgba(26,79,255,.2);
+      --text:#e2e8f0; --text2:#94a3b8; --text3:#64748b;
+      --brand:#4a7bff; --brand2:#1a4fff; --violet:#8b5cf6;
+      --jade:#14b8a6; --gold:#f5c518; --rose:#fb7185;
+      --radius:.75rem; --radius-sm:.5rem;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:#1a4fff44;border-radius:3px}
+
+    /* ── Layout ── */
+    .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+    @media(max-width:900px){.app{grid-template-columns:1fr}}
+
+    /* ── Sidebar ── */
+    #sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--bg2);border-right:1px solid var(--border);padding:1.5rem 1rem}
+    #sidebar::-webkit-scrollbar{width:4px}
+    .sb-logo{display:flex;align-items:center;gap:.6rem;font-size:1.1rem;font-weight:800;color:var(--brand);margin-bottom:1.5rem}
+    .sb-logo i{font-size:1.3rem}
+    .sb-section{font-size:.62rem;font-weight:700;color:var(--brand);letter-spacing:.12em;text-transform:uppercase;padding:.5rem .4rem .2rem;margin-top:.5rem}
+    .sb-link{display:flex;align-items:center;gap:.5rem;padding:.42rem .65rem;border-radius:.45rem;font-size:.8rem;color:var(--text2);cursor:pointer;transition:all .15s;text-decoration:none;margin-bottom:2px}
+    .sb-link:hover,.sb-link.active{background:rgba(26,79,255,.12);color:#c7d2fe}
+    .sb-link i{font-size:.75rem;min-width:1rem;text-align:center;color:var(--brand)}
+
+    /* ── Main ── */
+    #main{padding:2.5rem 2rem 4rem;max-width:860px}
+    @media(max-width:900px){#main{padding:1.5rem 1rem 3rem}}
+    @media(max-width:900px){#sidebar{display:none}}
+
+    /* ── Typography ── */
+    h1{font-size:2.2rem;font-weight:800;line-height:1.2;margin-bottom:.5rem}
+    h1 span{background:linear-gradient(135deg,#4a7bff,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    h2{font-size:1.35rem;font-weight:700;color:#f1f5f9;margin:2.5rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+    h3{font-size:1rem;font-weight:700;color:#c7d2fe;margin:1.6rem 0 .5rem}
+    h4{font-size:.88rem;font-weight:700;color:#94a3b8;margin:1.2rem 0 .35rem;text-transform:uppercase;letter-spacing:.06em}
+    p{color:var(--text2);margin-bottom:.85rem;font-size:.9rem;line-height:1.75}
+    a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+    ul,ol{padding-right:0;padding-left:1.4rem;color:var(--text2);font-size:.88rem;margin-bottom:.85rem}
+    li{margin-bottom:.3rem;line-height:1.65}
+    code{background:rgba(139,92,246,.15);color:#c4b5fd;padding:.15rem .4rem;border-radius:.3rem;font-family:'Fira Code',monospace;font-size:.82em}
+    strong{color:#f1f5f9;font-weight:600}
+
+    /* ── Code blocks ── */
+    .code-block{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin:1rem 0;overflow:hidden}
+    .code-block .cb-head{display:flex;align-items:center;justify-content:space-between;padding:.5rem .9rem;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border);font-size:.72rem;color:var(--text3);font-family:'Fira Code',monospace}
+    .code-block pre{padding:1rem 1.1rem;overflow-x:auto;font-family:'Fira Code',monospace;font-size:.8rem;line-height:1.7;color:#e2e8f0}
+    .copy-btn{background:rgba(26,79,255,.15);border:1px solid rgba(26,79,255,.3);color:var(--brand);padding:.2rem .6rem;border-radius:.35rem;font-size:.7rem;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif}
+    .copy-btn:hover{background:rgba(26,79,255,.3)}
+    /* syntax */
+    .kw{color:#818cf8}  .str{color:#6ee7b7}  .cm{color:#475569;font-style:italic}
+    .fn{color:#93c5fd}  .num{color:#fbbf24}   .prop{color:#c4b5fd}
+    .op{color:#94a3b8}  .tag{color:#fb7185}   .attr{color:#fde68a}
+
+    /* ── Badges / Pills ── */
+    .badge{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .65rem;border-radius:9999px;font-size:.72rem;font-weight:700;border:1px solid}
+    .badge-blue  {color:#93c5fd;background:rgba(26,79,255,.12);border-color:rgba(26,79,255,.3)}
+    .badge-green {color:#6ee7b7;background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.3)}
+    .badge-gold  {color:#fde68a;background:rgba(245,197,24,.08);border-color:rgba(245,197,24,.3)}
+    .badge-violet{color:#c4b5fd;background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.3)}
+    .badge-rose  {color:#fda4af;background:rgba(251,113,133,.1);border-color:rgba(251,113,133,.3)}
+
+    /* ── Tables ── */
+    .api-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:1rem 0}
+    .api-table th{padding:.55rem .85rem;text-align:left;background:rgba(26,79,255,.12);color:#818cf8;font-weight:700;font-size:.75rem;letter-spacing:.04em}
+    .api-table td{padding:.55rem .85rem;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+    .api-table td:first-child{color:#e2e8f0;font-weight:500}
+    .api-table tr:last-child td{border-bottom:none}
+    .api-table tr:hover td{background:rgba(255,255,255,.02)}
+
+    /* ── Section cards ── */
+    .section-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.5rem;margin:1.2rem 0}
+    .section-card.note   {border-color:rgba(245,197,24,.25);background:rgba(245,197,24,.04)}
+    .section-card.tip    {border-color:rgba(45,212,191,.25);background:rgba(45,212,191,.04)}
+    .section-card.warning{border-color:rgba(251,113,133,.25);background:rgba(251,113,133,.04)}
+    .section-card h4{margin-top:0}
+
+    /* ── MD type grid ── */
+    .type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin:1rem 0}
+    .type-card{background:var(--bg2);border:1px solid var(--border);border-radius:.65rem;padding:.9rem 1rem}
+    .type-card .tc-name{font-size:.78rem;font-weight:700;color:#f1f5f9;margin-bottom:.25rem;display:flex;align-items:center;gap:.4rem}
+    .type-card .tc-desc{font-size:.74rem;color:var(--text2);line-height:1.5}
+    .type-card .tc-trigger{font-size:.7rem;color:var(--text3);margin-top:.3rem;font-family:'Fira Code',monospace}
+
+    /* ── Steps ── */
+    .step-list{padding:0;list-style:none;margin:1rem 0}
+    .step-list li{display:flex;gap:1rem;margin-bottom:1.1rem;align-items:flex-start}
+    .step-num{min-width:2rem;height:2rem;border-radius:50%;background:rgba(26,79,255,.2);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:var(--brand);flex-shrink:0;margin-top:.1rem}
+    .step-body{flex:1}
+    .step-body strong{display:block;font-size:.88rem;color:#f1f5f9;margin-bottom:.2rem}
+    .step-body span{font-size:.82rem;color:var(--text2);line-height:1.6}
+
+    /* ── Hero ── */
+    .hero{padding:2.5rem 0 1.5rem}
+    .hero .tag{font-size:.72rem;font-weight:700;color:var(--brand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem}
+    .hero p{font-size:1rem;color:var(--text2);max-width:640px;margin-bottom:1.2rem}
+    .hero-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+
+    /* divider */
+    hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+  </style>
+</head>
+<body>
+<div class="app">
+
+<!-- ══════════════ SIDEBAR ══════════════ -->
+<nav id="sidebar">
+  <div class="sb-logo"><i class="fa-solid fa-brain"></i> WebBook API</div>
+
+  <div class="sb-section">Overview</div>
+  <a class="sb-link active" href="#intro"><i class="fa-solid fa-circle-info"></i> Introduction</a>
+  <a class="sb-link" href="#quickstart"><i class="fa-solid fa-bolt"></i> Quick Start</a>
+  <a class="sb-link" href="#file-structure"><i class="fa-solid fa-folder-tree"></i> File Structure</a>
+
+  <div class="sb-section">Book Format</div>
+  <a class="sb-link" href="#md-format"><i class="fa-solid fa-file-lines"></i> Markdown Format</a>
+  <a class="sb-link" href="#block-types"><i class="fa-solid fa-puzzle-piece"></i> Block Types</a>
+  <a class="sb-link" href="#component-types"><i class="fa-solid fa-layer-group"></i> Component Types</a>
+  <a class="sb-link" href="#ai-generation"><i class="fa-solid fa-robot"></i> AI Generation Guide</a>
+
+  <div class="sb-section">JavaScript API</div>
+  <a class="sb-link" href="#config"><i class="fa-solid fa-gear"></i> BOOK_CONFIG</a>
+  <a class="sb-link" href="#parser"><i class="fa-solid fa-code"></i> parseMD()</a>
+  <a class="sb-link" href="#classifier"><i class="fa-solid fa-tags"></i> classifyBlocks()</a>
+  <a class="sb-link" href="#splitter"><i class="fa-solid fa-scissors"></i> splitIntoSlides()</a>
+  <a class="sb-link" href="#renderer"><i class="fa-solid fa-palette"></i> renderBlocks()</a>
+  <a class="sb-link" href="#navigation"><i class="fa-solid fa-compass"></i> Navigation API</a>
+
+  <div class="sb-section">Annotations</div>
+  <a class="sb-link" href="#annotations"><i class="fa-solid fa-pen-to-square"></i> Annotation System</a>
+  <a class="sb-link" href="#indexeddb"><i class="fa-solid fa-database"></i> IndexedDB Schema</a>
+  <a class="sb-link" href="#selection-api"><i class="fa-solid fa-i-cursor"></i> Text Selection API</a>
+
+  <div class="sb-section">UI Components</div>
+  <a class="sb-link" href="#navbars"><i class="fa-solid fa-bars"></i> Navbars</a>
+  <a class="sb-link" href="#aside-panels"><i class="fa-solid fa-sidebar"></i> Aside Panels</a>
+  <a class="sb-link" href="#slide-types-visual"><i class="fa-solid fa-images"></i> Slide Visuals</a>
+
+  <div class="sb-section">Reference</div>
+  <a class="sb-link" href="#prompts"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Prompts</a>
+  <a class="sb-link" href="#keyboard"><i class="fa-solid fa-keyboard"></i> Keyboard Shortcuts</a>
+  <a class="sb-link" href="#changelog"><i class="fa-solid fa-clock-rotate-left"></i> Changelog</a>
+</nav>
+
+<!-- ══════════════ MAIN ══════════════ -->
+<main id="main">
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="intro">
+    <div class="tag">2030B Platform · WebBook v2</div>
+    <h1>Complete <span>WebBook API</span><br>Reference</h1>
+    <p>Everything you need to create, generate, and customize dynamic book presentations from Markdown files — including AI generation instructions, component types, annotation system, and full JavaScript API.</p>
+    <div class="hero-badges">
+      <span class="badge badge-blue"><i class="fa-solid fa-file-lines"></i> Markdown-driven</span>
+      <span class="badge badge-green"><i class="fa-solid fa-mobile-screen"></i> Mobile 120–170 words</span>
+      <span class="badge badge-violet"><i class="fa-solid fa-desktop"></i> Desktop 450–550 words</span>
+      <span class="badge badge-gold"><i class="fa-solid fa-database"></i> IndexedDB annotations</span>
+      <span class="badge badge-rose"><i class="fa-solid fa-pen-to-square"></i> 9 slide types</span>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ── QUICK START ── -->
+  <section id="quickstart">
+    <h2>Quick Start</h2>
+    <p>To add a new book to the WebBook reader, follow these steps:</p>
+    <ol class="step-list">
+      <li><div class="step-num">1</div><div class="step-body"><strong>Create the book folder</strong><span>Place all <code>.md</code> chapter files in a folder, e.g. <code>book/</code></span></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><strong>Register files in BOOK_CONFIG</strong><span>Add each file with its <code>path</code>, <code>part</code> label, and unique <code>id</code></span></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><strong>Open webbook-v2.html in a browser</strong><span>Files are fetched at runtime via <code>fetch()</code> — no build step needed</span></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><strong>Content is auto-split into slides</strong><span>120–170 words on mobile, 450–550 on desktop. Each slide gets a component type automatically.</span></div></li>
+    </ol>
+
+    <div class="code-block">
+      <div class="cb-head"><span>js — BOOK_CONFIG file registration</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><span class="kw">const</span> <span class="prop">BOOK_CONFIG</span> = {
+  <span class="prop">title</span>: <span class="str">'My Book Title'</span>,
+  <span class="prop">files</span>: [
+    { <span class="prop">path</span>: <span class="str">'book/prologue.md'</span>,   <span class="prop">part</span>: <span class="str">'Introduction'</span>, <span class="prop">id</span>: <span class="str">'prologue'</span> },
+    { <span class="prop">path</span>: <span class="str">'book/chapter-01.md'</span>, <span class="prop">part</span>: <span class="str">'Part One'</span>,     <span class="prop">id</span>: <span class="str">'ch01'</span>     },
+    { <span class="prop">path</span>: <span class="str">'book/chapter-02.md'</span>, <span class="prop">part</span>: <span class="str">'Part One'</span>,     <span class="prop">id</span>: <span class="str">'ch02'</span>     },
+  ],
+  <span class="prop">mobileWords</span>:  { <span class="prop">min</span>: <span class="num">120</span>, <span class="prop">max</span>: <span class="num">170</span> },  <span class="cm">// words per slide on mobile</span>
+  <span class="prop">desktopWords</span>: { <span class="prop">min</span>: <span class="num">450</span>, <span class="prop">max</span>: <span class="num">550</span> },  <span class="cm">// words per slide on desktop</span>
+  <span class="prop">wpm</span>: <span class="num">200</span>,          <span class="cm">// reading speed estimate</span>
+  <span class="prop">dbName</span>: <span class="str">'mybook_db'</span>, <span class="cm">// IndexedDB database name</span>
+  <span class="prop">dbVersion</span>: <span class="num">2</span>,
+};</pre>
+    </div>
+  </section>
+
+  <!-- ── FILE STRUCTURE ── -->
+  <section id="file-structure">
+    <h2>File Structure</h2>
+    <div class="code-block">
+      <div class="cb-head"><span>directory layout</span></div>
+      <pre>project/
+├── webbook-v2.html         <span class="cm"># Main reader (all-in-one)</span>
+├── webbook-api.html        <span class="cm"># This documentation</span>
+└── book/
+    ├── prologue-toc.md     <span class="cm"># Introduction + table of contents</span>
+    ├── chapter-01.md       <span class="cm"># Chapter 1</span>
+    ├── chapter-02.md       <span class="cm"># Chapter 2</span>
+    ├── chapters-03-04.md   <span class="cm"># Chapters 3-4 (can combine)</span>
+    └── chapters-05-07.md   <span class="cm"># Chapters 5-7</span></pre>
+    </div>
+    <div class="section-card tip">
+      <h4>💡 Naming Conventions</h4>
+      <p style="margin:0">Use kebab-case filenames. You can combine multiple chapters in one file (e.g. <code>chapters-03-04.md</code>). Files are loaded in the order declared in <code>BOOK_CONFIG.files</code>.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ── MARKDOWN FORMAT ── -->
+  <section id="md-format">
+    <h2>Markdown Format</h2>
+    <p>WebBook v2 parses a rich subset of Markdown. Use standard CommonMark syntax plus these extensions:</p>
+
+    <h3>Headings</h3>
+    <div class="code-block">
+      <div class="cb-head"><span>markdown — heading levels</span></div>
+      <pre><span class="cm"># H1 — Book title / major part (always starts a new slide)</span>
+<span class="cm">## H2 — Chapter title (always starts a new slide, detected as chapter type)</span>
+<span class="cm">### H3 — Section heading (may start new slide if enough words accumulated)</span>
+<span class="cm">#### H4 — Sub-section heading (stays inline in current slide)</span></pre>
+    </div>
+
+    <h3>Special Blocks</h3>
+    <div class="code-block">
+      <div class="cb-head"><span>markdown — special content blocks</span></div>
+      <pre><span class="cm"># Blockquote → renders as styled quote card</span>
+<span class="tag">&gt;</span> "Text of the quote goes here."
+<span class="tag">&gt;</span> — Author Name
+
+<span class="cm"># Horizontal rule → forces a slide break</span>
+---
+
+<span class="cm"># Quranic verse inline (Arabic) → detected by ﴿ ﴾ characters</span>
+﴿وَإِذْ أَخَذَ رَبُّكَ مِن بَنِي آدَمَ﴾ (الأعراف: 172)
+
+<span class="cm"># Fenced code block → renders as equation box or code</span>
+```
+الصيرورة = (نية × جهد × تكرار) ÷ (تشتت + كسل)
+```
+
+<span class="cm"># Table → gets its own slide, rendered as comparison table</span>
+| Feature | Traditional | SelfAI |
+|---------|-------------|--------|
+| Adaptive | No | Yes |
+| Personalized | No | Yes |</pre>
+    </div>
+
+    <h3>Inline Formatting</h3>
+    <table class="api-table">
+      <thead><tr><th>Markdown</th><th>Result</th><th>Color</th></tr></thead>
+      <tbody>
+        <tr><td><code>**bold text**</code></td><td>Bold</td><td>White #f1f5f9</td></tr>
+        <tr><td><code>*italic text*</code></td><td>Italic (semantic emphasis)</td><td>Blue #93c5fd</td></tr>
+        <tr><td><code>`inline code`</code></td><td>Code pill</td><td>Violet #c4b5fd</td></tr>
+        <tr><td><code>﴿verse﴾</code></td><td>Quranic highlight</td><td>Gold #fde68a</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── BLOCK TYPES ── -->
+  <section id="block-types">
+    <h2>Parsed Block Types</h2>
+    <p>The <code>parseMD()</code> function converts Markdown text into an array of typed block objects:</p>
+    <table class="api-table">
+      <thead><tr><th>Block Type</th><th>Properties</th><th>Trigger</th></tr></thead>
+      <tbody>
+        <tr><td><code>heading</code></td><td><code>level: 1–4, text: string</code></td><td><code># ## ### ####</code></td></tr>
+        <tr><td><code>para</code></td><td><code>text: string</code></td><td>Regular paragraph text</td></tr>
+        <tr><td><code>quote</code></td><td><code>text: string</code></td><td><code>&gt; quoted text</code></td></tr>
+        <tr><td><code>list</code></td><td><code>items: string[]</code></td><td><code>- item</code> or <code>* item</code></td></tr>
+        <tr><td><code>nlist</code></td><td><code>items: string[]</code></td><td><code>1. item</code></td></tr>
+        <tr><td><code>table</code></td><td><code>rows: [{isHeader, cells[]}]</code></td><td><code>| col | col |</code></td></tr>
+        <tr><td><code>code</code></td><td><code>text: string</code></td><td><code>```...```</code></td></tr>
+        <tr><td><code>hr</code></td><td><em>none</em></td><td><code>---</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── COMPONENT TYPES ── -->
+  <section id="component-types">
+    <h2>Slide Component Types</h2>
+    <p>Each slide is automatically classified into one of 9 component types based on its block content. Each type has a distinct visual style, glow color, and badge.</p>
+
+    <div class="type-grid">
+      <div class="type-card" style="border-color:rgba(26,79,255,.3)">
+        <div class="tc-name"><i class="fa-solid fa-book-open" style="color:#4a7bff"></i> cover</div>
+        <div class="tc-desc">Book cover / title page. First slide is always cover.</div>
+        <div class="tc-trigger">Always slide index 0</div>
+      </div>
+      <div class="type-card" style="border-color:rgba(139,92,246,.3)">
+        <div class="tc-name"><i class="fa-solid fa-bookmark" style="color:#a78bfa"></i> chapter</div>
+        <div class="tc-desc">Chapter opener with large number and title.</div>
+        <div class="tc-trigger">H1/H2 with keywords: الفصل | الجزء</div>
+      </div>
+      <div class="type-card" style="border-color:rgba(245,197,24,.3)">
+        <div class="tc-name"><i class="fa-solid fa-quote-right" style="color:#f5c518"></i> quote</div>
+        <div class="tc-desc">Highlighted blockquotes or Quranic verses.</div>
+        <div class="tc-trigger">&gt; blockquote or ﴿﴾ in text</div>
+      </div>
+      <div class="type-card" style="border-color:rgba(45,212,191,.3)">
+        <div class="tc-name"><i class="fa-solid fa-flask-vial" style="color:#14b8a6"></i> science</div>
+        <div class="tc-desc">Scientific content with stages, principles, models.</div>
+        <div class="tc-trigger">Keywords: معادلة | مراحل | طبقات</div>
+      </div>
+      <div class="type-card" style="border-color:rgba(139,92,246,.3)">
+        <div class="tc-name"><i class="fa-solid fa-square-root-variable" style="color:#8b5cf6"></i> equation</div>
+        <div class="tc-desc">Mathematical formulas, code blocks, equations.</div>
+        <div class="tc-trigger">```fenced code block```</div>
+      </div>
+      <div class="type-card" style="border-color:rgba(26,79,255,.3)">
+        <div class="tc-name"><i class="fa-solid fa-table-cells" style="color:#4a7bff"></i> table</div>
+        <div class="tc-desc">Comparison tables, data grids. Always own slide.</div>
+        <div class="tc-trigger">| table | syntax |</div>
+      </div>
+      <div class="type-card" style="border-color:rgba(45,212,191,.25)">
+        <div class="tc-name"><i class="fa-solid fa-list-check" style="color:#2dd4bf"></i> list</div>
+        <div class="tc-desc">Bullet or numbered lists with 3+ items.</div>
+        <div class="tc-trigger">- item (3+ items)</div>
+      </div>
+      <div class="type-card" style="border-color:rgba(255,255,255,.1)">
+        <div class="tc-name"><i class="fa-solid fa-align-right" style="color:#94a3b8"></i> prose</div>
+        <div class="tc-desc">Regular narrative paragraphs. Default fallback type.</div>
+        <div class="tc-trigger">Default — no special trigger</div>
+      </div>
+      <div class="type-card" style="border-color:rgba(26,79,255,.4)">
+        <div class="tc-name"><i class="fa-solid fa-rocket" style="color:#4a7bff"></i> cta</div>
+        <div class="tc-desc">Call-to-action. Adds actionable buttons automatically.</div>
+        <div class="tc-trigger">Keywords: اشترك | 2030B.com | انضم</div>
+      </div>
+    </div>
+
+    <div class="section-card note">
+      <h4>🎯 Classifier Priority Order</h4>
+      <p style="margin:0">cover (index 0) → table → equation (code block) → quote → chapter (H1/H2 with keyword) → list (3+ items) → science (keywords) → cta (keywords) → prose (default)</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ── AI GENERATION GUIDE ── -->
+  <section id="ai-generation">
+    <h2>AI Book Generation Guide</h2>
+    <p>Use this guide to generate a complete book as a set of <code>.md</code> files using any AI (GPT-4, Claude, Gemini, etc.).</p>
+
+    <h3>Recommended File Structure</h3>
+    <p>For a 12-chapter book, use this file layout:</p>
+    <table class="api-table">
+      <thead><tr><th>File</th><th>Contents</th><th>Approx. Size</th></tr></thead>
+      <tbody>
+        <tr><td><code>prologue-toc.md</code></td><td>Title, opening quote, table of contents, introduction</td><td>15–25 KB</td></tr>
+        <tr><td><code>chapter-01.md</code></td><td>Single chapter (recommended: 1 chapter per file for shorter chapters)</td><td>10–20 KB</td></tr>
+        <tr><td><code>chapters-02-03.md</code></td><td>Combined chapters (when each is short)</td><td>20–30 KB</td></tr>
+        <tr><td><code>chapters-04-07.md</code></td><td>Multiple related chapters</td><td>25–45 KB</td></tr>
+        <tr><td><code>epilogue.md</code></td><td>Conclusion + call to action</td><td>10–15 KB</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Content Density Guidelines</h3>
+    <div class="section-card">
+      <table class="api-table" style="margin:0">
+        <thead><tr><th>Element</th><th>Mobile slides</th><th>Desktop slides</th></tr></thead>
+        <tbody>
+          <tr><td>A paragraph</td><td>~1 slide (120-170w)</td><td>~3-4 paragraphs/slide</td></tr>
+          <tr><td>A list (5 items)</td><td>1 slide</td><td>1 slide</td></tr>
+          <tr><td>A table</td><td>1 dedicated slide</td><td>1 dedicated slide</td></tr>
+          <tr><td>A code/equation</td><td>1 dedicated slide</td><td>1 dedicated slide</td></tr>
+          <tr><td>A chapter (2000w)</td><td>~14 slides</td><td>~4-5 slides</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Markdown Structure Template</h3>
+    <div class="code-block">
+      <div class="cb-head"><span>markdown — prologue-toc.md template</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><span class="cm"># Book Title — Subtitle
+# Author Note or Tagline
+## *Compelling sub-heading or hook*</span>
+
+<span class="tag">&gt;</span> *"Opening quote that captures the essence of the book."*
+<span class="tag">&gt;</span> — Author Name
+
+---
+
+<span class="cm"># Introduction Section</span>
+
+---
+
+<span class="cm">## Introduction Title</span>
+
+Opening paragraph that sets the stage. Keep it compelling and personal.
+Second paragraph with context and background.
+
+---
+
+<span class="cm">## The 40-Year Journey</span>
+
+Narrative section. Write naturally. The splitter will divide into slides automatically.
+
+---
+
+<span class="cm">## The Project</span>
+
+**Key concept** explained here with **bold emphasis** on important terms.
+
+- First key point
+- Second key point  
+- Third key point
+
+---
+
+<span class="cm">## Index (Table of Contents)</span>
+
+<span class="cm">**Part One: Story and Vision**
+- Chapter 1: Title
+- Chapter 2: Title</span>
+
+**Part Two: The System**
+- Chapter 3: Title
+- Chapter 4: Title</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="cb-head"><span>markdown — chapter-01.md template</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><span class="cm">## Chapter 1: Chapter Title</span>
+
+Chapter opening paragraph. Introduce the main concept. Be engaging.
+
+Develop the concept with examples and evidence.
+
+---
+
+<span class="cm">### Section 1.1: Sub-section Title</span>
+
+Content of this section. Can span multiple paragraphs.
+
+The splitter respects --- dividers and ### headings as soft slide breaks.
+
+---
+
+<span class="cm">### Scientific Evidence</span>
+
+Research shows that [key finding]. Studies by [Researcher (Year)] demonstrated:
+
+- Finding one: explanation
+- Finding two: explanation
+- Finding three: explanation
+
+---
+
+<span class="cm">### The Equation</span>
+
+```
+Result = (Intent × Effort × Repetition × Feedback) ÷ (Distraction + Laziness)
+```
+
+Explanation of each component in the equation.
+
+---
+
+<span class="cm">### Comparison Table</span>
+
+| Aspect | Traditional | New Approach |
+|--------|-------------|--------------|
+| Speed | Slow | Fast |
+| Personalization | None | Full |
+| Cost | High | Low |
+
+---
+
+<span class="cm">## Conclusion and Call to Action</span>
+
+Summary of the chapter. What the reader should do next.
+
+Join us at 2030B.com — start the 21-day challenge today.
+اشترك الآن وابدأ التحدي!</pre>
+    </div>
+  </section>
+
+  <!-- ── AI PROMPTS ── -->
+  <section id="prompts">
+    <h2>AI Generation Prompts</h2>
+    <p>Ready-to-use prompts for generating book content with AI models.</p>
+
+    <h3>Prompt 1: Generate a Complete Chapter</h3>
+    <div class="code-block">
+      <div class="cb-head"><span>prompt — chapter generation</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre>Generate a complete chapter for a book in Markdown format.
+
+Chapter topic: [YOUR TOPIC]
+Language: [Arabic/English/French]
+Target audience: [YOUR AUDIENCE]
+Chapter number: [N]
+Chapter title: [TITLE]
+
+REQUIREMENTS:
+1. Start with: ## Chapter N: Title
+2. Use --- to separate major sections (creates slide breaks)
+3. Use ### for sub-sections within sections
+4. Include at least:
+   - 2-3 narrative paragraphs (prose)
+   - 1 quote block (> "quote" — attribution)
+   - 1 bulleted or numbered list (3-6 items)
+   - 1 comparison table (3-5 rows, 3 columns)
+   - 1 equation or formula in a fenced code block (``` ```)
+   - 1 call-to-action paragraph at the end
+5. Use **bold** for key concepts, *italic* for emphasis
+6. Keep paragraphs to 80-150 words each
+7. Total chapter length: 1500-2500 words
+8. End with a section that includes "اشترك" or "ابدأ" for CTA detection
+
+DO NOT use HTML tags. Pure Markdown only.</pre>
+    </div>
+
+    <h3>Prompt 2: Generate a Prologue + TOC</h3>
+    <div class="code-block">
+      <div class="cb-head"><span>prompt — prologue generation</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre>Generate a book prologue and table of contents in Markdown.
+
+Book title: [TITLE]
+Author name: [NAME]
+Core message: [ONE SENTENCE]
+Number of chapters: [N]
+Chapter titles: [LIST THEM]
+
+STRUCTURE TO FOLLOW:
+1. # Book Title
+2. # Author tagline
+3. ## *Poetic subtitle*
+4. A blockquote (> "inspiring quote" — Author)
+5. ---
+6. # Introduction
+7. ---
+8. ## The Covenant / The Journey (narrative section, 300-500 words)
+9. ---
+10. ## The Project (what this book delivers, 200-300 words)
+11. ---
+12. ## Table of Contents
+   - List all parts and chapters as bold headers + bullet lists
+
+Use --- generously to create natural slide breaks.
+Total length: 800-1500 words.</pre>
+    </div>
+
+    <h3>Prompt 3: Convert Existing Content to WebBook Format</h3>
+    <div class="code-block">
+      <div class="cb-head"><span>prompt — content conversion</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre>Convert the following content into WebBook-compatible Markdown.
+
+RULES:
+1. Add ## headings for major sections
+2. Add ### headings for sub-sections
+3. Add --- between major sections
+4. Convert any tables to Markdown table format
+5. Wrap formulas/equations in fenced code blocks: ```
+6. Convert long lists to - bullet points
+7. Add > blockquote wrapper to any quotes or notable sayings
+8. Keep paragraphs SHORT (max 150 words each)
+9. Bold key terms with **term**
+10. Do NOT add HTML
+11. Split very long paragraphs at logical points
+
+CONTENT TO CONVERT:
+[PASTE YOUR CONTENT HERE]</pre>
+    </div>
+
+    <h3>Prompt 4: Generate a Specific Slide Type</h3>
+    <div class="code-block">
+      <div class="cb-head"><span>prompt — specific slide type</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre>Generate Markdown content that will render as a [TYPE] slide in WebBook v2.
+
+Slide types and how to trigger them:
+- "science": Write about stages/phases/architecture with ### sub-headings and lists
+- "equation": Include a fenced code block with a formula
+- "table": Include a Markdown table with 3+ rows
+- "quote": Start with a > blockquote
+- "cta": Include call-to-action keywords: اشترك / ابدأ / انضم / 2030B.com
+- "chapter": Use ## heading with keyword: الفصل / الجزء / المقدمة
+- "list": Include a bullet or numbered list with 3+ items
+- "prose": Write regular paragraphs without any special elements
+
+Target type: [TYPE]
+Topic: [YOUR TOPIC]
+Language: [Arabic/English]
+Length: [SHORT 150w / MEDIUM 300w / FULL 500w]</pre>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ── JAVASCRIPT API ── -->
+  <section id="config">
+    <h2>JavaScript API: BOOK_CONFIG</h2>
+    <table class="api-table">
+      <thead><tr><th>Property</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>title</code></td><td><code>string</code></td><td>Book title displayed in the UI</td></tr>
+        <tr><td><code>files</code></td><td><code>FileConfig[]</code></td><td>Ordered array of MD file configurations</td></tr>
+        <tr><td><code>files[].path</code></td><td><code>string</code></td><td>Relative path from HTML file to MD file</td></tr>
+        <tr><td><code>files[].part</code></td><td><code>string</code></td><td>TOC group label for this file's chapters</td></tr>
+        <tr><td><code>files[].id</code></td><td><code>string</code></td><td>Unique identifier (kebab-case, no spaces)</td></tr>
+        <tr><td><code>mobileWords</code></td><td><code>{min, max}</code></td><td>Word count range per slide on mobile (&lt;768px)</td></tr>
+        <tr><td><code>desktopWords</code></td><td><code>{min, max}</code></td><td>Word count range per slide on desktop (≥768px)</td></tr>
+        <tr><td><code>wpm</code></td><td><code>number</code></td><td>Reading speed for stats estimation (default: 200)</td></tr>
+        <tr><td><code>dbName</code></td><td><code>string</code></td><td>IndexedDB database name (change per book)</td></tr>
+        <tr><td><code>dbVersion</code></td><td><code>number</code></td><td>IndexedDB schema version (increment on schema change)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="parser">
+    <h2>parseMD(md: string) → Block[]</h2>
+    <p>Parses a Markdown string into an array of typed block objects. Handles all block types including Quranic verse detection and complex table parsing.</p>
+    <div class="code-block">
+      <div class="cb-head"><span>js — parseMD usage</span></div>
+      <pre><span class="kw">const</span> md = <span class="str">`## Chapter 1
+      
+First paragraph of the chapter.
+
+- List item 1
+- List item 2
+
+| Col A | Col B |
+|-------|-------|
+| Val 1 | Val 2 |
+`</span>;
+
+<span class="kw">const</span> blocks = <span class="fn">parseMD</span>(md);
+<span class="cm">// Returns:</span>
+[
+  { <span class="prop">type</span>: <span class="str">'heading'</span>, <span class="prop">level</span>: <span class="num">2</span>, <span class="prop">text</span>: <span class="str">'Chapter 1'</span> },
+  { <span class="prop">type</span>: <span class="str">'para'</span>, <span class="prop">text</span>: <span class="str">'First paragraph...'</span> },
+  { <span class="prop">type</span>: <span class="str">'list'</span>, <span class="prop">items</span>: [<span class="str">'List item 1'</span>, <span class="str">'List item 2'</span>] },
+  { <span class="prop">type</span>: <span class="str">'table'</span>, <span class="prop">rows</span>: [
+    { <span class="prop">isHeader</span>: <span class="kw">true</span>,  <span class="prop">cells</span>: [<span class="str">'Col A'</span>, <span class="str">'Col B'</span>] },
+    { <span class="prop">isHeader</span>: <span class="kw">false</span>, <span class="prop">cells</span>: [<span class="str">'Val 1'</span>, <span class="str">'Val 2'</span>] },
+  ]},
+]</pre>
+    </div>
+  </section>
+
+  <section id="classifier">
+    <h2>classifyBlocks(blocks: Block[], slideIndex: number) → string</h2>
+    <p>Classifies a group of blocks into a slide component type. Uses a priority-ordered ruleset based on block types and Arabic keyword detection.</p>
+    <div class="code-block">
+      <div class="cb-head"><span>js — classification logic (priority order)</span></div>
+      <pre><span class="kw">function</span> <span class="fn">classifyBlocks</span>(blocks, gIdx) {
+  <span class="kw">if</span> (gIdx === <span class="num">0</span>) <span class="kw">return</span> <span class="str">'cover'</span>;          <span class="cm">// 1. First slide is always cover</span>
+  <span class="kw">if</span> (hasTable)   <span class="kw">return</span> <span class="str">'table'</span>;          <span class="cm">// 2. Has Markdown table</span>
+  <span class="kw">if</span> (hasCode)    <span class="kw">return</span> <span class="str">'equation'</span>;       <span class="cm">// 3. Has fenced code block</span>
+  <span class="kw">if</span> (hasQuote || hasQuran) <span class="kw">return</span> <span class="str">'quote'</span>; <span class="cm">// 4. Blockquote or ﴿﴾</span>
+  <span class="kw">if</span> (hasH1H2 && chapterKeyword) <span class="kw">return</span> <span class="str">'chapter'</span>; <span class="cm">// 5. Chapter heading</span>
+  <span class="kw">if</span> (hasList3plus) <span class="kw">return</span> <span class="str">'list'</span>;         <span class="cm">// 6. List with 3+ items</span>
+  <span class="kw">if</span> (scienceKeywords) <span class="kw">return</span> <span class="str">'science'</span>;   <span class="cm">// 7. Science/tech keywords</span>
+  <span class="kw">if</span> (ctaKeywords) <span class="kw">return</span> <span class="str">'cta'</span>;           <span class="cm">// 8. Call-to-action keywords</span>
+  <span class="kw">return</span> <span class="str">'prose'</span>;                           <span class="cm">// 9. Default</span>
+}</pre>
+    </div>
+    <h4>Chapter Detection Keywords (Arabic)</h4>
+    <p><code>الفصل</code> <code>المقدمة</code> <code>الخاتمة</code> <code>الجزء</code> <code>الميثاق</code> <code>المشروع</code> <code>المعجزة</code></p>
+    <h4>Science Detection Keywords</h4>
+    <p><code>معادلة</code> <code>صيرورة</code> <code>مراحل</code> <code>خوارزمية</code> <code>مبدأ</code> <code>طبقات</code> <code>النموذج</code> <code>المعمار</code></p>
+    <h4>CTA Detection Keywords</h4>
+    <p><code>2030B.com</code> <code>اشترك</code> <code>ابدأ التحدي</code> <code>انضم</code> <code>واحد وعشرون</code> <code>21 يومًا</code></p>
+  </section>
+
+  <section id="splitter">
+    <h2>splitIntoSlides(blocks, fileId, partTitle, offset) → Slide[]</h2>
+    <p>Splits a block array into slides respecting word count targets and content boundaries.</p>
+    <h3>Slide Object Structure</h3>
+    <div class="code-block">
+      <div class="cb-head"><span>typescript — Slide interface</span></div>
+      <pre><span class="kw">interface</span> Slide {
+  <span class="prop">blocks</span>: Block[];          <span class="cm">// Content blocks for this slide</span>
+  <span class="prop">chapterTitle</span>: string;    <span class="cm">// Current chapter/section title</span>
+  <span class="prop">chapterSubtitle</span>: string; <span class="cm">// Current H3 sub-section title</span>
+  <span class="prop">chapterNum</span>: number;      <span class="cm">// Chapter number (Arabic ordinals counted)</span>
+  <span class="prop">partTitle</span>: string;       <span class="cm">// Part label from BOOK_CONFIG.files[].part</span>
+  <span class="prop">fileId</span>: string;          <span class="cm">// Source file ID</span>
+  <span class="prop">slideType</span>: SlideType;    <span class="cm">// One of 9 component types</span>
+  <span class="prop">isChapterOpener</span>: boolean;<span class="cm">// True for first slide of each chapter</span>
+}</pre>
+    </div>
+    <h3>Splitting Rules</h3>
+    <table class="api-table">
+      <thead><tr><th>Element</th><th>Behavior</th></tr></thead>
+      <tbody>
+        <tr><td>H1 / H2 heading</td><td>Always flushes current slide, starts new slide</td></tr>
+        <tr><td>H3 heading</td><td>Flushes if current words ≥ min target</td></tr>
+        <tr><td>H4 heading</td><td>Stays inline in current slide</td></tr>
+        <tr><td><code>---</code> rule</td><td>Flushes if current words ≥ min target</td></tr>
+        <tr><td>Table / code block</td><td>Always gets its own dedicated slide</td></tr>
+        <tr><td>Regular block</td><td>Added until max word count reached, then flush</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="renderer">
+    <h2>renderBlocks(blocks: Block[]) → string</h2>
+    <p>Converts block objects to HTML string. All rendering is inline — no external dependencies.</p>
+    <table class="api-table">
+      <thead><tr><th>Block Type</th><th>HTML Output</th><th>CSS Class</th></tr></thead>
+      <tbody>
+        <tr><td><code>para</code> with ﴿﴾</td><td>Quranic verse box</td><td><code>.s-quran</code></td></tr>
+        <tr><td><code>para</code> normal</td><td><code>&lt;p&gt;</code> element</td><td><code>.s-body</code></td></tr>
+        <tr><td><code>quote</code></td><td><code>&lt;blockquote&gt;</code></td><td><code>.s-quote</code></td></tr>
+        <tr><td><code>list</code></td><td><code>&lt;ul&gt;</code> with ◆ markers</td><td>inline styles</td></tr>
+        <tr><td><code>nlist</code></td><td><code>&lt;ol&gt;</code> with numbered bubbles</td><td>inline styles</td></tr>
+        <tr><td><code>table</code></td><td>Full responsive table</td><td><code>.s-table</code></td></tr>
+        <tr><td><code>code</code> (short)</td><td>Equation box</td><td><code>.s-equation</code></td></tr>
+        <tr><td><code>code</code> (long)</td><td>Scrollable code block</td><td>inline styles</td></tr>
+        <tr><td><code>heading</code> h3</td><td>Section heading</td><td>inline styles</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="navigation">
+    <h2>Navigation API</h2>
+    <div class="code-block">
+      <div class="cb-head"><span>js — navigation functions</span></div>
+      <pre><span class="cm">// Go to slide by index (0-based). Saves position history by default.</span>
+<span class="fn">goToSlide</span>(<span class="prop">index</span>: <span class="kw">number</span>, <span class="prop">saveHistory</span>: <span class="kw">boolean</span> = <span class="kw">true</span>): <span class="kw">void</span>
+
+<span class="cm">// Read current state</span>
+<span class="prop">STATE</span>.<span class="prop">currentIndex</span>   <span class="cm">// Current slide index (0-based)</span>
+<span class="prop">STATE</span>.<span class="prop">totalSlides</span>    <span class="cm">// Total slide count</span>
+<span class="prop">STATE</span>.<span class="prop">slides</span>[]       <span class="cm">// All Slide objects</span>
+<span class="prop">STATE</span>.<span class="prop">slideEls</span>[]     <span class="cm">// Corresponding DOM &lt;section&gt; elements</span>
+<span class="prop">STATE</span>.<span class="prop">toc</span>[]          <span class="cm">// TOC entries: { title, startIndex, partTitle, chapterNum }</span>
+
+<span class="cm">// Open / close side panels</span>
+<span class="fn">openAside</span>(<span class="str">'toc'</span>|<span class="str">'stats'</span>|<span class="str">'notes'</span>|<span class="str">'bookmarks'</span>|<span class="str">'comments'</span>|<span class="str">'share'</span>): <span class="kw">void</span>
+<span class="fn">closeAside</span>(name: <span class="kw">string</span>): <span class="kw">void</span>
+<span class="fn">toggleAside</span>(name: <span class="kw">string</span>): <span class="kw">void</span>
+
+<span class="cm">// Show a simple toast notification</span>
+<span class="fn">showToast</span>(<span class="prop">message</span>: <span class="kw">string</span>, <span class="prop">duration</span>: <span class="kw">number</span> = <span class="num">2800</span>): <span class="kw">void</span></pre>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ── ANNOTATIONS ── -->
+  <section id="annotations">
+    <h2>Annotation System</h2>
+    <p>Users can annotate any selected text with 4 types of annotations: <strong>Notes</strong>, <strong>Bookmarks</strong>, <strong>Comments</strong>, and <strong>Shares</strong>.</p>
+
+    <h3>Annotation Flow</h3>
+    <ol class="step-list">
+      <li><div class="step-num">1</div><div class="step-body"><strong>User selects text</strong><span>Works on desktop (mouseup) and mobile (touchend + selectionchange). Minimum 3 characters.</span></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><strong>Tooltip menu appears</strong><span>Positioned above (or below if near top) the selection with Note, Bookmark, Comment, Share buttons.</span></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><strong>User picks an action</strong><span>A highlight <code>&lt;span&gt;</code> is injected wrapping the selected text. An IndexedDB record is created.</span></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><strong>Annotation stored</strong><span>Record includes selected text, note text, slide index, highlight ID, and timestamp.</span></div></li>
+      <li><div class="step-num">5</div><div class="step-body"><strong>Clicking a highlight</strong><span>Opens the corresponding aside panel and scrolls to the annotation card.</span></div></li>
+    </ol>
+
+    <h3>Annotation JavaScript API</h3>
+    <div class="code-block">
+      <div class="cb-head"><span>js — annotation functions</span></div>
+      <pre><span class="cm">// Create a new annotation</span>
+<span class="kw">await</span> <span class="fn">createAnnotation</span>(
+  <span class="prop">type</span>: <span class="str">'note'</span>|<span class="str">'bookmark'</span>|<span class="str">'comment'</span>|<span class="str">'share'</span>,
+  <span class="prop">selectedText</span>: <span class="kw">string</span>,
+  <span class="prop">noteText</span>: <span class="kw">string</span>,
+  <span class="prop">slideIndex</span>: <span class="kw">number</span>,
+  <span class="prop">highlightId</span>: <span class="kw">string</span>
+): Promise&lt;Annotation&gt;
+
+<span class="cm">// Update note text of an existing annotation</span>
+<span class="kw">await</span> <span class="fn">updateAnnotation</span>(<span class="prop">id</span>: <span class="kw">number</span>, <span class="prop">noteText</span>: <span class="kw">string</span>): Promise&lt;Annotation&gt;
+
+<span class="cm">// Delete annotation + its replies + remove DOM highlight span</span>
+<span class="kw">await</span> <span class="fn">deleteAnnotation</span>(<span class="prop">id</span>: <span class="kw">number</span>): Promise&lt;<span class="kw">void</span>&gt;
+
+<span class="cm">// Get all annotations of a specific type</span>
+<span class="kw">await</span> <span class="fn">getAllAnnotationsByType</span>(<span class="prop">type</span>: <span class="kw">string</span>): Promise&lt;Annotation[]&gt;
+
+<span class="cm">// Get annotations on a specific slide</span>
+<span class="kw">await</span> <span class="fn">getAnnotationsBySlide</span>(<span class="prop">slideIndex</span>: <span class="kw">number</span>): Promise&lt;Annotation[]&gt;
+
+<span class="cm">// Add a comment reply</span>
+<span class="kw">await</span> <span class="fn">addReply</span>(<span class="prop">annotationId</span>: <span class="kw">number</span>, <span class="prop">replyText</span>: <span class="kw">string</span>, <span class="prop">author</span>: <span class="kw">string</span>): Promise&lt;<span class="kw">number</span>&gt;
+
+<span class="cm">// Get all replies for a comment annotation</span>
+<span class="kw">await</span> <span class="fn">getReplies</span>(<span class="prop">annotationId</span>: <span class="kw">number</span>): Promise&lt;Reply[]&gt;</pre>
+    </div>
+
+    <h3>Highlight Colors by Type</h3>
+    <table class="api-table">
+      <thead><tr><th>Type</th><th>CSS Class</th><th>Background</th><th>Border</th></tr></thead>
+      <tbody>
+        <tr><td><code>note</code></td><td><code>.wb-hl-note</code></td><td>rgba(245,197,24,.25)</td><td>#f5c518 (gold)</td></tr>
+        <tr><td><code>bookmark</code></td><td><code>.wb-hl-bookmark</code></td><td>rgba(251,113,133,.2)</td><td>#fb7185 (rose)</td></tr>
+        <tr><td><code>comment</code></td><td><code>.wb-hl-comment</code></td><td>rgba(45,212,191,.2)</td><td>#2dd4bf (jade)</td></tr>
+        <tr><td><code>share</code></td><td><code>.wb-hl-share</code></td><td>rgba(139,92,246,.2)</td><td>#a78bfa (violet)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="indexeddb">
+    <h2>IndexedDB Schema</h2>
+    <p>All user data is stored locally in IndexedDB under the database name defined in <code>BOOK_CONFIG.dbName</code>.</p>
+
+    <h3>Object Stores</h3>
+
+    <h4>stats (keyPath: 'key')</h4>
+    <table class="api-table">
+      <thead><tr><th>Key</th><th>Value Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>lastSlide</code></td><td>number</td><td>Index of last viewed slide</td></tr>
+        <tr><td><code>sessions</code></td><td>number</td><td>Total reading sessions</td></tr>
+        <tr><td><code>slidesViewed</code></td><td>number</td><td>Cumulative slides navigated</td></tr>
+        <tr><td><code>totalMinutes</code></td><td>number</td><td>Total reading minutes</td></tr>
+        <tr><td><code>longestSession</code></td><td>number</td><td>Longest single session in minutes</td></tr>
+      </tbody>
+    </table>
+
+    <h4>history (autoIncrement id)</h4>
+    <table class="api-table">
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>id</code></td><td>number</td><td>Auto-increment primary key</td></tr>
+        <tr><td><code>slideIndex</code></td><td>number</td><td>Slide position visited</td></tr>
+        <tr><td><code>slideTitle</code></td><td>string</td><td>Chapter title at that position</td></tr>
+        <tr><td><code>ts</code></td><td>number</td><td>Unix timestamp (ms)</td></tr>
+        <tr><td><code>device</code></td><td>string</td><td>navigator.platform (truncated)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.8rem;color:var(--text3)">Max 20 entries kept. Oldest are deleted automatically.</p>
+
+    <h4>annotations (autoIncrement id)</h4>
+    <table class="api-table">
+      <thead><tr><th>Field</th><th>Type</th><th>Index</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>id</code></td><td>number</td><td>PK</td><td>Auto-increment primary key</td></tr>
+        <tr><td><code>type</code></td><td>string</td><td>✓ indexed</td><td>'note' | 'bookmark' | 'comment' | 'share'</td></tr>
+        <tr><td><code>selectedText</code></td><td>string</td><td></td><td>The highlighted text content</td></tr>
+        <tr><td><code>noteText</code></td><td>string</td><td></td><td>User's note or comment text</td></tr>
+        <tr><td><code>slideIndex</code></td><td>number</td><td>✓ indexed</td><td>Which slide the annotation belongs to</td></tr>
+        <tr><td><code>highlightId</code></td><td>string</td><td>✓ indexed</td><td>Links to DOM <code>data-hl-id</code> span</td></tr>
+        <tr><td><code>createdAt</code></td><td>number</td><td></td><td>Creation timestamp (ms)</td></tr>
+        <tr><td><code>updatedAt</code></td><td>number</td><td></td><td>Last update timestamp (ms)</td></tr>
+      </tbody>
+    </table>
+
+    <h4>replies (autoIncrement id)</h4>
+    <table class="api-table">
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>id</code></td><td>number</td><td>Auto-increment primary key</td></tr>
+        <tr><td><code>annotationId</code></td><td>number</td><td>FK → annotations.id (indexed)</td></tr>
+        <tr><td><code>replyText</code></td><td>string</td><td>Reply content</td></tr>
+        <tr><td><code>author</code></td><td>string</td><td>Author name (default: 'أنا')</td></tr>
+        <tr><td><code>createdAt</code></td><td>number</td><td>Timestamp (ms)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="selection-api">
+    <h2>Text Selection API</h2>
+    <p>The selection tooltip menu handles both desktop and mobile selection events, working around the native mobile text menu.</p>
+
+    <div class="section-card warning">
+      <h4>⚠️ Mobile Behavior Note</h4>
+      <p style="margin:0">Mobile browsers show their own copy/paste menu when text is selected. The WebBook tooltip is positioned via fixed coordinates and uses <code>selectionchange</code> + <code>touchend</code> events with a 200ms delay to appear after the native menu. Using <code>mousedown</code> with <code>preventDefault()</code> on the tooltip buttons prevents the selection from being cleared when tapping a button.</p>
+    </div>
+
+    <h3>SELECTION_STATE Object</h3>
+    <div class="code-block">
+      <div class="cb-head"><span>js — selection state</span></div>
+      <pre><span class="kw">let</span> <span class="prop">SELECTION_STATE</span> = {
+  <span class="prop">text</span>: <span class="kw">string</span>,       <span class="cm">// Selected text content</span>
+  <span class="prop">range</span>: Range,       <span class="cm">// window.getSelection().getRangeAt(0).cloneRange()</span>
+  <span class="prop">slideIndex</span>: <span class="kw">number</span>, <span class="cm">// Index of the slide containing the selection</span>
+};</pre>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ── NAVBARS ── -->
+  <section id="navbars">
+    <h2>Navbar Behavior</h2>
+    <table class="api-table">
+      <thead><tr><th>Element</th><th>Mobile (&lt;768px)</th><th>Desktop (≥768px)</th></tr></thead>
+      <tbody>
+        <tr><td>Top nav buttons</td><td>Icon only + tooltip on hover</td><td>Icon + text label</td></tr>
+        <tr><td>Bottom nav buttons</td><td>Icon only</td><td>Icon + text label</td></tr>
+        <tr><td>Nav button width</td><td>34×34px</td><td>auto (padded)</td></tr>
+        <tr><td>Tooltip</td><td><code>::after</code> pseudo-element on hover</td><td>Hidden (labels visible)</td></tr>
+        <tr><td>Annotation count badges</td><td>Shown (small circle)</td><td>Shown (small circle)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── ASIDE PANELS ── -->
+  <section id="aside-panels">
+    <h2>Aside Panels</h2>
+    <table class="api-table">
+      <thead><tr><th>Panel</th><th>ID</th><th>Direction</th><th>Trigger</th><th>Color</th></tr></thead>
+      <tbody>
+        <tr><td>TOC</td><td><code>#toc-drawer</code></td><td>Right slide-in</td><td><code>btn-toc</code> / T key</td><td>Brand blue</td></tr>
+        <tr><td>Stats</td><td><code>#stats-panel</code></td><td>Right slide-in</td><td><code>btn-stats</code></td><td>Brand blue</td></tr>
+        <tr><td>Notes</td><td><code>#notes-panel</code></td><td>Left slide-in</td><td><code>btn-notes</code></td><td>Gold #fde68a</td></tr>
+        <tr><td>Bookmarks</td><td><code>#bookmarks-panel</code></td><td>Left slide-in</td><td><code>btn-bookmarks</code></td><td>Rose #fda4af</td></tr>
+        <tr><td>Comments</td><td><code>#comments-panel</code></td><td>Left slide-in</td><td><code>btn-comments</code></td><td>Jade #6ee7b7</td></tr>
+        <tr><td>Share</td><td><code>#share-panel</code></td><td>Left slide-in</td><td><code>btn-share-panel</code></td><td>Violet #c4b5fd</td></tr>
+      </tbody>
+    </table>
+    <p>All panels share a single semi-transparent overlay (<code>#aside-overlay</code>). Only one panel can be open at a time — opening a second panel automatically closes the first.</p>
+    <p>Animation uses <code>transform: translateX(±110%)</code> → <code>translateX(0)</code> with <code>cubic-bezier(.4,0,.2,1)</code> transition, 350ms duration.</p>
+  </section>
+
+  <!-- ── KEYBOARD ── -->
+  <section id="keyboard">
+    <h2>Keyboard Shortcuts</h2>
+    <table class="api-table">
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><code>↓</code> Arrow Down</td><td>Scroll down 160px. At slide bottom → next slide</td></tr>
+        <tr><td><code>↑</code> Arrow Up</td><td>Scroll up 160px. At slide top → previous slide</td></tr>
+        <tr><td><code>←</code> Arrow Left</td><td>Next slide (RTL: left = forward)</td></tr>
+        <tr><td><code>→</code> Arrow Right</td><td>Previous slide (RTL: right = back)</td></tr>
+        <tr><td><code>Space</code></td><td>Scroll down 75% of viewport height</td></tr>
+        <tr><td><code>Home</code></td><td>Go to first slide</td></tr>
+        <tr><td><code>End</code></td><td>Go to last slide</td></tr>
+        <tr><td><code>T</code></td><td>Toggle TOC drawer</td></tr>
+        <tr><td><code>Escape</code></td><td>Close active aside panel / hide selection menu</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── SLIDE VISUAL TYPES ── -->
+  <section id="slide-types-visual">
+    <h2>Slide Visual Reference</h2>
+    <table class="api-table">
+      <thead><tr><th>Type</th><th>Badge Color</th><th>Glow Accent</th><th>Special HTML</th></tr></thead>
+      <tbody>
+        <tr><td><strong>cover</strong></td><td>Blue #c7d2fe</td><td>Brand blue .12</td><td>Brain icon hero block</td></tr>
+        <tr><td><strong>chapter</strong></td><td>Violet #c4b5fd</td><td>Violet .09</td><td>Large chapter number + title</td></tr>
+        <tr><td><strong>quote</strong></td><td>Gold #fde68a</td><td>Gold .08</td><td><code>.s-quote</code> left-border box</td></tr>
+        <tr><td><strong>science</strong></td><td>Jade #6ee7b7</td><td>Jade .08</td><td>Stage cards + sub-headings</td></tr>
+        <tr><td><strong>equation</strong></td><td>Violet #c4b5fd</td><td>Violet .10</td><td><code>.s-equation</code> centered box</td></tr>
+        <tr><td><strong>table</strong></td><td>Blue #93c5fd</td><td>Blue .07</td><td><code>.s-table</code> with header row</td></tr>
+        <tr><td><strong>list</strong></td><td>Jade #86efac</td><td>Jade .06</td><td><code>&lt;ul&gt;</code> with ◆ bullets</td></tr>
+        <tr><td><strong>prose</strong></td><td>Gray #94a3b8</td><td>White .03</td><td>Plain <code>&lt;p&gt;</code> elements</td></tr>
+        <tr><td><strong>cta</strong></td><td>White on blue</td><td>Blue .15</td><td>+ Action buttons injected</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr>
+
+  <!-- ── CHANGELOG ── -->
+  <section id="changelog">
+    <h2>Changelog</h2>
+
+    <h3>v2.1 — Current</h3>
+    <ul>
+      <li>✅ Text selection tooltip menu (note, bookmark, comment, share) — mobile + desktop safe</li>
+      <li>✅ Inline text highlights with color coding per annotation type</li>
+      <li>✅ 6 aside panels: TOC, Stats, Notes, Bookmarks, Comments, Share</li>
+      <li>✅ Comment reply threads</li>
+      <li>✅ Fixed keyboard scroll: ↑↓ scroll content, jump slide only at boundary</li>
+      <li>✅ Annotation count badges on nav buttons</li>
+      <li>✅ Share panel with WhatsApp, Telegram, Twitter, Email, Copy link</li>
+      <li>✅ IndexedDB v2 schema with annotations + replies stores</li>
+    </ul>
+
+    <h3>v2.0</h3>
+    <ul>
+      <li>✅ Dynamic MD file loading via fetch()</li>
+      <li>✅ Full Markdown parser (headings, quotes, lists, tables, code blocks)</li>
+      <li>✅ 9 slide component types with auto-classification</li>
+      <li>✅ Word-count responsive splitter (120–170 mobile / 450–550 desktop)</li>
+      <li>✅ IndexedDB v1 with stats + history stores</li>
+      <li>✅ Restore position toast</li>
+      <li>✅ IntersectionObserver-based navigation</li>
+      <li>✅ Fixed top + bottom navbars (icons mobile, text desktop)</li>
+      <li>✅ TOC drawer + Stats panel</li>
+      <li>✅ Touch swipe navigation</li>
+      <li>✅ Reading progress bar</li>
+      <li>✅ Shimmer skeleton loading</li>
+    </ul>
+  </section>
+
+  <hr>
+  <p style="text-align:center;color:var(--text3);font-size:.78rem;padding-bottom:2rem">
+    WebBook v2 API Reference · 2030B Platform · <a href="webbook-v2.html">Open Reader →</a>
+  </p>
+
+</main>
+</div>
+
+<script>
+  // Sidebar active link
+  const links=document.querySelectorAll('.sb-link');
+  const sections=document.querySelectorAll('section[id]');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const a=document.querySelector(`.sb-link[href="#${e.target.id}"]`);
+        if(a)a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-48px 0px -60% 0px'});
+  sections.forEach(s=>obs.observe(s));
+
+  // Sidebar click
+  links.forEach(l=>l.addEventListener('click',()=>{links.forEach(x=>x.classList.remove('active'));l.classList.add('active');}));
+
+  // Copy code
+  function copyCode(btn){
+    const pre=btn.closest('.code-block').querySelector('pre');
+    const text=pre.innerText||pre.textContent;
+    navigator.clipboard?.writeText(text).then(()=>{
+      const orig=btn.textContent;btn.textContent='✓ Copied!';
+      setTimeout(()=>btn.textContent=orig,2000);
+    });
+  }
+</script>
+</body>
+</html>

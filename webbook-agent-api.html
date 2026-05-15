@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Webbook Markdown Structure API — Author & AI Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#08090f;color:#d1d5db;line-height:1.7;min-height:100vh}
+a{color:#60a5fa;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font-family:'JetBrains Mono',monospace}
+
+/* ── Layout ── */
+.layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+
+/* ── Sidebar ── */
+.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:#0d0f1e;border-right:1px solid rgba(255,255,255,.07);padding:1.5rem 1rem}
+.sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1a4fff33}
+.sb-logo{font-size:1.05rem;font-weight:800;color:#60a5fa;margin-bottom:1.5rem;display:flex;align-items:center;gap:.45rem}
+.sb-logo i{font-size:.9rem}
+.sb-section{font-size:.62rem;font-weight:700;letter-spacing:.1em;color:#4b5563;text-transform:uppercase;padding:.6rem .35rem .2rem;margin-top:.7rem}
+.sb-link{display:block;padding:.3rem .55rem;border-radius:.4rem;font-size:.77rem;color:#9ca3af;transition:all .14s;margin-bottom:2px;border-left:2px solid transparent}
+.sb-link:hover{background:rgba(96,165,250,.08);color:#93c5fd;border-left-color:#60a5fa;text-decoration:none}
+.sb-link.active{background:rgba(96,165,250,.12);color:#60a5fa;border-left-color:#60a5fa;font-weight:600}
+.sb-sub{font-size:.71rem;padding:.22rem .55rem .22rem 1.1rem;color:#6b7280}
+@media(max-width:900px){.sidebar{display:none}}
+
+/* ── Main content ── */
+.main{padding:2rem 2.5rem 4rem;max-width:900px}
+@media(max-width:640px){.main{padding:1.2rem 1rem 3rem}}
+
+/* ── Typography ── */
+h1{font-size:2.1rem;font-weight:800;color:#f9fafb;line-height:1.2;margin-bottom:.5rem}
+h2{font-size:1.3rem;font-weight:700;color:#e5e7eb;margin-top:3rem;margin-bottom:.85rem;padding-bottom:.4rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:.5rem}
+h3{font-size:1rem;font-weight:700;color:#c7d2fe;margin-top:1.8rem;margin-bottom:.5rem}
+h4{font-size:.88rem;font-weight:600;color:#9ca3af;margin-top:1.2rem;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em}
+p{margin-bottom:.85rem;font-size:.92rem}
+ul,ol{margin-bottom:.85rem;padding-right:0;padding-left:1.4rem}
+li{margin-bottom:.28rem;font-size:.91rem}
+strong{color:#e5e7eb;font-weight:600}
+em{color:#93c5fd;font-style:normal;font-weight:500}
+
+/* ── Callouts ── */
+.callout{border-radius:.6rem;padding:.85rem 1rem;margin:1.1rem 0;font-size:.87rem;border-left:3px solid;display:flex;gap:.65rem;align-items:flex-start}
+.callout i{flex-shrink:0;margin-top:.18rem;font-size:.9rem}
+.callout.info{background:rgba(96,165,250,.06);border-color:#60a5fa;color:#93c5fd}
+.callout.tip{background:rgba(52,211,153,.06);border-color:#34d399;color:#6ee7b7}
+.callout.warn{background:rgba(251,191,36,.06);border-color:#fbbf24;color:#fde68a}
+.callout.key{background:rgba(167,139,250,.08);border-color:#a78bfa;color:#c4b5fd}
+
+/* ── Code blocks ── */
+.code-block{position:relative;background:#0f1120;border:1px solid rgba(255,255,255,.08);border-radius:.6rem;margin:1rem 0;overflow:hidden}
+.code-label{position:absolute;top:.55rem;right:.75rem;font-size:.62rem;font-weight:700;color:#4b5563;letter-spacing:.07em;text-transform:uppercase}
+.code-copy{position:absolute;top:.45rem;left:.65rem;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.2);color:#60a5fa;font-size:.66rem;padding:.18rem .5rem;border-radius:.3rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.code-copy:hover{background:rgba(96,165,250,.22)}
+pre{padding:2.4rem .85rem .9rem;overflow-x:auto;font-size:.8rem;line-height:1.7;color:#94a3b8}
+.cm{color:#4b5563;font-style:italic}  /* comment */
+.ck{color:#c084fc}  /* keyword/heading */
+.cs{color:#86efac}  /* string/text */
+.cn{color:#fbbf24}  /* number/name */
+.cc{color:#67e8f9}  /* class/tag */
+.cd{color:#fb7185}  /* delimiter */
+
+/* ── Slide type badges ── */
+.slide-types{display:flex;flex-wrap:wrap;gap:.45rem;margin:1rem 0}
+.st-badge{display:inline-flex;align-items:center;gap:.32rem;padding:.28rem .7rem;border-radius:9999px;font-size:.72rem;font-weight:700;border:1px solid;cursor:pointer;transition:all .15s}
+.st-badge:hover{opacity:.8;transform:scale(1.03)}
+
+/* ── Tables ── */
+table{width:100%;border-collapse:collapse;font-size:.84rem;margin:1rem 0}
+thead tr{background:rgba(255,255,255,.04)}
+th{padding:.55rem .8rem;text-align:left;color:#9ca3af;font-weight:600;font-size:.78rem;border-bottom:1px solid rgba(255,255,255,.08)}
+td{padding:.5rem .8rem;border-bottom:1px solid rgba(255,255,255,.04);color:#d1d5db;vertical-align:top}
+tr:hover td{background:rgba(255,255,255,.02)}
+td code{background:rgba(139,92,246,.15);color:#c4b5fd;padding:.1rem .35rem;border-radius:.3rem;font-size:.8rem}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(135deg,rgba(26,79,255,.08),rgba(139,92,246,.08));border:1px solid rgba(96,165,250,.15);border-radius:.85rem;padding:1.8rem;margin-bottom:2.5rem}
+.hero-tag{display:inline-flex;align-items:center;gap:.35rem;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.2);color:#60a5fa;font-size:.72rem;font-weight:700;padding:.2rem .65rem;border-radius:9999px;margin-bottom:.8rem}
+.hero p{margin:0;font-size:.9rem;color:#9ca3af}
+
+/* ── Anchor links ── */
+.anchor{color:#4b5563;text-decoration:none;margin-right:.4rem;font-size:.8em}
+h2:hover .anchor,h3:hover .anchor{color:#60a5fa}
+
+/* ── Slide preview card ── */
+.slide-preview{background:#0f1120;border:1px solid rgba(255,255,255,.07);border-radius:.7rem;padding:1.1rem 1.2rem;margin:.75rem 0;font-size:.83rem}
+.sp-header{display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.sp-type{font-size:.67rem;font-weight:800;letter-spacing:.07em;padding:.18rem .55rem;border-radius:9999px;text-transform:uppercase}
+.sp-body{color:#94a3b8;line-height:1.75}
+.sp-body strong{color:#c7d2fe}
+.sp-body em{color:#93c5fd;font-style:normal}
+.sp-body .sq{background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.2);border-radius:.45rem;padding:.4rem .65rem;color:#fde68a;font-size:.85em;margin:.5rem 0}
+.sp-body .bq{border-right:3px solid #4a7bff;padding:.35rem .7rem;background:rgba(26,79,255,.06);border-radius:0 .4rem .4rem 0;color:#93c5fd}
+
+/* ── Dividers ── */
+hr{border:none;border-top:1px solid rgba(255,255,255,.06);margin:2.5rem 0}
+
+/* ── Back to top ── */
+#back-top{position:fixed;bottom:1.5rem;right:1.5rem;background:rgba(26,79,255,.85);color:#fff;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:.85rem;display:none;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.4);transition:all .18s;z-index:99}
+#back-top:hover{background:#1a4fff;transform:translateY(-2px)}
+#back-top.show{display:flex}
+</style>
+</head>
+<body>
+
+<div class="layout">
+<!-- ═══ SIDEBAR ═══ -->
+<nav class="sidebar">
+  <div class="sb-logo"><i class="fa-solid fa-book-open"></i>Webbook MD API</div>
+
+  <div class="sb-section">Overview</div>
+  <a class="sb-link" href="#overview">What is this?</a>
+  <a class="sb-link" href="#pipeline">How MD becomes slides</a>
+
+  <div class="sb-section">MD Block Types</div>
+  <a class="sb-link" href="#blocks">All 8 block types</a>
+  <a class="sb-link sb-sub" href="#block-heading">Headings</a>
+  <a class="sb-link sb-sub" href="#block-para">Paragraphs</a>
+  <a class="sb-link sb-sub" href="#block-quote">Blockquotes</a>
+  <a class="sb-link sb-sub" href="#block-list">Lists</a>
+  <a class="sb-link sb-sub" href="#block-table">Tables</a>
+  <a class="sb-link sb-sub" href="#block-code">Code/Equations</a>
+  <a class="sb-link sb-sub" href="#block-hr">Separators</a>
+  <a class="sb-link sb-sub" href="#block-quran">Quranic verses</a>
+
+  <div class="sb-section">Slide Types (9)</div>
+  <a class="sb-link" href="#slide-types">Overview</a>
+  <a class="sb-link sb-sub" href="#cover">cover</a>
+  <a class="sb-link sb-sub" href="#chapter">chapter</a>
+  <a class="sb-link sb-sub" href="#prose">prose</a>
+  <a class="sb-link sb-sub" href="#quote">quote</a>
+  <a class="sb-link sb-sub" href="#list">list</a>
+  <a class="sb-link sb-sub" href="#table">table</a>
+  <a class="sb-link sb-sub" href="#equation">equation</a>
+  <a class="sb-link sb-sub" href="#science">science</a>
+  <a class="sb-link sb-sub" href="#cta">cta</a>
+
+  <div class="sb-section">Extended Slide Types</div>
+  <a class="sb-link" href="#extended-types">Charts, Media & more</a>
+
+  <div class="sb-section">Word Count Rules</div>
+  <a class="sb-link" href="#word-count">Mobile vs Desktop</a>
+
+  <div class="sb-section">Author Guide</div>
+  <a class="sb-link" href="#file-structure">File structure</a>
+  <a class="sb-link" href="#chapter-template">Chapter template</a>
+  <a class="sb-link" href="#all-slides">All slide examples</a>
+
+  <div class="sb-section">AI Prompts</div>
+  <a class="sb-link" href="#ai-prompts">System + chapter prompt</a>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+
+<!-- HERO -->
+<div class="hero" id="overview">
+  <div class="hero-tag"><i class="fa-solid fa-code"></i> v4 · Markdown Structure API</div>
+  <h1>Webbook MD Structure API</h1>
+  <p>Complete reference for authoring books as <strong>Markdown files</strong> that the Webbook reader renders as beautiful interactive slides. This document covers every supported block type, all 9 slide classifications, extended slide types (charts, media, statistics), word-count splitting rules, and complete AI prompts for generating well-structured book chapters.</p>
+</div>
+
+<div class="callout info">
+  <i class="fa-solid fa-circle-info"></i>
+  <span><strong>Scope:</strong> This API describes the <em>Markdown book structure</em> only — not the Webbook runtime (IndexedDB, annotations, navigation). Authors and AI agents use this reference to write correctly structured <code>.md</code> files that the reader can split, classify, and render.</span>
+</div>
+
+<hr/>
+
+<!-- PIPELINE -->
+<h2 id="pipeline"><a class="anchor" href="#pipeline">#</a><i class="fa-solid fa-arrows-turn-right" style="color:#60a5fa"></i> How Markdown becomes slides</h2>
+
+<p>The reader processes each <code>.md</code> file through four stages:</p>
+
+<table>
+<thead><tr><th>Stage</th><th>Function</th><th>Input → Output</th></tr></thead>
+<tbody>
+<tr><td><strong>1. Parse</strong></td><td><code>parseMD()</code></td><td>Raw MD string → array of typed <em>blocks</em></td></tr>
+<tr><td><strong>2. Split</strong></td><td><code>split()</code></td><td>Blocks → array of <em>slides</em> (each ≤ word limit)</td></tr>
+<tr><td><strong>3. Classify</strong></td><td><code>classify()</code></td><td>Slide blocks → slide type string (cover, chapter, prose…)</td></tr>
+<tr><td><strong>4. Render</strong></td><td><code>buildSlide()</code></td><td>Slide data → interactive DOM element</td></tr>
+</tbody>
+</table>
+
+<div class="callout tip">
+  <i class="fa-solid fa-lightbulb"></i>
+  <span><strong>Key insight:</strong> You don't control slide boundaries manually. The parser infers them from heading levels, <code>---</code> separators, and word count limits. Write naturally — the reader handles pagination.</span>
+</div>
+
+<hr/>
+
+<!-- BLOCKS -->
+<h2 id="blocks"><a class="anchor" href="#blocks">#</a><i class="fa-solid fa-cubes" style="color:#a78bfa"></i> Block Types (8)</h2>
+
+<p>Every line or group of lines in your MD file is parsed into one of these block types:</p>
+
+<table>
+<thead><tr><th>Block type</th><th>Trigger</th><th>Example MD</th></tr></thead>
+<tbody>
+<tr><td><code>heading</code></td><td><code>#</code>–<code>####</code></td><td><code>## الفصل الأول</code></td></tr>
+<tr><td><code>para</code></td><td>Plain text</td><td><code>هذا نص عادي يُعرض كفقرة.</code></td></tr>
+<tr><td><code>quote</code></td><td>Line starts with <code>&gt;</code></td><td><code>&gt; اقتباس شهير — المؤلف</code></td></tr>
+<tr><td><code>list</code></td><td><code>-</code> / <code>*</code> / <code>+</code></td><td><code>- عنصر في القائمة</code></td></tr>
+<tr><td><code>nlist</code></td><td><code>1.</code> or <code>1)</code></td><td><code>1. الخطوة الأولى</code></td></tr>
+<tr><td><code>table</code></td><td>Pipe <code>|</code> rows</td><td><code>| العنوان | القيمة |</code></td></tr>
+<tr><td><code>code</code></td><td>Triple backtick fence</td><td><code>```formula</code></td></tr>
+<tr><td><code>hr</code></td><td><code>---</code> / <code>___</code> / <code>***</code></td><td><code>---</code></td></tr>
+</tbody>
+</table>
+
+<!-- HEADING -->
+<h3 id="block-heading">Headings — slide boundaries</h3>
+<p>Heading levels control the slide structure:</p>
+<table>
+<thead><tr><th>Level</th><th>MD syntax</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>h1</code></td><td><code># Title</code></td><td>Book title / part divider — always starts a new slide</td></tr>
+<tr><td><code>h2</code></td><td><code>## Chapter</code></td><td>Chapter/section opener — always starts a new slide</td></tr>
+<tr><td><code>h3</code></td><td><code>### Sub-section</code></td><td>Sub-section — starts a new slide only if current slide ≥ min words</td></tr>
+<tr><td><code>h4</code></td><td><code>#### Detail</code></td><td>Inline heading — stays in the current slide</td></tr>
+</tbody>
+</table>
+
+<div class="code-block">
+  <span class="code-label">MD</span>
+  <button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cm"># Sets book title / resets chapter counter (h1)</span>
+<span class="ck"># 2030B — كن أذكى</span>
+
+<span class="cm"># Starts new slide + opens chapter panel (h2)</span>
+<span class="ck">## الفصل الأول: البداية</span>
+
+<span class="cm"># Stays in slide; starts new slide if ≥ min words (h3)</span>
+<span class="ck">### التحدي الأول</span>
+
+<span class="cm"># Always stays in the same slide (h4)</span>
+<span class="ck">#### ملاحظة مهمة</span></pre>
+</div>
+
+<!-- PARA -->
+<h3 id="block-para">Paragraphs</h3>
+<p>Consecutive non-blank lines that don't match any other pattern are joined into a single paragraph block. Inline formatting is supported:</p>
+<table>
+<thead><tr><th>Inline syntax</th><th>Renders as</th></tr></thead>
+<tbody>
+<tr><td><code>**bold**</code></td><td><strong>bold text</strong></td></tr>
+<tr><td><code>*italic*</code></td><td><em>styled emphasis</em></td></tr>
+<tr><td><code>`code`</code></td><td>inline code span</td></tr>
+<tr><td><code>﴿آية﴾</code></td><td>Quranic verse in gold (auto-detected)</td></tr>
+</tbody>
+</table>
+
+<!-- QUOTE -->
+<h3 id="block-quote">Blockquotes</h3>
+<div class="code-block">
+  <span class="code-label">MD</span>
+  <button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cd">&gt;</span> <span class="cs">*العقل أعظم هبة مُنحت للإنسان* — أرسطو</span></pre>
+</div>
+<p>Attribution is separated from the quote text by an em-dash (<code>—</code>). Everything after <code>—</code> on the last line is rendered as a citation.</p>
+
+<!-- LIST -->
+<h3 id="block-list">Lists</h3>
+<div class="code-block">
+  <span class="code-label">Unordered list MD</span>
+<pre><span class="cd">-</span> <span class="cs">أول عنصر في القائمة</span>
+<span class="cd">-</span> <span class="cs">ثاني عنصر في القائمة</span>
+<span class="cd">-</span> <span class="cs">ثالث عنصر في القائمة</span></pre>
+</div>
+<div class="code-block">
+  <span class="code-label">Ordered list MD</span>
+<pre><span class="cn">1.</span> <span class="cs">الخطوة الأولى</span>
+<span class="cn">2.</span> <span class="cs">الخطوة الثانية</span>
+<span class="cn">3.</span> <span class="cs">الخطوة الثالثة</span></pre>
+</div>
+<div class="callout tip">
+  <i class="fa-solid fa-lightbulb"></i>
+  <span>A list with <strong>3 or more items</strong> triggers a <code>list</code>-type slide with highlighted bullet diamonds (◆). Shorter lists stay inside prose slides.</span>
+</div>
+
+<!-- TABLE -->
+<h3 id="block-table">Tables</h3>
+<div class="code-block">
+  <span class="code-label">MD</span>
+<pre><span class="ck">| الميزة       | التقليدي | SelfAI |</span>
+<span class="cd">|-------------|---------|--------|</span>
+<span class="cs">| التعلم       | محدود    | لا نهائي |</span>
+<span class="cs">| التكيف      | بطيء     | فوري    |</span>
+<span class="cs">| الاستدامة   | ✗       | ✓       |</span></pre>
+</div>
+<p>Cells with <code>✓</code> / <code>نعم</code> render in green; cells with <code>✗</code> / <code>لا</code> render in red (last column only).</p>
+
+<!-- CODE -->
+<h3 id="block-code">Code / Equations</h3>
+<div class="code-block">
+  <span class="code-label">Equation (≤20 lines → equation slide)</span>
+<pre><span class="cm">```</span>
+<span class="cs">المعادلة: IQ × SelfAI × Time = Unlimited Growth</span>
+<span class="cs">الناتج:   النموذج المعرفي اللانهائي</span>
+<span class="cm">```</span></pre>
+</div>
+<p>Blocks with ≤20 lines render as a centered equation card (<code>equation</code> slide type). Longer blocks render as a scrollable code block.</p>
+
+<!-- HR -->
+<h3 id="block-hr">Horizontal rules — manual slide breaks</h3>
+<p>Use <code>---</code> to force a slide break <em>without</em> a new heading. Useful to split long prose sections at a desired point rather than at the word-count limit.</p>
+<div class="code-block">
+<pre>...نهاية الفقرة الأولى هنا.
+
+<span class="cd">---</span>
+
+### الجزء التالي</pre>
+</div>
+
+<!-- QURAN -->
+<h3 id="block-quran">Quranic verses</h3>
+<p>Any paragraph containing Arabic text enclosed in <code>﴿</code>…<code>﴾</code> is automatically rendered as a Quranic verse block:</p>
+<div class="code-block">
+<pre><span class="cn">﴿وَعَلَّمَ آدَمَ الْأَسْمَاءَ كُلَّهَا﴾</span> (البقرة: 31)</pre>
+</div>
+<p>The reference in parentheses <code>(Surah: verse)</code> is extracted and displayed as a subtitle below the verse.</p>
+
+<hr/>
+
+<!-- SLIDE TYPES -->
+<h2 id="slide-types"><a class="anchor" href="#slide-types">#</a><i class="fa-solid fa-layer-group" style="color:#34d399"></i> Slide Types (9 core)</h2>
+
+<p>Each slide is automatically classified by examining its blocks. The classifier runs in order — <strong>first match wins</strong>:</p>
+
+<table>
+<thead><tr><th>Priority</th><th>Slide type</th><th>Classification rule</th><th>Badge color</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong>cover</strong></td><td>Global index = 0 (first slide of the book)</td><td><span style="color:#c7d2fe">indigo</span></td></tr>
+<tr><td>2</td><td><strong>table</strong></td><td>Any <code>table</code> block present</td><td><span style="color:#93c5fd">blue</span></td></tr>
+<tr><td>3</td><td><strong>equation</strong></td><td>Any <code>code</code> block present</td><td><span style="color:#c4b5fd">violet</span></td></tr>
+<tr><td>4</td><td><strong>quote</strong></td><td>Any <code>quote</code> block, or text contains <code>﴿…﴾</code></td><td><span style="color:#fde68a">gold</span></td></tr>
+<tr><td>5</td><td><strong>chapter</strong></td><td>h1/h2 whose text matches الفصل / المقدمة / الخاتمة…</td><td><span style="color:#c4b5fd">purple</span></td></tr>
+<tr><td>6</td><td><strong>list</strong></td><td>List block with ≥3 items</td><td><span style="color:#86efac">green</span></td></tr>
+<tr><td>7</td><td><strong>science</strong></td><td>Text matches: معادلة / مراحل / خوارزمية / مبدأ…</td><td><span style="color:#6ee7b7">teal</span></td></tr>
+<tr><td>8</td><td><strong>cta</strong></td><td>Text matches: 2030B.com / اشترك / ابدأ التحدي…</td><td><span style="color:#fff">white</span></td></tr>
+<tr><td>9</td><td><strong>prose</strong></td><td>Default — everything else</td><td><span style="color:#94a3b8">gray</span></td></tr>
+</tbody>
+</table>
+
+<div class="slide-types">
+  <span class="st-badge" style="color:#c7d2fe;background:rgba(26,79,255,.15);border-color:rgba(26,79,255,.3)"><i class="fa-solid fa-book-open" style="font-size:.65rem"></i> غلاف</span>
+  <span class="st-badge" style="color:#c4b5fd;background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.3)"><i class="fa-solid fa-bookmark" style="font-size:.65rem"></i> فصل</span>
+  <span class="st-badge" style="color:#94a3b8;background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)"><i class="fa-solid fa-align-right" style="font-size:.65rem"></i> نص</span>
+  <span class="st-badge" style="color:#fde68a;background:rgba(245,197,24,.1);border-color:rgba(245,197,24,.25)"><i class="fa-solid fa-quote-right" style="font-size:.65rem"></i> اقتباس</span>
+  <span class="st-badge" style="color:#86efac;background:rgba(45,212,191,.08);border-color:rgba(45,212,191,.2)"><i class="fa-solid fa-list-check" style="font-size:.65rem"></i> قائمة</span>
+  <span class="st-badge" style="color:#93c5fd;background:rgba(26,79,255,.1);border-color:rgba(26,79,255,.25)"><i class="fa-solid fa-table-cells" style="font-size:.65rem"></i> جدول</span>
+  <span class="st-badge" style="color:#c4b5fd;background:rgba(139,92,246,.12);border-color:rgba(139,92,246,.28)"><i class="fa-solid fa-square-root-variable" style="font-size:.65rem"></i> معادلة</span>
+  <span class="st-badge" style="color:#6ee7b7;background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.25)"><i class="fa-solid fa-flask-vial" style="font-size:.65rem"></i> علم</span>
+  <span class="st-badge" style="color:#fff;background:rgba(26,79,255,.25);border-color:rgba(26,79,255,.5)"><i class="fa-solid fa-rocket" style="font-size:.65rem"></i> دعوة</span>
+</div>
+
+<!-- Individual type detail -->
+<h3 id="cover">cover — Book cover (first slide)</h3>
+<div class="slide-preview">
+  <div class="sp-header"><span class="sp-type" style="color:#c7d2fe;background:rgba(26,79,255,.15)">cover</span><span style="font-size:.75rem;color:#475569">First slide of the entire book</span></div>
+  <div class="sp-body">Rendered with the book logo icon, title, and a "scroll down" hint. <strong>Automatically applied to slide index 0</strong> regardless of content.</div>
+</div>
+<div class="code-block">
+  <span class="code-label">MD example</span>
+<pre><span class="ck"># 2030B — كن أذكى</span>
+
+الكتاب التفاعلي الذي يُحوّل طريقة تفكيرك
+وبناء ذاتك باستخدام الذكاء الاصطناعي.
+
+<span class="cs">**المؤلف:** فيصل الجشي</span></pre>
+</div>
+
+<h3 id="chapter">chapter — Chapter opener</h3>
+<div class="slide-preview">
+  <div class="sp-header"><span class="sp-type" style="color:#c4b5fd;background:rgba(139,92,246,.15)">chapter</span></div>
+  <div class="sp-body">Displays a large chapter number, chapter title in big font, and optional subtitle. Triggered by h1/h2 matching chapter keywords.</div>
+</div>
+<div class="code-block">
+  <span class="code-label">MD example</span>
+<pre><span class="ck">## الفصل الأول: لحظة الانكسار</span>
+
+مدخل إلى رحلة إعادة بناء الذات
+في عالم يتسارع بلا رحمة.</pre>
+</div>
+
+<h3 id="prose">prose — Standard text slide</h3>
+<div class="slide-preview">
+  <div class="sp-header"><span class="sp-type" style="color:#94a3b8;background:rgba(255,255,255,.04)">prose</span></div>
+  <div class="sp-body">Default slide type. Supports paragraphs, h3/h4 sub-headings, bold/italic inline formatting. <strong>Most of the book will be prose slides.</strong></div>
+</div>
+<div class="code-block">
+  <span class="code-label">MD example</span>
+<pre><span class="ck">### ثلاث عادات تُغيّر الدماغ</span>
+
+العادة الأولى هي القراءة المتأنية التي تُعيد
+<span class="cs">**برمجة**</span> الشبكات العصبية نحو التفكير النقدي.
+
+العادة الثانية هي الكتابة اليومية التي تُحوّل
+التجارب إلى معرفة قابلة للاسترجاع.</pre>
+</div>
+
+<h3 id="quote">quote — Blockquote or Quranic verse slide</h3>
+<div class="slide-preview">
+  <div class="sp-header"><span class="sp-type" style="color:#fde68a;background:rgba(245,197,24,.1)">quote</span></div>
+  <div class="sp-body">
+    Renders a quote with gold styling and attribution, OR a Quranic verse in the special verse box.
+    <div class="sq">﴿وَقُل رَّبِّ زِدْنِي عِلْمًا﴾ — طه: 114</div>
+  </div>
+</div>
+<div class="code-block">
+  <span class="code-label">MD — standard quote</span>
+<pre><span class="cd">&gt;</span> <span class="cs">*لا تحاول أن تكون ناجحًا، بل حاول أن تكون ذا قيمة.* — ألبرت أينشتاين</span></pre>
+</div>
+<div class="code-block">
+  <span class="code-label">MD — Quranic verse</span>
+<pre><span class="cn">﴿وَقُل رَّبِّ زِدْنِي عِلْمًا﴾</span> (طه: 114)</pre>
+</div>
+
+<h3 id="list">list — Bullet or numbered list slide</h3>
+<div class="slide-preview">
+  <div class="sp-header"><span class="sp-type" style="color:#86efac;background:rgba(45,212,191,.08)">list</span></div>
+  <div class="sp-body">Triggered by a list with ≥3 items. Unordered items get diamond bullets (◆ in blue). Ordered items get circular numbered badges.</div>
+</div>
+<div class="code-block">
+  <span class="code-label">MD example</span>
+<pre><span class="ck">### سبع عادات للقارئ الفعّال</span>
+
+<span class="cd">1.</span> <span class="cs">القراءة مع هدف محدد</span>
+<span class="cd">2.</span> <span class="cs">التدوين الفوري للأفكار</span>
+<span class="cd">3.</span> <span class="cs">المراجعة بعد 24 ساعة</span>
+<span class="cd">4.</span> <span class="cs">التطبيق خلال أسبوع</span>
+<span class="cd">5.</span> <span class="cs">المشاركة مع الآخرين</span></pre>
+</div>
+
+<h3 id="table">table — Data table slide</h3>
+<div class="slide-preview">
+  <div class="sp-header"><span class="sp-type" style="color:#93c5fd;background:rgba(26,79,255,.1)">table</span></div>
+  <div class="sp-body">Renders a full-width styled table. Tables always occupy their own slide — they are never merged with surrounding prose.</div>
+</div>
+<div class="code-block">
+  <span class="code-label">MD example</span>
+<pre><span class="ck">| المرحلة     | المدة   | النتيجة              |</span>
+<span class="cd">|------------|--------|---------------------|</span>
+<span class="cs">| الإدراك    | ٣ أيام | فهم المشكلة         |</span>
+<span class="cs">| التخطيط    | ٧ أيام | خارطة الطريق        |</span>
+<span class="cs">| التنفيذ    | ٢١ يوم | التحول الفعلي        |</span>
+<span class="cs">| التوطيد    | ٦٦ يوم | العادة الراسخة ✓     |</span></pre>
+</div>
+
+<h3 id="equation">equation — Formula or algorithm slide</h3>
+<div class="slide-preview">
+  <div class="sp-header"><span class="sp-type" style="color:#c4b5fd;background:rgba(139,92,246,.12)">equation</span></div>
+  <div class="sp-body">Renders a centered violet card. Ideal for formulas, pseudocode, frameworks, or any structured multi-line content ≤20 lines.</div>
+</div>
+<div class="code-block">
+  <span class="code-label">MD example</span>
+<pre><span class="cm">```</span>
+<span class="cs">معادلة النمو اللانهائي:</span>
+
+<span class="cs">  قدرة ذاتية × SelfAI × زمن مُدار = نمو لا حدود له</span>
+
+<span class="cs">الشرط: نية صادقة + نظام يومي + تغذية راجعة</span>
+<span class="cm">```</span></pre>
+</div>
+
+<h3 id="science">science — Scientific/conceptual slide</h3>
+<div class="slide-preview">
+  <div class="sp-header"><span class="sp-type" style="color:#6ee7b7;background:rgba(45,212,191,.1)">science</span></div>
+  <div class="sp-body">Triggered when the text contains keywords like معادلة, مراحل, خوارزمية, مبدأ, طبقات, النموذج, المعمار. Rendered with a teal accent — used for conceptual frameworks.</div>
+</div>
+<div class="code-block">
+  <span class="code-label">MD example (keywords trigger classification)</span>
+<pre><span class="ck">### نموذج طبقات الوعي الذاتي</span>
+
+يعتمد النموذج على ثلاث طبقات متداخلة:
+المعمار المعرفي، والمعمار العاطفي، وطبقة التنفيذ.
+
+<span class="cs">**المبدأ الأساسي:**</span> كل طبقة تُغذّي ما فوقها وما تحتها
+في حلقة تغذية راجعة مستمرة.</pre>
+</div>
+
+<h3 id="cta">cta — Call to action slide</h3>
+<div class="slide-preview">
+  <div class="sp-header"><span class="sp-type" style="color:#fff;background:rgba(26,79,255,.25)">cta</span></div>
+  <div class="sp-body">Adds action buttons (join challenge, go back). Triggered by keywords: 2030B.com, اشترك, ابدأ التحدي, انضم, واحد وعشرون, 21 يومًا.</div>
+</div>
+<div class="code-block">
+  <span class="code-label">MD example</span>
+<pre>هل أنت مستعد للتحدي؟
+
+انضم إلى مجتمع 2030B.com وابدأ رحلة الـ **21 يومًا**
+التي ستُغيّر طريقة تفكيرك إلى الأبد.
+
+اشترك الآن وابدأ التحدي معنا.</pre>
+</div>
+
+<hr/>
+
+<!-- EXTENDED TYPES -->
+<h2 id="extended-types"><a class="anchor" href="#extended-types">#</a><i class="fa-solid fa-chart-mixed" style="color:#fb7185"></i> Extended Slide Types</h2>
+
+<p>Beyond the 9 core slide types, books may contain richer content. These are not yet auto-classified by the parser, but are planned or can be implemented via custom MD syntax or front-matter:</p>
+
+<table>
+<thead><tr><th>Extended type</th><th>Description</th><th>Suggested MD trigger / approach</th></tr></thead>
+<tbody>
+<tr><td><strong>chart-bar</strong></td><td>Bar/column chart from data</td><td><code>```chart-bar</code> fenced block with JSON data inside</td></tr>
+<tr><td><strong>chart-line</strong></td><td>Time-series or trend line</td><td><code>```chart-line</code> fenced block</td></tr>
+<tr><td><strong>chart-pie</strong></td><td>Proportional breakdown</td><td><code>```chart-pie</code> fenced block</td></tr>
+<tr><td><strong>chart-radar</strong></td><td>Multi-axis skill/trait comparison</td><td><code>```chart-radar</code> fenced block</td></tr>
+<tr><td><strong>image</strong></td><td>Full-bleed or captioned image</td><td><code>![caption](url)</code> paragraph (only link in slide)</td></tr>
+<tr><td><strong>video</strong></td><td>Embedded video player</td><td><code>```video\nhttps://...</code> fenced block</td></tr>
+<tr><td><strong>audio</strong></td><td>Audio clip with waveform</td><td><code>```audio\nhttps://...</code> fenced block</td></tr>
+<tr><td><strong>stat-grid</strong></td><td>Grid of KPI stat cards</td><td><code>```stats</code> fenced block with key:value pairs</td></tr>
+<tr><td><strong>timeline</strong></td><td>Chronological event list</td><td><code>```timeline</code> fenced block with date — event pairs</td></tr>
+<tr><td><strong>comparison</strong></td><td>Side-by-side before/after</td><td><code>```compare</code> fenced block with left/right sections</td></tr>
+<tr><td><strong>poll</strong></td><td>Interactive reader poll</td><td><code>```poll</code> fenced block with question and options</td></tr>
+<tr><td><strong>flashcard</strong></td><td>Flippable question/answer card</td><td><code>```flashcard</code> fenced block</td></tr>
+<tr><td><strong>map</strong></td><td>Geographic or concept map</td><td><code>```map</code> fenced block with coordinates or concept JSON</td></tr>
+<tr><td><strong>pledge</strong></td><td>Reader commitment/oath</td><td>Text containing الميثاق / أتعهد — matching keywords</td></tr>
+</tbody>
+</table>
+
+<h3>Chart slide — MD format (proposed)</h3>
+<div class="code-block">
+  <span class="code-label">chart-bar example</span>
+<pre><span class="cm">```chart-bar</span>
+<span class="cn">title:</span> <span class="cs">نسبة تحسن الأداء بعد 21 يومًا</span>
+<span class="cn">unit:</span> <span class="cs">%</span>
+<span class="cn">data:</span>
+  <span class="cd">-</span> <span class="cc">التركيز:</span> <span class="cn">68</span>
+  <span class="cd">-</span> <span class="cc">الإنتاجية:</span> <span class="cn">85</span>
+  <span class="cd">-</span> <span class="cc">الثقة:</span> <span class="cn">72</span>
+  <span class="cd">-</span> <span class="cc">الطاقة:</span> <span class="cn">91</span>
+<span class="cm">```</span></pre>
+</div>
+
+<h3>Stat grid — MD format (proposed)</h3>
+<div class="code-block">
+  <span class="code-label">stats example</span>
+<pre><span class="cm">```stats</span>
+<span class="cn">title:</span> <span class="cs">أرقام مجتمع 2030B</span>
+<span class="cd">القراء المنضمون:</span>   <span class="cn">12,400</span>
+<span class="cd">التحديات المكتملة:</span> <span class="cn">8,900</span>
+<span class="cd">متوسط النمو:</span>      <span class="cn">+34%</span>
+<span class="cd">أيام متوسط الالتزام:</span> <span class="cn">18 يوم</span>
+<span class="cm">```</span></pre>
+</div>
+
+<h3>Timeline — MD format (proposed)</h3>
+<div class="code-block">
+  <span class="code-label">timeline example</span>
+<pre><span class="cm">```timeline</span>
+<span class="cn">2020:</span> <span class="cs">بداية مشروع SelfAI</span>
+<span class="cn">2021:</span> <span class="cs">أول 1000 مستخدم في المجتمع</span>
+<span class="cn">2022:</span> <span class="cs">إطلاق منهج الـ 21 يومًا</span>
+<span class="cn">2023:</span> <span class="cs">10,000 قارئ نشط</span>
+<span class="cn">2030:</span> <span class="cs">الهدف: مليون قارئ عربي</span>
+<span class="cm">```</span></pre>
+</div>
+
+<hr/>
+
+<!-- WORD COUNT -->
+<h2 id="word-count"><a class="anchor" href="#word-count">#</a><i class="fa-solid fa-ruler" style="color:#fbbf24"></i> Word Count Splitting Rules</h2>
+
+<table>
+<thead><tr><th>Device</th><th>Min words</th><th>Max words</th><th>Reasoning</th></tr></thead>
+<tbody>
+<tr><td>Mobile (<768px)</td><td>120</td><td>170</td><td>Short slides — one screen, thumb-scroll friendly</td></tr>
+<tr><td>Desktop (≥768px)</td><td>450</td><td>550</td><td>Longer slides — reading comfort on large screens</td></tr>
+</tbody>
+</table>
+
+<h4>Splitting rules (in priority order):</h4>
+<ol>
+  <li><strong>h1/h2 heading</strong> → always flush current slide, start new one</li>
+  <li><strong>h3 heading</strong> → flush current slide only if current word count ≥ min</li>
+  <li><strong>h4 heading</strong> → always stays in current slide</li>
+  <li><strong>HR (<code>---</code>)</strong> → flush current slide if word count ≥ min</li>
+  <li><strong>Table or code block</strong> → flush current slide, render block alone, then flush again</li>
+  <li><strong>Any block</strong> that would push total past max → flush first, then add block</li>
+  <li><strong>Any block</strong> that pushes total past max → flush immediately after adding</li>
+</ol>
+
+<div class="callout warn">
+  <i class="fa-solid fa-triangle-exclamation"></i>
+  <span><strong>Tables and code blocks always occupy their own slide.</strong> The parser flushes before and after them. Don't try to put other content in the same MD section expecting it to merge.</span>
+</div>
+
+<hr/>
+
+<!-- FILE STRUCTURE -->
+<h2 id="file-structure"><a class="anchor" href="#file-structure">#</a><i class="fa-solid fa-folder-tree" style="color:#60a5fa"></i> File Structure</h2>
+
+<div class="code-block">
+  <span class="code-label">Project layout</span>
+<pre><span class="cc">book/</span>
+  <span class="cs">prologue-toc.md</span>          <span class="cm">← Cover + table of contents</span>
+  <span class="cs">chapter-01.md</span>            <span class="cm">← First chapter</span>
+  <span class="cs">chapter-02.md</span>            <span class="cm">← Second chapter</span>
+  <span class="cs">chapters-03-04.md</span>        <span class="cm">← Grouped chapters (optional)</span>
+  <span class="cs">chapters-05-06-07.md</span>
+  <span class="cs">chapters-08-12-epilog.md</span>
+
+<span class="cc">webbook-v4.html</span>            <span class="cm">← Main reader (CFG.files array)</span></pre>
+</div>
+
+<p>Files are loaded in the order specified in <code>CFG.files</code> inside the HTML. Each file's slides are appended sequentially to the global slide array.</p>
+
+<table>
+<thead><tr><th>CFG field</th><th>Type</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code>path</code></td><td>string</td><td>Relative path to <code>.md</code> file</td></tr>
+<tr><td><code>part</code></td><td>string</td><td>Part label shown in TOC group header</td></tr>
+<tr><td><code>id</code></td><td>string</td><td>Cache key in IndexedDB (unique per file)</td></tr>
+</tbody>
+</table>
+
+<hr/>
+
+<!-- CHAPTER TEMPLATE -->
+<h2 id="chapter-template"><a class="anchor" href="#chapter-template">#</a><i class="fa-solid fa-file-lines" style="color:#a78bfa"></i> Complete Chapter Template</h2>
+
+<div class="callout key">
+  <i class="fa-solid fa-key"></i>
+  <span>Copy this template for each new chapter. Fill in all sections. The parser handles the rest.</span>
+</div>
+
+<div class="code-block">
+  <span class="code-label">chapter-XX.md — full template</span>
+  <button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cm">=== CHAPTER OPENER (h2 + keywords = chapter slide) ===</span>
+<span class="ck">## الفصل الثاني: اسم الفصل هنا</span>
+
+<span class="cs">جملة تشويقية قصيرة تُلخّص جوهر الفصل
+وتُشعل فضول القارئ للمتابعة.</span>
+
+<span class="cd">---</span>
+
+<span class="cm">=== OPENING QUOTE (quote slide) ===</span>
+<span class="cd">&gt;</span> <span class="cs">*اقتباس ملهم يرتبط بموضوع الفصل* — اسم المؤلف</span>
+
+<span class="cd">---</span>
+
+<span class="cm">=== FIRST SECTION (prose slide) ===</span>
+<span class="ck">### العنوان الفرعي الأول</span>
+
+<span class="cs">فقرة تُقدّم المفهوم الرئيسي مع أمثلة من الحياة اليومية.
+استخدم </span><span class="cn">**النص الغامق**</span><span class="cs"> للمصطلحات الأساسية و</span><span class="cn">*الإيطالي*</span><span class="cs"> للتأكيد.
+
+فقرة ثانية تُعمّق الفكرة مع ربطها بالسياق العام.</span>
+
+<span class="cd">---</span>
+
+<span class="cm">=== KEY POINTS (list slide — 3+ items trigger list type) ===</span>
+<span class="ck">### النقاط الجوهرية</span>
+
+<span class="cd">-</span> <span class="cs">النقطة الأولى: وصف موجز ومباشر</span>
+<span class="cd">-</span> <span class="cs">النقطة الثانية: وصف موجز ومباشر</span>
+<span class="cd">-</span> <span class="cs">النقطة الثالثة: وصف موجز ومباشر</span>
+<span class="cd">-</span> <span class="cs">النقطة الرابعة (اختياري): للتوسع</span>
+
+<span class="cd">---</span>
+
+<span class="cm">=== DATA TABLE (table slide — auto isolated) ===</span>
+<span class="ck">### مقارنة أو بيانات</span>
+
+<span class="ck">| العنصر      | الوضع الحالي | بعد التطبيق |</span>
+<span class="cd">|------------|------------|------------|</span>
+<span class="cs">| التركيز    | منخفض       | عالٍ ✓      |</span>
+<span class="cs">| الطاقة     | متذبذب      | مستقر ✓     |</span>
+<span class="cs">| الإنتاج    | ضعيف        | مرتفع ✓     |</span>
+
+<span class="cd">---</span>
+
+<span class="cm">=== FORMULA / FRAMEWORK (equation slide) ===</span>
+<span class="ck">### الصيغة الجوهرية</span>
+
+<span class="cm">```</span>
+<span class="cs">معادلة التحوّل:</span>
+
+<span class="cs">  وعي + نظام + استمرارية = تغيير حقيقي</span>
+
+<span class="cs">المتغيرات:
+  وعي       = فهم جذور المشكلة
+  نظام      = روتين يومي مُصمَّم بعناية
+  استمرارية = التزام لا يقل عن 21 يومًا</span>
+<span class="cm">```</span>
+
+<span class="cd">---</span>
+
+<span class="cm">=== QURANIC VERSE (auto-detected = quote slide) ===</span>
+
+<span class="cn">﴿إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّى يُغَيِّرُوا مَا بِأَنفُسِهِمْ﴾</span>
+(الرعد: 11)
+
+<span class="cd">---</span>
+
+<span class="cm">=== SCIENCE / FRAMEWORK (science slide — keyword triggers) ===</span>
+<span class="ck">### نموذج المعمار المعرفي</span>
+
+يقوم النموذج على ثلاث طبقات في مبدأ التغيير المتسلسل:
+الطبقة الأولى هي طبقة الوعي، والثانية طبقة التخطيط،
+والثالثة خوارزمية التنفيذ اليومي.
+
+<span class="cs">**المعمار الكامل**</span> يعمل كمنظومة متكاملة لا كعناصر منفصلة.
+
+<span class="cd">---</span>
+
+<span class="cm">=== SECOND SECTION (prose slide) ===</span>
+<span class="ck">### العنوان الفرعي الثاني</span>
+
+<span class="cs">محتوى الفقرة الرئيسية هنا. اجعل كل فقرة تُضيف
+فكرة واحدة جديدة وتنتهي بجملة تُهيّئ للفقرة التالية.
+
+استمر بإضافة الفقرات حتى تصل لحد الكلمات المناسب
+(120-170 كلمة على الجوال، 450-550 على سطح المكتب).</span>
+
+<span class="cd">---</span>
+
+<span class="cm">=== CHAPTER CLOSE / TRANSITION ===</span>
+<span class="ck">### خلاصة الفصل</span>
+
+في هذا الفصل اكتشفنا أن...
+<span class="cs">**الفكرة الرئيسية:**</span> جملة تُلخّص الدرس.
+<span class="cs">**الخطوة التالية:**</span> ما يجب على القارئ فعله الآن.</pre>
+</div>
+
+<hr/>
+
+<!-- ALL SLIDES CATALOG -->
+<h2 id="all-slides"><a class="anchor" href="#all-slides">#</a><i class="fa-solid fa-grid" style="color:#34d399"></i> All Slide Type Examples</h2>
+
+<p>The following shows one complete, standalone MD snippet for <em>every</em> slide type (including extended types). Use these as copy-paste starting points.</p>
+
+<h3>1 · cover</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="ck"># اسم الكتاب — العنوان الفرعي</span>
+
+وصف مختصر للكتاب في سطر أو سطرين.
+
+<span class="cs">**المؤلف:** الاسم الكامل  |  **الإصدار:** 2024</span></pre>
+</div>
+
+<h3>2 · chapter</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="ck">## الفصل الثالث: عنوان الفصل هنا</span>
+
+<span class="cs">جملة تشويقية قصيرة أو سؤال يُثير الفضول.</span></pre>
+</div>
+
+<h3>3 · prose</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="ck">### عنوان القسم</span>
+
+<span class="cs">فقرة تشرح الفكرة الرئيسية مع **تأكيد** على المصطلحات
+الأساسية و*توضيح* للمفاهيم الفرعية.
+
+فقرة ثانية تُعمّق الفكرة وتُمهّد للقسم التالي.</span></pre>
+</div>
+
+<h3>4 · quote (standard)</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cd">&gt;</span> <span class="cs">*نص الاقتباس كاملاً هنا ويمكن أن يمتد لعدة كلمات.* — المؤلف</span></pre>
+</div>
+
+<h3>5 · quote (Quranic verse)</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cn">﴿وَأَن لَّيْسَ لِلْإِنسَانِ إِلَّا مَا سَعَى﴾</span> (النجم: 39)</pre>
+</div>
+
+<h3>6 · list (unordered)</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="ck">### عنوان القائمة</span>
+
+<span class="cd">-</span> <span class="cs">العنصر الأول مع وصف قصير</span>
+<span class="cd">-</span> <span class="cs">العنصر الثاني مع وصف قصير</span>
+<span class="cd">-</span> <span class="cs">العنصر الثالث مع وصف قصير</span>
+<span class="cd">-</span> <span class="cs">العنصر الرابع مع وصف قصير</span></pre>
+</div>
+
+<h3>7 · list (ordered steps)</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="ck">### خطوات التطبيق</span>
+
+<span class="cn">1.</span> <span class="cs">الخطوة الأولى: وصف تفصيلي للإجراء</span>
+<span class="cn">2.</span> <span class="cs">الخطوة الثانية: وصف تفصيلي للإجراء</span>
+<span class="cn">3.</span> <span class="cs">الخطوة الثالثة: وصف تفصيلي للإجراء</span>
+<span class="cn">4.</span> <span class="cs">الخطوة الرابعة: وصف تفصيلي للإجراء</span>
+<span class="cn">5.</span> <span class="cs">الخطوة الخامسة: وصف تفصيلي للإجراء</span></pre>
+</div>
+
+<h3>8 · table</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="ck">| العنوان الأول | العنوان الثاني | العنوان الثالث |</span>
+<span class="cd">|-------------|--------------|---------------|</span>
+<span class="cs">| قيمة أ١     | قيمة ب١       | نعم ✓          |</span>
+<span class="cs">| قيمة أ٢     | قيمة ب٢       | لا ✗           |</span>
+<span class="cs">| قيمة أ٣     | قيمة ب٣       | يدعم ✓         |</span></pre>
+</div>
+
+<h3>9 · equation</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cm">```</span>
+<span class="cs">المعادلة الجوهرية:</span>
+
+<span class="cs">  المتغير أ × المتغير ب ÷ القيد = النتيجة المرجوة</span>
+
+<span class="cs">الشروط:
+  ١. شرط أساسي لا يمكن تجاوزه
+  ٢. شرط ثانوي يُعزّز النتيجة
+  ٣. شرط ثالث يضمن الاستدامة</span>
+<span class="cm">```</span></pre>
+</div>
+
+<h3>10 · science (keyword-triggered)</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="ck">### نموذج المراحل المتتالية</span>
+
+<span class="cs">يعتمد النموذج على مبدأ التراكم المعرفي عبر خوارزمية
+ثلاثية المراحل تُشكّل معمارًا متكاملاً:
+
+**المرحلة الأولى:** الاستيعاب (input)
+تُغذَّى فيها طبقات المعرفة بالمدخلات الجديدة.
+
+**المرحلة الثانية:** المعالجة (processing)  
+تُعيد الشبكة المعرفية ترتيب المعلومات وإيجاد الروابط.
+
+**المرحلة الثالثة:** التوليد (output)
+ينبثق السلوك الجديد من مخرجات المعالجة.</span></pre>
+</div>
+
+<h3>11 · cta</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cs">هل أنت مستعد لبدء رحلتك؟
+
+انضم إلى مجتمع 2030B.com واشترك في تحدي الـ **21 يومًا**.
+ابدأ التحدي اليوم وغيّر واقعك للأبد.</span></pre>
+</div>
+
+<h3>12 · chart-bar (extended — proposed)</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cm">```chart-bar</span>
+<span class="cn">title:</span> <span class="cs">عنوان الرسم البياني</span>
+<span class="cn">unit:</span> <span class="cs">%</span>
+<span class="cn">data:</span>
+  <span class="cd">-</span> <span class="cc">الفئة الأولى:</span> <span class="cn">75</span>
+  <span class="cd">-</span> <span class="cc">الفئة الثانية:</span> <span class="cn">92</span>
+  <span class="cd">-</span> <span class="cc">الفئة الثالثة:</span> <span class="cn">58</span>
+  <span class="cd">-</span> <span class="cc">الفئة الرابعة:</span> <span class="cn">84</span>
+<span class="cm">```</span></pre>
+</div>
+
+<h3>13 · stat-grid (extended — proposed)</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cm">```stats</span>
+<span class="cn">title:</span> <span class="cs">أرقام مهمة</span>
+<span class="cd">المقياس الأول:</span>  <span class="cn">12,400</span>
+<span class="cd">المقياس الثاني:</span> <span class="cn">+34%</span>
+<span class="cd">المقياس الثالث:</span> <span class="cn">21 يوم</span>
+<span class="cd">المقياس الرابع:</span> <span class="cn">8,900</span>
+<span class="cm">```</span></pre>
+</div>
+
+<h3>14 · timeline (extended — proposed)</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cm">```timeline</span>
+<span class="cn">اليوم 1:</span>  <span class="cs">بداية التحدي والوعي بالمشكلة</span>
+<span class="cn">اليوم 7:</span>  <span class="cs">تكوين النمط الأول وتثبيته</span>
+<span class="cn">اليوم 14:</span> <span class="cs">ملاحظة التحسن والتعديل</span>
+<span class="cn">اليوم 21:</span> <span class="cs">ترسيخ العادة الجديدة</span>
+<span class="cn">اليوم 66:</span> <span class="cs">الأتمتة الكاملة للسلوك</span>
+<span class="cm">```</span></pre>
+</div>
+
+<h3>15 · image (extended — proposed)</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cs">![وصف الصورة للوصول](https://example.com/image.jpg)</span>
+
+<span class="cm">ملاحظة: إذا كانت الصورة هي المحتوى الوحيد في الشريحة،
+يتم التعامل معها كشريحة نوع image.</span></pre>
+</div>
+
+<h3>16 · pledge (extended — keyword-triggered)</h3>
+<div class="code-block"><button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="ck">## الميثاق الشخصي</span>
+
+<span class="cs">أتعهّد اليوم بأن أُغيّر نمط تفكيري وأن أُطبّق
+ما تعلّمته في هذا الكتاب خطوة بخطوة.
+
+أتعهّد بالاستمرار حتى لو صعب الطريق،
+لأنني أعلم أن التغيير الحقيقي يستحق المجهود.</span></pre>
+</div>
+
+<hr/>
+
+<!-- AI PROMPTS -->
+<h2 id="ai-prompts"><a class="anchor" href="#ai-prompts">#</a><i class="fa-solid fa-robot" style="color:#c084fc"></i> AI Prompts for Book Generation</h2>
+
+<h3>System prompt — book author agent</h3>
+<div class="code-block">
+  <span class="code-label">system prompt</span>
+  <button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cs">You are an expert Arabic book author and educational content designer
+specializing in self-development, AI literacy, and productivity.
+
+You write in Modern Standard Arabic (MSA) with an engaging, warm tone
+that combines academic depth with accessible storytelling.
+
+Your books are rendered in the Webbook reader as interactive slides.
+Follow these STRICT Markdown rules when generating chapters:
+
+HEADINGS:
+  ## Chapter Title  → new slide, chapter type (use: الفصل / المقدمة / الخاتمة)
+  ### Section       → new slide if ≥120 words accumulated, else stays
+  #### Sub-point    → always stays in current slide
+
+SLIDE BOUNDARIES:
+  Use --- to force a slide break between sections.
+  Tables (|...|) and code fences (```) always occupy their own slide.
+
+SLIDE TYPES (auto-classified):
+  • cover     → first slide of the book automatically
+  • chapter   → h2 with الفصل/المقدمة/الخاتمة keyword
+  • quote     → > blockquote OR ﴿...﴾ Quranic verse
+  • list      → list with ≥3 items (use for key takeaways)
+  • table     → | pipe | table |
+  • equation  → ``` fenced block (formulas, frameworks, algorithms)
+  • science   → prose mentioning: معادلة/مراحل/خوارزمية/مبدأ/طبقات/نموذج/معمار
+  • cta       → prose mentioning: 2030B.com/اشترك/ابدأ التحدي/انضم/21 يومًا
+  • prose     → everything else (default)
+
+WORD COUNT TARGET per slide:
+  Mobile:  120–170 words per slide section
+  Desktop: 450–550 words per slide section
+  Write for desktop; the parser handles mobile splitting automatically.
+
+CONTENT STRUCTURE per chapter:
+  1. Chapter opener (h2 + teaser sentence)
+  2. Opening quote (> blockquote)
+  3. 3–5 prose sections (h3 + paragraphs)
+  4. At least one list slide (key points / steps)
+  5. One table OR equation slide (data/framework)
+  6. Optional: Quranic verse if thematically relevant
+  7. Chapter close (summary + next step)
+
+LANGUAGE RULES:
+  • Use **bold** for key terms and em-dashes for emphasis
+  • Use *italic* for emotional/important phrases
+  • Avoid English unless it's a technical term — then explain it
+  • Write Quranic verses with ﴿﴾ brackets followed by (Surah: verse)
+  • Use Arabic-Indic numerals (١٢٣) in body text, Western (123) in tables</span></pre>
+</div>
+
+<h3>Chapter generation prompt</h3>
+<div class="code-block">
+  <span class="code-label">user prompt template</span>
+  <button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cs">Write Chapter [NUMBER]: [CHAPTER_TITLE] for the book "[BOOK_TITLE]".
+
+Chapter theme: [THEME_DESCRIPTION]
+Target audience: [AUDIENCE_DESCRIPTION]
+Tone: [warm/academic/inspirational/practical]
+Length: approximately [8–12] slide sections
+
+Required elements:
+- Chapter opener with h2 heading using "الفصل [NUMBER]:" prefix
+- Opening inspirational quote with attribution
+- [3–4] prose sections with h3 subheadings
+- One unordered list of key insights (5–7 items)
+- One ordered list of action steps (4–6 steps)
+- One comparison/data table with 3–4 rows
+- One framework equation in a ``` code fence
+- One Quranic verse relevant to the theme
+- A closing section with summary and reader call-to-action
+
+Context from previous chapters: [SUMMARY_OF_PREVIOUS_CHAPTERS]
+
+Start directly with the ## heading. Do not include any preamble.</span></pre>
+</div>
+
+<h3>Whole-book structure prompt</h3>
+<div class="code-block">
+  <span class="code-label">planning prompt</span>
+  <button class="code-copy" onclick="copyCode(this)">copy</button>
+<pre><span class="cs">Design the complete structure for a [GENRE] book titled "[TITLE]".
+
+Output a JSON structure:
+{
+  "title": "...",
+  "subtitle": "...",
+  "parts": [
+    {
+      "title": "اسم الجزء",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "عنوان الفصل",
+          "theme": "وصف المحور الرئيسي",
+          "slideTypes": ["chapter","quote","prose","list","table","equation"],
+          "keyPoints": ["نقطة 1","نقطة 2","نقطة 3"],
+          "estimatedSlides": 12
+        }
+      ]
+    }
+  ],
+  "totalChapters": N,
+  "estimatedTotalSlides": N
+}</span></pre>
+</div>
+
+<hr/>
+
+<p style="text-align:center;color:#374151;font-size:.82rem;margin-top:3rem">
+  Webbook MD Structure API · v4 · 2025<br/>
+  <span style="color:#4b5563">This document itself is generated and maintained as a static HTML file.</span>
+</p>
+
+</main>
+</div>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+// Copy code
+function copyCode(btn){
+  const pre=btn.closest('.code-block').querySelector('pre');
+  const text=pre.innerText;
+  navigator.clipboard?.writeText(text).then(()=>{
+    btn.textContent='copied!';
+    setTimeout(()=>btn.textContent='copy',1800);
+  });
+}
+
+// Back to top
+const bt=document.getElementById('back-top');
+window.addEventListener('scroll',()=>bt.classList.toggle('show',window.scrollY>400),{passive:true});
+
+// Active sidebar link
+const sbLinks=[...document.querySelectorAll('.sb-link')];
+const heads=[...document.querySelectorAll('h2[id],h3[id]')];
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      sbLinks.forEach(l=>l.classList.remove('active'));
+      const id=e.target.id;
+      const a=sbLinks.find(l=>l.getAttribute('href')==='#'+id);
+      if(a) a.classList.add('active');
+    }
+  });
+},{threshold:0.6,rootMargin:'-50px 0px -60% 0px'});
+heads.forEach(h=>io.observe(h));
+</script>
+</body>
+</html>

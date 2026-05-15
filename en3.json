@@ -1,0 +1,944 @@
+{
+  "brand": {
+    "name": "2030B",
+    "tagline": "Be Smarter",
+    "subtitle": "Cognitive Enhancement Ecosystem"
+  },
+  "vol": 3,
+  "slides": [
+    {
+      "id": 101,
+      "key": "vol3_intro",
+      "header": "Volume 3: The Next Frontier",
+      "subtitle": "Deep Systems · Advanced Intelligence · Global Scale",
+      "description": "Volume 3 expands the 2030B ecosystem into advanced AI-driven learning, neuro-adaptive experiences, spatial computing, cross-chain infrastructure, and the full realization of the Cognitive Economy.",
+      "chapters": [
+        { "num": "01", "title": "Neuro-Adaptive Engine",       "icon": "🧬", "slides": "101–110" },
+        { "num": "02", "title": "Spatial Learning Rooms",      "icon": "🏛️", "slides": "111–118" },
+        { "num": "03", "title": "Cross-Chain Infrastructure",  "icon": "⛓️", "slides": "119–125" },
+        { "num": "04", "title": "Cognitive GDP Index",         "icon": "📊", "slides": "126–132" },
+        { "num": "05", "title": "Universal Basic CTC",         "icon": "🌐", "slides": "133–139" },
+        { "num": "06", "title": "Enterprise & B2B Layer",      "icon": "🏢", "slides": "140–145" },
+        { "num": "07", "title": "The 2030 Vision Realized",   "icon": "🚀", "slides": "146–150" }
+      ],
+      "stat": { "new_components": 60, "new_slides": 50, "new_languages": 3, "new_integrations": 12 }
+    },
+    {
+      "id": 102,
+      "key": "neuro_adaptive_intro",
+      "header": "The Neuro-Adaptive Engine",
+      "subtitle": "Learning That Rewires Itself Around You",
+      "description": "The Neuro-Adaptive Engine (NAE) is 2030B's most advanced subsystem. It continuously monitors cognitive load, emotional state, attention patterns, and performance trajectories to reshape every learning experience in real time.",
+      "pillars": [
+        { "icon": "🔬", "title": "Biometric Signals", "desc": "Analyzes response time, hesitation patterns, and error clustering as cognitive proxies" },
+        { "icon": "🧠", "title": "Load Modeling",     "desc": "Estimates cognitive load using Paas–Sweller model adapted for digital interaction" },
+        { "icon": "🎯", "title": "Flow State Target", "desc": "Adjusts challenge difficulty to maintain the individual's optimal flow channel" },
+        { "icon": "🔄", "title": "Feedback Loops",    "desc": "Sub-second intervention triggers: hint surfacing, pace changes, content resequencing" }
+      ],
+      "accuracy": "94.2%",
+      "latency_ms": 180,
+      "daily_adaptations": "2.1M"
+    },
+    {
+      "id": 103,
+      "key": "nae_dimensions",
+      "header": "7 Adaptive Dimensions",
+      "subtitle": "NAE Models the Full Cognitive Landscape",
+      "description": "Each of the seven cognitive dimensions tracked by 2030B has its own adaptive sub-model, allowing the engine to fine-tune independently across all cognitive domains simultaneously.",
+      "dimensions": [
+        { "id": "D1", "name": "Analytical Thinking",    "icon": "🔍", "signals": ["logic chain speed", "error pattern", "backtrack rate"], "adaptation": "Problem complexity, branching depth, time pressure" },
+        { "id": "D2", "name": "Creative Intelligence",   "icon": "🎨", "signals": ["divergence index", "novelty score", "ideation count"], "adaptation": "Open-ended prompts, constraint toggling, random seed injection" },
+        { "id": "D3", "name": "Systems Thinking",        "icon": "🕸️", "signals": ["map completion", "link accuracy", "cascade prediction"], "adaptation": "Graph complexity, layer count, delay feedback" },
+        { "id": "D4", "name": "Emotional Intelligence",  "icon": "❤️", "signals": ["scenario choice", "empathy score", "response tone"], "adaptation": "Social complexity, perspective depth, ethical weight" },
+        { "id": "D5", "name": "Pattern Recognition",     "icon": "🔮", "signals": ["latency to first click", "false positives", "streak length"], "adaptation": "Signal density, noise ratio, pattern frequency" },
+        { "id": "D6", "name": "Memory Architecture",     "icon": "💾", "signals": ["recall accuracy", "interference rate", "spaced recall delta"], "adaptation": "Spaced repetition interval, encoding variety, load context" },
+        { "id": "D7", "name": "Consciousness Expansion", "icon": "✨", "signals": ["meta-reflection depth", "self-model accuracy", "insight latency"], "adaptation": "Meditative pauses, meta-cognition prompts, philosophical challenges" }
+      ]
+    },
+    {
+      "id": 104,
+      "key": "nae_flow_state",
+      "header": "Engineering Flow State",
+      "subtitle": "The Zone — By Design, Not By Chance",
+      "description": "Csikszentmihalyi's flow channel sits at the precise intersection of challenge and skill. NAE maps each user's real-time skill vector and dynamically adjusts challenge parameters to keep them in that channel.",
+      "flow_model": {
+        "zones": [
+          { "name": "Boredom Zone",  "color": "#4a90d9", "action": "Increase complexity, add time pressure, remove scaffolding" },
+          { "name": "Flow Channel",  "color": "#00d4aa", "action": "Maintain current parameters, micro-adjust every 45 seconds" },
+          { "name": "Anxiety Zone",  "color": "#ff6b6b", "action": "Reduce complexity, surface hints, slow pace, offer reassurance" }
+        ],
+        "detection_latency_ms": 180,
+        "rebalance_latency_ms": 380,
+        "flow_rate_platform_avg": "61%",
+        "flow_rate_nae_users": "84%"
+      },
+      "techniques": [
+        { "t": "Micro-challenge injection",  "desc": "Tiny sub-problems inserted mid-session to reset attention" },
+        { "t": "Contextual narrative shift",  "desc": "Story frame changes every 12 min to prevent habituation" },
+        { "t": "Difficulty gradient ramping", "desc": "Non-linear difficulty curves tuned per user profile" },
+        { "t": "Surprise reward triggers",    "desc": "Unexpected CTC bonuses when flow is detected for >5 min" }
+      ]
+    },
+    {
+      "id": 105,
+      "key": "nae_biometric_layer",
+      "header": "The Biometric Proxy Layer",
+      "subtitle": "No Wearable Required",
+      "description": "NAE extracts cognitive signals entirely from interaction data — no physical sensors, no privacy invasion. Every tap, pause, scroll, and decision is a data point.",
+      "signals": [
+        { "name": "Response Latency",   "icon": "⏱️", "proxy_for": "Cognitive load & processing speed",      "weight": 0.28 },
+        { "name": "Error Cluster Rate", "icon": "❌", "proxy_for": "Frustration threshold & confusion zone",  "weight": 0.22 },
+        { "name": "Hesitation Bursts",  "icon": "💭", "proxy_for": "Decision difficulty & uncertainty",      "weight": 0.18 },
+        { "name": "Scroll Velocity",    "icon": "📜", "proxy_for": "Attention and content interest level",    "weight": 0.14 },
+        { "name": "Re-read Rate",       "icon": "🔁", "proxy_for": "Comprehension gaps & working memory load","weight": 0.10 },
+        { "name": "Hint Request Rate",  "icon": "💡", "proxy_for": "Perceived task difficulty vs. ability",  "weight": 0.08 }
+      ],
+      "privacy_note": "All signals are processed on-device via federated inference. Zero raw data leaves the user's device.",
+      "compliance": ["GDPR", "CCPA", "ISO 27001"]
+    },
+    {
+      "id": 106,
+      "key": "nae_personalized_curriculum",
+      "header": "Personalized Curriculum Engine",
+      "subtitle": "Your Learning Path, Rebuilt Daily",
+      "description": "No two users ever see the same curriculum. The Personalized Curriculum Engine (PCE) rebuilds each user's learning sequence every 24 hours based on performance history, goal alignment, and ecosystem contributions.",
+      "curriculum_factors": [
+        { "factor": "7-Dimension Profile",   "weight": "35%", "desc": "Current scores across all cognitive dimensions" },
+        { "factor": "Goal Alignment",         "weight": "20%", "desc": "Project types the user is contributing to" },
+        { "factor": "Recent Performance",     "weight": "20%", "desc": "Last 7-day challenge outcomes and streaks" },
+        { "factor": "Knowledge Gaps",         "weight": "15%", "desc": "Areas with low confidence or high error rates" },
+        { "factor": "Community Trends",       "weight": "10%", "desc": "Skills in demand by top-rated DVM projects" }
+      ],
+      "output": {
+        "daily_modules": 3,
+        "weekly_deep_dives": 1,
+        "monthly_sprint": 1,
+        "avg_personalization_score": "91/100"
+      }
+    },
+    {
+      "id": 107,
+      "key": "nae_ai_assistant",
+      "header": "AI Learning Assistant: CORA",
+      "subtitle": "Cognitive Optimization & Reasoning Assistant",
+      "description": "CORA is the user-facing AI companion embedded throughout the 2030B experience. Powered by federated models and fine-tuned on cognitive science literature, CORA guides, challenges, explains, and celebrates with every user.",
+      "capabilities": [
+        { "icon": "🗣️", "cap": "Adaptive Explanations",   "desc": "Rewrites concepts at 5 reading levels based on user comprehension signals" },
+        { "icon": "🎯", "cap": "Goal Coaching",            "desc": "Sets weekly targets, nudges toward milestones, adjusts based on life context" },
+        { "icon": "🧩", "cap": "Socratic Questioning",     "desc": "Leads users to answers through guided questioning rather than direct telling" },
+        { "icon": "📈", "cap": "Progress Narration",       "desc": "Translates raw scores into meaningful growth stories" },
+        { "icon": "🔮", "cap": "Predictive Suggestions",  "desc": "Recommends next actions with probability-weighted impact estimates" },
+        { "icon": "🤝", "cap": "Mentor Matching",          "desc": "Connects users with human mentors when AI confidence drops below threshold" }
+      ],
+      "model_stats": { "parameters": "7B", "on_device": true, "cloud_fallback": true, "latency_p95_ms": 420, "satisfaction": "4.7/5" }
+    },
+    {
+      "id": 108,
+      "key": "cognitive_music_system",
+      "header": "Cognitive Music System",
+      "subtitle": "Sound Architecture for Peak Performance",
+      "description": "The Cognitive Music System (CMS) generates and streams procedurally-composed soundscapes calibrated to each user's current cognitive state, task type, and time of day.",
+      "science_basis": "40-Hz binaural beats enhance gamma-wave activity; 4–8 Hz theta rhythms support creative ideation; pink noise reduces interference in working memory tasks.",
+      "modes": [
+        { "mode": "Focus Deep Work",      "hz": "40Hz gamma", "bpm": 70,  "icon": "🎯", "use": "Analytical tasks, coding, writing" },
+        { "mode": "Creative Flow",         "hz": "8Hz theta",  "bpm": 85,  "icon": "🎨", "use": "Ideation, design, brainstorming" },
+        { "mode": "Memory Consolidation", "hz": "4Hz delta",  "bpm": 55,  "icon": "💾", "use": "Review sessions, spaced repetition" },
+        { "mode": "Recovery & Restore",   "hz": "10Hz alpha", "bpm": 60,  "icon": "🌿", "use": "Breaks, mindfulness, stress relief" },
+        { "mode": "High-Energy Sprint",   "hz": "30Hz beta",  "bpm": 120, "icon": "⚡", "use": "Timed challenges, competitions" }
+      ],
+      "generation": "Procedural AI composition — no repeated loops, adaptive tempo, personalized instrumentation",
+      "ctc_reward": "Listen 60+ min/day for 5 consecutive days: +250 CTC Audio Consistency Badge"
+    },
+    {
+      "id": 109,
+      "key": "daily_conditioning_v3",
+      "header": "Daily Conditioning 3.0",
+      "subtitle": "Structured Cognitive Fitness — Every Single Day",
+      "description": "Daily Conditioning 3.0 is a scientifically structured micro-training system delivering 5–20 minutes of high-impact cognitive exercise per day, optimized for long-term neuroplasticity.",
+      "schedule": [
+        { "time": "07:00", "session": "Morning Activation",   "duration": "5 min",  "focus": "Attention priming, working memory warm-up",              "ctc": 30  },
+        { "time": "12:00", "session": "Midday Challenge",     "duration": "10 min", "focus": "Pattern recognition or logic — varies by day",           "ctc": 75  },
+        { "time": "17:00", "session": "Skill Builder",        "duration": "15 min", "focus": "Domain-specific challenge aligned to current project",   "ctc": 120 },
+        { "time": "21:00", "session": "Reflection & Review",  "duration": "5 min",  "focus": "Meta-cognition, spaced recall, daily insight journal",   "ctc": 25  }
+      ],
+      "streak_bonuses": [
+        { "days": 7,   "bonus": "250 CTC + Consistency Badge" },
+        { "days": 30,  "bonus": "1,500 CTC + Platinum Streak" },
+        { "days": 100, "bonus": "8,000 CTC + Centurion Title" },
+        { "days": 365, "bonus": "50,000 CTC + Founding Member Plaque" }
+      ],
+      "science": "Research from Lumosity, Cambridge Brain Sciences, and Bredesen Protocol informed the schedule design."
+    },
+    {
+      "id": 110,
+      "key": "nae_performance_dashboard",
+      "header": "NAE Performance Dashboard",
+      "subtitle": "See Your Mind's Trajectory",
+      "description": "The NAE Performance Dashboard provides users with a real-time, multi-dimensional view of their cognitive development journey — transforming invisible mental growth into tangible, actionable data.",
+      "widgets": [
+        { "id": "W1", "name": "Cognitive Velocity",       "desc": "Rate of improvement across all 7 dimensions this week",         "visual": "sparkline",   "unit": "pts/day" },
+        { "id": "W2", "name": "Flow State Ratio",         "desc": "% of session time spent in documented flow state",             "visual": "gauge",       "unit": "%" },
+        { "id": "W3", "name": "Skill Momentum",           "desc": "Accelerating vs. decelerating dimensions (needs attention)",   "visual": "heatmap",     "unit": "Δ/week" },
+        { "id": "W4", "name": "Memory Retention Curve",  "desc": "Ebbinghaus-based recall decay with actual vs. predicted",      "visual": "line chart",  "unit": "% recall" },
+        { "id": "W5", "name": "Challenge Success Rate",  "desc": "Rolling 30-day challenge completion and accuracy rates",       "visual": "bar chart",   "unit": "%" },
+        { "id": "W6", "name": "Cognitive Age Estimate",  "desc": "Estimated cognitive performance age vs. chronological age",    "visual": "comparison",  "unit": "years" }
+      ],
+      "export_formats": ["PDF Report", "JSON", "CSV", "Share Card"],
+      "update_frequency": "Real-time (< 2s)"
+    },
+    {
+      "id": 111,
+      "key": "spatial_learning_intro",
+      "header": "Spatial Learning Rooms",
+      "subtitle": "Immersive Cognitive Environments for Deep Learning",
+      "description": "Spatial Learning Rooms (SLR) are 3D browser-based environments built on WebXR and Three.js that transform abstract cognitive content into navigable spatial experiences, dramatically improving retention and engagement.",
+      "eta": "Q4 2025 – Beta",
+      "room_types": [
+        { "type": "Memory Palace",     "icon": "🏛️", "desc": "Classical method of loci — attach concepts to spatial locations",                "retention_boost": "+42%" },
+        { "type": "Concept Cosmos",    "icon": "🌌", "desc": "Navigate a 3D knowledge graph — relationships as spatial distances",              "retention_boost": "+38%" },
+        { "type": "Challenge Arena",   "icon": "⚔️", "desc": "Competitive 3D puzzle environments with real-time multiplayer",                  "retention_boost": "+29%" },
+        { "type": "Reflection Garden", "icon": "🌿", "desc": "Calming spatial environment for meta-cognitive journaling and insight capture",  "retention_boost": "+31%" },
+        { "type": "Project War Room",  "icon": "🗺️", "desc": "Collaborative 3D workspace for DVM project teams with shared spatial artifacts", "retention_boost": "+35%" }
+      ],
+      "device_support": ["Desktop Browser (WebGL)", "VR Headset (WebXR)", "Mobile AR (WebXR Lite)", "Tablet (2D fallback"]
+    },
+    {
+      "id": 112,
+      "key": "spatial_memory_palace",
+      "header": "The Memory Palace System",
+      "subtitle": "2,500-Year-Old Technique, Rebuilt for the Digital Age",
+      "description": "The Method of Loci — used by ancient Greek orators and modern memory champions — is now algorithmically constructed and adapted to each user's personal learning content.",
+      "how_it_works": [
+        { "step": 1, "icon": "🏛️", "title": "Palace Generation",   "desc": "AI constructs a personalized 3D space based on your familiarity patterns (home, campus, city)" },
+        { "step": 2, "icon": "📍", "title": "Content Anchoring",    "desc": "Concepts are spatially anchored to rooms, objects, and pathways within the palace" },
+        { "step": 3, "icon": "🚶", "title": "Memory Walk",          "desc": "User navigates the palace, triggering concept recall through spatial movement" },
+        { "step": 4, "icon": "🔄", "title": "Spaced Re-visit",      "desc": "Spaced repetition algorithm schedules palace revisits at optimal retention intervals" },
+        { "step": 5, "icon": "📊", "title": "Decay Monitoring",     "desc": "Forgetting curve tracked per anchor; weak anchors are reinforced with new sensory cues" }
+      ],
+      "research": "Harvard Medical School, 2022: Memory palace practitioners show 28% higher long-term retention vs. standard repetition.",
+      "ctc_reward": "Complete first palace: 500 CTC + Memory Architect Badge"
+    },
+    {
+      "id": 113,
+      "key": "concept_cosmos",
+      "header": "The Concept Cosmos",
+      "subtitle": "Navigate Knowledge as a Living Universe",
+      "description": "Every piece of knowledge you've encountered in 2030B is mapped as a star in your personal Concept Cosmos. Relationships between concepts appear as gravitational connections — proximity equals relevance.",
+      "features": [
+        { "icon": "⭐", "feat": "Semantic Stars",       "desc": "Each mastered concept is a uniquely colored star; brightness reflects mastery depth" },
+        { "icon": "🔗", "feat": "Gravity Links",         "desc": "Conceptual relationships visualized as gravitational arcs between stars" },
+        { "icon": "🌀", "feat": "Knowledge Clusters",   "desc": "Related concept groups form galaxies — gaps appear as dark matter regions" },
+        { "icon": "🔭", "feat": "Discovery Mode",        "desc": "Unexplored adjacent concepts appear as dim stars at the cosmos boundary" },
+        { "icon": "🤝", "feat": "Shared Cosmos",         "desc": "Overlay your cosmos with teammates to visualize collective knowledge topology" }
+      ],
+      "render_tech": "Three.js + WebGL + GPU particle system — 10,000+ nodes at 60fps",
+      "cosmos_stats": { "avg_concepts_mastered": 340, "avg_links": 1240, "largest_cosmos": "14,800 nodes" }
+    },
+    {
+      "id": 114,
+      "key": "webxr_architecture",
+      "header": "WebXR Technical Architecture",
+      "subtitle": "Spatial Learning Without App Store Friction",
+      "description": "2030B's Spatial Learning Rooms require zero installation — they run entirely in the browser using WebXR, WebGL 2.0, and WASM-accelerated physics. This makes them accessible to 94% of modern devices.",
+      "tech_stack": [
+        { "layer": "Rendering",    "tech": "Three.js r160 + WebGL 2.0", "role": "Scene graph, lighting, materials, post-processing" },
+        { "layer": "XR Runtime",   "tech": "WebXR Device API",          "role": "VR/AR headset support, 6DoF tracking, hand gestures" },
+        { "layer": "Physics",      "tech": "Rapier (WASM)",             "role": "Rigid body simulation, spatial collision, grabbing interactions" },
+        { "layer": "Audio",        "tech": "Web Audio API + HRTF",      "role": "3D spatial audio for immersive presence" },
+        { "layer": "Networking",   "tech": "WebRTC + WebSocket",        "role": "Real-time multiplayer, shared spatial state" },
+        { "layer": "AI Inference", "tech": "ONNX Runtime Web",          "role": "On-device NAE inference, gesture recognition" }
+      ],
+      "browser_support": { "chrome": "Full", "firefox": "Full", "safari": "WebGL only", "edge": "Full", "mobile_safari": "Partial" },
+      "performance_targets": { "target_fps": 60, "load_time_s": 3.2, "bundle_kb": 480 }
+    },
+    {
+      "id": 115,
+      "key": "multiplayer_learning",
+      "header": "Multiplayer Cognitive Rooms",
+      "subtitle": "Learn Together, Grow Faster",
+      "description": "Research confirms that social learning accelerates skill acquisition by up to 30%. 2030B's Multiplayer Cognitive Rooms bring teams of 2–50 users into shared 3D learning environments.",
+      "modes": [
+        { "icon": "🤝", "mode": "Co-op Challenge",    "size": "2–6",  "desc": "Collaborative puzzle-solving with shared cognitive load distribution" },
+        { "icon": "⚔️", "mode": "Cognitive Duel",     "size": "1v1",  "desc": "Head-to-head speed and accuracy challenge across matched cognitive levels" },
+        { "icon": "🏟️", "mode": "Tournament Arena",   "size": "Up to 50", "desc": "Large-scale timed competitions with live leaderboard and spectator mode" },
+        { "icon": "👨‍🏫", "mode": "Mentor Session",     "size": "1+N",  "desc": "Expert-guided group learning with shared annotation and spatial demonstration" },
+        { "icon": "🌍", "mode": "Global Classrooms",  "size": "Unlimited", "desc": "Broadcast-style events with interactive Q&A and live challenge sessions" }
+      ],
+      "social_learning_boost": "+30% skill acquisition speed",
+      "peer_effect": "Users who complete 5+ multiplayer sessions show 2.1× higher CTC earnings after 90 days"
+    },
+    {
+      "id": 116,
+      "key": "spatial_certification",
+      "header": "Spatial Certification Labs",
+      "subtitle": "Proof of Skill in the Dimension Where It Matters",
+      "description": "Certification exams in Spatial Labs simulate real-world environments, providing situational validity that traditional text-based assessments cannot match.",
+      "cert_examples": [
+        { "cert": "Systems Architecture Pro",    "lab": "3D system diagram construction under time pressure",                "org": "TechFoundation DAO",   "ctc": 5000 },
+        { "cert": "Cognitive Leadership",        "lab": "Multi-stakeholder negotiation simulation with AI agents",           "org": "Leadership Council",   "ctc": 3500 },
+        { "cert": "Quantum Reasoning",           "lab": "Navigate quantum probability space; collapse wavefunctions",         "org": "QuantumMinds",         "ctc": 7500 },
+        { "cert": "Empathic Intelligence",       "lab": "Real-time emotional navigation through complex social scenarios",   "org": "EQ Institute",         "ctc": 4000 },
+        { "cert": "Strategic Systems Thinker",   "lab": "Simulate 10-year systemic interventions in causal loop diagrams",  "org": "2030B Foundation",     "ctc": 6000 }
+      ],
+      "validity_research": "APA Journal 2024: Spatial assessments predict real-world performance 2.4× better than standardized tests.",
+      "employer_recognition": 840
+    },
+    {
+      "id": 117,
+      "key": "spatial_social_hub",
+      "header": "The Spatial Social Hub",
+      "subtitle": "Where 2030B's Community Lives in 3D",
+      "description": "Beyond learning, Spatial Rooms host the living social layer of the 2030B ecosystem — the plaza where contributors meet, ideas form, and collaborations begin.",
+      "spaces": [
+        { "icon": "🏙️", "name": "The Agora",          "desc": "Central meeting plaza — live events, announcements, community pulse" },
+        { "icon": "☕", "name": "The Commons",          "desc": "Casual co-working space — ambient social presence, open collaboration" },
+        { "icon": "🗳️", "name": "Governance Hall",     "desc": "Formal proposal debates, live voting visualization, council sessions" },
+        { "icon": "🎪", "name": "Innovation Fair",      "desc": "Project showcases — DVM teams present in 3D booths" },
+        { "icon": "🌄", "name": "Mentor's Peak",        "desc": "Elevated private spaces for 1:1 mentor sessions with panoramic view" }
+      ],
+      "concurrent_max": 10000,
+      "avg_daily_active": "38,400 users across spatial rooms"
+    },
+    {
+      "id": 118,
+      "key": "spatial_roadmap",
+      "header": "Spatial Learning Roadmap",
+      "subtitle": "Building the Cognitive Metaverse",
+      "description": "The Spatial Learning Rooms are being rolled out in phased waves, each adding new dimensions of immersion, social richness, and cognitive impact.",
+      "phases": [
+        { "phase": "α – Alpha", "eta": "Q3 2025", "features": ["Memory Palace (solo)", "Concept Cosmos (read-only)", "WebGL desktop only"],                                             "status": "in_development" },
+        { "phase": "β – Beta",  "eta": "Q4 2025", "features": ["All 5 room types", "2–6 player co-op", "WebXR headset support", "CMS audio integration"],                             "status": "planned" },
+        { "phase": "1.0",       "eta": "Q1 2026", "features": ["Tournament Arena", "Mentor's Peak", "Spatial Certifications", "Full mobile AR"],                                       "status": "planned" },
+        { "phase": "2.0",       "eta": "Q3 2026", "features": ["AI-generated room themes", "User-created rooms (Creator Economy)", "Cross-room persistence", "Haptic feedback API"], "status": "vision" }
+      ]
+    },
+    {
+      "id": 119,
+      "key": "crosschain_intro",
+      "header": "Cross-Chain CTC Bridge",
+      "subtitle": "CTC Flows Freely Across the Entire Web3 Ecosystem",
+      "description": "The Cross-Chain CTC Bridge enables seamless transfer of CTC tokens between 2030B's native chain and major blockchain networks, unlocking access to the broader DeFi ecosystem and increasing CTC's liquidity and utility.",
+      "eta": "Q3 2025 – Development",
+      "supported_chains": [
+        { "chain": "Ethereum",  "standard": "ERC-20", "bridge_fee": "0.1%", "time": "~2 min",  "icon": "⟠" },
+        { "chain": "Polygon",   "standard": "ERC-20", "bridge_fee": "0.05%","time": "~30 sec", "icon": "🔷" },
+        { "chain": "Solana",    "standard": "SPL",    "bridge_fee": "0.08%","time": "~10 sec", "icon": "◎" },
+        { "chain": "BNB Chain", "standard": "BEP-20", "bridge_fee": "0.07%","time": "~45 sec", "icon": "🔶" },
+        { "chain": "Arbitrum",  "standard": "ERC-20", "bridge_fee": "0.03%","time": "~15 sec", "icon": "🔵" }
+      ],
+      "security": "Multi-sig validator network (21 nodes) + zk-SNARK proof verification on all cross-chain messages"
+    },
+    {
+      "id": 120,
+      "key": "defi_integration",
+      "header": "CTC DeFi Integration",
+      "subtitle": "Your Cognitive Earnings, Working in DeFi",
+      "description": "Beyond the 2030B ecosystem, CTC can now participate in the full DeFi landscape — providing liquidity, accessing lending protocols, and earning additional yield while maintaining voting rights.",
+      "integrations": [
+        { "protocol": "Uniswap V4",       "type": "DEX Liquidity",       "ctc_pool": "CTC/ETH",  "tvl": "$12M",   "apy": "8.2%" },
+        { "protocol": "Aave V3",          "type": "Lending Collateral",   "ctc_pool": "CTC",      "tvl": "$4.5M",  "ltv": "65%" },
+        { "protocol": "Curve Finance",    "type": "Stable Swap",          "ctc_pool": "CTC/USDC", "tvl": "$6.8M",  "apy": "5.1%" },
+        { "protocol": "Compound V3",      "type": "Money Market",         "ctc_pool": "CTC",      "tvl": "$2.1M",  "supply_apy": "4.3%" },
+        { "protocol": "Yearn Finance",    "type": "Yield Aggregator",     "ctc_pool": "yvCTC",    "tvl": "$3.2M",  "net_apy": "11.4%" }
+      ],
+      "governance_preservation": "Staked/bridged CTC retains 100% of governance voting weight via zero-knowledge voting proofs"
+    },
+    {
+      "id": 121,
+      "key": "ctc_exchange_listing",
+      "header": "CTC Exchange Listing Strategy",
+      "subtitle": "From Ecosystem Token to Global Asset",
+      "description": "The CTC Exchange Listing (planned Q3 2025) marks a pivotal milestone — transforming CTC from an internal reward mechanism into a globally traded digital asset with open price discovery.",
+      "listing_targets": [
+        { "exchange": "Binance",      "tier": "Tier 1", "listing_type": "Innovation Zone → Main",  "timeline": "Q3 2025", "status": "In Negotiation" },
+        { "exchange": "Coinbase",     "tier": "Tier 1", "listing_type": "Asset Review",            "timeline": "Q4 2025", "status": "Application Submitted" },
+        { "exchange": "Kraken",       "tier": "Tier 1", "listing_type": "Direct Listing",          "timeline": "Q3 2025", "status": "Term Sheet Signed" },
+        { "exchange": "OKX",          "tier": "Tier 1", "listing_type": "Innovation Zone",         "timeline": "Q3 2025", "status": "Confirmed" },
+        { "exchange": "KuCoin",       "tier": "Tier 2", "listing_type": "Spotlight",               "timeline": "Q2 2025", "status": "Live – Q2 Preview" }
+      ],
+      "pre_listing_metrics": {
+        "circulating_supply": "140M CTC",
+        "fully_diluted_valuation": "$240M",
+        "daily_active_wallets": "184,000",
+        "daily_transaction_volume": "2.4M CTC"
+      }
+    },
+    {
+      "id": 122,
+      "key": "tokenomics_v3",
+      "header": "CTC Tokenomics — Version 3",
+      "subtitle": "Refined for Sustainability, Scale, and Fairness",
+      "description": "Following community governance vote #GV-0047, the CTC tokenomic model has been updated to include enhanced burn mechanisms, improved staking returns, and a new Cognitive Yield category.",
+      "supply_update": {
+        "total_supply": "1,000,000,000 CTC",
+        "circulating": "140,000,000",
+        "staked": "62,000,000",
+        "burned_to_date": "12,000,000",
+        "treasury": "250,000,000"
+      },
+      "allocation_v3": [
+        { "category": "Community Rewards",      "pct": 38, "change": "-2%", "note": "Reduced from 40% to fund Cognitive Yield pool" },
+        { "category": "Project Treasury",       "pct": 25, "change": "0%",  "note": "Unchanged — funds DVM project prizes" },
+        { "category": "Cognitive Yield Pool",   "pct": 5,  "change": "+5%", "note": "NEW: Rewards users for measurable cognitive output" },
+        { "category": "Founding Team",          "pct": 13, "change": "-2%", "note": "Reduced as per community governance vote" },
+        { "category": "Ecosystem Partners",     "pct": 10, "change": "0%",  "note": "Strategic integrations, exchange listings" },
+        { "category": "Reserve Fund",           "pct": 9,  "change": "-1%", "note": "Emergency fund; governance-controlled release" }
+      ],
+      "new_burn_mechanisms": [
+        "5% of all marketplace transaction fees burned",
+        "10% of enterprise subscription revenue burned",
+        "1% of cross-chain bridge fees burned",
+        "Quarterly community burn vote (up to 0.5% of circulating supply)"
+      ]
+    },
+    {
+      "id": 123,
+      "key": "cognitive_yield",
+      "header": "Cognitive Yield: A New Economic Primitive",
+      "subtitle": "Earn CTC for Being Measurably Smarter",
+      "description": "Cognitive Yield is a revolutionary new earning mechanism that rewards users not just for completing challenges — but for demonstrable, verified cognitive growth over time.",
+      "how_it_works": [
+        { "step": 1, "title": "Baseline Assessment",  "desc": "User completes 30-day baseline cognitive profiling across all 7 dimensions" },
+        { "step": 2, "title": "Growth Measurement",  "desc": "NAE continuously measures improvement delta against personalized growth curves" },
+        { "step": 3, "title": "Verification",        "desc": "Monthly CogniScore report generated, verified by CogniScore AI (94% accuracy)" },
+        { "step": 4, "title": "Yield Distribution",  "desc": "Cognitive Yield pool distributes proportionally to verified growth contributors" }
+      ],
+      "yield_rates": [
+        { "growth_tier": "Emerging (1–10% improvement)",    "monthly_yield": "150–500 CTC" },
+        { "growth_tier": "Developing (11–25% improvement)", "monthly_yield": "500–2,000 CTC" },
+        { "growth_tier": "Advanced (26–50% improvement)",   "monthly_yield": "2,000–7,500 CTC" },
+        { "growth_tier": "Elite (50%+ improvement)",        "monthly_yield": "7,500–25,000 CTC" }
+      ],
+      "sybil_protection": "Federated CogniScore verification + ZK-proof of genuine cognitive activity + multi-session behavioral fingerprinting"
+    },
+    {
+      "id": 124,
+      "key": "zk_identity",
+      "header": "Zero-Knowledge Identity Layer",
+      "subtitle": "Prove Anything Without Revealing Everything",
+      "description": "2030B's ZK Identity Layer allows users to cryptographically prove facts about themselves — cognitive scores, certifications, contribution history — without exposing any underlying personal data.",
+      "zk_proofs_supported": [
+        { "proof": "CogniScore Threshold",      "claim": "\"My Analytical score exceeds 80\" — without revealing exact score" },
+        { "proof": "Certification Ownership",   "claim": "\"I hold Certification X\" — without revealing personal identity" },
+        { "proof": "Contribution History",      "claim": "\"I have 1,000+ CTC contribution history\" — without transaction details" },
+        { "proof": "Age Band",                  "claim": "\"I am 18–35 years old\" — without revealing birthdate" },
+        { "proof": "Jurisdiction Compliance",   "claim": "\"I am not a US Person\" — for regulatory compliance" }
+      ],
+      "tech": "Groth16 + Plonk zkSNARK circuits; verification time < 50ms on-chain; proof size < 2KB",
+      "use_cases": ["Anonymous governance voting", "Privacy-preserving job applications", "Reputation portability across platforms", "Compliant DeFi access"]
+    },
+    {
+      "id": 125,
+      "key": "chain_governance",
+      "header": "On-Chain Governance V2",
+      "subtitle": "Decentralized Decisions, Cryptographic Trust",
+      "description": "Governance V2 moves all proposal voting and execution fully on-chain, eliminating the need for trusted intermediaries and enabling automated treasury execution via smart contracts.",
+      "v2_improvements": [
+        { "feature": "Snapshot → On-Chain",      "desc": "All votes are now recorded on-chain with full auditability and irreversibility" },
+        { "feature": "Automated Execution",       "desc": "Passed proposals trigger smart contract execution automatically after timelock" },
+        { "feature": "Quadratic Voting V2",       "desc": "Enhanced formula accounts for CTC stake age to prevent plutocracy" },
+        { "feature": "Delegation",                "desc": "Users can delegate voting power to trusted delegates without transferring tokens" },
+        { "feature": "Emergency Veto Council",    "desc": "9/21 multi-sig can halt execution within 48h in case of malicious proposals" },
+        { "feature": "Proposal Bonds",            "desc": "Proposers stake 1,000 CTC; returned if proposal passes, burned if <10% quorum" }
+      ],
+      "active_proposals": 18,
+      "voter_turnout_v2": "71%",
+      "execution_timelock": "48 hours"
+    },
+    {
+      "id": 126,
+      "key": "cognitive_gdp_index",
+      "header": "The Cognitive GDP Index",
+      "subtitle": "Measuring the True Wealth of Nations in the Knowledge Age",
+      "description": "The Cognitive GDP Index (CGDP) is 2030B's proposed framework for measuring the productive cognitive output of communities, cities, and nations — complementing traditional GDP with a measure of collective intellectual value creation.",
+      "eta": "Q1 2026 – Research",
+      "dimensions": [
+        { "dim": "Learning Intensity",      "desc": "Hours of structured cognitive development per capita",     "weight": 20 },
+        { "dim": "Knowledge Transfer Rate", "desc": "Speed at which new knowledge propagates through a community","weight": 18 },
+        { "dim": "Innovation Index",        "desc": "Rate of novel solution generation per 1,000 people",       "weight": 17 },
+        { "dim": "Collaboration Depth",     "desc": "Quality and complexity of multi-person problem-solving",    "weight": 15 },
+        { "dim": "Cognitive Equity",        "desc": "Distribution of cognitive development access across demographics","weight": 15 },
+        { "dim": "Applied Impact",          "desc": "Rate at which cognitive output translates to measurable outcomes","weight": 15 }
+      ],
+      "pilot_cities": ["Nairobi", "Seoul", "São Paulo", "Dubai", "Helsinki"],
+      "academic_partners": ["MIT Media Lab", "Oxford Future of Humanity Institute", "King's College London"]
+    },
+    {
+      "id": 127,
+      "key": "cgdp_methodology",
+      "header": "CGDP Measurement Methodology",
+      "subtitle": "Rigorous, Auditable, Anti-Gamification",
+      "description": "The CGDP methodology is designed by a consortium of cognitive scientists, economists, and data ethicists to be robust against manipulation, culturally neutral, and longitudinally consistent.",
+      "data_sources": [
+        { "source": "2030B Platform Data",     "anonymized": true,  "coverage": "2.4M users in 97 countries" },
+        { "source": "Partner Learning Systems","anonymized": true,  "coverage": "18 LMS platforms integrated" },
+        { "source": "National Education APIs", "anonymized": true,  "coverage": "34 government partnerships" },
+        { "source": "Research Publications",   "anonymized": false, "coverage": "OpenAlex API — 240M papers" },
+        { "source": "Patent Filing Data",       "anonymized": false, "coverage": "USPTO, EPO, WIPO" }
+      ],
+      "anti_gamification": [
+        "Behavioral fingerprinting detects rote completion vs. genuine engagement",
+        "Multi-source triangulation required for each metric",
+        "Adversarial testing via red-team cognitive labs",
+        "Annual independent audit by Oxford Economics"
+      ]
+    },
+    {
+      "id": 128,
+      "key": "cgdp_city_pilot",
+      "header": "CGDP City Pilot: Nairobi",
+      "subtitle": "Africa's Cognitive Capital — Measured",
+      "description": "Nairobi is the first city to participate in the CGDP pilot program, with 14,200 active 2030B users contributing to the city's first comprehensive cognitive output measurement.",
+      "city_stats": {
+        "city": "Nairobi",
+        "country": "Kenya",
+        "population": "4.4M",
+        "users_2030b": 14200,
+        "avg_cogni_score": 68,
+        "top_dimension": "Systems Thinking",
+        "fastest_growth": "Pattern Recognition (+28% YoY)",
+        "top_sector": "Technology & Climate"
+      },
+      "cgdp_score": 72.4,
+      "benchmark_cities": [
+        { "city": "Helsinki", "cgdp": 84.1 },
+        { "city": "Seoul",    "cgdp": 81.2 },
+        { "city": "Dubai",    "cgdp": 76.8 },
+        { "city": "Nairobi",  "cgdp": 72.4 },
+        { "city": "São Paulo","cgdp": 71.1 }
+      ],
+      "insight": "Nairobi ranks 4th despite having the lowest traditional GDP per capita of the pilot cities — demonstrating the cognitive economy's potential to revalue human potential independently of material wealth."
+    },
+    {
+      "id": 129,
+      "key": "regional_deep_dive_mena",
+      "header": "Regional Deep Dive: MENA",
+      "subtitle": "The Middle East & North Africa Cognitive Surge",
+      "description": "MENA is 2030B's fastest-growing region — 142% YoY user growth driven by youth demographics, high mobile penetration, and strong government partnerships in Saudi Arabia, UAE, Egypt, and Jordan.",
+      "stats": {
+        "total_users": "420,000",
+        "yoy_growth": "+142%",
+        "top_country": "Saudi Arabia",
+        "primary_language": "Arabic",
+        "top_dimension": "Analytical Thinking",
+        "top_sector": "Governance & Education"
+      },
+      "country_breakdown": [
+        { "country": "Saudi Arabia", "users": "156,000", "growth": "+168%", "flagship": "Vision 2030 Alignment Program" },
+        { "country": "UAE",          "users": "98,000",  "growth": "+121%", "flagship": "AI Skills Accelerator" },
+        { "country": "Egypt",        "users": "82,000",  "growth": "+135%", "flagship": "Youth Innovation Track" },
+        { "country": "Jordan",       "users": "41,000",  "growth": "+98%",  "flagship": "Refugee Upskilling Initiative" },
+        { "country": "Morocco",      "users": "28,000",  "growth": "+87%",  "flagship": "Francophone Bridge Program" }
+      ],
+      "key_partner": "Arab League Digital Transformation Initiative — 5-year strategic partnership signed Q1 2025"
+    },
+    {
+      "id": 130,
+      "key": "regional_africa",
+      "header": "Regional Deep Dive: Sub-Saharan Africa",
+      "subtitle": "The World's Fastest-Growing Cognitive Community",
+      "description": "Sub-Saharan Africa leads all regions in growth rate (+218% YoY) and represents 2030B's most transformative impact story — where cognitive development directly bridges the gap between raw potential and economic opportunity.",
+      "stats": {
+        "total_users": "310,000",
+        "yoy_growth": "+218%",
+        "top_country": "Nigeria",
+        "primary_language": "English/Swahili",
+        "top_dimension": "Creative Intelligence",
+        "top_sector": "Technology & Science"
+      },
+      "country_breakdown": [
+        { "country": "Nigeria",       "users": "124,000", "growth": "+241%", "flagship": "Lagos Innovation Sprint" },
+        { "country": "Kenya",         "users": "82,000",  "growth": "+198%", "flagship": "Nairobi CGDP Pilot" },
+        { "country": "Ghana",         "users": "41,000",  "growth": "+187%", "flagship": "Accra Tech Talent Track" },
+        { "country": "Ethiopia",      "users": "28,000",  "growth": "+312%", "flagship": "Addis Learning Initiative" },
+        { "country": "South Africa",  "users": "22,000",  "growth": "+89%",  "flagship": "Cape Town Creative Hub" }
+      ],
+      "impact_story": "82% of surveyed Sub-Saharan Africa users report their 2030B certification led to a meaningful employment or income improvement within 6 months."
+    },
+    {
+      "id": 131,
+      "key": "universal_basic_ctc_intro",
+      "header": "Universal Basic CTC",
+      "subtitle": "Cognitive Contribution Should Sustain Life",
+      "description": "Universal Basic CTC (UBCTC) is 2030B's long-term vision for a world where every human being receives a baseline CTC allocation simply for participating in the cognitive economy — regardless of prior achievement, geography, or economic status.",
+      "eta": "2030 – Vision",
+      "principles": [
+        { "p": "Unconditional",    "desc": "UBCTC is provided without behavioral conditions or usage restrictions" },
+        { "p": "Universal",        "desc": "Every verified human identity on the platform receives UBCTC" },
+        { "p": "Supplementary",    "desc": "UBCTC supplements — never replaces — merit-based CTC earning" },
+        { "p": "Sustainable",      "desc": "Funded via ecosystem growth: exchange fees, enterprise subscriptions, DeFi yields" },
+        { "p": "Transparent",      "desc": "All UBCTC distributions are on-chain, fully auditable in real time" }
+      ],
+      "monthly_estimate": "500–2,000 CTC per verified user (based on 2030 ecosystem scale projections)",
+      "funding_sources": ["3% of all CTC transaction fees", "15% of enterprise subscription revenue", "Bridge fee allocation", "DeFi yield from treasury"]
+    },
+    {
+      "id": 132,
+      "key": "ubctc_pilot",
+      "header": "UBCTC Pilot Program",
+      "subtitle": "Testing the Foundations of Cognitive Equity",
+      "description": "Before the 2030 global rollout, UBCTC is being piloted with 50,000 users across three regions, testing distribution mechanisms, impact measurement, and economic effects.",
+      "pilot_regions": [
+        { "region": "Sub-Saharan Africa", "users": 20000, "monthly_ctc": 800,  "duration": "12 months", "partner": "Ubuntu Foundation" },
+        { "region": "MENA",              "users": 15000, "monthly_ctc": 1000, "duration": "12 months", "partner": "Arab Development Fund" },
+        { "region": "South/SE Asia",     "users": 15000, "monthly_ctc": 900,  "duration": "12 months", "partner": "ASEAN Digital Initiative" }
+      ],
+      "success_metrics": [
+        "% increase in daily active learning hours",
+        "% increase in DVM project participation",
+        "Economic impact: income change, employment rate",
+        "Wellbeing index change (validated survey instrument)",
+        "CTC utilization patterns: learning vs. marketplace vs. governance"
+      ],
+      "governance_note": "UBCTC parameters are governed by community vote. Any change requires 67% supermajority."
+    },
+    {
+      "id": 133,
+      "key": "enterprise_layer_intro",
+      "header": "The 2030B Enterprise Layer",
+      "subtitle": "Cognitive Intelligence for Organizations",
+      "description": "The 2030B Enterprise Layer brings the full power of the cognitive ecosystem to organizations — enabling companies, universities, NGOs, and governments to integrate verified human cognitive intelligence into their operations.",
+      "offerings": [
+        { "icon": "🏢", "name": "CognitiveTalent API",   "desc": "Hire verified talent with CogniScore-backed skill profiles",            "price": "$2,000/month base" },
+        { "icon": "🎓", "name": "Enterprise Learning",    "desc": "Deploy custom NAE-powered learning programs for your workforce",         "price": "$5,000/month (100 seats)" },
+        { "icon": "📊", "name": "Team Analytics",         "desc": "Aggregate cognitive profiling for teams, departments, and organizations","price": "$1,500/month" },
+        { "icon": "🏆", "name": "Custom Certifications", "desc": "Co-brand certifications with 2030B for industry-recognized credentials", "price": "$10,000 setup + 15% rev share" },
+        { "icon": "🤝", "name": "DVM Project Sponsor",   "desc": "Fund and access top DVM projects for R&D and talent pipeline",          "price": "From 100,000 CTC/project" }
+      ],
+      "enterprise_clients": 284,
+      "avg_enterprise_contract": "$48,000/year",
+      "top_sectors": ["Technology", "Financial Services", "Government", "Healthcare", "Education"]
+    },
+    {
+      "id": 134,
+      "key": "enterprise_talent_api",
+      "header": "CognitiveTalent API",
+      "subtitle": "Hire Smarter — Literally",
+      "description": "The CognitiveTalent API is the world's first talent recruitment interface based on verified, longitudinal cognitive profiling rather than résumé keywords or interview performance.",
+      "features": [
+        { "feat": "CogniScore-Verified Profiles",  "desc": "Every candidate's cognitive dimensions verified by 94%-accurate AI audit system" },
+        { "feat": "Skill Vector Matching",          "desc": "AI matches role requirements to cognitive profiles with 91% placement success rate" },
+        { "feat": "Project Evidence Portfolio",     "desc": "Candidates present verifiable DVM project contributions as proof of real-world ability" },
+        { "feat": "Culture Fit Modeling",           "desc": "Team cognitive profile analysis to predict collaboration quality before hiring" },
+        { "feat": "Growth Trajectory Prediction",   "desc": "12-month skill trajectory forecast per candidate based on NAE data" },
+        { "feat": "Bias-Free Screening",            "desc": "Anonymous profiles — gender, name, location, age hidden until post-match" }
+      ],
+      "client_outcomes": {
+        "time_to_hire_reduction": "-42%",
+        "first_year_retention": "+31%",
+        "hiring_manager_satisfaction": "4.6/5",
+        "diversity_improvement": "+28% underrepresented groups hired"
+      }
+    },
+    {
+      "id": 135,
+      "key": "university_partnerships",
+      "header": "University & Academic Partnerships",
+      "subtitle": "Where Academic Credentials Meet Cognitive Proof",
+      "description": "2030B's University Partnership Program integrates the platform's cognitive infrastructure directly into academic curricula, research programs, and student development pathways.",
+      "partner_tiers": [
+        { "tier": "Platinum",  "universities": 12, "benefits": ["Co-branded certifications", "Research data access", "Custom NAE programs", "Faculty CogniScore integration"], "fee": "$80,000/year" },
+        { "tier": "Gold",      "universities": 48, "benefits": ["Co-branded certifications", "Student program access", "Career pathway integration"],                         "fee": "$35,000/year" },
+        { "tier": "Silver",    "universities": 124,"benefits": ["Student access discounts", "Basic analytics", "Certification recognition"],                                  "fee": "$12,000/year" }
+      ],
+      "featured_partners": [
+        { "uni": "MIT",             "country": "USA",          "program": "Cognitive Engineering Track" },
+        { "uni": "Oxford",          "country": "UK",           "program": "Future of Intelligence Research" },
+        { "uni": "KAUST",           "country": "Saudi Arabia", "program": "AI & Cognitive Systems MSc" },
+        { "uni": "University of Lagos", "country": "Nigeria",  "program": "Pan-African Talent Pipeline" }
+      ],
+      "student_benefit": "Verified CogniScore added to academic transcript at 184 partner institutions"
+    },
+    {
+      "id": 136,
+      "key": "government_partnerships",
+      "header": "Government & Policy Partnerships",
+      "subtitle": "Cognitive Development as National Strategy",
+      "description": "Governments are integrating 2030B into national education, employment, and digital transformation strategies — recognizing cognitive development as critical infrastructure.",
+      "active_partnerships": [
+        { "gov": "Saudi Arabia MCIT",    "program": "Vision 2030 Cognitive Skills Initiative",   "users_target": "500,000", "ctc_subsidy": "Government-funded" },
+        { "gov": "UAE MoHRE",            "program": "UAE National Talent Competitiveness Index", "users_target": "200,000", "ctc_subsidy": "Government-funded" },
+        { "gov": "Kenyan MoE",           "program": "National Digital Skills Framework",         "users_target": "150,000", "ctc_subsidy": "Hybrid" },
+        { "gov": "EU Digital Single Market","program": "Digital Skills & Jobs Coalition",        "users_target": "1,000,000","ctc_subsidy": "EU-funded" },
+        { "gov": "World Bank EdTech Hub","program": "Cognitive Development in Emerging Markets", "users_target": "2,000,000","ctc_subsidy": "Grant-funded" }
+      ],
+      "policy_impact": "2030B's CogniScore has been recognized by the OECD as a valid component of national human capital measurement frameworks"
+    },
+    {
+      "id": 137,
+      "key": "creator_economy_v3",
+      "header": "Creator Economy 3.0",
+      "subtitle": "Build, Teach, Earn — At Scale",
+      "description": "Creator Economy 3.0 empowers 2030B users to create, publish, and monetize their own cognitive programs, challenges, and spatial learning experiences — earning CTC from every interaction.",
+      "creator_tools": [
+        { "tool": "Challenge Builder",      "desc": "Drag-and-drop cognitive challenge creation with NAE-quality validation",             "ctc_model": "20% of prize pool per completion" },
+        { "tool": "Program Composer",       "desc": "Multi-week cognitive programs with structured progression and certification",        "ctc_model": "15% subscription revenue share" },
+        { "tool": "Spatial Room Builder",   "desc": "No-code 3D learning environment creation with template library",                    "ctc_model": "25% room access fee" },
+        { "tool": "Content Studio",         "desc": "Video, audio, and interactive content creation with CMS integration",               "ctc_model": "Pay-per-view + subscription tiers" },
+        { "tool": "Mentor Marketplace",     "desc": "Live 1:1 and group mentoring with built-in scheduling and CTC payment",            "ctc_model": "Set your own rate; 10% platform fee" }
+      ],
+      "creator_stats": {
+        "total_creators": 42000,
+        "avg_monthly_earnings": "3,200 CTC",
+        "top_creator_monthly": "180,000 CTC",
+        "programs_published": 8400,
+        "challenges_created": 124000
+      }
+    },
+    {
+      "id": 138,
+      "key": "ip_marketplace",
+      "header": "Intellectual Property Marketplace",
+      "subtitle": "Your Ideas Have Value — Cryptographically Guaranteed",
+      "description": "The 2030B IP Marketplace enables users to mint, trade, and license intellectual property tokens — transforming cognitive contributions into tradeable digital assets with verifiable provenance.",
+      "ip_types": [
+        { "type": "Research Insights",      "icon": "🔬", "desc": "Unique research findings minted as verifiable IP tokens",                  "avg_price": "500–5,000 CTC" },
+        { "type": "Problem Frameworks",     "icon": "🔧", "desc": "Novel problem-solving frameworks and methodologies",                         "avg_price": "1,000–10,000 CTC" },
+        { "type": "Cognitive Programs",     "icon": "🧠", "desc": "Full learning programs with licensing tiers",                                "avg_price": "2,000–50,000 CTC" },
+        { "type": "Data Models",            "icon": "📊", "desc": "Validated analytical models and algorithmic approaches",                     "avg_price": "5,000–100,000 CTC" },
+        { "type": "Creative Works",         "icon": "🎨", "desc": "Art, music, and creative outputs with provenance verification",             "avg_price": "100–10,000 CTC" }
+      ],
+      "marketplace_stats": {
+        "total_ip_minted": 124000,
+        "total_volume_ctc": "48M",
+        "avg_royalty_rate": "8%",
+        "top_sale": "2.4M CTC (Quantum Climate Model Framework)"
+      }
+    },
+    {
+      "id": 139,
+      "key": "cognitive_insurance",
+      "header": "Cognitive Progress Insurance",
+      "subtitle": "Protecting Your Investment in Yourself",
+      "description": "Cognitive Progress Insurance is 2030B's innovative protection product — ensuring that users who commit to long-term cognitive development programs are compensated if life events interrupt their journey.",
+      "plans": [
+        { "plan": "Explorer Shield",  "cost": "50 CTC/month",  "coverage": "Streak protection (up to 14 days)", "payout": "Full streak bonus preservation" },
+        { "plan": "Builder Guard",    "cost": "120 CTC/month", "coverage": "Project contribution protection",   "payout": "CTC matching up to 5,000 CTC if project disrupted" },
+        { "plan": "Visionary Vault",  "cost": "300 CTC/month", "coverage": "Full portfolio protection",        "payout": "CogniScore freeze + CTC match + mentor continuity" }
+      ],
+      "claims_paid_2024": "18,400 claims, total 12.4M CTC disbursed",
+      "approval_rate": "96.2%",
+      "avg_claim_processing": "4 hours"
+    },
+    {
+      "id": 140,
+      "key": "vision_2030_status",
+      "header": "Vision 2030 — Status Report",
+      "subtitle": "We Are On Track",
+      "description": "As of Q1 2025, 2030B is ahead of schedule on every key metric in the Vision 2030 roadmap — driven by faster-than-projected adoption, stronger governance participation, and a robust CTC economy.",
+      "milestones": [
+        { "year": 2025, "title": "Global Launch",           "target": "Active in 100 countries",        "actual": "Active in 97 countries",          "status": "on_track",    "pct": 97 },
+        { "year": 2025, "title": "1M Users",                "target": "1,000,000 users",               "actual": "2,400,000 users",                 "status": "exceeded",    "pct": 240 },
+        { "year": 2026, "title": "10M Users",               "target": "10,000,000 users",              "actual": "2.4M (on track for Q3 2026)",     "status": "on_track",    "pct": 24 },
+        { "year": 2027, "title": "CTC Exchange Listing",    "target": "Tier 1 listing",                "actual": "KuCoin live; Binance/OKX Q3 2025","status": "ahead",       "pct": 80 },
+        { "year": 2028, "title": "Decentralized Governance","target": "Full on-chain governance",       "actual": "On-chain V2 launching Q2 2025",   "status": "ahead",       "pct": 85 },
+        { "year": 2030, "title": "1B Lives Impacted",       "target": "1,000,000,000 people",          "actual": "124,000 direct + 2.4M users",     "status": "in_progress", "pct": 0.01 }
+      ]
+    },
+    {
+      "id": 141,
+      "key": "team_expansion",
+      "header": "Team Expansion — The 2030 Builders",
+      "subtitle": "148 People Building the Cognitive Future",
+      "description": "2030B's team has grown from 12 founders to 148 full-time contributors across 38 nationalities — all working remotely-first toward the shared mission of 1 billion lives impacted.",
+      "current_team": {
+        "total": 148,
+        "engineering": "54%",
+        "research": "18%",
+        "operations": "14%",
+        "growth": "9%",
+        "leadership": "5%",
+        "nationalities": 38,
+        "remote_pct": 100,
+        "open_roles": 22
+      },
+      "expansion_plan_2025": [
+        { "dept": "AI Research",          "hires": 12, "focus": "NAE, CogniScore, CORA enhancements" },
+        { "dept": "Product Engineering",  "hires": 18, "focus": "Spatial rooms, WebXR, mobile apps" },
+        { "dept": "Regional Growth",      "hires": 8,  "focus": "MENA, Sub-Saharan Africa, SE Asia" },
+        { "dept": "Enterprise Sales",     "hires": 6,  "focus": "B2B, government, university deals" },
+        { "dept": "Community & Docs",     "hires": 4,  "focus": "Developer relations, creator support" }
+      ]
+    },
+    {
+      "id": 142,
+      "key": "financial_overview",
+      "header": "Financial Overview — 2025",
+      "subtitle": "A Sustainable, Multi-Revenue Cognitive Economy",
+      "description": "2030B's revenue model spans five distinct streams — ensuring resilience against market volatility and alignment between platform growth and financial sustainability.",
+      "revenue_streams": [
+        { "stream": "CTC Transaction Fees",   "2025_target": "$4.2M",  "pct": 28, "model": "0.5–1% fee on all CTC transactions" },
+        { "stream": "Enterprise Subscriptions","2025_target": "$6.8M", "pct": 45, "model": "Annual contracts: $12K–$200K/year" },
+        { "stream": "Marketplace Fees",        "2025_target": "$2.1M", "pct": 14, "model": "10–15% of IP, content, and skill sales" },
+        { "stream": "Premium User Plans",      "2025_target": "$1.4M", "pct": 9,  "model": "$15–$49/month subscription tiers" },
+        { "stream": "DeFi Treasury Yield",     "2025_target": "$0.6M", "pct": 4,  "model": "Treasury deployed in approved DeFi protocols" }
+      ],
+      "total_2025_target": "$15.1M ARR",
+      "burn_rate": "$1.2M/month",
+      "runway": "24+ months post-Series A",
+      "series_a": { "raised": "$24M", "valuation": "$240M", "lead": "Quantum Futures Foundation", "close": "Q1 2025" }
+    },
+    {
+      "id": 143,
+      "key": "series_b_roadmap",
+      "header": "Series B — The Scale Capital",
+      "subtitle": "Funding the 10 Million User Era",
+      "description": "2030B is preparing for Series B fundraising in Q4 2025, targeting $80M to fund the Spatial Learning Rooms build-out, Cross-Chain Bridge, NAE V3, and aggressive regional expansion.",
+      "use_of_funds": [
+        { "category": "Engineering & Product",     "amount": "$28M", "pct": 35, "deliverables": "Spatial Rooms, NAE V3, Mobile Apps, WebXR" },
+        { "category": "Regional Expansion",         "amount": "$20M", "pct": 25, "deliverables": "10 new country launches, local partnerships" },
+        { "category": "Enterprise Sales & Marketing","amount": "$16M", "pct": 20, "deliverables": "500 enterprise clients, $30M ARR target" },
+        { "category": "Research & AI",              "amount": "$8M",  "pct": 10, "deliverables": "CORA V2, CGDP Index, Cognitive Insurance AI" },
+        { "category": "Reserves & Compliance",      "amount": "$8M",  "pct": 10, "deliverables": "Legal, compliance, security, reserve fund" }
+      ],
+      "target_valuation": "$800M–$1.2B",
+      "target_close": "Q4 2025 – Q1 2026",
+      "key_metrics_target": {
+        "users": "10M",
+        "enterprise_clients": 500,
+        "countries": 120,
+        "arr": "$30M"
+      }
+    },
+    {
+      "id": 144,
+      "key": "developer_ecosystem",
+      "header": "The 2030B Developer Ecosystem",
+      "subtitle": "Build on the Cognitive Stack",
+      "description": "2030B's Developer Hub has grown to 2,840 registered applications — from productivity tools to enterprise integrations — built by an active global developer community.",
+      "sdk_overview": [
+        { "lang": "JavaScript/TypeScript", "version": "3.2.0", "weekly_downloads": "84,000", "key_modules": ["@2030b/ctc-sdk", "@2030b/cogniscore", "@2030b/spatial-sdk"] },
+        { "lang": "Python",               "version": "3.1.0", "weekly_downloads": "41,000", "key_modules": ["b2030b-sdk", "ctc-client", "nae-client"] },
+        { "lang": "Rust",                 "version": "1.4.0", "weekly_downloads": "12,000", "key_modules": ["ctc-core", "zk-identity", "chain-bridge"] },
+        { "lang": "Go",                   "version": "2.0.0", "weekly_downloads": "8,400",  "key_modules": ["go-2030b", "ctc-go", "governance-client"] }
+      ],
+      "api_endpoints": {
+        "total": 84,
+        "rate_limits": { "free": "1,000/day", "builder": "100,000/day", "enterprise": "unlimited" },
+        "uptime_sla": "99.95%",
+        "avg_response_ms": 38
+      },
+      "grants_program": "2030B Developer Grants: up to 50,000 CTC per project for qualifying developer contributions"
+    },
+    {
+      "id": 145,
+      "key": "ecosystem_partnerships",
+      "header": "Ecosystem Partnerships",
+      "subtitle": "2030B Is Not an Island",
+      "description": "The 2030B ecosystem is strengthened by a network of 180+ strategic partnerships across technology, academia, government, and civil society.",
+      "partner_categories": [
+        {
+          "cat": "Technology Partners",
+          "count": 48,
+          "examples": ["Anthropic (AI research)", "Worldcoin (digital identity)", "Filecoin (decentralized storage)", "The Graph (blockchain indexing)"]
+        },
+        {
+          "cat": "Academic Partners",
+          "count": 184,
+          "examples": ["MIT Media Lab", "Oxford FHI", "KAUST AI Center", "University of Lagos"]
+        },
+        {
+          "cat": "Government Partners",
+          "count": 34,
+          "examples": ["Saudi MCIT", "UAE MoHRE", "EU Digital Skills Coalition", "World Bank"]
+        },
+        {
+          "cat": "Civil Society",
+          "count": 28,
+          "examples": ["UNHCR (refugee access)", "UNESCO (SDG4)", "Ubuntu Foundation", "ASEAN Digital Initiative"]
+        },
+        {
+          "cat": "DeFi & Web3",
+          "count": 22,
+          "examples": ["Uniswap", "Aave", "The Graph", "Chainlink", "Polygon"]
+        }
+      ],
+      "total_partners": 316,
+      "new_2025": 84
+    },
+    {
+      "id": 146,
+      "key": "the_cognitive_future",
+      "header": "The Cognitive Future",
+      "subtitle": "What Happens When 1 Billion Minds Are Enhanced?",
+      "description": "2030B's mission is not merely to build a platform — it is to catalyze a civilizational shift in how human cognitive potential is developed, measured, rewarded, and deployed.",
+      "scenarios": [
+        { "year": 2027, "icon": "🧬", "scenario": "Cognitive Healthcare",    "desc": "CogniScore integrated into preventive healthcare — early detection of cognitive decline 10 years earlier" },
+        { "year": 2028, "icon": "🏛️", "scenario": "Cognitive Democracy",    "desc": "Governance systems that factor cognitive diversity and expertise into voting weight on complex policy issues" },
+        { "year": 2029, "icon": "🌍", "scenario": "Cognitive Development Aid","desc": "World Bank and IMF replace GDP-only metrics with CGDP-inclusive development indices for loan eligibility" },
+        { "year": 2030, "icon": "🚀", "scenario": "1B Lives Impacted",       "desc": "1 billion people have measurably improved cognitive capacity, earning power, and life outcomes" }
+      ]
+    },
+    {
+      "id": 147,
+      "key": "open_source_vision",
+      "header": "Open Source Cognitive Infrastructure",
+      "subtitle": "Building Public Cognitive Goods",
+      "description": "2030B believes that cognitive infrastructure — like roads and the internet — should be open, accessible, and governed by humanity, not any single corporation. Our open-source commitment is foundational.",
+      "open_components": [
+        { "component": "CogniScore Algorithm",   "license": "Apache 2.0", "github_stars": 8400,  "contributors": 320,  "status": "Live" },
+        { "component": "NAE Core Engine",        "license": "MIT",        "github_stars": 5200,  "contributors": 180,  "status": "Live" },
+        { "component": "Spatial Room SDK",       "license": "Apache 2.0", "github_stars": 3100,  "contributors": 94,   "status": "Beta" },
+        { "component": "ZK Identity Layer",      "license": "MIT",        "github_stars": 12400, "contributors": 840,  "status": "Live" },
+        { "component": "CGDP Measurement Model", "license": "CC BY 4.0",  "github_stars": 2400,  "contributors": 124,  "status": "Research" }
+      ],
+      "total_github_stars": 31500,
+      "total_contributors": 1558,
+      "foundation": "2030B Open Cognitive Foundation — 501(c)(3) registered, governed independently of the company"
+    },
+    {
+      "id": 148,
+      "key": "ethical_framework",
+      "header": "The 2030B Ethical Framework",
+      "subtitle": "Intelligence Without Ethics is Dangerous",
+      "description": "Every technical and business decision at 2030B is evaluated against our Ethical Framework — a living document co-created by the Ethics Council, users, and academic advisors.",
+      "principles": [
+        { "p": "Cognitive Sovereignty",      "desc": "Users own their cognitive data absolutely. No sale, no third-party access without explicit consent." },
+        { "p": "Anti-Weaponization",         "desc": "No 2030B technology may be used to manipulate, deceive, or coerce cognitive behavior." },
+        { "p": "Equity by Design",           "desc": "Every feature must be accessible to users regardless of economic status, language, or geography." },
+        { "p": "Transparent AI",             "desc": "All AI decisions affecting users are explainable and contestable." },
+        { "p": "Cognitive Biodiversity",     "desc": "We celebrate neurodiversity and refuse to optimize for a single cognitive archetype." },
+        { "p": "Intergenerational Responsibility","desc": "Decisions are evaluated for impact on people 50 years into the future." }
+      ],
+      "ethics_council": {
+        "seats": 5,
+        "term": "12 months",
+        "independence": "Ethics Council can veto any product feature with 4/5 vote",
+        "public_reports": "Quarterly"
+      }
+    },
+    {
+      "id": 149,
+      "key": "community_call_to_action_v3",
+      "header": "Your Invitation",
+      "subtitle": "The Cognitive Revolution Needs You",
+      "description": "2030B is not a product you use — it is a civilization you help build. Every challenge you complete, every project you contribute to, every vote you cast shapes the future of human intelligence.",
+      "cta_cards": [
+        { "icon": "🧠", "action": "Start Learning",      "desc": "Begin your personalized cognitive journey today",           "button": "Open Dashboard",    "ctc_reward": "500 CTC Welcome Bonus" },
+        { "icon": "🏗️", "action": "Join a Project",     "desc": "Apply your skills to a real-world DVM challenge",          "button": "Browse Projects",   "ctc_reward": "Up to 8,500 CTC/month" },
+        { "icon": "🗳️", "action": "Govern Together",    "desc": "Vote on proposals that shape the ecosystem",               "button": "View Proposals",    "ctc_reward": "500 CTC/month" },
+        { "icon": "🛠️", "action": "Build Something",    "desc": "Create challenges, programs, or spatial rooms",            "button": "Creator Studio",    "ctc_reward": "Earn from every use" },
+        { "icon": "🌍", "action": "Spread the Vision",  "desc": "Invite your community — earn referral CTC",               "button": "Invite & Earn",     "ctc_reward": "200 CTC per referral" }
+      ],
+      "social": { "hashtags": ["#BeSmarter", "#2030B", "#CognitiveFuture", "#CGDP", "#UniversalCTC"], "members": "2.4M+", "countries": 97 }
+    },
+    {
+      "id": 150,
+      "key": "closing_vision_v3",
+      "header": "One Billion Minds",
+      "subtitle": "The 2030 Promise",
+      "description": "By 2030, 2030B will have touched 1 billion lives — not by making things easier, but by making human beings measurably, verifiably, meaningfully smarter. The cognitive economy is not a future event. It is already here. And you are already part of it.",
+      "stats_final": {
+        "lives_impacted_target": "1,000,000,000",
+        "current_users": "2,400,000",
+        "current_countries": 97,
+        "cognitive_economy_value": "$25T",
+        "years_to_vision": 5
+      },
+      "closing_quote": "Intelligence was never meant to be hoarded by the few. 2030B exists to return it to all of humanity — measured, valued, and rewarded fairly.",
+      "attribution": "— Nadia Karim, CEO & Co-Founder, 2030B",
+      "final_cta": "Begin Your Cognitive Journey at 2030b.io",
+      "brand_close": { "name": "2030B", "tagline": "Be Smarter", "mark": "©2025 2030B Foundation" }
+    }
+  ]
+}

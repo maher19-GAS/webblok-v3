@@ -1,0 +1,635 @@
+{
+  "brand": {
+    "name": "2030B",
+    "tagline": "Soyez Plus Intelligent",
+    "subtitle": "Écosystème d'Amélioration Cognitive"
+  },
+  "vol": 3,
+  "slides": [
+    {
+      "id": 101,
+      "key": "vol3_intro",
+      "header": "Volume 3 : L'Intelligence Neuro-Adaptative",
+      "subtitle": "La prochaine frontière de l'amélioration humaine",
+      "pillars": [
+        { "icon": "🧬", "title": "NAE", "desc": "Amélioration neuro-adaptative" },
+        { "icon": "🏛️", "title": "Spatial", "desc": "Environnements d'apprentissage XR" },
+        { "icon": "⛓️", "title": "Cross-Chain", "desc": "Infrastructure multi-chaîne" },
+        { "icon": "📊", "title": "CGDP", "desc": "Indice mondial de développement cognitif" },
+        { "icon": "🌐", "title": "UBCTC", "desc": "CTC universel de base" },
+        { "icon": "🏢", "title": "Entreprise", "desc": "Couche entreprise" }
+      ]
+    },
+    {
+      "id": 102,
+      "key": "neuro_adaptive_intro",
+      "header": "Moteur d'amélioration neuro-adaptative",
+      "subtitle": "L'IA qui s'adapte à votre cerveau unique",
+      "description": "Le NAE surveille en permanence votre état cognitif et personnalise chaque expérience d'apprentissage en temps réel — adaptant la difficulté, le style et le rythme à votre biologie.",
+      "key_metrics": [
+        { "label": "Précision d'adaptation", "value": "97 %" },
+        { "label": "Amélioration des résultats", "value": "+340 %" },
+        { "label": "Réduction du temps", "value": "-67 %" }
+      ]
+    },
+    {
+      "id": 103,
+      "key": "7_adaptive_dimensions",
+      "header": "7 Dimensions adaptatives",
+      "subtitle": "La cartographie complète de la cognition",
+      "dimensions": [
+        { "id": 1, "name": "Neurale", "icon": "🧠", "desc": "Traitement et plasticité du cerveau" },
+        { "id": 2, "name": "Émotionnelle", "icon": "❤️", "desc": "Intelligence émotionnelle et régulation" },
+        { "id": 3, "name": "Sociale", "icon": "👥", "desc": "Apprentissage collaboratif et empathie" },
+        { "id": 4, "name": "Créative", "icon": "🎨", "desc": "Pensée divergente et innovation" },
+        { "id": 5, "name": "Analytique", "icon": "📊", "desc": "Logique, patterns et systèmes" },
+        { "id": 6, "name": "Kinesthésique", "icon": "🤸", "desc": "Apprentissage corporel et spatial" },
+        { "id": 7, "name": "Méta-cognitive", "icon": "🔮", "desc": "Conscience de sa propre pensée" }
+      ]
+    },
+    {
+      "id": 104,
+      "key": "flow_state_engineering",
+      "header": "Ingénierie de l'état de flow",
+      "subtitle": "Entrer dans la zone à volonté",
+      "description": "Le système identifie votre fenêtre de flow optimale et construit des conditions qui maintiennent cet état productif ultra-efficace.",
+      "flow_indicators": [
+        { "name": "Activation challenge-compétence", "optimal_range": "85-95 %" },
+        { "name": "Immersion attentionnelle", "optimal_range": "> 90 %" },
+        { "name": "Feedback en temps réel", "optimal_range": "Continu" }
+      ]
+    },
+    {
+      "id": 105,
+      "key": "biometric_proxy_layer",
+      "header": "Couche proxy biométrique",
+      "subtitle": "Votre biologie, votre guide",
+      "sensors": ["Variabilité du rythme cardiaque", "Activité EEG", "Conductance cutanée", "Suivi oculaire", "Analyse vocale"],
+      "privacy_guarantee": "Toutes les données biométriques traitées localement — jamais transmises sans consentement",
+      "accuracy": "99,2 %"
+    },
+    {
+      "id": 106,
+      "key": "personalized_curriculum",
+      "header": "Programme personnalisé",
+      "subtitle": "Un parcours d'apprentissage unique pour chaque humain",
+      "features": [
+        { "icon": "🗺️", "title": "Cartographie adaptative", "desc": "Le programme se reconfigure en temps réel selon votre progression" },
+        { "icon": "🎯", "title": "Ciblage de précision", "desc": "Chaque session cible exactement vos lacunes actuelles" },
+        { "icon": "⚡", "title": "Optimisation de la vitesse", "desc": "Apprenez 3× plus vite qu'avec les méthodes traditionnelles" }
+      ]
+    },
+    {
+      "id": 107,
+      "key": "cora_ai_assistant",
+      "header": "CORA – Assistante IA cognitive",
+      "subtitle": "Votre tuteur personnel toujours disponible",
+      "version": "CORA v3.0",
+      "capabilities": [
+        "Personnalisation du programme en temps réel",
+        "Détection du niveau de stress cognitif",
+        "Recommandations de pause proactives",
+        "Support multilingue (47 langues)",
+        "Coaching émotionnel"
+      ],
+      "response_time": "< 50 ms",
+      "satisfaction_rate": "96 %"
+    },
+    {
+      "id": 108,
+      "key": "cognitive_music_system",
+      "header": "Système de musique cognitive",
+      "subtitle": "Sons optimisés pour votre état mental",
+      "frequencies": [
+        { "name": "Ondes thêta", "range": "4-8 Hz", "use": "Apprentissage profond" },
+        { "name": "Ondes alpha", "range": "8-12 Hz", "use": "Relaxation focalisée" },
+        { "name": "Ondes bêta", "range": "12-30 Hz", "use": "Analyse et résolution" },
+        { "name": "Ondes gamma", "range": "30-100 Hz", "use": "Insight et créativité" }
+      ],
+      "playlists": 240,
+      "effectiveness": "+34 % d'amélioration de la rétention"
+    },
+    {
+      "id": 109,
+      "key": "daily_conditioning_3",
+      "header": "Conditionnement quotidien 3.0",
+      "subtitle": "Routine d'optimisation cognitive en 15 minutes",
+      "routine": [
+        { "phase": "Activation", "duration": "3 min", "activity": "Exercice de respiration + EEG" },
+        { "phase": "Engagement", "duration": "8 min", "activity": "Défi cognitif adaptatif" },
+        { "phase": "Ancrage", "duration": "4 min", "activity": "Révision spaced repetition" }
+      ],
+      "streak_record": 247,
+      "average_completion": "94 %"
+    },
+    {
+      "id": 110,
+      "key": "nae_performance_dashboard",
+      "header": "Tableau de bord NAE",
+      "subtitle": "Vue d'ensemble de votre amélioration neuro-adaptative",
+      "overall_nae_score": 78,
+      "weekly_improvement": "+4,2 %",
+      "strongest_dimension": "Analytique",
+      "focus_area": "Méta-cognitive",
+      "sessions_this_week": 14,
+      "total_hours": 847
+    },
+    {
+      "id": 111,
+      "key": "spatial_learning_intro",
+      "header": "Apprentissage spatial",
+      "subtitle": "Apprendre dans des espaces tridimensionnels immersifs",
+      "description": "L'apprentissage spatial tire parti de la mémoire spatiale — le système de navigation le plus puissant du cerveau — pour ancrer les connaissances de manière permanente.",
+      "environments": [
+        { "name": "Palais de la mémoire", "type": "VR", "retention_boost": "+340 %" },
+        { "name": "Cosmos de concepts", "type": "AR", "retention_boost": "+180 %" },
+        { "name": "Lab XR", "type": "XR mixte", "retention_boost": "+240 %" }
+      ]
+    },
+    {
+      "id": 112,
+      "key": "memory_palace_system",
+      "header": "Système de palais de la mémoire",
+      "subtitle": "La technique millénaire rencontre l'IA moderne",
+      "ancient_technique": "Méthode des lieux – utilisée depuis 500 av. J.-C.",
+      "ai_enhancement": "Placement 3D adaptatif, révision basée sur la rétention, personnalisation de l'espace",
+      "retention_rates": [
+        { "method": "Lecture", "retention": 10 },
+        { "method": "Flashcards", "retention": 35 },
+        { "method": "Palais de la mémoire standard", "retention": 72 },
+        { "method": "Palais de la mémoire IA 2030B", "retention": 94 }
+      ]
+    },
+    {
+      "id": 113,
+      "key": "concept_cosmos",
+      "header": "Cosmos de concepts",
+      "subtitle": "Naviguez dans l'espace des connaissances",
+      "description": "Visualisez et naviguez dans des champs de connaissances entiers comme des galaxies — chaque étoile est un concept, chaque connexion une relation.",
+      "total_concepts": "2,4M",
+      "connections": "18M",
+      "domains": 847,
+      "exploration_sessions": "124K par jour"
+    },
+    {
+      "id": 114,
+      "key": "webxr_architecture",
+      "header": "Architecture WebXR",
+      "subtitle": "Réalité étendue native dans le navigateur",
+      "stack": ["WebXR API", "Three.js", "A-Frame", "WebAssembly", "WebGPU"],
+      "device_support": ["Casques VR", "Lunettes AR", "Desktop 3D", "Mobile 6DOF"],
+      "latency": "< 20 ms",
+      "fidelity": "90 FPS à résolution native"
+    },
+    {
+      "id": 115,
+      "key": "multiplayer_learning",
+      "header": "Apprentissage multijoueur",
+      "subtitle": "La cognition est meilleure ensemble",
+      "max_participants": 240,
+      "session_types": ["Co-apprentissage", "Débat socratique", "Construction collaborative", "Simulations de groupe"],
+      "engagement_boost": "+67 %",
+      "completion_boost": "+45 %"
+    },
+    {
+      "id": 116,
+      "key": "spatial_certification",
+      "header": "Certification spatiale",
+      "subtitle": "Accréditation pour les compétences d'apprentissage spatial",
+      "certifications": [
+        { "name": "Navigator Spatial", "hours": 20, "holders": "24K" },
+        { "name": "Architecte de palais", "hours": 80, "holders": "4,8K" },
+        { "name": "Maître XR", "hours": 200, "holders": "480" }
+      ]
+    },
+    {
+      "id": 117,
+      "key": "spatial_social_hub",
+      "header": "Hub social spatial",
+      "subtitle": "La vie sociale dans l'espace cognitif",
+      "spaces": [
+        { "name": "La Bibliothèque", "type": "Apprentissage silencieux", "capacity": 500 },
+        { "name": "L'Agora", "type": "Débat public", "capacity": 2400 },
+        { "name": "Les Labs", "type": "Collaboration", "capacity": 50 }
+      ],
+      "daily_active_spaces": "1,240"
+    },
+    {
+      "id": 118,
+      "key": "spatial_roadmap",
+      "header": "Feuille de route spatiale",
+      "subtitle": "Le chemin vers la cognition totalement immersive",
+      "milestones": [
+        { "year": "2025 T1", "title": "Lancement Palais de la mémoire", "status": "completed" },
+        { "year": "2025 T3", "title": "Cosmos de concepts multi-utilisateurs", "status": "active" },
+        { "year": "2026 T1", "title": "Intégration BCI", "status": "planned" },
+        { "year": "2027", "title": "Cognition spatiale toujours active", "status": "vision" }
+      ]
+    },
+    {
+      "id": 119,
+      "key": "cross_chain_bridge",
+      "header": "Pont cross-chain",
+      "subtitle": "CTC fluide sur tous les réseaux blockchain",
+      "supported_chains": 12,
+      "daily_volume": "12,4M CTC",
+      "bridge_security": "Multi-sig 7/12 + vérification ZK",
+      "fees": "0,05 %",
+      "settlement_time": "< 2 minutes"
+    },
+    {
+      "id": 120,
+      "key": "defi_integration",
+      "header": "Intégration DeFi",
+      "subtitle": "Finance décentralisée rencontre la cognition",
+      "protocols": [
+        { "name": "CTC-AMM", "tvl": "28M$", "apy": "12-24 %" },
+        { "name": "Prêts cognitifs", "tvl": "12M$", "apy": "6-9 %" },
+        { "name": "NFTs cognitifs", "volume": "4,2M CTC/mois" }
+      ]
+    },
+    {
+      "id": 121,
+      "key": "exchange_listing",
+      "header": "Cotation en bourse",
+      "subtitle": "CTC accessible mondialement",
+      "exchanges": [
+        { "name": "Binance", "status": "En discussion", "timeline": "T2 2025" },
+        { "name": "Coinbase", "status": "Application déposée", "timeline": "T3 2025" },
+        { "name": "Uniswap V4", "status": "Live", "volume": "2,4M$/jour" }
+      ]
+    },
+    {
+      "id": 122,
+      "key": "tokenomics_v3",
+      "header": "Tokenomics V3",
+      "subtitle": "Économie évolutive pour 1 milliard d'utilisateurs",
+      "supply_model": "Déflationniste",
+      "burn_rate": "0,5 %/mois",
+      "emission_schedule": "Décroissant sur 10 ans",
+      "utility_expansion": ["Paiements gouvernementaux", "Crédits universitaires", "NFTs cognitifs", "Staking d'assurance"]
+    },
+    {
+      "id": 123,
+      "key": "cognitive_yield",
+      "header": "Rendement cognitif",
+      "subtitle": "Gagnez des CTC en pensant",
+      "mechanics": [
+        { "action": "Résoudre un défi", "yield": "50-500 CTC" },
+        { "action": "Contribuer au graphe de connaissances", "yield": "10-200 CTC" },
+        { "action": "Mentor d'autres", "yield": "100-1 000 CTC" },
+        { "action": "Recherche originale", "yield": "500-10 000 CTC" }
+      ],
+      "total_distributed_today": "12,4M CTC",
+      "top_earner": "48 000 CTC/mois"
+    },
+    {
+      "id": 124,
+      "key": "zk_identity",
+      "header": "Identité ZK",
+      "subtitle": "Vérifiez sans révéler",
+      "features": [
+        { "name": "Vérification des diplômes", "desc": "Prouvez votre qualification sans exposer vos données" },
+        { "name": "Vérification de localisation", "desc": "Conformité aux réglementations locales en préservant la confidentialité" },
+        { "name": "Preuve de compétences", "desc": "Vérification vérifiable de vos capacités cognitives" }
+      ],
+      "standard": "zk-STARK"
+    },
+    {
+      "id": 125,
+      "key": "on_chain_governance_v2",
+      "header": "Gouvernance on-chain V2",
+      "subtitle": "Démocratie directe pour l'économie cognitive",
+      "active_proposals": 12,
+      "total_voters": "840K",
+      "voting_power_model": "CTC × Score de réputation",
+      "recent_decisions": [
+        { "proposal": "Augmenter le staking UBCTC à 15 %", "result": "Adopté (84 %)" },
+        { "proposal": "Financer le hub Africa Tech", "result": "Adopté (91 %)" }
+      ]
+    },
+    {
+      "id": 126,
+      "key": "cgdp_index",
+      "header": "Indice CGDP",
+      "subtitle": "Indice mondial de développement cognitif",
+      "description": "Le CGDP mesure la santé cognitive collective d'une société — l'équivalent cognitif du PIB.",
+      "components": [
+        { "name": "Score cognitif individuel moyen", "weight": "40 %" },
+        { "name": "Score de collaboration collective", "weight": "30 %" },
+        { "name": "Score d'innovation", "weight": "20 %" },
+        { "name": "Score d'équité cognitive", "weight": "10 %" }
+      ]
+    },
+    {
+      "id": 127,
+      "key": "cgdp_methodology",
+      "header": "Méthodologie CGDP",
+      "subtitle": "La science derrière le score",
+      "data_sources": ["Résultats des défis cognitifs", "Journaux de contributions", "Enregistrements de collaboration", "Métriques d'innovation"],
+      "validation_body": "Consortium indépendant de 47 universités",
+      "publication_frequency": "Trimestriel",
+      "countries_measured": 97
+    },
+    {
+      "id": 128,
+      "key": "cgdp_city_pilot",
+      "header": "Pilote CGDP en ville",
+      "subtitle": "Mesurer et améliorer la cognition d'une ville entière",
+      "pilot_cities": [
+        { "name": "Riyad", "cgdp_score": 78, "population_engaged": "240K", "improvement": "+12 %" },
+        { "name": "Singapour", "cgdp_score": 84, "population_engaged": "180K", "improvement": "+8 %" },
+        { "name": "Nairobi", "cgdp_score": 71, "population_engaged": "120K", "improvement": "+19 %" }
+      ]
+    },
+    {
+      "id": 129,
+      "key": "regional_mena",
+      "header": "Région MENA",
+      "subtitle": "Transformer le potentiel cognitif du Moyen-Orient",
+      "users": "580K",
+      "countries": 22,
+      "languages": ["Arabe", "Persan", "Turc", "Hébreu"],
+      "key_partners": ["NEOM", "Expo Dubai", "Saudi Vision 2030"],
+      "cgdp_average": 72,
+      "growth": "+45 % cette année"
+    },
+    {
+      "id": 130,
+      "key": "regional_africa",
+      "header": "Région Afrique",
+      "subtitle": "Éveiller le géant cognitif africain",
+      "users": "340K",
+      "countries": 54,
+      "internet_penetration_target": "Atteindre 2M d'apprenants hors ligne",
+      "key_partners": ["Union Africaine", "AfDB", "Google Africa"],
+      "offline_first": true,
+      "low_bandwidth_mode": true,
+      "sms_learning": true
+    },
+    {
+      "id": 131,
+      "key": "ubctc_intro",
+      "header": "CTC Universel de Base (UBCTC)",
+      "subtitle": "Assurer un plancher cognitif pour chaque humain",
+      "description": "L'UBCTC garantit à chaque être humain un accès minimal aux outils d'amélioration cognitive — indépendamment de son revenu, emplacement ou situation.",
+      "allocation": "100 CTC/mois par personne",
+      "eligibility": "Tout humain vérifié ≥ 16 ans",
+      "total_recipients": "2,4M",
+      "funded_by": "Trésorerie DAO 2030B + Partenaires gouvernementaux"
+    },
+    {
+      "id": 132,
+      "key": "ubctc_pilot",
+      "header": "Pilote UBCTC",
+      "subtitle": "Résultats des essais en conditions réelles",
+      "pilot_regions": [
+        { "region": "Riyad, KSA", "participants": 5000, "duration": "6 mois", "cognitive_improvement": "+34 %" },
+        { "region": "Lagos, Nigeria", "participants": 3200, "duration": "6 mois", "cognitive_improvement": "+28 %" },
+        { "region": "Jakarta, Indonésie", "participants": 4100, "duration": "6 mois", "cognitive_improvement": "+31 %" }
+      ],
+      "conclusion": "L'UBCTC réduit l'inégalité cognitive de 42 % dans les populations pilotes"
+    },
+    {
+      "id": 133,
+      "key": "enterprise_layer",
+      "header": "Couche entreprise",
+      "subtitle": "Solutions cognitives pour les organisations",
+      "offerings": [
+        { "name": "Évaluation cognitive des équipes", "clients": "1,240 entreprises" },
+        { "name": "Formation cognitive personnalisée", "clients": "890 organisations" },
+        { "name": "Recrutement cognitif IA", "clients": "340 agences" }
+      ],
+      "enterprise_revenue": "3,6M$/mois",
+      "nps": 78
+    },
+    {
+      "id": 134,
+      "key": "talent_api",
+      "header": "API des talents",
+      "subtitle": "Connecter les compétences aux opportunités à grande échelle",
+      "endpoints": [
+        { "method": "GET", "path": "/api/v3/talent/match", "desc": "Correspondance IA talent-projet" },
+        { "method": "POST", "path": "/api/v3/talent/assess", "desc": "Démarrer une évaluation cognitive" },
+        { "method": "GET", "path": "/api/v3/talent/verify", "desc": "Vérification des accréditations blockchain" }
+      ],
+      "api_calls_per_day": "2,4M",
+      "enterprise_clients": 124
+    },
+    {
+      "id": 135,
+      "key": "university_partnerships",
+      "header": "Partenariats universitaires",
+      "subtitle": "Ponts entre la sagesse académique et la pratique cognitive",
+      "partners": 73,
+      "regions": ["Amérique du Nord", "Europe", "MENA", "Asie"],
+      "featured": [
+        { "name": "MIT", "collaboration": "Recherche NAE", "joint_papers": 12 },
+        { "name": "AUB", "collaboration": "Programme MENA", "students": 24000 }
+      ],
+      "credit_recognition": "47 universités reconnaissent les certifications 2030B"
+    },
+    {
+      "id": 136,
+      "key": "government_partnerships",
+      "header": "Partenariats gouvernementaux",
+      "subtitle": "Politiques publiques alimentées par la cognition",
+      "partners": [
+        { "country": "Arabie Saoudite", "program": "Vision 2030 Cognitive", "budget": "500M SAR" },
+        { "country": "EAU", "program": "Stratégie IA Nationale", "budget": "200M AED" },
+        { "country": "Sénégal", "program": "Digital Sénégal 2025", "budget": "45M USD" }
+      ],
+      "policy_influence": "12 lois nationales influencées par la recherche 2030B"
+    },
+    {
+      "id": 137,
+      "key": "creator_economy_3",
+      "header": "Économie des créateurs 3.0",
+      "subtitle": "L'âge d'or des créateurs cognitifs",
+      "creator_types": [
+        { "type": "Instructeurs cognitifs", "count": "24K", "avg_earnings": "4 800 CTC/mois" },
+        { "type": "Chercheurs", "count": "8,4K", "avg_earnings": "8 200 CTC/mois" },
+        { "type": "Constructeurs de palais", "count": "12K", "avg_earnings": "3 400 CTC/mois" }
+      ],
+      "total_creator_payout": "124M CTC/mois"
+    },
+    {
+      "id": 138,
+      "key": "ip_marketplace",
+      "header": "Marché de propriété intellectuelle",
+      "subtitle": "Valorisez et échangez des actifs cognitifs",
+      "asset_types": ["Méthodes cognitives brevetées", "Programmes d'apprentissage", "Modèles d'IA", "NFTs de palais de mémoire"],
+      "total_listings": "24K",
+      "volume": "12M CTC/mois",
+      "largest_sale": "240 000 CTC pour un programme de maîtrise de la mémoire"
+    },
+    {
+      "id": 139,
+      "key": "cognitive_insurance",
+      "header": "Assurance cognitive",
+      "subtitle": "Protection de votre actif cognitif le plus précieux : votre esprit",
+      "plans": [
+        { "name": "Protection de base", "coverage": "Jusqu'à 10 000 CTC", "premium": "100 CTC/mois" },
+        { "name": "Protection Pro", "coverage": "Jusqu'à 100 000 CTC", "premium": "500 CTC/mois" },
+        { "name": "Protection Entreprise", "coverage": "Illimitée", "premium": "Sur mesure" }
+      ],
+      "total_insured": "240K utilisateurs",
+      "claims_paid": "1,24M CTC en 2024"
+    },
+    {
+      "id": 140,
+      "key": "vision_2030_status",
+      "header": "Statut Vision 2030",
+      "subtitle": "Là où nous en sommes sur la route vers 1 milliard",
+      "overall_progress": 34,
+      "metrics": [
+        { "label": "Utilisateurs actifs", "current": "2,4M", "target": "1B", "progress": 0.24 },
+        { "label": "Pays atteints", "current": 97, "target": 195, "progress": 50 },
+        { "label": "Vies améliorées", "current": "12M", "target": "1B", "progress": 1.2 }
+      ]
+    },
+    {
+      "id": 141,
+      "key": "team_expansion",
+      "header": "Expansion de l'équipe",
+      "subtitle": "Les cerveaux derrière la révolution",
+      "current_team": 240,
+      "open_positions": 67,
+      "departments": [
+        { "name": "Ingénierie", "size": 120, "hiring": 30 },
+        { "name": "Sciences cognitives", "size": 45, "hiring": 15 },
+        { "name": "Croissance", "size": 35, "hiring": 12 }
+      ],
+      "remote_percentage": "78 %",
+      "countries": 34
+    },
+    {
+      "id": 142,
+      "key": "financial_overview",
+      "header": "Vue d'ensemble financière",
+      "subtitle": "Fondations solides pour une croissance explosive",
+      "funding_raised": "45M$",
+      "revenue_run_rate": "144M$/an",
+      "burn_rate": "4,2M$/mois",
+      "runway": "24+ mois",
+      "investors": ["Andreessen Horowitz", "Sequoia MENA", "Public Investment Fund"]
+    },
+    {
+      "id": 143,
+      "key": "series_b_roadmap",
+      "header": "Feuille de route Série B",
+      "subtitle": "120M$ pour accélérer la révolution cognitive mondiale",
+      "target": "120M$",
+      "use_of_funds": [
+        { "area": "Expansion produit", "percentage": 40 },
+        { "area": "Développement de marchés", "percentage": 30 },
+        { "area": "Infrastructure R&D", "percentage": 20 },
+        { "area": "Opérations", "percentage": 10 }
+      ],
+      "timeline": "T2 2025",
+      "lead_investor": "En discussion"
+    },
+    {
+      "id": 144,
+      "key": "developer_ecosystem",
+      "header": "Écosystème développeur",
+      "subtitle": "Construire la couche cognitive de l'internet",
+      "stats": {
+        "registered_developers": "24K",
+        "published_apps": 847,
+        "api_calls_monthly": "2,4B",
+        "hackathons_hosted": 12
+      },
+      "grants_available": "2M CTC en bourses de développement"
+    },
+    {
+      "id": 145,
+      "key": "ecosystem_partnerships",
+      "header": "Partenariats écosystème",
+      "subtitle": "Ensemble, nous sommes plus intelligents",
+      "tier1": [
+        { "name": "Microsoft Azure", "type": "Infrastructure cloud", "since": "2024" },
+        { "name": "Anthropic", "type": "Partenaire IA", "since": "2025" }
+      ],
+      "tier2": [
+        { "name": "Chainlink", "type": "Oracles", "since": "2024" },
+        { "name": "Polygon", "type": "Scalabilité L2", "since": "2024" }
+      ],
+      "total_partnerships": 240
+    },
+    {
+      "id": 146,
+      "key": "the_cognitive_future",
+      "header": "Le futur cognitif",
+      "subtitle": "Ce que nous bâtissons pour les générations à venir",
+      "pillars": [
+        { "icon": "🧠", "year": "2025-2030", "title": "Ère neuro-adaptative", "desc": "Chaque humain dispose d'un tuteur cognitif IA personnel" },
+        { "icon": "🏛️", "year": "2030-2035", "title": "Intelligence spatiale", "desc": "L'apprentissage se déroule dans des espaces cognitifs immersifs" },
+        { "icon": "💰", "year": "2035-2040", "title": "Économie cognitive", "desc": "La cognition devient la principale monnaie d'échange" },
+        { "icon": "🌍", "year": "2040+", "title": "Civilisation cognitive", "desc": "L'humanité atteint son potentiel collectif maximum" }
+      ]
+    },
+    {
+      "id": 147,
+      "key": "open_source_vision",
+      "header": "Vision open source",
+      "subtitle": "Construire en public pour toute l'humanité",
+      "philosophy": "Nous nous engageons à ouvrir l'infrastructure cognitive centrale — parce que la connaissance qui libère ne devrait appartenir à personne",
+      "repositories": [
+        { "name": "2030b/slide-engine", "stars": "4 200", "forks": "840", "license": "MIT" },
+        { "name": "2030b/session-engine", "stars": "3 100", "forks": "620", "license": "Apache 2" },
+        { "name": "2030b/ctc-contracts", "stars": "2 800", "forks": "490", "license": "MIT" },
+        { "name": "2030b/nae-core", "stars": "1 900", "forks": "320", "license": "GPL 3" }
+      ],
+      "timeline": [
+        { "year": "2024", "event": "SDKs open-sourcés", "status": "completed" },
+        { "year": "2025", "event": "Moteur principal OSS", "status": "completed" },
+        { "year": "2026", "event": "Protocole ouvert", "status": "planned" },
+        { "year": "2027", "event": "Décentralisation totale", "status": "vision" }
+      ]
+    },
+    {
+      "id": 148,
+      "key": "global_impact_dashboard",
+      "header": "Tableau de bord d'impact mondial",
+      "subtitle": "Mesurer ce qui compte vraiment",
+      "impact_metrics": [
+        { "label": "Vies améliorées", "value": "12M", "trend": "+34 %" },
+        { "label": "Heures d'apprentissage générées", "value": "240M", "trend": "+67 %" },
+        { "label": "Inégalité cognitive réduite", "value": "42 %", "trend": "Record" },
+        { "label": "Pays avec partenaires actifs", "value": 97, "trend": "+18" }
+      ],
+      "sdg_alignment": [4, 8, 10, 17],
+      "un_partnership": true
+    },
+    {
+      "id": 149,
+      "key": "join_the_movement",
+      "header": "Rejoignez le mouvement",
+      "subtitle": "Chaque grand changement commence par une décision",
+      "cta_primary": "Créer mon compte",
+      "cta_secondary": "En savoir plus",
+      "reasons": [
+        { "icon": "🧠", "title": "Améliorez votre cognition", "desc": "Devenez la version la plus intelligente de vous-même" },
+        { "icon": "💰", "title": "Gagnez en pensant", "desc": "Vos contributions cognitives sont récompensées en CTC" },
+        { "icon": "🌍", "title": "Impactez le monde", "desc": "Rejoignez des projets à impact qui changent des vies" },
+        { "icon": "🚀", "title": "Façonnez le futur", "desc": "Co-créez l'économie cognitive de demain" }
+      ],
+      "social_proof": "2,4M de membres actifs dans 97 pays"
+    },
+    {
+      "id": 150,
+      "key": "closing_vision_v3",
+      "header": "La révolution cognitive commence maintenant",
+      "subtitle": "Volume 3 complet — L'histoire continue",
+      "closing_statement": "Nous n'améliorons pas seulement les esprits. Nous reconstruisons la civilisation de l'intérieur — en commençant par la manière dont les humains pensent, apprennent et créent ensemble.",
+      "stats": [
+        { "label": "Diapositives créées", "value": 150 },
+        { "label": "Pays atteints", "value": 97 },
+        { "label": "Vies cibles d'ici 2030", "value": "1B" },
+        { "label": "Valeur de l'économie cognitive", "value": "25 000 Mds$" }
+      ],
+      "next_chapter": "Volume 4 : La singularité cognitive"
+    }
+  ]
+}

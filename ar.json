@@ -1,0 +1,799 @@
+{
+  "brand": {
+    "name": "2030B",
+    "tagline": "كن أذكى",
+    "subtitle": "منظومة التعزيز المعرفي"
+  },
+  "slides": [
+    {
+      "id": 1,
+      "key": "welcome_dashboard",
+      "header": "مرحباً بعودتك، أليكس",
+      "subtitle": "رحلتك في التعزيز المعرفي مستمرة",
+      "stats": {
+        "ctc_balance": "12,450",
+        "ctc_label": "رصيد CTC",
+        "projects_joined": 4,
+        "contributions_made": 127,
+        "reputation_score": "4,250"
+      },
+      "enhancement_level": 67,
+      "challenge_preview": "التعرف على الأنماط: الأنظمة الكمية",
+      "nav_items": ["الرئيسية", "المشاريع", "المحفظة", "التعلم", "الملف"]
+    },
+    {
+      "id": 2,
+      "key": "cognitive_enhancement_status",
+      "header": "ملفك المعرفي",
+      "subtitle": "تتبع تطورك المعرفي",
+      "overall_progress": 67,
+      "dimensions": [
+        { "name": "الذاكرة", "value": 72 },
+        { "name": "المنطق", "value": 85 },
+        { "name": "الإبداع", "value": 61 },
+        { "name": "الذكاء العاطفي", "value": 58 },
+        { "name": "التعرف على الأنماط", "value": 79 },
+        { "name": "التفكير المنظومي", "value": 68 },
+        { "name": "الوعي", "value": 43 }
+      ],
+      "next_milestone": "المستوى 8 – المفكر الكمي",
+      "milestone_reward": "2,000 CTC + شارة خاصة"
+    },
+    {
+      "id": 3,
+      "key": "daily_cognitive_challenge",
+      "header": "تحدي اليوم",
+      "subtitle": "التعرف على الأنماط: الأنظمة الكمية",
+      "timer": "14:32",
+      "difficulty": "متقدم",
+      "hints_available": 3,
+      "hint_cost": "50 CTC",
+      "reward": "500 CTC + 25 سمعة",
+      "leaderboard_position": "#1,247",
+      "previous_score": 82,
+      "difficulties": ["مبتدئ", "متوسط", "متقدم", "خبير"]
+    },
+    {
+      "id": 4,
+      "key": "ctc_wallet_overview",
+      "header": "عملة الرمز المعرفي الخاصة بك",
+      "subtitle": "الرصيد الإجمالي: 12,450 CTC",
+      "balance": "12,450",
+      "transactions": [
+        { "name": "بنية DVM السحابية", "type": "مساهمة في المشروع", "amount": "+850", "date": "منذ ساعتين" },
+        { "name": "التحدي اليومي", "type": "مكافأة التحدي", "amount": "+500", "date": "اليوم" },
+        { "name": "واجهة الرابط العصبي", "type": "شراء خدمة", "amount": "-200", "date": "أمس" },
+        { "name": "جلسة الإرشاد", "type": "أرباح الخدمة", "amount": "+300", "date": "منذ يومين" }
+      ],
+      "earnings_breakdown": {
+        "challenges": 35,
+        "projects": 60,
+        "bonuses": 5
+      },
+      "staking_apy": "12.5%"
+    },
+    {
+      "id": 5,
+      "key": "available_projects_discovery",
+      "header": "اكتشف المشاريع",
+      "subtitle": "فرص مطابقة لمهاراتك",
+      "filters": ["الكل", "تقنية", "علوم", "اجتماعي", "إبداعي"],
+      "projects": [
+        { "title": "بنية DVM السحابية", "match": 94, "ctc": "2,500/شهر", "tags": ["الأمان", "السحابة", "الذكاء الاصطناعي"], "team": 12, "deadline": "45 يوماً" },
+        { "title": "نموذج اللغة العصبية", "match": 88, "ctc": "1,800/شهر", "tags": ["معالجة اللغة", "البحث", "Python"], "team": 8, "deadline": "30 يوماً" },
+        { "title": "شبكة الطاقة الكمية", "match": 76, "ctc": "3,200/شهر", "tags": ["الفيزياء", "الطاقة", "الأنظمة"], "team": 15, "deadline": "60 يوماً" }
+      ]
+    },
+    {
+      "id": 6,
+      "key": "project_detail_dvm",
+      "header": "بنية DVM السحابية",
+      "subtitle": "أنظمة الحوسبة • أولوية عالية",
+      "description": "تصميم بنية تحتية متقدمة للآلات الافتراضية الموزعة لشبكة معالجة 2030B المعرفية.",
+      "your_role": "مصمم بروتوكول الأمان",
+      "ctc_rate": "2,500 CTC/شهر",
+      "time_commitment": "15 ساعة/أسبوع",
+      "progress": 32,
+      "team_size": 12,
+      "challenges": ["تكامل التشفير الكمي", "نقل البيانات بزمن استجابة صفري", "توافق متعدد الواقع"],
+      "deadline": "45 يوماً"
+    },
+    {
+      "id": 7,
+      "key": "active_projects_dashboard",
+      "header": "مشاريعك النشطة",
+      "subtitle": "4 مشاريع قيد التنفيذ",
+      "projects": [
+        { "title": "بنية DVM السحابية", "status": "نشط", "progress": 32, "next_action": "تقديم تقرير الأمان", "ctc_this_week": "+850", "deadline": "45 يوماً" },
+        { "title": "نموذج اللغة العصبية", "status": "مراجعة", "progress": 67, "next_action": "مراجعة الأقران معلقة", "ctc_this_week": "+420", "deadline": "30 يوماً" },
+        { "title": "شبكة الطاقة الكمية", "status": "تخطيط", "progress": 12, "next_action": "اجتماع الفريق غداً", "ctc_this_week": "+0", "deadline": "60 يوماً" },
+        { "title": "الذكاء الاصطناعي للتأثير الاجتماعي", "status": "نشط", "progress": 54, "next_action": "تحليل البيانات مستحق", "ctc_this_week": "+600", "deadline": "20 يوماً" }
+      ]
+    },
+    {
+      "id": 8,
+      "key": "project_workspace",
+      "header": "بنية DVM السحابية – مساحة العمل",
+      "subtitle": "الفريق: 12 عضواً",
+      "tabs": ["الدردشة", "المستندات", "المهام", "الجدول الزمني"],
+      "messages": [
+        { "sender": "د. سارة تشن", "message": "وحدة التشفير الكمي جاهزة للمراجعة.", "time": "10:23 ص", "avatar": "SC" },
+        { "sender": "ماركوس وي", "message": "لقد حدّثت وثيقة بروتوكولات الأمان.", "time": "10:45 ص", "avatar": "MW" },
+        { "sender": "أنت", "message": "رائع! سأراجع كليهما قبل نهاية اليوم.", "time": "11:02 ص", "avatar": "AJ" }
+      ],
+      "milestones": [
+        { "title": "تصميم البنية", "status": "مكتمل", "date": "15 يناير" },
+        { "title": "بروتوكولات الأمان", "status": "جارٍ", "date": "20 فبراير" },
+        { "title": "اختبار التكامل", "status": "معلق", "date": "10 مارس" }
+      ]
+    },
+    {
+      "id": 9,
+      "key": "contribution_verification",
+      "header": "التحقق المعلق",
+      "subtitle": "3 مساهمات قيد المراجعة",
+      "contributions": [
+        { "title": "بروتوكول الأمان v2.0", "project": "بنية DVM السحابية", "status": "قيد المراجعة", "progress": 65, "estimated_ctc": "+850 CTC", "submitted": "منذ يومين" },
+        { "title": "تقرير تحليل الأنماط", "project": "نموذج اللغة العصبية", "status": "معلق", "progress": 20, "estimated_ctc": "+420 CTC", "submitted": "اليوم" },
+        { "title": "نموذج تدفق الطاقة", "project": "شبكة الطاقة الكمية", "status": "مرفوض", "progress": 0, "estimated_ctc": "+0 CTC", "submitted": "منذ 5 أيام" }
+      ]
+    },
+    {
+      "id": 10,
+      "key": "reputation_system",
+      "header": "درجة سمعتك",
+      "subtitle": "المستوى 8 مساهم • 4,250 نقطة",
+      "level": 8,
+      "level_name": "المفكر الكمي",
+      "points": "4,250",
+      "next_level_points": "5,000",
+      "achievements": [
+        { "name": "أول مساهمة", "icon": "⭐", "earned": "نوفمبر 2024" },
+        { "name": "لاعب الفريق", "icon": "🤝", "earned": "ديسمبر 2024" },
+        { "name": "بطل الابتكار", "icon": "💡", "earned": "يناير 2025" },
+        { "name": "خبير الأمان", "icon": "🔒", "earned": "فبراير 2025" },
+        { "name": "سيد الأنماط", "icon": "🧩", "earned": "مارس 2025" }
+      ],
+      "specializations": [
+        { "area": "أمان السحابة", "proficiency": 85 },
+        { "area": "تحليل الأنماط", "proficiency": 79 },
+        { "area": "تصميم الأنظمة", "proficiency": 68 }
+      ]
+    },
+    {
+      "id": 11,
+      "key": "learning_hub",
+      "header": "مكتبة التعزيز",
+      "subtitle": "23 وحدة متاحة",
+      "categories": ["أساسي", "متقدم", "متخصص"],
+      "modules": [
+        { "title": "أساسيات التفكير الكمي", "category": "أساسي", "progress": 100, "duration": "4 ساعات", "ctc_reward": "+200 CTC" },
+        { "title": "إتقان التعرف على الأنماط", "category": "متقدم", "progress": 67, "duration": "8 ساعات", "ctc_reward": "+500 CTC" },
+        { "title": "توسعة الوعي 101", "category": "متخصص", "progress": 23, "duration": "12 ساعة", "ctc_reward": "+800 CTC" },
+        { "title": "التفكير المنظومي المتقدم", "category": "متقدم", "progress": 0, "duration": "6 ساعات", "ctc_reward": "+400 CTC" }
+      ]
+    },
+    {
+      "id": 12,
+      "key": "leaderboards",
+      "header": "لوحات المتصدرين العالمية",
+      "subtitle": "ترتيبك العالمي #1,247",
+      "tabs": ["الإجمالي", "هذا الأسبوع", "حسب القطاع", "حسب المنطقة"],
+      "top_contributors": [
+        { "rank": 1, "name": "د. إيلينا فوس", "score": "98,450", "badge": "🏆", "avatar": "EV" },
+        { "rank": 2, "name": "كاي ناكامورا", "score": "94,320", "badge": "🥈", "avatar": "KN" },
+        { "rank": 3, "name": "أمارا أوسي", "score": "91,780", "badge": "🥉", "avatar": "AO" },
+        { "rank": 4, "name": "لينا فيشر", "score": "88,200", "badge": "", "avatar": "LF" },
+        { "rank": 5, "name": "راج باتيل", "score": "85,600", "badge": "", "avatar": "RP" }
+      ],
+      "your_rank": 1247,
+      "your_score": "4,250"
+    },
+    {
+      "id": 13,
+      "key": "personal_analytics",
+      "header": "تحليلات أدائك",
+      "subtitle": "آخر 30 يوماً",
+      "ctc_trend": [820, 1200, 950, 1450, 1100, 1800, 2100, 1600, 2400, 1900, 2800, 3200],
+      "capability_improvement": [
+        { "name": "المنطق", "before": 79, "after": 85 },
+        { "name": "التعرف على الأنماط", "before": 71, "after": 79 },
+        { "name": "الذاكرة", "before": 65, "after": 72 }
+      ],
+      "project_success_rate": 89,
+      "contribution_quality": 94,
+      "peak_hours": "9ص – 12ظ",
+      "total_ctc_earned": "8,450"
+    },
+    {
+      "id": 14,
+      "key": "marketplace",
+      "header": "السوق المعرفي",
+      "subtitle": "اعرض خدماتك المعززة",
+      "categories": ["استشارات", "تحليل", "تصميم", "بحث"],
+      "my_listings": [
+        { "title": "مراجعة بنية الأمان", "price": "500 CTC/ساعة", "orders": 3, "rating": 4.9 },
+        { "title": "تحليل الأنظمة الكمية", "price": "300 CTC/ساعة", "orders": 7, "rating": 4.7 }
+      ],
+      "service_requests": [
+        { "title": "تدقيق أمان السحابة", "budget": "2,000 CTC", "deadline": "7 أيام", "requester": "مشروع نيبولا" },
+        { "title": "تحليل أنماط الذكاء الاصطناعي", "budget": "1,500 CTC", "deadline": "5 أيام", "requester": "فريق أوميجا" }
+      ]
+    },
+    {
+      "id": 15,
+      "key": "team_formation",
+      "header": "ابنِ فريقك",
+      "subtitle": "ابحث عن مساهمين متكاملين",
+      "roles_needed": ["مطور واجهات", "عالم بيانات", "مصمم UX", "خبير المجال"],
+      "suggested_contributors": [
+        { "name": "صوفيا مارتينيز", "match": 92, "skills": ["React", "UI/UX", "أنظمة التصميم"], "avatar": "SM", "level": 7 },
+        { "name": "جيمس ليو", "match": 88, "skills": ["Python", "التعلم الآلي", "تحليل البيانات"], "avatar": "JL", "level": 9 },
+        { "name": "بريا شارما", "match": 85, "skills": ["خبير المجال", "البحث", "الأنظمة"], "avatar": "PS", "level": 6 }
+      ]
+    },
+    {
+      "id": 16,
+      "key": "knowledge_base",
+      "header": "قاعدة معرفة 2030B",
+      "subtitle": "ابحث في أكثر من 1.2 مليون رؤية",
+      "categories": ["أنظمة الذكاء الاصطناعي", "الحوسبة الكمية", "الوعي", "الطاقة", "الأحياء"],
+      "recent": [
+        { "title": "معايير التشفير الكمي 2025", "category": "الحوسبة الكمية", "reads": "2.4K" },
+        { "title": "بروتوكولات التعزيز العصبي", "category": "الوعي", "reads": "5.1K" },
+        { "title": "أنماط البنية السحابية الموزعة", "category": "أنظمة الذكاء الاصطناعي", "reads": "3.8K" }
+      ],
+      "bookmarks": 12,
+      "contributions": 8
+    },
+    {
+      "id": 17,
+      "key": "resource_allocation",
+      "header": "مواردك",
+      "subtitle": "إدارة الوقت والطاقة المعرفية",
+      "time_budget": {
+        "total": 40,
+        "used": 28,
+        "unit": "ساعة/أسبوع"
+      },
+      "cognitive_load": 72,
+      "projects": [
+        { "name": "DVM السحابي", "hours": 15, "priority": "عالي" },
+        { "name": "نموذج اللغة العصبية", "hours": 8, "priority": "متوسط" },
+        { "name": "شبكة الطاقة الكمية", "hours": 5, "priority": "منخفض" }
+      ],
+      "burnout_risk": "منخفض",
+      "optimization_tips": ["تجميع المهام المتشابهة", "جدولة العمل العميق من 9-12ص", "أخذ استراحة 15 دقيقة كل 90 دقيقة"]
+    },
+    {
+      "id": 18,
+      "key": "mentorship_program",
+      "header": "ابحث عن مرشدك",
+      "subtitle": "تواصل مع المساهمين الخبراء",
+      "tracks": ["النمو المهني", "المهارات التقنية", "القيادة", "الوعي"],
+      "mentors": [
+        { "name": "د. إيلينا فوس", "expertise": "الأنظمة الكمية", "sessions": 245, "rating": 4.98, "avatar": "EV", "level": 15, "cost": "200 CTC/جلسة" },
+        { "name": "كاي ناكامورا", "expertise": "بنية الذكاء الاصطناعي", "sessions": 189, "rating": 4.95, "avatar": "KN", "level": 13, "cost": "150 CTC/جلسة" },
+        { "name": "أمارا أوسي", "expertise": "تطوير الوعي", "sessions": 312, "rating": 4.97, "avatar": "AO", "level": 14, "cost": "مجاني (مجتمعي)" }
+      ]
+    },
+    {
+      "id": 19,
+      "key": "innovation_incubator",
+      "header": "قدّم فكرتك",
+      "subtitle": "اقترح مشاريع ومبادرات جديدة",
+      "form_fields": ["عنوان الفكرة", "بيان المشكلة", "الحل المقترح", "الموارد المطلوبة", "توقعات الأثر"],
+      "active_ideas": [
+        { "title": "تعزيز الذاكرة الكمية", "votes": 234, "status": "قيد المراجعة", "ctc_projection": "50K CTC" },
+        { "title": "شبكة الوعي الموزعة", "votes": 189, "status": "موافق عليها", "ctc_projection": "120K CTC" }
+      ],
+      "announcement": "تحدي الابتكار: الذكاء الاصطناعي للمناخ – الموعد النهائي 30 مارس",
+      "challenge_prize": "مجموع جوائز 500K CTC"
+    },
+    {
+      "id": 20,
+      "key": "social_impact_tracker",
+      "header": "أثرك",
+      "subtitle": "مساهماتك في التحديات العالمية",
+      "impact_metrics": [
+        { "sector": "البيئي", "score": 78, "icon": "🌱" },
+        { "sector": "الاجتماعي", "score": 85, "icon": "👥" },
+        { "sector": "الاقتصادي", "score": 62, "icon": "📈" },
+        { "sector": "العلمي", "score": 91, "icon": "🔬" }
+      ],
+      "collective_milestone": "نموذج تقليل الكربون – 89% مكتمل",
+      "personal_rank": "#234 قائد التأثير العالمي",
+      "total_impact_score": "8,920"
+    },
+    {
+      "id": 21,
+      "key": "event_calendar",
+      "header": "فعاليات 2030B",
+      "subtitle": "فرص قادمة",
+      "event_types": ["ورش عمل", "ندوات", "إطلاق مشاريع", "مواعيد نهائية"],
+      "events": [
+        { "title": "ورشة الحوسبة الكمية", "type": "ورشة عمل", "date": "25 مارس", "time": "2:00 م UTC", "registered": true },
+        { "title": "إطلاق بنية DVM", "type": "إطلاق مشروع", "date": "1 أبريل", "time": "10:00 ص UTC", "registered": false },
+        { "title": "سلسلة ندوات الوعي", "type": "ندوة", "date": "5 أبريل", "time": "4:00 م UTC", "registered": true },
+        { "title": "الموعد النهائي لتحدي الابتكار", "type": "موعد نهائي", "date": "30 مارس", "time": "11:59 م UTC", "registered": false }
+      ]
+    },
+    {
+      "id": 22,
+      "key": "community_forum",
+      "header": "مركز المجتمع",
+      "subtitle": "تواصل مع أكثر من 50K مساهم معزز",
+      "categories": [
+        { "name": "نقاش عام", "posts": 12450, "active": true },
+        { "name": "مساعدة تقنية", "posts": 8320, "active": false },
+        { "name": "أفكار المشاريع", "posts": 5670, "active": false },
+        { "name": "الإنجازات", "posts": 3210, "active": false }
+      ],
+      "trending": [
+        { "title": "نتائج التدريب على الوعي رائعة!", "replies": 89, "likes": 234 },
+        { "title": "تحقيق إنجاز بنية DVM – احتفلوا!", "replies": 45, "likes": 178 },
+        { "title": "كيف تعظّم استراتيجيات كسب CTC؟", "replies": 123, "likes": 312 }
+      ],
+      "your_posts": 34,
+      "your_replies": 127
+    },
+    {
+      "id": 23,
+      "key": "settings",
+      "header": "تفضيلاتك",
+      "subtitle": "خصّص تجربتك",
+      "sections": [
+        {
+          "name": "الملف الشخصي",
+          "items": ["تعديل الملف", "تغيير الصورة الرمزية", "تحديث السيرة"]
+        },
+        {
+          "name": "الإشعارات",
+          "items": ["تحديثات المشاريع", "تذكيرات التحديات", "تنبيهات الإنجازات", "رسائل المجتمع"]
+        },
+        {
+          "name": "الخصوصية",
+          "items": ["رؤية الملف الشخصي", "حالة النشاط", "مشاركة البيانات"]
+        },
+        {
+          "name": "المظهر",
+          "items": ["الوضع الداكن", "اللغة", "حجم الخط"]
+        }
+      ],
+      "themes": ["الكوني الداكن", "الأزرق السديمي", "الأخضر الكمي"],
+      "languages": ["الإنجليزية", "العربية", "الإسبانية", "الماندارين", "الفرنسية"]
+    },
+    {
+      "id": 24,
+      "key": "help_support",
+      "header": "احصل على مساعدة",
+      "subtitle": "دعم متاح 24/7",
+      "faq": [
+        { "q": "كيف أكسب CTC؟", "category": "المحفظة" },
+        { "q": "كيف تُحسب سمعتي؟", "category": "السمعة" },
+        { "q": "كيف أنضم إلى مشروع؟", "category": "المشاريع" },
+        { "q": "ما هو مستوى التعزيز المعرفي؟", "category": "الملف" }
+      ],
+      "support_options": [
+        { "type": "محادثة مباشرة", "status": "متاح", "wait": "< دقيقتين" },
+        { "type": "دعم البريد الإلكتروني", "status": "متاح", "wait": "< 4 ساعات" },
+        { "type": "دعم المجتمع", "status": "متاح", "wait": "فوري" }
+      ]
+    },
+    {
+      "id": 25,
+      "key": "notifications_center",
+      "header": "تحديثاتك",
+      "subtitle": "15 عنصراً جديداً",
+      "categories": ["الكل", "المشاريع", "الاجتماعي", "النظام", "الإنجازات"],
+      "notifications": [
+        { "type": "achievement", "message": "حصلت على شارة 'سيد الأنماط'!", "time": "منذ 10 دقائق", "unread": true, "icon": "🏅" },
+        { "type": "project", "message": "تمت الموافقة على بروتوكول الأمان v2.0 – تم إيداع 850 CTC", "time": "منذ ساعتين", "unread": true, "icon": "✅" },
+        { "type": "social", "message": "د. إيلينا فوس أيّدت عملك", "time": "منذ 3 ساعات", "unread": true, "icon": "👍" },
+        { "type": "system", "message": "تحدي جديد متاح: الأنظمة الكمية", "time": "منذ 6 ساعات", "unread": false, "icon": "🎯" },
+        { "type": "project", "message": "تمت جدولة اجتماع الفريق لـ DVM السحابي", "time": "منذ يوم", "unread": false, "icon": "📅" }
+      ]
+    },
+    {
+      "id": 26,
+      "key": "achievement_showcase",
+      "header": "إنجازاتك",
+      "subtitle": "23 شارة مكتسبة",
+      "badges": [
+        { "name": "أول مساهمة", "rarity": "شائع", "icon": "⭐", "earned": "نوفمبر 2024", "description": "قدّمت أول مساهمة" },
+        { "name": "لاعب الفريق", "rarity": "غير شائع", "icon": "🤝", "earned": "ديسمبر 2024", "description": "تعاونت في 5+ مشاريع" },
+        { "name": "بطل الابتكار", "rarity": "نادر", "icon": "💡", "earned": "يناير 2025", "description": "قدّمت 3 أفكار مقبولة" },
+        { "name": "خبير الأمان", "rarity": "ملحمي", "icon": "🔒", "earned": "فبراير 2025", "description": "مستوى 85+ في الأمان" },
+        { "name": "سيد الأنماط", "rarity": "أسطوري", "icon": "🧩", "earned": "مارس 2025", "description": "حللت 100 تحدي أنماط" }
+      ],
+      "upcoming": [
+        { "name": "رائد الكم", "rarity": "أسطوري", "progress": 67, "icon": "⚛️" }
+      ]
+    },
+    {
+      "id": 27,
+      "key": "project_templates",
+      "header": "قوالب المشاريع",
+      "subtitle": "ابدأ أسرع بأطر عمل مجرّبة",
+      "categories": ["تقنية", "بحث", "تأثير اجتماعي", "إبداعي"],
+      "templates": [
+        { "title": "إطار البحث بالذكاء الاصطناعي", "sector": "بحث", "success_rate": "87%", "avg_duration": "3 أشهر", "roles": 6, "uses": 234 },
+        { "title": "مخطط البنية السحابية", "sector": "تقنية", "success_rate": "92%", "avg_duration": "شهران", "roles": 8, "uses": 189 },
+        { "title": "محلل التأثير الاجتماعي", "sector": "تأثير اجتماعي", "success_rate": "79%", "avg_duration": "شهر", "roles": 4, "uses": 312 }
+      ]
+    },
+    {
+      "id": 28,
+      "key": "cognitive_health",
+      "header": "صحتك المعرفية",
+      "subtitle": "منطقة الأداء الأمثل",
+      "metrics": {
+        "stress_level": 32,
+        "focus_score": 85,
+        "energy_level": 78,
+        "sleep_quality": 71,
+        "mindfulness_minutes": 15
+      },
+      "status": "أمثل",
+      "recommendations": [
+        "خذ استراحة تنفس 5 دقائق",
+        "تذكير الترطيب – اشرب الماء الآن",
+        "جدول العمل الإبداعي هذا المساء",
+        "المشي 15 دقيقة يزيد الإدراك بنسبة 20%"
+      ],
+      "burnout_risk": "منخفض – 12%"
+    },
+    {
+      "id": 29,
+      "key": "synergy_finder",
+      "header": "فرص التآزر",
+      "subtitle": "اربط مشاريعك",
+      "synergies": [
+        { "project_a": "بنية DVM السحابية", "project_b": "نموذج اللغة العصبية", "strength": 89, "type": "نقل المعرفة" },
+        { "project_a": "شبكة الطاقة الكمية", "project_b": "بنية DVM السحابية", "strength": 74, "type": "مشاركة الموارد" },
+        { "project_a": "الذكاء الاصطناعي للتأثير الاجتماعي", "project_b": "نموذج اللغة العصبية", "strength": 82, "type": "تعزيز الكفاءة" }
+      ],
+      "ctc_multiplier": "1.35x",
+      "potential_gain": "+1,200 CTC/شهر"
+    },
+    {
+      "id": 30,
+      "key": "advanced_search",
+      "header": "البحث العالمي",
+      "subtitle": "ابحث عن المشاريع والأشخاص والمعرفة",
+      "search_categories": ["المشاريع", "الأشخاص", "المعرفة", "الخدمات", "الفعاليات"],
+      "recent_searches": ["التشفير الكمي", "التدريب على الوعي", "د. إيلينا فوس"],
+      "featured_results": [
+        { "type": "مشروع", "title": "الجسر العصبي الكمي", "meta": "مطابقة 92% • 3,200 CTC/شهر" },
+        { "type": "شخص", "title": "د. صوفيا تشانج", "meta": "المستوى 12 • خبيرة الأنظمة الكمية" },
+        { "type": "معرفة", "title": "تقنيات التعرف المتقدمة على الأنماط", "meta": "4.2K قراءة • صلة 98%" }
+      ]
+    },
+    {
+      "id": 31,
+      "key": "ctc_staking",
+      "header": "رهن عملتك CTC",
+      "subtitle": "اكسب دخلاً سلبياً",
+      "staking_pools": [
+        { "name": "مجموعة النمو المعرفي", "apy": "12.5%", "lock_period": "30 يوماً", "risk": "منخفض", "total_staked": "2.4 مليون CTC", "min_stake": "500 CTC" },
+        { "name": "مسرّع الابتكار", "apy": "18.5%", "lock_period": "90 يوماً", "risk": "متوسط", "total_staked": "1.8 مليون CTC", "min_stake": "1,000 CTC" },
+        { "name": "مجموعة العائد الكمي", "apy": "28.0%", "lock_period": "180 يوماً", "risk": "عالي", "total_staked": "900K CTC", "min_stake": "2,000 CTC" }
+      ],
+      "my_staked": "3,000",
+      "estimated_monthly_yield": "+31 CTC"
+    },
+    {
+      "id": 32,
+      "key": "skill_roadmap",
+      "header": "مسار تعلّمك",
+      "subtitle": "خطة تطوير شخصية",
+      "current_level": "مساهم متقدم",
+      "target_level": "مهندس كمي",
+      "roadmap": [
+        { "milestone": "إتمام إتقان التعرف على الأنماط", "status": "جارٍ", "eta": "أسبوعان", "ctc": "+500 CTC" },
+        { "milestone": "شهادة التفكير المنظومي", "status": "معلق", "eta": "شهر", "ctc": "+800 CTC" },
+        { "milestone": "أساسيات الحوسبة الكمية", "status": "معلق", "eta": "شهران", "ctc": "+1,200 CTC" },
+        { "milestone": "الوعي المستوى 5", "status": "معلق", "eta": "3 أشهر", "ctc": "+2,000 CTC" }
+      ],
+      "skill_gaps": ["الحوسبة الكمية", "الوعي المستوى 5", "التحليل متعدد الأبعاد"],
+      "industry_demand": { "quantum": 94, "ai": 89, "consciousness": 76 }
+    },
+    {
+      "id": 33,
+      "key": "project_performance",
+      "header": "مقاييس تأثير المشروع",
+      "subtitle": "نتائج بنية DVM السحابية",
+      "success_rate": 87,
+      "ctc_roi": "340%",
+      "team_performance": [
+        { "metric": "إتمام المهام", "score": 91 },
+        { "metric": "جودة الكود", "score": 88 },
+        { "metric": "التواصل", "score": 94 },
+        { "metric": "الابتكار", "score": 85 }
+      ],
+      "milestone_completion": [
+        { "name": "تصميم البنية", "on_time": true },
+        { "name": "بروتوكولات الأمان", "on_time": null },
+        { "name": "اختبار التكامل", "on_time": null }
+      ],
+      "ctc_trend": [400, 600, 850, 1100, 950, 1300, 1500, 1200, 1800]
+    },
+    {
+      "id": 34,
+      "key": "global_challenges",
+      "header": "التحديات العالمية النشطة",
+      "subtitle": "4 مبادرات حيوية تحتاج مهاراتك",
+      "challenges": [
+        { "title": "طوارئ الذكاء الاصطناعي المناخي", "urgency": "حرج", "impact": "عالمي", "ctc_bonus": "5,000 CTC", "skills": ["التعلم الآلي", "علوم المناخ"], "team_status": "تشكيل", "deadline_hours": 48 },
+        { "title": "شبكة الوقاية من الأوبئة", "urgency": "عالي", "impact": "عالمي", "ctc_bonus": "3,500 CTC", "skills": ["الأحياء", "تحليل البيانات"], "team_status": "نشط", "deadline_hours": 120 },
+        { "title": "أزمة الأمان الكمي", "urgency": "عالي", "impact": "البنية الرقمية", "ctc_bonus": "4,000 CTC", "skills": ["الأمان", "الكم"], "team_status": "مفتوح", "deadline_hours": 72 },
+        { "title": "محسّن توزيع الغذاء", "urgency": "متوسط", "impact": "اجتماعي", "ctc_bonus": "2,000 CTC", "skills": ["اللوجستيات", "الذكاء الاصطناعي"], "team_status": "مفتوح", "deadline_hours": 240 }
+      ]
+    },
+    {
+      "id": 35,
+      "key": "neural_communication",
+      "header": "واجهة الرابط العصبي",
+      "subtitle": "مشاركة المفاهيم المباشرة متاحة",
+      "connection_status": "نشط",
+      "bandwidth": "98.7%",
+      "active_conversations": 3,
+      "transfer_history": [
+        { "concept": "إطار التشفير الكمي", "to": "د. إيلينا فوس", "time": "منذ ساعة", "quality": 97 },
+        { "concept": "نموذج التعرف على الأنماط", "to": "ماركوس وي", "time": "منذ 3 ساعات", "quality": 94 }
+      ],
+      "privacy_level": "قياسي",
+      "enhancement_progress": 58
+    },
+    {
+      "id": 36,
+      "key": "resource_exchange",
+      "header": "سوق الموارد",
+      "subtitle": "تداول الحوسبة والبيانات والخبرة",
+      "available_resources": [
+        { "type": "حوسبة", "name": "مجموعة GPU الكمية", "price": "100 CTC/ساعة", "reputation_req": 6, "available": true },
+        { "type": "بيانات", "name": "مجموعة بيانات الأنماط العصبية v3", "price": "500 CTC", "reputation_req": 5, "available": true },
+        { "type": "خبرة", "name": "مراجعة بنية الأمان", "price": "500 CTC/ساعة", "reputation_req": 8, "available": false }
+      ],
+      "my_inventory": [
+        { "type": "خبرة", "name": "بروتوكولات أمان السحابة", "listed_at": "300 CTC/ساعة" }
+      ]
+    },
+    {
+      "id": 37,
+      "key": "predictive_engine",
+      "header": "فرصك المستقبلية",
+      "subtitle": "مسار المهنة بالذكاء الاصطناعي",
+      "ctc_projection": [1800, 2200, 2800, 3400, 4100, 5200],
+      "predicted_opportunities": [
+        { "title": "قائد البنية الكمية", "probability": 89, "timeframe": "3 أشهر", "ctc": "5,000/شهر", "action": "أتمم أساسيات الكم" },
+        { "title": "متخصص الأمان العصبي", "probability": 76, "timeframe": "6 أشهر", "ctc": "4,500/شهر", "action": "الوصول للمستوى 10" },
+        { "title": "مدير بحوث الوعي", "probability": 62, "timeframe": "12 شهراً", "ctc": "8,000/شهر", "action": "أتمم الوعي المستوى 5" }
+      ],
+      "emerging_sectors": ["التكامل الكمي-البيولوجي", "شبكات الوعي", "تحليل تيار الزمن"]
+    },
+    {
+      "id": 38,
+      "key": "consciousness_portal",
+      "header": "تطوير الوعي",
+      "subtitle": "تدريب الوعي المستوى 5",
+      "current_level": 5,
+      "progress": 43,
+      "sessions": [
+        { "title": "تأمل التركيز العميق", "duration": "20 دقيقة", "level_req": 3, "completed": true },
+        { "title": "تمرين الوعي الكمي", "duration": "35 دقيقة", "level_req": 4, "completed": false },
+        { "title": "مزامنة الوعي الجمعي", "duration": "45 دقيقة", "level_req": 5, "completed": false }
+      ],
+      "next_technique": "بوابة الإدراك البُعدي",
+      "unlock_requirement": "أتمم 10 تمارين المستوى 5"
+    },
+    {
+      "id": 39,
+      "key": "multi_reality",
+      "header": "طبقات الواقع",
+      "subtitle": "3 واقعيات نشطة",
+      "realities": [
+        { "name": "المادي", "status": "أساسي", "sessions": 24, "energy": 100 },
+        { "name": "الافتراضي", "status": "نشط", "sessions": 8, "energy": 72 },
+        { "name": "الكمي", "status": "نشط", "sessions": 3, "energy": 45 }
+      ],
+      "sync_status": "متزامن 98.7%",
+      "energy_consumption": 62,
+      "transition_ready": true
+    },
+    {
+      "id": 40,
+      "key": "legacy_tracker",
+      "header": "تأثيرك الكوني",
+      "subtitle": "مساهماتك في المعرفة الكونية",
+      "impact_score": "12,450",
+      "knowledge_preserved": "847 رؤية",
+      "future_reach": "2150 م",
+      "transcendence_progress": 34,
+      "cosmic_reputation": "9,230 نقطة",
+      "milestones": [
+        { "title": "التأثير المحلي", "status": "مكتمل", "year": "2024" },
+        { "title": "النفوذ الإقليمي", "status": "مكتمل", "year": "2025" },
+        { "title": "المساهمة العالمية", "status": "جارٍ", "year": "2026" },
+        { "title": "الإرث الكوني", "status": "معلق", "year": "2030" }
+      ]
+    },
+    {
+      "id": 41,
+      "key": "emergency_system",
+      "header": "شبكة التنبيه العالمية",
+      "subtitle": "جميع الأنظمة تعمل",
+      "system_status": "يعمل",
+      "active_alerts": 0,
+      "your_role": "مستجيب أمان",
+      "response_teams": [
+        { "name": "وحدة الدفاع الإلكتروني", "status": "جاهزة", "members": 45 },
+        { "name": "فريق الطوارئ الكمية", "status": "نشط", "members": 23 },
+        { "name": "استجابة أزمة المناخ", "status": "جاهزة", "members": 67 }
+      ],
+      "training_simulation": "محاكاة الاختراق الكمي – المستوى 3",
+      "last_drill": "منذ 7 أيام"
+    },
+    {
+      "id": 42,
+      "key": "quantum_computing",
+      "header": "بوابة الوصول الكمي",
+      "subtitle": "Qubits المتاحة: 1,024",
+      "available_qubits": 1024,
+      "queue_length": 3,
+      "error_rate": "0.02%",
+      "bridge_status": "نشط",
+      "jobs": [
+        { "name": "توليد مفتاح التشفير", "status": "يعمل", "qubits": 128, "eta": "12 دقيقة" },
+        { "name": "تحسين الأنماط", "status": "في الانتظار", "qubits": 256, "eta": "45 دقيقة" }
+      ],
+      "usage_this_month": "4,230 Qubit-ساعة"
+    },
+    {
+      "id": 43,
+      "key": "biological_monitor",
+      "header": "حالة التزامن البيولوجي",
+      "subtitle": "جميع الأنظمة مثالية",
+      "metrics": {
+        "cellular_optimization": 92,
+        "longevity_adherence": 87,
+        "regeneration_progress": 74,
+        "enhancement_integration": 89,
+        "bio_feedback": "مثالي"
+      },
+      "vitals": {
+        "heart_rate": "65 نبضة/دقيقة",
+        "stress": "منخفض",
+        "oxygen": "99%",
+        "recovery": "عالٍ"
+      },
+      "protocol": "بروتوكول طول العمر ألفا-7",
+      "next_checkup": "72 ساعة"
+    },
+    {
+      "id": 44,
+      "key": "dimensional_navigation",
+      "header": "مستكشف الواقع",
+      "subtitle": "7 أبعاد يمكن الوصول إليها",
+      "accessible_dimensions": 7,
+      "current_dimension": "البُعد 3 – المادي",
+      "dimensions": [
+        { "id": 1, "name": "الحقل الكمي", "access": "مفتوح", "energy": 200 },
+        { "id": 2, "name": "تيار الزمن", "access": "مفتوح", "energy": 350 },
+        { "id": 3, "name": "المادي", "access": "أساسي", "energy": 0 },
+        { "id": 4, "name": "المصفوفة الافتراضية", "access": "مفتوح", "energy": 150 },
+        { "id": 5, "name": "مستوى الوعي", "access": "مفتوح", "energy": 500 },
+        { "id": 6, "name": "الطبقة السببية", "access": "مقيّد", "energy": 1000 },
+        { "id": 7, "name": "الحقل الكوني", "access": "مغلق", "energy": 9999 }
+      ],
+      "safety_level": "عالٍ",
+      "exploration_missions": 3
+    },
+    {
+      "id": 45,
+      "key": "collective_consciousness",
+      "header": "شبكة العقل العالمي",
+      "subtitle": "2.3 مليون عقل متصل",
+      "connected_minds": "2,300,000",
+      "network_health": 97,
+      "thought_streams": [
+        { "topic": "حلول الاختراق الكمي", "participants": 45000, "intensity": "عالٍ" },
+        { "topic": "ابتكار أزمة المناخ", "participants": 89000, "intensity": "حرج" },
+        { "topic": "نظرية تطور الوعي", "participants": 12000, "intensity": "متوسط" }
+      ],
+      "your_contribution": 94,
+      "privacy_level": "قياسي",
+      "amplification_active": false
+    },
+    {
+      "id": 46,
+      "key": "time_stream",
+      "header": "الملاحة الزمنية",
+      "subtitle": "وصول للماضي والمستقبل ممنوح",
+      "access_level": "المستوى 5",
+      "timeline_events": [
+        { "year": 2020, "event": "تأسيس 2030B", "accessible": true },
+        { "year": 2025, "event": "أول تعزيز كمي", "accessible": true },
+        { "year": 2026, "event": "عقدة الزمن الحالية", "accessible": true, "current": true },
+        { "year": 2028, "event": "مزامنة الوعي الجماعي", "probability": 87 },
+        { "year": 2030, "event": "أرشيف المعرفة الكونية", "probability": 73 }
+      ],
+      "temporal_energy": 67,
+      "paradox_risk": "ضئيل"
+    },
+    {
+      "id": 47,
+      "key": "universal_translator",
+      "header": "مركز المترجم العالمي",
+      "subtitle": "يبدأ الفهم عندما تتوقف اللغة عن كونها حاجزاً.",
+      "supported_languages": 500,
+      "active_translations": 3,
+      "languages": ["الإنجليزية", "العربية", "الماندارين", "الإسبانية", "الفرنسية", "الهندية", "اليابانية", "البرتغالية", "الروسية", "الألمانية"],
+      "features": [
+        { "name": "الترجمة الفورية", "status": "نشط" },
+        { "name": "نقل المفاهيم", "status": "نشط" },
+        { "name": "السياق الثقافي", "status": "نشط" },
+        { "name": "النقل العصبي المباشر", "status": "تجريبي" }
+      ],
+      "neural_interface": true,
+      "accuracy_rate": "99.7%"
+    },
+    {
+      "id": 48,
+      "key": "energy_flow",
+      "header": "نظام طاقتك الشخصي",
+      "subtitle": "حالة التدفق المثالية محافظ عليها",
+      "energy_level": 82,
+      "flow_state": "نشط",
+      "energy_sources": [
+        { "name": "النشاط البدني", "contribution": 35, "status": "جيد" },
+        { "name": "الراحة المعرفية", "contribution": 28, "status": "مثالي" },
+        { "name": "التغذية", "contribution": 22, "status": "معتدل" },
+        { "name": "بروتوكول التعزيز", "contribution": 15, "status": "مثالي" }
+      ],
+      "circadian_phase": "ذروة الأداء",
+      "restoration_protocol": "دورة أوميجا-3",
+      "enhancement_consumption": 23,
+      "burnout_prevention": "خطر منخفض"
+    },
+    {
+      "id": 49,
+      "key": "dream_integration",
+      "header": "جسر الوعي",
+      "subtitle": "تمت معالجة رؤى الليلة الماضية",
+      "last_session": "منذ 8 ساعات",
+      "insights_harvested": 7,
+      "dream_patterns": [
+        { "pattern": "حل المشكلات الكمية", "frequency": "عالٍ", "insight_quality": 94 },
+        { "pattern": "التوليف الإبداعي", "frequency": "متوسط", "insight_quality": 87 },
+        { "pattern": "دمج الذاكرة اللاواعية", "frequency": "منخفض", "insight_quality": 78 }
+      ],
+      "lucid_dream_level": 3,
+      "collective_dream_access": true,
+      "nightmare_processor": "نشط",
+      "next_session": "الليلة – 11:00 م"
+    },
+    {
+      "id": 50,
+      "key": "existential_navigator",
+      "header": "مهمتك الكونية",
+      "subtitle": "توافق الهدف: 94%",
+      "purpose_alignment": 94,
+      "meaning_score": "9,240",
+      "cosmic_role": "مهندس المعرفة",
+      "dimensions": [
+        { "name": "النمو الشخصي", "alignment": 97 },
+        { "name": "التأثير الجماعي", "alignment": 89 },
+        { "name": "المساهمة الكونية", "alignment": 94 },
+        { "name": "الإرث الزمني", "alignment": 91 }
+      ],
+      "milestones": [
+        { "title": "وضوح الهدف الشخصي", "status": "مكتمل" },
+        { "title": "قائد التأثير المجتمعي", "status": "مكتمل" },
+        { "title": "عامل التغيير العالمي", "status": "جارٍ" },
+        { "title": "مساهم في الوعي الكوني", "status": "معلق" }
+      ],
+      "transcendence_pathway": "مهندس المعرفة → الذكاء الكوني → الوعي الكوني"
+    }
+  ]
+}

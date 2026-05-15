@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>2030B – Be Smarter | All Slides (1–150) · AR / EN / FR</title>
+  <meta name="description" content="2030B Be Smarter – Full 150-slide viewer with Arabic, English and French support, skeleton loaders, chapter navigation and slide API reference panel.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* ════════════════════════════════════════════════════════════════
+       A4-INDEX  –  Master Viewer  (Slides 1-150 · AR / EN / FR)
+       ════════════════════════════════════════════════════════════════ */
+
+    /* ─── RESET / BASE ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      overflow: hidden;
+      height: 100dvh;
+      font-family: var(--font-en);
+    }
+    [dir="rtl"] body, body[dir="rtl"] { font-family: var(--font-ar); }
+
+    /* ─── MASTER LAYOUT ─── */
+    /* body > .app-shell is a 3-column grid:
+       [aside-collapsed/expanded] [main viewer] [nothing / right gutter] */
+    .app-shell {
+      display: flex;
+      width: 100%;
+      height: 100dvh;
+      background: var(--g-bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ─── FIXED ASIDE ─── */
+    .a4-aside {
+      position: relative;
+      width: 56px;              /* collapsed: icon bar only */
+      height: 100%;
+      background: rgba(11,15,26,0.97);
+      backdrop-filter: blur(24px);
+      border-right: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      flex-direction: column;
+      z-index: 500;
+      flex-shrink: 0;
+      transition: width 0.32s cubic-bezier(0.16,1,0.3,1);
+      overflow: hidden;
+    }
+    .a4-aside.open { width: 340px; }
+
+    /* RTL: aside goes to the right */
+    [dir="rtl"] .a4-aside {
+      border-right: none;
+      border-left: 1px solid rgba(255,255,255,0.07);
+      order: 2;
+    }
+
+    /* Aside toggle button (chevron at bottom of icon bar) */
+    .aside-toggle {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      transition: all 0.2s;
+      z-index: 10;
+    }
+    .aside-toggle:hover {
+      background: rgba(99,179,237,0.15);
+      border-color: rgba(99,179,237,0.4);
+      color: #63B3ED;
+    }
+    .a4-aside.open .aside-toggle { transform: translateX(-50%) rotate(180deg); }
+    [dir="rtl"] .a4-aside.open .aside-toggle { transform: translateX(-50%) rotate(0deg); }
+
+    /* Icon tabs column */
+    .aside-icon-bar {
+      width: 56px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0 52px;
+      gap: 4px;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    .aside-icon-bar::-webkit-scrollbar { display: none; }
+
+    /* Each tab icon button */
+    .aside-tab-btn {
+      position: relative;
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      border: 1.5px solid transparent;
+      background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.18s;
+      flex-shrink: 0;
+    }
+    .aside-tab-btn:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.1);
+    }
+    .aside-tab-btn.active {
+      background: rgba(99,179,237,0.18);
+      border-color: rgba(99,179,237,0.45);
+    }
+
+    /* Tooltip */
+    .aside-tab-btn .tip {
+      position: absolute;
+      left: calc(100% + 10px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(11,15,26,0.96);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 999;
+      font-family: var(--font-en);
+    }
+    .aside-tab-btn:hover .tip { opacity: 1; }
+    [dir="rtl"] .aside-tab-btn .tip {
+      left: auto;
+      right: calc(100% + 10px);
+    }
+
+    /* Panel content area (shown beside icon bar when open) */
+    .aside-panel {
+      position: absolute;
+      left: 56px;
+      top: 0;
+      width: calc(340px - 56px);  /* 284px */
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .a4-aside.open .aside-panel {
+      opacity: 1;
+      pointer-events: all;
+    }
+    [dir="rtl"] .aside-panel {
+      left: auto;
+      right: 56px;
+    }
+
+    /* Panel tab panes */
+    .aside-pane {
+      display: none;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+    .aside-pane.active { display: flex; }
+
+    .aside-pane-header {
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      flex-shrink: 0;
+    }
+    .aside-pane-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .aside-pane-sub {
+      font-size: 10px;
+      color: rgba(255,255,255,0.35);
+      font-family: var(--font-mono);
+    }
+
+    .aside-pane-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.1) transparent;
+    }
+    .aside-pane-body::-webkit-scrollbar { width: 4px; }
+    .aside-pane-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+    /* ─── PANE: Slide Index ─── */
+    .mini-slide-list { display: flex; flex-direction: column; gap: 3px; }
+    .mini-slide-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 8px; border-radius: 8px;
+      cursor: pointer; transition: background 0.15s;
+      border: 1px solid transparent;
+    }
+    .mini-slide-item:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.06); }
+    .mini-slide-item.active { background: rgba(99,179,237,0.12); border-color: rgba(99,179,237,0.3); }
+    .mini-slide-icon { font-size: 14px; flex-shrink: 0; }
+    .mini-slide-num {
+      font-family: var(--font-mono); font-size: 10px;
+      color: rgba(255,255,255,0.35); flex-shrink: 0; min-width: 22px;
+    }
+    .mini-slide-title { font-size: 11px; color: rgba(255,255,255,0.7); line-height: 1.3; }
+    .mini-slide-item.active .mini-slide-title { color: #fff; }
+    .mini-slide-item.active .mini-slide-num { color: #63B3ED; }
+
+    /* Chapter section header inside index pane */
+    .mini-chapter {
+      font-size: 9px; font-weight: 700; letter-spacing: 1px;
+      color: rgba(255,255,255,0.25); text-transform: uppercase;
+      padding: 10px 8px 4px; margin-top: 4px;
+    }
+
+    /* ─── PANE: Slide API Docs ─── */
+    .api-section { margin-bottom: 16px; }
+    .api-section-title {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      color: rgba(99,179,237,0.8); text-transform: uppercase;
+      margin-bottom: 8px; padding-bottom: 4px;
+      border-bottom: 1px solid rgba(99,179,237,0.15);
+    }
+    .api-method-badge {
+      display: inline-block; font-size: 9px; font-weight: 800;
+      padding: 1px 6px; border-radius: 4px;
+      font-family: var(--font-mono); letter-spacing: 0.5px;
+      margin-right: 5px;
+    }
+    .api-get  { background: rgba(67,233,123,0.2);  color: #43e97b; }
+    .api-post { background: rgba(99,179,237,0.2);  color: #63B3ED; }
+    .api-put  { background: rgba(246,173,85,0.2);  color: #F6AD55; }
+    .api-del  { background: rgba(252,129,74,0.2);  color: #FC814A; }
+
+    .api-endpoint {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+    }
+    .api-endpoint-path {
+      font-family: var(--font-mono); font-size: 10px;
+      color: rgba(255,255,255,0.65); margin-bottom: 4px;
+    }
+    .api-endpoint-desc {
+      font-size: 10px; color: rgba(255,255,255,0.4); line-height: 1.5;
+    }
+    .api-param {
+      display: flex; gap: 6px; align-items: flex-start;
+      font-size: 10px; margin-bottom: 4px;
+    }
+    .api-param-name {
+      font-family: var(--font-mono); color: #9F7AEA;
+      flex-shrink: 0; min-width: 80px;
+    }
+    .api-param-type {
+      font-family: var(--font-mono); font-size: 9px;
+      color: rgba(67,233,123,0.7); flex-shrink: 0;
+    }
+    .api-param-desc { color: rgba(255,255,255,0.4); line-height: 1.4; }
+    .api-code {
+      font-family: var(--font-mono); font-size: 9px;
+      background: rgba(0,0,0,0.4); border-radius: 6px;
+      padding: 8px; color: rgba(255,255,255,0.6);
+      line-height: 1.6; overflow-x: auto;
+      white-space: pre;
+      margin-top: 6px;
+    }
+
+    /* ─── PANE: Settings ─── */
+    .settings-group { margin-bottom: 14px; }
+    .settings-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      margin-bottom: 8px;
+    }
+    .settings-option {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px; border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 4px; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .settings-option:hover { background: rgba(255,255,255,0.06); }
+    .settings-option-label { font-size: 11px; color: rgba(255,255,255,0.65); }
+    .settings-check {
+      width: 16px; height: 16px; border-radius: 4px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+    }
+    .settings-check.on {
+      background: rgba(99,179,237,0.25);
+      border-color: #63B3ED; color: #63B3ED;
+    }
+
+    /* ─── PANE: Volume Nav ─── */
+    .vol-pane-card {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.03);
+      cursor: pointer; transition: all 0.18s;
+      margin-bottom: 6px; text-decoration: none;
+    }
+    .vol-pane-card:hover {
+      background: rgba(99,179,237,0.1);
+      border-color: rgba(99,179,237,0.3);
+    }
+    .vol-pane-card.active-vol {
+      background: rgba(99,179,237,0.15);
+      border-color: rgba(99,179,237,0.4);
+    }
+    .vol-pane-icon { font-size: 20px; }
+    .vol-pane-info { flex: 1; min-width: 0; }
+    .vol-pane-name { font-size: 12px; font-weight: 700; color: #fff; }
+    .vol-pane-range { font-size: 10px; font-family: var(--font-mono); color: rgba(255,255,255,0.35); }
+
+    /* ─── PANE: Info / About ─── */
+    .info-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px; padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+    .info-block-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      margin-bottom: 4px;
+    }
+    .info-block-value { font-size: 12px; color: rgba(255,255,255,0.7); }
+    .info-block-value.highlight {
+      font-size: 20px; font-weight: 800;
+      background: var(--g-primary);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* ─── MAIN CONTENT (right of aside) ─── */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    /* ─── TOP BAR ─── */
+    .top-bar {
+      height: 56px;
+      background: rgba(11,15,26,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--c-border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; z-index: 200; flex-shrink: 0;
+    }
+    .top-bar-brand { display: flex; align-items: center; gap: 8px; }
+    .brand-logo {
+      font-size: 20px; font-weight: 900;
+      background: var(--g-primary);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .brand-sub { font-size: 10px; color: rgba(255,255,255,0.4); font-weight: 500; }
+    .brand-badge {
+      background: linear-gradient(135deg,#63B3ED,#9F7AEA);
+      color: #0a0a1a; font-size: 9px; font-weight: 800;
+      padding: 2px 7px; border-radius: 20px; letter-spacing: .5px;
+    }
+    .top-bar-controls { display: flex; align-items: center; gap: 6px; }
+
+    /* Lang toggle (3 langs) */
+    .lang-toggle { display: flex; gap: 3px; }
+    .lang-btn {
+      padding: 4px 9px; border-radius: 8px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.45);
+      border: 1px solid transparent;
+      cursor: pointer; transition: all 0.18s;
+      user-select: none;
+    }
+    .lang-btn:hover { color: #fff; border-color: rgba(255,255,255,0.12); }
+    .lang-btn.active {
+      color: #fff; background: rgba(99,179,237,0.2);
+      border-color: rgba(99,179,237,0.5);
+    }
+
+    /* Volume nav */
+    .vol-nav { display: flex; gap: 3px; }
+    .vol-link {
+      padding: 4px 9px; border-radius: 8px;
+      font-size: 10px; font-weight: 700;
+      color: rgba(255,255,255,0.4); border: 1px solid transparent;
+      text-decoration: none; transition: all 0.18s;
+    }
+    .vol-link:hover { color: #fff; border-color: var(--c-border); }
+    .vol-link.active { color: #fff; background: rgba(99,179,237,0.18); border-color: rgba(99,179,237,0.45); }
+
+    /* Icon button */
+    .icon-btn {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; cursor: pointer; transition: all 0.18s;
+      color: rgba(255,255,255,0.6);
+    }
+    .icon-btn:hover {
+      background: rgba(99,179,237,0.15); border-color: rgba(99,179,237,0.4);
+      color: #fff;
+    }
+
+    /* ─── PROGRESS RIBBON ─── */
+    .progress-ribbon { height: 2px; background: var(--c-border); flex-shrink: 0; }
+    .progress-ribbon-fill {
+      height: 100%; background: var(--g-primary); transition: width 0.4s ease;
+    }
+
+    /* ─── CHAPTER STRIP ─── */
+    .chapter-strip {
+      height: 28px;
+      background: rgba(11,15,26,0.5);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center;
+      padding: 0 12px; gap: 5px;
+      overflow-x: auto; scrollbar-width: none; flex-shrink: 0;
+    }
+    .chapter-strip::-webkit-scrollbar { display: none; }
+    .chapter-chip {
+      white-space: nowrap; font-size: 10px; font-weight: 600;
+      padding: 2px 9px; border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.4);
+      cursor: pointer; transition: all 0.18s;
+    }
+    .chapter-chip:hover, .chapter-chip.active {
+      background: rgba(99,179,237,0.15);
+      border-color: rgba(99,179,237,0.35);
+      color: #63B3ED;
+    }
+
+    /* ─── CAROUSEL ─── */
+    .carousel-wrapper {
+      flex: 1; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      user-select: none; -webkit-user-select: none;
+    }
+    .slide-iframe-container {
+      position: relative; width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .slide-iframe {
+      border: none; border-radius: 0;
+      width: 100%; height: 100%;
+      background: #0B0F1A;
+    }
+    @media (min-width: 768px) {
+      .slide-iframe {
+        aspect-ratio: 9/16; width: auto; height: 100%;
+        max-height: 90vh; border-radius: 24px;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 24px 80px rgba(0,0,0,0.6);
+      }
+    }
+
+    /* Slide counter badge */
+    .slide-counter {
+      position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+      background: rgba(11,15,26,0.88); border: 1px solid var(--c-border);
+      border-radius: 20px; padding: 5px 14px;
+      font-size: 12px; font-family: var(--font-mono);
+      color: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px); z-index: 300; pointer-events: none;
+    }
+
+    /* Nav arrows */
+    .nav-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(11,15,26,0.88); border: 1px solid var(--c-border);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 20px; color: rgba(255,255,255,0.6);
+      transition: all 0.2s; backdrop-filter: blur(10px); z-index: 300;
+    }
+    .nav-arrow:hover {
+      background: rgba(99,179,237,0.2); border-color: rgba(99,179,237,0.4); color: #fff;
+      transform: translateY(-50%) scale(1.05);
+    }
+    .nav-prev { left: 12px; }
+    .nav-next { right: 12px; }
+    @media (max-width: 767px) { .nav-arrow { display: none; } }
+
+    /* ─── SKELETON (inside carousel) ─── */
+    .slide-skeleton {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 10; pointer-events: none;
+    }
+    .slide-skeleton-inner {
+      background: #0a0e1a; border-radius: 24px;
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      padding: 28px 20px; gap: 14px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.05), 0 24px 80px rgba(0,0,0,.5);
+      transition: opacity 0.3s ease;
+    }
+    @media (min-width: 768px) {
+      .slide-skeleton-inner {
+        aspect-ratio: 9/16; width: auto;
+        max-height: 90vh; height: 100%;
+      }
+    }
+    .slide-skeleton.hidden { opacity: 0; pointer-events: none; }
+    @keyframes skel-shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    .skel-block {
+      border-radius: 10px;
+      background: linear-gradient(90deg,
+        rgba(99,179,237,.04) 25%,
+        rgba(99,179,237,.12) 50%,
+        rgba(99,179,237,.04) 75%
+      );
+      background-size: 200% 100%;
+      animation: skel-shimmer 1.6s infinite;
+    }
+    .skel-header { height: 48px; width: 55%; }
+    .skel-sub    { height: 16px; width: 75%; }
+    .skel-row    { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; }
+    .skel-card   { border-radius: 12px; min-height: 80px; }
+    .skel-bottom { height: 52px; width: 100%; margin-top: auto; }
+
+    /* ─── SLIDE RAIL ─── */
+    .slide-rail {
+      height: 76px;
+      background: rgba(11,15,26,0.94);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--c-border);
+      display: flex; align-items: center; gap: 5px;
+      padding: 0 12px; overflow-x: auto; scrollbar-width: none; flex-shrink: 0;
+    }
+    .slide-rail::-webkit-scrollbar { display: none; }
+    .slide-thumb {
+      min-width: 50px; height: 54px; border-radius: 10px;
+      border: 1.5px solid var(--c-border);
+      background: rgba(255,255,255,0.03);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2px; cursor: pointer; transition: all 0.18s; flex-shrink: 0;
+    }
+    .slide-thumb:hover { background: rgba(99,179,237,0.1); border-color: rgba(99,179,237,0.3); }
+    .slide-thumb.active { background: rgba(99,179,237,0.2); border-color: var(--c-accent-blue); }
+    .slide-thumb-num {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+      color: rgba(255,255,255,0.4);
+    }
+    .slide-thumb.active .slide-thumb-num { color: var(--c-accent-blue); }
+    .slide-thumb-icon { font-size: 15px; }
+
+    /* ─── LOADING OVERLAY ─── */
+    #app-loading {
+      position: fixed; inset: 0; background: var(--c-bg-deep);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 9999; gap: 20px;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    #app-loading.hidden { opacity: 0; visibility: hidden; }
+    .loading-brand { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .loading-brand .logo-text {
+      font-size: 52px; font-weight: 900;
+      background: var(--g-primary);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .loading-brand .tagline {
+      font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.45);
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .loading-spinner {
+      width: 44px; height: 44px;
+      border: 3px solid rgba(99,179,237,0.15); border-top-color: var(--c-accent-blue);
+      border-radius: 50%; animation: spin .8s linear infinite;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    /* ─── KEYBOARD HINT ─── */
+    .keyboard-hint {
+      position: fixed; bottom: 90px; right: 16px;
+      font-size: 10px; color: rgba(255,255,255,0.22);
+      z-index: 300; pointer-events: none;
+    }
+    [dir="rtl"] .keyboard-hint { right: auto; left: 16px; }
+    @media (max-width: 767px) { .keyboard-hint { display: none; } }
+
+    /* ─── JUMP OVERLAY ─── */
+    .jump-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.72); z-index: 1000;
+      align-items: center; justify-content: center;
+    }
+    .jump-box {
+      background: var(--c-bg-mid); border: 1px solid var(--c-border);
+      border-radius: 16px; padding: 24px; min-width: 260px; text-align: center;
+    }
+    .jump-label { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 12px; }
+    .jump-input {
+      width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--c-border);
+      border-radius: 8px; padding: 10px; font-size: 22px;
+      font-family: var(--font-mono); color: #fff; text-align: center; outline: none;
+    }
+    .jump-actions { display: flex; gap: 8px; margin-top: 12px; }
+
+    /* ─── RESPONSIVE: hide aside on mobile (accessible via toggle) ─── */
+    @media (max-width: 767px) {
+      .a4-aside {
+        position: fixed; left: 0; top: 0; height: 100%; z-index: 600;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), width 0.3s;
+      }
+      .a4-aside.mobile-visible { transform: translateX(0); }
+      [dir="rtl"] .a4-aside {
+        left: auto; right: 0;
+        transform: translateX(100%);
+      }
+      [dir="rtl"] .a4-aside.mobile-visible { transform: translateX(0); }
+
+      /* Overlay behind mobile aside */
+      .aside-backdrop {
+        display: none; position: fixed; inset: 0;
+        background: rgba(0,0,0,0.6); z-index: 590;
+      }
+      .aside-backdrop.visible { display: block; }
+
+      .top-bar { padding: 0 10px; }
+    }
+
+    /* ─── SLIDE RAIL CHAPTER SEPARATOR ─── */
+    .rail-sep {
+      min-width: 1px; height: 36px;
+      background: rgba(255,255,255,0.07);
+      margin: 0 4px; flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+
+<!-- Backdrop for mobile aside -->
+<div class="aside-backdrop" id="asideBackdrop" onclick="closeMobileAside()"></div>
+
+<!-- Loading Screen -->
+<div id="app-loading">
+  <div class="loading-brand">
+    <div class="logo-text">2030B</div>
+    <div class="tagline">All 150 Slides · AR / EN / FR</div>
+  </div>
+  <div class="loading-spinner"></div>
+  <div style="font-size:12px;color:rgba(255,255,255,.3);margin-top:4px">Loading Cognitive Dashboard…</div>
+</div>
+
+<!-- App Shell -->
+<div class="app-shell">
+
+  <!-- ══════════════════════════════════════════════
+       FIXED ASIDE
+  ══════════════════════════════════════════════ -->
+  <aside class="a4-aside" id="a4Aside">
+
+    <!-- Icon Tab Bar -->
+    <div class="aside-icon-bar">
+
+      <div class="aside-tab-btn active" data-tab="index" onclick="switchTab('index')" title="Slide Index">
+        📑
+        <span class="tip" data-i18n="tip_index">Slide Index</span>
+      </div>
+
+      <div class="aside-tab-btn" data-tab="api" onclick="switchTab('api')" title="Slide API Docs">
+        🔌
+        <span class="tip" data-i18n="tip_api">Slide API Docs</span>
+      </div>
+
+      <div class="aside-tab-btn" data-tab="volumes" onclick="switchTab('volumes')" title="Volumes">
+        📚
+        <span class="tip" data-i18n="tip_volumes">Volumes</span>
+      </div>
+
+      <div class="aside-tab-btn" data-tab="settings" onclick="switchTab('settings')" title="Settings">
+        ⚙️
+        <span class="tip" data-i18n="tip_settings">Settings</span>
+      </div>
+
+      <div class="aside-tab-btn" data-tab="info" onclick="switchTab('info')" title="Project Info">
+        ℹ️
+        <span class="tip" data-i18n="tip_info">Project Info</span>
+      </div>
+
+    </div>
+
+    <!-- Slide-out Panel -->
+    <div class="aside-panel" id="asidePanel">
+
+      <!-- ── TAB: Slide Index ── -->
+      <div class="aside-pane active" id="pane-index">
+        <div class="aside-pane-header">
+          <div class="aside-pane-title" data-i18n="idx_title">Slide Index</div>
+          <div class="aside-pane-sub">150 slides · 6 chapters</div>
+        </div>
+        <div class="aside-pane-body">
+          <div class="mini-slide-list" id="miniSlideList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: Slide API Docs ── -->
+      <div class="aside-pane" id="pane-api">
+        <div class="aside-pane-header">
+          <div class="aside-pane-title" data-i18n="api_title">Slide API Reference</div>
+          <div class="aside-pane-sub">SlideEngine · Loader · SlideUtils</div>
+        </div>
+        <div class="aside-pane-body">
+
+          <!-- SlideEngine -->
+          <div class="api-section">
+            <div class="api-section-title">SlideEngine</div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-post">INIT</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">SlideEngine.init(options)</span>
+              </div>
+              <div class="api-endpoint-desc">Initialize the slide engine with volume and language options.</div>
+              <div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:4px">Parameters:</div>
+              <div class="api-param">
+                <span class="api-param-name">totalSlides</span>
+                <span class="api-param-type">number</span>
+                <span class="api-param-desc">Default 150. Total slides in the session.</span>
+              </div>
+              <div class="api-param">
+                <span class="api-param-name">startIndex</span>
+                <span class="api-param-type">number</span>
+                <span class="api-param-desc">First slide to display (default 1).</span>
+              </div>
+              <div class="api-param">
+                <span class="api-param-name">lang</span>
+                <span class="api-param-type">string</span>
+                <span class="api-param-desc">'en' | 'ar' | 'fr'</span>
+              </div>
+              <div class="api-param">
+                <span class="api-param-name">transitionMs</span>
+                <span class="api-param-type">number</span>
+                <span class="api-param-desc">Slide transition duration in ms (default 380).</span>
+              </div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">METHOD</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">goTo(n)</span>
+              </div>
+              <div class="api-endpoint-desc">Navigate to slide number <code style="color:#9F7AEA">n</code>. Clamps to valid range.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">METHOD</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">next() / prev()</span>
+              </div>
+              <div class="api-endpoint-desc">Move forward or backward one slide.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">METHOD</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">first() / last()</span>
+              </div>
+              <div class="api-endpoint-desc">Jump to first or last slide.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-put">METHOD</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">setLang(lang)</span>
+              </div>
+              <div class="api-endpoint-desc">Switch display language. Accepts 'en', 'ar', 'fr'. Reloads current slide data.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">METHOD</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">getVolume()</span>
+              </div>
+              <div class="api-endpoint-desc">Returns current volume number (1, 2 or 3) based on active slide.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">METHOD</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">goToVolume(v)</span>
+              </div>
+              <div class="api-endpoint-desc">Jump to the first slide of volume v (1 → 1, 2 → 51, 3 → 101).</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">METHOD</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">startAutoPlay(ms)</span>
+              </div>
+              <div class="api-endpoint-desc">Auto-advance slides every <code style="color:#9F7AEA">ms</code> milliseconds.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-del">METHOD</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">stopAutoPlay()</span>
+              </div>
+              <div class="api-endpoint-desc">Stop auto-play timer.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">METHOD</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">getCurrent()</span>
+              </div>
+              <div class="api-endpoint-desc">Returns current slide index (number).</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-post">EVENT</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">on(event, cb)</span>
+              </div>
+              <div class="api-endpoint-desc">Register an event listener. Events: <code style="color:#43e97b">init</code>, <code style="color:#43e97b">beforeNavigate</code>, <code style="color:#43e97b">navigate</code>, <code style="color:#43e97b">autoplay</code>, <code style="color:#43e97b">langChange</code>.</div>
+            </div>
+
+            <div class="api-code">// Example usage
+SlideEngine.init({
+  totalSlides: 150,
+  startIndex: 1,
+  lang: 'en',
+  transitionMs: 380
+});
+
+SlideEngine.on('navigate', ({ index }) => {
+  console.log('Now on slide', index);
+});
+
+SlideEngine.setLang('ar');</div>
+          </div>
+
+          <!-- Loader API -->
+          <div class="api-section">
+            <div class="api-section-title">Loader (window.Loader)</div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">ASYNC</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">loadLangVol(lang, vol)</span>
+              </div>
+              <div class="api-endpoint-desc">Loads the JSON data file for language <code style="color:#9F7AEA">lang</code> and volume <code style="color:#9F7AEA">vol</code>. Maps Vol 1 → en/ar/fr.json, Vol 2 → en2/ar2/fr2.json, Vol 3 → en3/ar3/fr3.json.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">ASYNC</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">getSlideData(slideNum, lang)</span>
+              </div>
+              <div class="api-endpoint-desc">Auto-selects the correct volume JSON and returns the slide object matching <code style="color:#9F7AEA">slideNum</code>. Returns null if not found.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-put">FN</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">switchLanguage(lang)</span>
+              </div>
+              <div class="api-endpoint-desc">Sets HTML lang/dir attributes, updates lang-btn states, stores in localStorage key <code style="color:#43e97b">2030b_lang</code>, dispatches <code style="color:#43e97b">languagechange</code> event.</div>
+            </div>
+
+            <div class="api-code">// Get slide 72 data in French
+const data = await Loader.getSlideData(72, 'fr');
+
+// Switch language globally
+Loader.switchLanguage('ar');</div>
+          </div>
+
+          <!-- SlideUtils API -->
+          <div class="api-section">
+            <div class="api-section-title">SlideUtils (window.SlideUtils)</div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">FN</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">initSlide(num, renderFn)</span>
+              </div>
+              <div class="api-endpoint-desc">Main slide initializer. Loads data, shows skeleton, calls renderFn(data, lang), animates, sets up footer nav and language-change listener.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">FN</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">buildSlideHeader(data, rightBtn?)</span>
+              </div>
+              <div class="api-endpoint-desc">Returns header HTML with title, subtitle, and optional right-side button.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">FN</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">buildStatCard(label, value, icon, trend?)</span>
+              </div>
+              <div class="api-endpoint-desc">Generates a statistics card with icon, label, value, and optional trend indicator.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">FN</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">buildProgressBar(label, value, fillClass?)</span>
+              </div>
+              <div class="api-endpoint-desc">Builds an animated progress bar with label and percentage.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">FN</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">buildTimeline(milestones)</span>
+              </div>
+              <div class="api-endpoint-desc">Renders a vertical timeline with status indicators (completed, in_progress, planned, vision).</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">FN</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">buildFooterNav(activeIndex, lang)</span>
+              </div>
+              <div class="api-endpoint-desc">Creates the bottom navigation bar with language-aware labels and icons.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">FN</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">buildRadialProgress(value, label, size?, radius?)</span>
+              </div>
+              <div class="api-endpoint-desc">Animated SVG radial/donut progress ring.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">FN</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">buildBarChart(data, labels, color?)</span>
+              </div>
+              <div class="api-endpoint-desc">Simple inline bar chart from data array.</div>
+            </div>
+
+            <div class="api-endpoint">
+              <div style="margin-bottom:5px">
+                <span class="api-method-badge api-get">FN</span>
+                <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.5)">buildCapabilityGrid(dimensions)</span>
+              </div>
+              <div class="api-endpoint-desc">Grid of capability cards with progress bars for each dimension.</div>
+            </div>
+
+            <div class="api-code">// Typical slide render function
+async function renderSlide1(data, lang) {
+  return `
+    ${buildSlideHeader(data)}
+    &lt;div class="stats-grid"&gt;
+      ${buildStatCard('CTC', data.stats.ctc_balance, '💎')}
+    &lt;/div&gt;
+    ${buildProgressBar('Enhancement', data.enhancement_level)}
+  `;
+}</div>
+          </div>
+
+          <!-- Language JSON schema -->
+          <div class="api-section">
+            <div class="api-section-title">Language JSON Schema</div>
+            <div class="api-endpoint">
+              <div class="api-endpoint-desc" style="margin-bottom:8px">Each volume JSON (en.json, ar.json, fr.json …) follows this structure:</div>
+              <div class="api-code">{
+  "brand": {
+    "name": "2030B",
+    "tagline": "Be Smarter",
+    "subtitle": "Cognitive Enhancement Ecosystem"
+  },
+  "slides": [
+    {
+      "id": 1,
+      "key": "welcome_dashboard",
+      "header": "...",
+      "subtitle": "...",
+      // slide-specific fields
+    }
+  ]
+}</div>
+            </div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:6px;line-height:1.6">
+              Files: <code style="color:#43e97b">en.json</code> · <code style="color:#43e97b">ar.json</code> · <code style="color:#43e97b">fr.json</code> (Vol 1)<br>
+              <code style="color:#63B3ED">en2.json</code> · <code style="color:#63B3ED">ar2.json</code> · <code style="color:#63B3ED">fr2.json</code> (Vol 2)<br>
+              <code style="color:#9F7AEA">en3.json</code> · <code style="color:#9F7AEA">ar3.json</code> · <code style="color:#9F7AEA">fr3.json</code> (Vol 3)
+            </div>
+          </div>
+
+        </div><!-- end api pane body -->
+      </div>
+
+      <!-- ── TAB: Volumes ── -->
+      <div class="aside-pane" id="pane-volumes">
+        <div class="aside-pane-header">
+          <div class="aside-pane-title" data-i18n="vol_title">Volume Navigator</div>
+          <div class="aside-pane-sub">150 slides across 3 volumes</div>
+        </div>
+        <div class="aside-pane-body">
+          <a class="vol-pane-card active-vol" onclick="goToSlide(1)" href="javascript:void(0)">
+            <div class="vol-pane-icon">📘</div>
+            <div class="vol-pane-info">
+              <div class="vol-pane-name">Volume 1</div>
+              <div class="vol-pane-range">Slides 1 – 50 · en.json / ar.json / fr.json</div>
+            </div>
+            <div style="font-size:10px;color:rgba(67,233,123,0.8);font-weight:700">✓ Live</div>
+          </a>
+          <a class="vol-pane-card" onclick="goToSlide(51)" href="javascript:void(0)">
+            <div class="vol-pane-icon">📗</div>
+            <div class="vol-pane-info">
+              <div class="vol-pane-name">Volume 2</div>
+              <div class="vol-pane-range">Slides 51 – 100 · en2.json / ar2.json / fr2.json</div>
+            </div>
+            <div style="font-size:10px;color:rgba(67,233,123,0.8);font-weight:700">✓ Live</div>
+          </a>
+          <a class="vol-pane-card" onclick="goToSlide(101)" href="javascript:void(0)">
+            <div class="vol-pane-icon">📙</div>
+            <div class="vol-pane-info">
+              <div class="vol-pane-name">Volume 3</div>
+              <div class="vol-pane-range">Slides 101 – 150 · en3.json / ar3.json / fr3.json</div>
+            </div>
+            <div style="font-size:10px;color:rgba(67,233,123,0.8);font-weight:700">✓ Live</div>
+          </a>
+
+          <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06)">
+            <div class="mini-chapter">Chapter Quick-Jump</div>
+            <div style="display:flex;flex-direction:column;gap:3px;margin-top:6px" id="chapterJumpList">
+              <!-- populated by JS -->
+            </div>
+          </div>
+
+          <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06)">
+            <div class="mini-chapter">Other Viewers</div>
+            <div style="margin-top:6px;display:flex;flex-direction:column;gap:4px">
+              <a href="a1-index.html" style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);text-decoration:none;font-size:11px;color:rgba(255,255,255,0.6);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+                <span>📺</span> a1-index.html <span style="margin-left:auto;font-size:9px;color:rgba(255,255,255,0.3)">Vol 1</span>
+              </a>
+              <a href="a2-index.html" style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);text-decoration:none;font-size:11px;color:rgba(255,255,255,0.6);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+                <span>📺</span> a2-index.html <span style="margin-left:auto;font-size:9px;color:rgba(255,255,255,0.3)">Vol 2</span>
+              </a>
+              <a href="a3-index.html" style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);text-decoration:none;font-size:11px;color:rgba(255,255,255,0.6);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+                <span>📺</span> a3-index.html <span style="margin-left:auto;font-size:9px;color:rgba(255,255,255,0.3)">Vol 3</span>
+              </a>
+              <a href="api-docs.html" style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);text-decoration:none;font-size:11px;color:rgba(255,255,255,0.6);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+                <span>📄</span> api-docs.html <span style="margin-left:auto;font-size:9px;color:rgba(255,255,255,0.3)">Docs</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: Settings ── -->
+      <div class="aside-pane" id="pane-settings">
+        <div class="aside-pane-header">
+          <div class="aside-pane-title" data-i18n="set_title">Settings</div>
+          <div class="aside-pane-sub">Viewer preferences</div>
+        </div>
+        <div class="aside-pane-body">
+          <div class="settings-group">
+            <div class="settings-label" data-i18n="set_lang">Language</div>
+            <div class="settings-option" onclick="switchLang('en')">
+              <span class="settings-option-label">🇬🇧 English</span>
+              <span class="settings-check" id="chk-en">✓</span>
+            </div>
+            <div class="settings-option" onclick="switchLang('ar')">
+              <span class="settings-option-label">🇸🇦 العربية</span>
+              <span class="settings-check" id="chk-ar"></span>
+            </div>
+            <div class="settings-option" onclick="switchLang('fr')">
+              <span class="settings-option-label">🇫🇷 Français</span>
+              <span class="settings-check" id="chk-fr"></span>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <div class="settings-label" data-i18n="set_nav">Navigation</div>
+            <div class="settings-option" onclick="toggleAutoPlay()">
+              <span class="settings-option-label" data-i18n="set_autoplay">Auto-play slides</span>
+              <span class="settings-check" id="chk-autoplay"></span>
+            </div>
+            <div class="settings-option" onclick="toggleParticles()">
+              <span class="settings-option-label" data-i18n="set_particles">Particle background</span>
+              <span class="settings-check on" id="chk-particles">✓</span>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <div class="settings-label">Auto-play Interval</div>
+            <div style="padding: 8px">
+              <input type="range" id="autoplayInterval" min="3" max="30" value="5"
+                style="width:100%;accent-color:#63B3ED"
+                oninput="document.getElementById('autoplayIntervalLabel').textContent = this.value + 's'">
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);text-align:center;margin-top:4px">
+                <span id="autoplayIntervalLabel">5s</span> per slide
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <div class="settings-label">Jump to Slide</div>
+            <div style="display:flex;gap:6px;padding:4px 0">
+              <input type="number" id="settingsJumpInput" min="1" max="150" placeholder="1–150"
+                style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px;font-size:13px;font-family:var(--font-mono);color:#fff;text-align:center;outline:none">
+              <button onclick="doSettingsJump()"
+                style="padding:8px 14px;border-radius:8px;background:rgba(99,179,237,0.2);border:1px solid rgba(99,179,237,0.4);color:#63B3ED;font-size:12px;font-weight:700;cursor:pointer">Go</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: Project Info ── -->
+      <div class="aside-pane" id="pane-info">
+        <div class="aside-pane-header">
+          <div class="aside-pane-title" data-i18n="inf_title">Project Info</div>
+          <div class="aside-pane-sub">2030B · Be Smarter · v3.1</div>
+        </div>
+        <div class="aside-pane-body">
+          <div class="info-block">
+            <div class="info-block-label">Total Slides</div>
+            <div class="info-block-value highlight">150</div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-label">Languages</div>
+            <div class="info-block-value">Arabic · English · French</div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-label">Volumes</div>
+            <div class="info-block-value">3 (Vol 1–3 · 50 slides each)</div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-label">JS Modules</div>
+            <div class="info-block-value">slide-engine · session · ctc-engine · animations · loader · slide-utils</div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-label">Components</div>
+            <div class="info-block-value">50+ reusable UI pieces across 12 categories</div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-label">Current Viewer</div>
+            <div class="info-block-value" style="color:#63B3ED;font-weight:700">a4-index.html</div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-label">Version</div>
+            <div class="info-block-value">v3.1 · April 2026</div>
+          </div>
+          <div style="margin-top:10px">
+            <a href="api-docs.html"
+              style="display:block;text-align:center;padding:10px;border-radius:10px;background:rgba(99,179,237,0.15);border:1px solid rgba(99,179,237,0.35);color:#63B3ED;font-size:12px;font-weight:700;text-decoration:none">
+              📄 Full API Documentation →
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end aside-panel -->
+
+    <!-- Toggle button (collapse/expand) -->
+    <button class="aside-toggle" id="asideToggle" onclick="toggleAside()" title="Toggle panel">›</button>
+
+  </aside><!-- end a4-aside -->
+
+  <!-- ══════════════════════════════════════════════
+       MAIN VIEWER
+  ══════════════════════════════════════════════ -->
+  <div class="main-content">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-brand">
+        <div class="brand-logo">2030B</div>
+        <div class="brand-sub">Be Smarter</div>
+        <div class="brand-badge" id="volBadge">VOL 1</div>
+      </div>
+      <div class="top-bar-controls">
+        <!-- Volume Nav (quick links to separate viewers) -->
+        <div class="vol-nav" id="volNav">
+          <a class="vol-link" href="a1-index.html">V1</a>
+          <a class="vol-link" href="a2-index.html">V2</a>
+          <a class="vol-link" href="a3-index.html">V3</a>
+          <a class="vol-link active" href="a4-index.html">V4</a>
+        </div>
+        <!-- Language Toggle (3 langs) -->
+        <div class="lang-toggle" id="langToggle">
+          <div class="lang-btn active" data-lang="en" onclick="switchLang('en')">EN</div>
+          <div class="lang-btn" data-lang="ar" onclick="switchLang('ar')">AR</div>
+          <div class="lang-btn" data-lang="fr" onclick="switchLang('fr')">FR</div>
+        </div>
+        <!-- Jump button -->
+        <div class="icon-btn" onclick="toggleSlideInput()" title="Jump to slide">🎯</div>
+        <!-- Mobile aside toggle -->
+        <div class="icon-btn" id="mobileAsideBtn" onclick="openMobileAside()" title="Open panel" style="display:none">☰</div>
+      </div>
+    </div>
+
+    <!-- Progress Ribbon -->
+    <div class="progress-ribbon">
+      <div class="progress-ribbon-fill" id="progressRibbon" style="width:0.67%"></div>
+    </div>
+
+    <!-- Chapter Strip -->
+    <div class="chapter-strip" id="chapterStrip">
+      <div class="chapter-chip active" data-start="1"   data-end="10"  onclick="goToSlide(1)">🏠 Welcome (1–10)</div>
+      <div class="chapter-chip" data-start="11"  data-end="30"  onclick="goToSlide(11)">🧠 Cognitive (11–30)</div>
+      <div class="chapter-chip" data-start="31"  data-end="50"  onclick="goToSlide(31)">💎 Economy (31–50)</div>
+      <div class="chapter-chip" data-start="51"  data-end="70"  onclick="goToSlide(51)">🌐 Ecosystem (51–70)</div>
+      <div class="chapter-chip" data-start="71"  data-end="100" onclick="goToSlide(71)">🚀 Platform (71–100)</div>
+      <div class="chapter-chip" data-start="101" data-end="110" onclick="goToSlide(101)">🧬 NAE (101–110)</div>
+      <div class="chapter-chip" data-start="111" data-end="118" onclick="goToSlide(111)">🏛️ Spatial (111–118)</div>
+      <div class="chapter-chip" data-start="119" data-end="125" onclick="goToSlide(119)">⛓️ Chain (119–125)</div>
+      <div class="chapter-chip" data-start="126" data-end="132" onclick="goToSlide(126)">📊 CGDP (126–132)</div>
+      <div class="chapter-chip" data-start="133" data-end="139" onclick="goToSlide(133)">🏢 Enterprise (133–139)</div>
+      <div class="chapter-chip" data-start="140" data-end="150" onclick="goToSlide(140)">🔮 Vision (140–150)</div>
+    </div>
+
+    <!-- Carousel -->
+    <div class="carousel-wrapper" id="carouselWrapper">
+      <div class="slide-counter" id="slideCounter">001 / 150</div>
+      <button class="nav-arrow nav-prev" id="prevBtn" onclick="navigate(-1)">‹</button>
+      <div class="slide-iframe-container" id="slideContainer">
+
+        <!-- Skeleton Loader -->
+        <div class="slide-skeleton" id="slideSkeleton">
+          <div class="slide-skeleton-inner">
+            <div class="skel-block skel-header"></div>
+            <div class="skel-block skel-sub"></div>
+            <div class="skel-row">
+              <div class="skel-block skel-card"></div>
+              <div class="skel-block skel-card"></div>
+              <div class="skel-block skel-card"></div>
+              <div class="skel-block skel-card"></div>
+            </div>
+            <div class="skel-block skel-bottom"></div>
+          </div>
+        </div>
+
+        <iframe class="slide-iframe" id="slideIframe" src="about:blank" allowfullscreen></iframe>
+      </div>
+      <button class="nav-arrow nav-next" id="nextBtn" onclick="navigate(1)">›</button>
+    </div>
+
+    <!-- Slide Rail -->
+    <div class="slide-rail" id="slideRail"></div>
+
+  </div><!-- end main-content -->
+
+</div><!-- end app-shell -->
+
+<!-- Keyboard Hint -->
+<div class="keyboard-hint">← → Keys | Space | A=AR E=EN F=FR</div>
+
+<!-- Quick Jump Overlay -->
+<div class="jump-overlay" id="jumpOverlay">
+  <div class="jump-box">
+    <div class="jump-label">Jump to Slide (1 – 150)</div>
+    <input class="jump-input" id="jumpInput" type="number" min="1" max="150"
+      onkeydown="handleJumpKey(event)">
+    <div class="jump-actions">
+      <button class="btn btn-ghost" style="flex:1" onclick="closeJump()">Cancel</button>
+      <button class="btn btn-primary" style="flex:1" onclick="doJump()">Go</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/animations.js"></script>
+<script src="js/loader.js"></script>
+<script src="js/slide-utils.js"></script>
+<script>
+/* ════════════════════════════════════════════════════════════════
+   A4-INDEX VIEWER SCRIPT
+   All 150 slides · AR / EN / FR · Fixed aside with icon tabs
+   ════════════════════════════════════════════════════════════════ */
+
+// ─── SLIDE METADATA (all 150) ─────────────────────────────────
+const SLIDES = [
+  // ── Volume 1 (1–50) ────────────────────────────────────────
+  { num:1,   icon:'🏠', title:'Welcome Dashboard',        chapter:1 },
+  { num:2,   icon:'🧠', title:'Cognitive Enhancement',    chapter:1 },
+  { num:3,   icon:'🧩', title:'Daily Challenge',          chapter:1 },
+  { num:4,   icon:'💎', title:'CTC Wallet',               chapter:1 },
+  { num:5,   icon:'🚀', title:'Projects Discovery',       chapter:1 },
+  { num:6,   icon:'🏗️', title:'Project Detail',          chapter:1 },
+  { num:7,   icon:'📋', title:'Active Projects',          chapter:1 },
+  { num:8,   icon:'💬', title:'Workspace',                chapter:1 },
+  { num:9,   icon:'✅', title:'Verification',             chapter:1 },
+  { num:10,  icon:'⭐', title:'Reputation',               chapter:1 },
+  { num:11,  icon:'📚', title:'Learning Hub',             chapter:2 },
+  { num:12,  icon:'🏆', title:'Leaderboards',             chapter:2 },
+  { num:13,  icon:'📊', title:'Analytics',                chapter:2 },
+  { num:14,  icon:'🛍️', title:'Marketplace',             chapter:2 },
+  { num:15,  icon:'👥', title:'Team Formation',           chapter:2 },
+  { num:16,  icon:'🔍', title:'Knowledge Base',           chapter:2 },
+  { num:17,  icon:'⚙️', title:'Resources',               chapter:2 },
+  { num:18,  icon:'🎓', title:'Mentorship',               chapter:2 },
+  { num:19,  icon:'💡', title:'Innovation',               chapter:2 },
+  { num:20,  icon:'🌍', title:'Social Impact',            chapter:2 },
+  { num:21,  icon:'📅', title:'Events',                   chapter:2 },
+  { num:22,  icon:'🗣️', title:'Community',               chapter:2 },
+  { num:23,  icon:'🔧', title:'Settings',                 chapter:2 },
+  { num:24,  icon:'❓', title:'Help Center',              chapter:2 },
+  { num:25,  icon:'🔔', title:'Notifications',            chapter:2 },
+  { num:26,  icon:'🏅', title:'Achievements',             chapter:2 },
+  { num:27,  icon:'📄', title:'Templates',                chapter:2 },
+  { num:28,  icon:'💚', title:'Cognitive Health',         chapter:2 },
+  { num:29,  icon:'🔗', title:'Synergy Finder',           chapter:2 },
+  { num:30,  icon:'🔎', title:'Advanced Search',          chapter:2 },
+  { num:31,  icon:'🔒', title:'CTC Staking',              chapter:3 },
+  { num:32,  icon:'🗺️', title:'Skill Roadmap',           chapter:3 },
+  { num:33,  icon:'📈', title:'Performance',              chapter:3 },
+  { num:34,  icon:'🚨', title:'Global Challenges',        chapter:3 },
+  { num:35,  icon:'⚡', title:'Neural Link',             chapter:3 },
+  { num:36,  icon:'📦', title:'Resource Exchange',        chapter:3 },
+  { num:37,  icon:'🔮', title:'Predictive Engine',        chapter:3 },
+  { num:38,  icon:'🧿', title:'Consciousness',            chapter:3 },
+  { num:39,  icon:'🌐', title:'Multi-Reality',            chapter:3 },
+  { num:40,  icon:'✨', title:'Legacy Tracker',           chapter:3 },
+  { num:41,  icon:'🛡️', title:'Emergency System',        chapter:3 },
+  { num:42,  icon:'⚛️', title:'Quantum Portal',          chapter:3 },
+  { num:43,  icon:'🧬', title:'Bio Monitor',             chapter:3 },
+  { num:44,  icon:'🌀', title:'Dimensions',               chapter:3 },
+  { num:45,  icon:'🧠', title:'Collective Mind',          chapter:3 },
+  { num:46,  icon:'⌛', title:'Time Stream',             chapter:3 },
+  { num:47,  icon:'🌍', title:'Translator',               chapter:3 },
+  { num:48,  icon:'⚡', title:'Energy Flow',             chapter:3 },
+  { num:49,  icon:'🌙', title:'Dream Bridge',             chapter:3 },
+  { num:50,  icon:'🚀', title:'Cosmic Mission',           chapter:3 },
+  // ── Volume 2 (51–100) ──────────────────────────────────────
+  { num:51,  icon:'🌐', title:'Ecosystem Overview',       chapter:4 },
+  { num:52,  icon:'🏗️', title:'Platform Architecture',  chapter:4 },
+  { num:53,  icon:'🔗', title:'Integration Hub',          chapter:4 },
+  { num:54,  icon:'📡', title:'Data Pipeline',            chapter:4 },
+  { num:55,  icon:'🛡️', title:'Security Layer',          chapter:4 },
+  { num:56,  icon:'⚡', title:'Performance Metrics',     chapter:4 },
+  { num:57,  icon:'🎯', title:'User Acquisition',         chapter:4 },
+  { num:58,  icon:'💰', title:'Revenue Model',            chapter:4 },
+  { num:59,  icon:'📊', title:'Market Analysis',          chapter:4 },
+  { num:60,  icon:'🏆', title:'Competitive Landscape',    chapter:4 },
+  { num:61,  icon:'🤝', title:'Partnership Network',      chapter:4 },
+  { num:62,  icon:'🌍', title:'Global Expansion',         chapter:4 },
+  { num:63,  icon:'📱', title:'Mobile Platform',          chapter:4 },
+  { num:64,  icon:'🖥️', title:'Desktop Experience',      chapter:4 },
+  { num:65,  icon:'🎮', title:'Gamification Engine',      chapter:4 },
+  { num:66,  icon:'🤖', title:'AI Integration',           chapter:4 },
+  { num:67,  icon:'🔬', title:'Research Lab',             chapter:4 },
+  { num:68,  icon:'📚', title:'Knowledge Graph',          chapter:4 },
+  { num:69,  icon:'🧪', title:'Beta Features',            chapter:4 },
+  { num:70,  icon:'🚀', title:'Launch Roadmap',           chapter:4 },
+  { num:71,  icon:'💎', title:'Token Economics',          chapter:5 },
+  { num:72,  icon:'⛓️', title:'Blockchain Layer',        chapter:5 },
+  { num:73,  icon:'🏦', title:'DeFi Protocol',            chapter:5 },
+  { num:74,  icon:'📈', title:'Growth Metrics',           chapter:5 },
+  { num:75,  icon:'🌱', title:'Sustainability Model',      chapter:5 },
+  { num:76,  icon:'🎓', title:'Education Protocol',       chapter:5 },
+  { num:77,  icon:'👁️', title:'Transparency Report',     chapter:5 },
+  { num:78,  icon:'🗳️', title:'Governance V2',           chapter:5 },
+  { num:79,  icon:'🏅', title:'Certification Track',      chapter:5 },
+  { num:80,  icon:'🔑', title:'Access Control',           chapter:5 },
+  { num:81,  icon:'📋', title:'Compliance Framework',     chapter:5 },
+  { num:82,  icon:'🌐', title:'Multi-Chain Bridge',       chapter:5 },
+  { num:83,  icon:'⚙️', title:'Developer Tools',         chapter:5 },
+  { num:84,  icon:'📦', title:'SDK Overview',             chapter:5 },
+  { num:85,  icon:'🔌', title:'API Marketplace',          chapter:5 },
+  { num:86,  icon:'🧩', title:'Plugin System',            chapter:5 },
+  { num:87,  icon:'🛠️', title:'DevOps Pipeline',         chapter:5 },
+  { num:88,  icon:'📊', title:'Analytics Dashboard',      chapter:5 },
+  { num:89,  icon:'🔮', title:'Future Protocol',          chapter:5 },
+  { num:90,  icon:'🌟', title:'Vision 2025',              chapter:5 },
+  { num:91,  icon:'👥', title:'Community Growth',         chapter:5 },
+  { num:92,  icon:'🎨', title:'Creator Economy',          chapter:5 },
+  { num:93,  icon:'🏪', title:'Marketplace V2',           chapter:5 },
+  { num:94,  icon:'💡', title:'Innovation Lab',           chapter:5 },
+  { num:95,  icon:'🚁', title:'Deployment Strategy',      chapter:5 },
+  { num:96,  icon:'🔒', title:'Privacy Protocol',         chapter:5 },
+  { num:97,  icon:'📣', title:'Marketing Engine',         chapter:5 },
+  { num:98,  icon:'🧠', title:'Cognitive OS',             chapter:5 },
+  { num:99,  icon:'⚡', title:'Speed Optimization',      chapter:5 },
+  { num:100, icon:'🚀', title:'Vol 2 Finale',             chapter:5 },
+  // ── Volume 3 (101–150) ─────────────────────────────────────
+  { num:101, icon:'🧬', title:'Vol 3 Intro',              chapter:6  },
+  { num:102, icon:'🔬', title:'NAE Intro',                chapter:6  },
+  { num:103, icon:'🎯', title:'7 Adaptive Dimensions',    chapter:6  },
+  { num:104, icon:'🌊', title:'Flow State Engineering',   chapter:6  },
+  { num:105, icon:'📡', title:'Biometric Proxy Layer',    chapter:6  },
+  { num:106, icon:'📚', title:'Personalized Curriculum',  chapter:6  },
+  { num:107, icon:'🤖', title:'CORA AI Assistant',        chapter:6  },
+  { num:108, icon:'🎵', title:'Cognitive Music System',   chapter:6  },
+  { num:109, icon:'⏰', title:'Daily Conditioning 3.0',  chapter:6  },
+  { num:110, icon:'📊', title:'NAE Performance Dashboard',chapter:6  },
+  { num:111, icon:'🏛️', title:'Spatial Learning Intro',  chapter:7  },
+  { num:112, icon:'🏰', title:'Memory Palace System',     chapter:7  },
+  { num:113, icon:'🌌', title:'Concept Cosmos',           chapter:7  },
+  { num:114, icon:'🖥️', title:'WebXR Architecture',      chapter:7  },
+  { num:115, icon:'🤝', title:'Multiplayer Learning',     chapter:7  },
+  { num:116, icon:'🏅', title:'Spatial Certification',    chapter:7  },
+  { num:117, icon:'🏙️', title:'Spatial Social Hub',      chapter:7  },
+  { num:118, icon:'🗺️', title:'Spatial Roadmap',         chapter:7  },
+  { num:119, icon:'⛓️', title:'Cross-Chain Bridge',      chapter:8  },
+  { num:120, icon:'💱', title:'DeFi Integration',         chapter:8  },
+  { num:121, icon:'📈', title:'Exchange Listing',         chapter:8  },
+  { num:122, icon:'💰', title:'Tokenomics V3',            chapter:8  },
+  { num:123, icon:'🌱', title:'Cognitive Yield',          chapter:8  },
+  { num:124, icon:'🔒', title:'ZK Identity',              chapter:8  },
+  { num:125, icon:'🗳️', title:'On-Chain Governance V2',  chapter:8  },
+  { num:126, icon:'📊', title:'CGDP Index',               chapter:9  },
+  { num:127, icon:'🔬', title:'CGDP Methodology',         chapter:9  },
+  { num:128, icon:'🏙️', title:'CGDP City Pilot',         chapter:9  },
+  { num:129, icon:'🌙', title:'Regional: MENA',           chapter:9  },
+  { num:130, icon:'🌍', title:'Regional: Africa',         chapter:9  },
+  { num:131, icon:'🌐', title:'Universal Basic CTC Intro',chapter:9  },
+  { num:132, icon:'🧪', title:'UBCTC Pilot',              chapter:9  },
+  { num:133, icon:'🏢', title:'Enterprise Layer',         chapter:10 },
+  { num:134, icon:'🤝', title:'Talent API',               chapter:10 },
+  { num:135, icon:'🎓', title:'University Partnerships',  chapter:10 },
+  { num:136, icon:'🏛️', title:'Government Partnerships', chapter:10 },
+  { num:137, icon:'🎨', title:'Creator Economy 3.0',      chapter:10 },
+  { num:138, icon:'💎', title:'IP Marketplace',           chapter:10 },
+  { num:139, icon:'🛡️', title:'Cognitive Insurance',     chapter:10 },
+  { num:140, icon:'🚦', title:'Vision 2030 Status',       chapter:11 },
+  { num:141, icon:'👥', title:'Team Expansion',           chapter:11 },
+  { num:142, icon:'💹', title:'Financial Overview',       chapter:11 },
+  { num:143, icon:'🚀', title:'Series B Roadmap',         chapter:11 },
+  { num:144, icon:'🛠️', title:'Developer Ecosystem',     chapter:11 },
+  { num:145, icon:'🤝', title:'Ecosystem Partnerships',   chapter:11 },
+  { num:146, icon:'🔮', title:'The Cognitive Future',     chapter:11 },
+  { num:147, icon:'📖', title:'Open Source Vision',       chapter:11 },
+  { num:148, icon:'🌍', title:'Global Impact Dashboard',  chapter:11 },
+  { num:149, icon:'📣', title:'Join the Movement',        chapter:11 },
+  { num:150, icon:'🌟', title:'Closing Vision V3',        chapter:11 },
+];
+
+// ─── CHAPTER DEFINITIONS ──────────────────────────────────────
+const CHAPTERS = [
+  { id:1,  start:1,   end:10,  label:'🏠 Welcome',     color:'rgba(99,179,237,0.8)' },
+  { id:2,  start:11,  end:30,  label:'🧠 Cognitive',   color:'rgba(159,122,234,0.8)' },
+  { id:3,  start:31,  end:50,  label:'💎 Economy',     color:'rgba(246,173,85,0.8)' },
+  { id:4,  start:51,  end:70,  label:'🌐 Ecosystem',   color:'rgba(67,233,123,0.8)' },
+  { id:5,  start:71,  end:100, label:'🚀 Platform',    color:'rgba(252,129,74,0.8)' },
+  { id:6,  start:101, end:110, label:'🧬 NAE',         color:'rgba(99,179,237,0.8)' },
+  { id:7,  start:111, end:118, label:'🏛️ Spatial',    color:'rgba(159,122,234,0.8)' },
+  { id:8,  start:119, end:125, label:'⛓️ Chain',      color:'rgba(246,173,85,0.8)' },
+  { id:9,  start:126, end:132, label:'📊 CGDP',       color:'rgba(67,233,123,0.8)' },
+  { id:10, start:133, end:139, label:'🏢 Enterprise',  color:'rgba(252,129,74,0.8)' },
+  { id:11, start:140, end:150, label:'🔮 Vision',      color:'rgba(99,179,237,0.8)' },
+];
+
+// ─── I18N STRINGS ─────────────────────────────────────────────
+const I18N = {
+  en: {
+    tip_index:'Slide Index', tip_api:'Slide API Docs', tip_volumes:'Volumes',
+    tip_settings:'Settings', tip_info:'Project Info',
+    idx_title:'Slide Index', api_title:'Slide API Reference',
+    vol_title:'Volume Navigator', set_title:'Settings', inf_title:'Project Info',
+    set_lang:'Language', set_nav:'Navigation', set_autoplay:'Auto-play slides',
+    set_particles:'Particle background',
+    loading:'Loading Cognitive Dashboard…',
+  },
+  ar: {
+    tip_index:'فهرس الشرائح', tip_api:'توثيق واجهة الشرائح', tip_volumes:'الأجزاء',
+    tip_settings:'الإعدادات', tip_info:'معلومات المشروع',
+    idx_title:'فهرس الشرائح', api_title:'مرجع واجهة الشرائح',
+    vol_title:'مستكشف الأجزاء', set_title:'الإعدادات', inf_title:'معلومات المشروع',
+    set_lang:'اللغة', set_nav:'التنقل', set_autoplay:'تشغيل تلقائي',
+    set_particles:'خلفية الجزيئات',
+    loading:'جارٍ تحميل لوحة التحكم المعرفية…',
+  },
+  fr: {
+    tip_index:'Index des Diapositives', tip_api:'Docs API Diapositive', tip_volumes:'Volumes',
+    tip_settings:'Paramètres', tip_info:'Info Projet',
+    idx_title:'Index des Diapositives', api_title:'Référence API Diapositive',
+    vol_title:'Navigateur de Volumes', set_title:'Paramètres', inf_title:'Info Projet',
+    set_lang:'Langue', set_nav:'Navigation', set_autoplay:'Lecture automatique',
+    set_particles:'Fond particules',
+    loading:'Chargement du tableau de bord cognitif…',
+  },
+};
+
+// ─── SLIDE FILENAME HELPER ────────────────────────────────────
+// Actual files: slide-01.html … slide-09.html, slide-10.html … slide-150.html
+function slidePad(num) {
+  // Files 1-9 → "01"-"09"; files 10-150 → "10"-"150"
+  return num < 10 ? String(num).padStart(2, '0') : String(num);
+}
+
+// ─── STATE ────────────────────────────────────────────────────
+const TOTAL = 150;
+let currentSlide = 1;
+let currentLang  = 'en';
+let asideOpen    = false;
+let activeTab    = 'index';
+let autoPlayTimer = null;
+let particlesOn  = true;
+
+// ─── APPLY I18N ───────────────────────────────────────────────
+function applyI18n(lang) {
+  const t = I18N[lang] || I18N.en;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key]) el.textContent = t[key];
+  });
+  // Tooltip spans
+  document.querySelectorAll('.tip[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key]) el.textContent = t[key];
+  });
+}
+
+// ─── BUILD MINI SLIDE LIST (aside index pane) ─────────────────
+function buildMiniSlideList() {
+  const container = document.getElementById('miniSlideList');
+  if (!container) return;
+
+  let html = '';
+  let lastChapter = -1;
+
+  const chapterNames = {
+    1:'Vol 1 · Welcome (1–10)', 2:'Vol 1 · Cognitive (11–30)', 3:'Vol 1 · Economy (31–50)',
+    4:'Vol 2 · Ecosystem (51–70)', 5:'Vol 2 · Platform (71–100)',
+    6:'Vol 3 · NAE (101–110)', 7:'Vol 3 · Spatial (111–118)',
+    8:'Vol 3 · Chain (119–125)', 9:'Vol 3 · CGDP (126–132)',
+    10:'Vol 3 · Enterprise (133–139)', 11:'Vol 3 · Vision (140–150)',
+  };
+
+  SLIDES.forEach(s => {
+    if (s.chapter !== lastChapter) {
+      html += `<div class="mini-chapter">${chapterNames[s.chapter] || ''}</div>`;
+      lastChapter = s.chapter;
+    }
+    html += `
+      <div class="mini-slide-item ${s.num === currentSlide ? 'active' : ''}"
+           id="mini-${s.num}" onclick="goToSlide(${s.num})">
+        <span class="mini-slide-icon">${s.icon}</span>
+        <span class="mini-slide-num">${String(s.num).padStart(3,'0')}</span>
+        <span class="mini-slide-title">${s.title}</span>
+      </div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+// ─── BUILD CHAPTER JUMP LIST (volumes pane) ───────────────────
+function buildChapterJumpList() {
+  const container = document.getElementById('chapterJumpList');
+  if (!container) return;
+  container.innerHTML = CHAPTERS.map(ch => `
+    <div class="mini-slide-item" onclick="goToSlide(${ch.start})" style="border-color:rgba(255,255,255,0.05)">
+      <span class="mini-slide-icon">${ch.label.split(' ')[0]}</span>
+      <span class="mini-slide-title" style="font-size:11px">${ch.label}</span>
+      <span class="mini-slide-num" style="margin-left:auto;min-width:auto">${ch.start}–${ch.end}</span>
+    </div>`).join('');
+}
+
+// ─── BUILD SLIDE RAIL ─────────────────────────────────────────
+function buildRail() {
+  const rail = document.getElementById('slideRail');
+  let lastVol = 0;
+  rail.innerHTML = SLIDES.map(s => {
+    const vol = s.num <= 50 ? 1 : s.num <= 100 ? 2 : 3;
+    let sep = '';
+    if (vol !== lastVol && lastVol !== 0) sep = '<div class="rail-sep"></div>';
+    lastVol = vol;
+    return `${sep}<div class="slide-thumb ${s.num === currentSlide ? 'active' : ''}"
+      id="thumb-${s.num}" onclick="goToSlide(${s.num})" title="${s.title}">
+      <span class="slide-thumb-icon">${s.icon}</span>
+      <span class="slide-thumb-num">${s.num}</span>
+    </div>`;
+  }).join('');
+}
+
+// ─── SKELETON ─────────────────────────────────────────────────
+function showSkeleton() {
+  const sk = document.getElementById('slideSkeleton');
+  if (!sk) return;
+  sk.style.opacity = '1';
+  sk.style.pointerEvents = 'none';
+  sk.classList.remove('hidden');
+}
+function hideSkeleton() {
+  const sk = document.getElementById('slideSkeleton');
+  if (!sk) return;
+  sk.style.transition = 'opacity 0.35s ease';
+  sk.style.opacity = '0';
+  setTimeout(() => sk.classList.add('hidden'), 360);
+}
+
+// ─── NAVIGATE ─────────────────────────────────────────────────
+function goToSlide(num) {
+  num = Math.max(1, Math.min(TOTAL, num));
+  currentSlide = num;
+
+  showSkeleton();
+
+  const padded = slidePad(num);
+  const iframe = document.getElementById('slideIframe');
+
+  iframe.onload = () => {
+    hideSkeleton();
+    try {
+      if (iframe.contentWindow && iframe.contentWindow.Loader) {
+        iframe.contentWindow.Loader.switchLanguage(currentLang);
+      }
+    } catch(e) {}
+  };
+  iframe.src = `slides/slide-${padded}.html`;
+
+  // Counter
+  document.getElementById('slideCounter').textContent =
+    `${String(num).padStart(3,'0')} / ${TOTAL}`;
+
+  // Progress ribbon
+  document.getElementById('progressRibbon').style.width =
+    `${(num / TOTAL) * 100}%`;
+
+  // Rail active
+  document.querySelectorAll('.slide-thumb').forEach(t => t.classList.remove('active'));
+  const th = document.getElementById(`thumb-${num}`);
+  if (th) { th.classList.add('active'); th.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' }); }
+
+  // Mini list active
+  document.querySelectorAll('.mini-slide-item').forEach(t => t.classList.remove('active'));
+  const mi = document.getElementById(`mini-${num}`);
+  if (mi) { mi.classList.add('active'); mi.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+
+  // Chapter strip
+  updateChapterStrip(num);
+
+  // Vol badge
+  const vol = num <= 50 ? 1 : num <= 100 ? 2 : 3;
+  document.getElementById('volBadge').textContent = `VOL ${vol}`;
+}
+
+function navigate(dir) { goToSlide(currentSlide + dir); }
+
+// ─── CHAPTER STRIP ────────────────────────────────────────────
+function updateChapterStrip(num) {
+  document.querySelectorAll('.chapter-chip').forEach(chip => {
+    const s = parseInt(chip.dataset.start);
+    const e = parseInt(chip.dataset.end);
+    chip.classList.toggle('active', num >= s && num <= e);
+  });
+}
+
+// ─── LANGUAGE ─────────────────────────────────────────────────
+function switchLang(lang) {
+  currentLang = lang;
+  const isRTL = lang === 'ar';
+
+  document.documentElement.setAttribute('lang', lang);
+  document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+  document.body.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+  document.body.style.fontFamily = isRTL
+    ? 'Cairo, sans-serif'
+    : lang === 'fr' ? 'Inter, sans-serif' : 'Inter, sans-serif';
+
+  localStorage.setItem('2030b_lang', lang);
+
+  // Update lang toggle buttons (top bar)
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+
+  // Update settings checkboxes
+  ['en','ar','fr'].forEach(l => {
+    const el = document.getElementById(`chk-${l}`);
+    if (el) { el.classList.toggle('on', l === lang); el.textContent = l === lang ? '✓' : ''; }
+  });
+
+  // Apply i18n strings
+  applyI18n(lang);
+
+  // Reload current slide
+  showSkeleton();
+  const padded = slidePad(currentSlide);
+  const iframe = document.getElementById('slideIframe');
+  iframe.onload = () => {
+    hideSkeleton();
+    try {
+      if (iframe.contentWindow && iframe.contentWindow.Loader) {
+        iframe.contentWindow.Loader.switchLanguage(lang);
+      }
+    } catch(e) {}
+  };
+  iframe.src = `slides/slide-${padded}.html`;
+}
+
+// ─── ASIDE CONTROLS ───────────────────────────────────────────
+function toggleAside() {
+  asideOpen = !asideOpen;
+  const aside = document.getElementById('a4Aside');
+  aside.classList.toggle('open', asideOpen);
+}
+
+function openMobileAside() {
+  const aside = document.getElementById('a4Aside');
+  const backdrop = document.getElementById('asideBackdrop');
+  aside.classList.add('open', 'mobile-visible');
+  backdrop.classList.add('visible');
+}
+
+function closeMobileAside() {
+  const aside = document.getElementById('a4Aside');
+  const backdrop = document.getElementById('asideBackdrop');
+  aside.classList.remove('open', 'mobile-visible');
+  backdrop.classList.remove('visible');
+}
+
+function switchTab(tabId) {
+  activeTab = tabId;
+
+  // Toggle active on icon buttons
+  document.querySelectorAll('.aside-tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tabId);
+  });
+
+  // Show correct pane
+  document.querySelectorAll('.aside-pane').forEach(pane => {
+    pane.classList.toggle('active', pane.id === `pane-${tabId}`);
+  });
+
+  // Auto-open aside if not open
+  if (!asideOpen) toggleAside();
+}
+
+// ─── SETTINGS ─────────────────────────────────────────────────
+function toggleAutoPlay() {
+  const chk = document.getElementById('chk-autoplay');
+  if (autoPlayTimer) {
+    clearInterval(autoPlayTimer);
+    autoPlayTimer = null;
+    chk.classList.remove('on');
+    chk.textContent = '';
+  } else {
+    const secs = parseInt(document.getElementById('autoplayInterval').value) * 1000;
+    autoPlayTimer = setInterval(() => navigate(1), secs);
+    chk.classList.add('on');
+    chk.textContent = '✓';
+  }
+}
+
+function toggleParticles() {
+  particlesOn = !particlesOn;
+  const canvas = document.getElementById('particles-canvas');
+  const chk = document.getElementById('chk-particles');
+  if (canvas) canvas.style.display = particlesOn ? '' : 'none';
+  chk.classList.toggle('on', particlesOn);
+  chk.textContent = particlesOn ? '✓' : '';
+}
+
+function doSettingsJump() {
+  const val = parseInt(document.getElementById('settingsJumpInput').value);
+  if (val >= 1 && val <= TOTAL) goToSlide(val);
+}
+
+// ─── QUICK JUMP ───────────────────────────────────────────────
+function toggleSlideInput() {
+  const overlay = document.getElementById('jumpOverlay');
+  overlay.style.display = 'flex';
+  setTimeout(() => document.getElementById('jumpInput').focus(), 80);
+}
+function closeJump() { document.getElementById('jumpOverlay').style.display = 'none'; }
+function doJump() {
+  const val = parseInt(document.getElementById('jumpInput').value);
+  if (val >= 1 && val <= TOTAL) goToSlide(val);
+  closeJump();
+}
+function handleJumpKey(e) {
+  if (e.key === 'Enter')  doJump();
+  if (e.key === 'Escape') closeJump();
+}
+
+// ─── KEYBOARD NAV ─────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (document.getElementById('jumpOverlay').style.display === 'flex') return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+    e.preventDefault(); navigate(1);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault(); navigate(-1);
+  } else if (e.key === 'e' || e.key === 'E') { switchLang('en'); }
+  else if (e.key === 'a' || e.key === 'A') { switchLang('ar'); }
+  else if (e.key === 'f' || e.key === 'F') { switchLang('fr'); }
+  else if (e.key === '\\' || e.key === 'p') { toggleAside(); }
+});
+
+// ─── TOUCH SWIPE ──────────────────────────────────────────────
+let touchStartX = 0, touchStartY = 0;
+document.getElementById('carouselWrapper').addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+document.getElementById('carouselWrapper').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
+    navigate(dx < 0 ? 1 : -1);
+  }
+}, { passive: true });
+
+// ─── RESPONSIVE: show hamburger on mobile ─────────────────────
+function checkMobile() {
+  const btn = document.getElementById('mobileAsideBtn');
+  if (!btn) return;
+  btn.style.display = window.innerWidth <= 767 ? 'flex' : 'none';
+}
+window.addEventListener('resize', checkMobile);
+
+// ─── INIT ─────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  // Restore language from localStorage
+  const savedLang = localStorage.getItem('2030b_lang') || 'en';
+  currentLang = savedLang;
+
+  if (savedLang !== 'en') {
+    const isRTL = savedLang === 'ar';
+    document.documentElement.setAttribute('lang', savedLang);
+    document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    document.body.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === savedLang);
+    });
+    ['en','ar','fr'].forEach(l => {
+      const el = document.getElementById(`chk-${l}`);
+      if (el) { el.classList.toggle('on', l === savedLang); el.textContent = l === savedLang ? '✓' : ''; }
+    });
+  }
+
+  applyI18n(savedLang);
+  buildRail();
+  buildMiniSlideList();
+  buildChapterJumpList();
+  checkMobile();
+
+  // Init particles
+  if (typeof AnimationSystem !== 'undefined') {
+    AnimationSystem.initParticles('particles-canvas', 20);
+  }
+
+  // Hide loader and start
+  setTimeout(() => {
+    document.getElementById('app-loading').classList.add('hidden');
+    goToSlide(1);
+  }, 1000);
+});
+</script>
+</body>
+</html>

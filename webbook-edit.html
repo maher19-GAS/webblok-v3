@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebBook — محرر الفصول</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+<!-- EasyMDE - Best Markdown Editor -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.css">
+<script src="https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.js"></script>
+<!-- Marked for preview -->
+<script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+<style>
+:root {
+  --bg-primary:#0d1117;--bg-secondary:#161b22;--bg-card:#1c2128;--bg-hover:#21262d;
+  --border:#30363d;--border-light:#21262d;
+  --accent:#58a6ff;--accent-glow:rgba(88,166,255,.15);--accent2:#3fb950;--accent3:#d2a8ff;
+  --accent4:#ffa657;--accent5:#f85149;
+  --text-primary:#e6edf3;--text-secondary:#8b949e;--text-muted:#484f58;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:'Cairo',sans-serif;background:var(--bg-primary);color:var(--text-primary)}
+
+/* Full-height layout */
+.editor-shell{display:flex;height:100vh}
+
+/* Left panel - chapter tree */
+.chapter-tree{width:240px;background:var(--bg-secondary);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden}
+.tree-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.tree-header .back-btn{width:28px;height:28px;border-radius:6px;background:var(--bg-hover);border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none}
+.tree-header .back-btn:hover{border-color:var(--accent);color:var(--accent)}
+.tree-book-title{font-size:13px;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tree-search{padding:10px 12px;border-bottom:1px solid var(--border)}
+.tree-search input{width:100%;background:var(--bg-hover);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text-primary);font-family:inherit;font-size:12px;outline:none}
+.tree-search input:focus{border-color:var(--accent)}
+.tree-list{flex:1;overflow-y:auto;padding:8px 0}
+.tree-group{padding:6px 14px 2px;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.tree-item{display:flex;align-items:center;gap:8px;padding:8px 14px;cursor:pointer;color:var(--text-secondary);font-size:13px;border-right:2px solid transparent;transition:all .15s}
+.tree-item:hover{color:var(--text-primary);background:var(--bg-hover)}
+.tree-item.active{color:var(--accent);background:var(--accent-glow);border-right-color:var(--accent)}
+.tree-item .ti-num{width:22px;height:22px;border-radius:6px;background:var(--bg-hover);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.tree-item.active .ti-num{background:var(--accent);color:#0d1117}
+.tree-item .ti-words{font-size:10px;color:var(--text-muted);margin-right:auto}
+.tree-item .ti-status{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.tree-item .ti-status.pub{background:var(--accent2)}
+.tree-item .ti-status.draft{background:var(--text-muted)}
+.tree-add{padding:10px 14px;border-top:1px solid var(--border)}
+.tree-add button{width:100%;padding:8px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--text-muted);font-family:inherit;font-size:12px;cursor:pointer;transition:all .2s}
+.tree-add button:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Center - editor */
+.editor-center{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.editor-topbar{height:52px;background:var(--bg-secondary);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0}
+.chapter-name-input{flex:1;background:none;border:none;font-family:'Cairo',sans-serif;font-size:16px;font-weight:700;color:var(--text-primary);outline:none}
+.chapter-name-input::placeholder{color:var(--text-muted)}
+.editor-stats{font-size:11px;color:var(--text-muted);display:flex;gap:14px}
+.editor-stats span{display:flex;align-items:center;gap:4px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:7px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-primary{background:var(--accent);color:#0d1117}
+.btn-primary:hover{background:#79c0ff}
+.btn-ghost{background:transparent;color:var(--text-secondary);border:1px solid var(--border)}
+.btn-ghost:hover{color:var(--text-primary);border-color:var(--accent)}
+.btn-success{background:var(--accent2);color:#0d1117}
+.icon-btn{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;background:transparent;color:var(--text-secondary);border:1px solid var(--border);cursor:pointer;transition:all .2s;font-size:13px}
+.icon-btn:hover{color:var(--text-primary);border-color:var(--accent)}
+.icon-btn.active{background:var(--accent-glow);color:var(--accent);border-color:var(--accent)}
+
+/* Mode tabs */
+.mode-tabs{display:flex;gap:2px;background:var(--bg-hover);border-radius:8px;padding:2px}
+.mode-tab{padding:4px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:var(--text-muted);transition:all .2s}
+.mode-tab.active{background:var(--bg-card);color:var(--text-primary)}
+
+/* Editor area */
+.editor-area{flex:1;display:flex;overflow:hidden}
+.editor-pane{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.preview-pane{flex:1;overflow-y:auto;background:var(--bg-primary);border-right:1px solid var(--border);padding:32px 40px;display:none}
+.preview-pane.show{display:block}
+
+/* EasyMDE dark theme override */
+.EasyMDEContainer{height:100%;display:flex;flex-direction:column}
+.EasyMDEContainer .CodeMirror{flex:1;background:var(--bg-primary)!important;color:var(--text-primary)!important;font-family:'JetBrains Mono',monospace!important;font-size:15px!important;line-height:1.8!important;border:none!important;height:100%!important;padding:24px 32px!important}
+.EasyMDEContainer .CodeMirror-scroll{height:100%}
+.editor-toolbar{background:var(--bg-secondary)!important;border-bottom:1px solid var(--border)!important;border-top:none!important;padding:6px 12px!important}
+.editor-toolbar button{color:var(--text-secondary)!important;background:none!important;border:none!important;border-radius:6px!important;padding:6px 8px!important}
+.editor-toolbar button:hover,.editor-toolbar button.active{color:var(--text-primary)!important;background:var(--bg-hover)!important}
+.editor-toolbar i.separator{border-left-color:var(--border)!important}
+.CodeMirror-cursor{border-left-color:var(--accent)!important}
+.cm-s-easymde .cm-header{color:var(--accent)!important;font-weight:700!important}
+.cm-s-easymde .cm-strong{color:var(--accent4)!important}
+.cm-s-easymde .cm-em{color:var(--accent3)!important}
+.cm-s-easymde .cm-link{color:var(--accent2)!important}
+.cm-s-easymde .cm-quote{color:var(--text-secondary)!important}
+.editor-preview{background:var(--bg-primary)!important;color:var(--text-primary)!important;padding:32px!important;border-right:1px solid var(--border)!important}
+.editor-preview h1,.editor-preview h2,.editor-preview h3{color:var(--accent)!important}
+.EasyMDEContainer .editor-preview-full{background:var(--bg-primary)!important}
+.EasyMDEContainer .editor-statusbar{background:var(--bg-secondary)!important;border-top:1px solid var(--border)!important;color:var(--text-muted)!important;font-size:11px!important;padding:4px 16px!important}
+
+/* Slide preview */
+.slide-preview-pane{width:380px;background:var(--bg-secondary);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.slide-preview-header{padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
+.slide-preview-scroll{flex:1;overflow-y:auto;padding:12px}
+.slide-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;cursor:pointer;transition:all .2s;font-size:13px;line-height:1.6}
+.slide-card:hover{border-color:var(--accent)}
+.slide-card.active{border-color:var(--accent);background:var(--accent-glow)}
+.slide-card h1,.slide-card h2,.slide-card h3{color:var(--accent);font-size:14px;margin-bottom:6px}
+.slide-card .slide-num{font-size:10px;color:var(--text-muted);margin-bottom:6px}
+.slide-type-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;margin-bottom:6px}
+.slide-type-badge.heading{background:rgba(88,166,255,.15);color:var(--accent)}
+.slide-type-badge.content{background:rgba(63,185,80,.15);color:var(--accent2)}
+.slide-type-badge.image{background:rgba(255,166,87,.15);color:var(--accent4)}
+.slide-type-badge.quote{background:rgba(210,168,255,.15);color:var(--accent3)}
+
+/* Right panel - metadata + comments */
+.meta-panel{width:280px;background:var(--bg-secondary);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.meta-tabs{display:flex;border-bottom:1px solid var(--border)}
+.meta-tab{flex:1;padding:10px;text-align:center;font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.meta-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.meta-body{flex:1;overflow-y:auto;padding:14px}
+.meta-group{margin-bottom:16px}
+.meta-label{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.meta-input{width:100%;background:var(--bg-hover);border:1px solid var(--border);border-radius:6px;color:var(--text-primary);font-family:inherit;font-size:12px;padding:7px 10px;outline:none}
+.meta-input:focus{border-color:var(--accent)}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light)}
+.toggle-row label{font-size:13px;color:var(--text-secondary)}
+.toggle{position:relative;width:36px;height:20px}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:var(--bg-hover);border-radius:20px;cursor:pointer;transition:.3s;border:1px solid var(--border)}
+.toggle input:checked+.toggle-slider{background:var(--accent2)}
+.toggle-slider:before{content:'';position:absolute;width:14px;height:14px;right:2px;top:2px;background:#fff;border-radius:50%;transition:.3s}
+.toggle input:checked+.toggle-slider:before{right:auto;left:2px}
+
+/* Comment thread */
+.comment-item{padding:10px 0;border-bottom:1px solid var(--border-light)}
+.comment-item:last-child{border-bottom:none}
+.comment-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.comment-avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.comment-author{font-size:12px;font-weight:600}
+.comment-time{font-size:10px;color:var(--text-muted);margin-right:auto}
+.comment-text{font-size:12px;color:var(--text-secondary);line-height:1.5}
+.comment-actions{display:flex;gap:8px;margin-top:6px}
+.comment-action{font-size:11px;color:var(--text-muted);cursor:pointer;padding:2px 6px;border-radius:4px;transition:all .2s}
+.comment-action:hover{color:var(--accent);background:var(--accent-glow)}
+.reply-item{margin-right:28px;padding:8px 0;border-bottom:1px solid var(--border-light)}
+.comment-input-wrap{padding:10px 0;border-top:1px solid var(--border)}
+.comment-input{width:100%;background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-family:inherit;font-size:12px;padding:8px 10px;outline:none;resize:none}
+.comment-input:focus{border-color:var(--accent)}
+
+/* Revision history */
+.rev-item{padding:10px 0;border-bottom:1px solid var(--border-light);cursor:pointer;transition:background .15s;border-radius:6px;padding:8px}
+.rev-item:hover{background:var(--bg-hover)}
+.rev-hash{font-size:10px;color:var(--accent);font-family:'JetBrains Mono',monospace}
+.rev-msg{font-size:12px;color:var(--text-primary);margin:2px 0}
+.rev-meta{font-size:10px;color:var(--text-muted)}
+
+/* Status bar */
+.editor-statusbar-custom{height:28px;background:var(--bg-secondary);border-top:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:20px;font-size:11px;color:var(--text-muted);flex-shrink:0}
+.status-indicator{display:flex;align-items:center;gap:5px}
+.status-dot{width:6px;height:6px;border-radius:50%}
+
+/* Slide insert toolbar */
+.slide-toolbar{padding:8px 12px;background:var(--bg-secondary);border-bottom:1px solid var(--border);display:flex;gap:6px;flex-wrap:wrap}
+.slide-type-btn{padding:5px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg-hover);color:var(--text-secondary);font-family:inherit;font-size:11px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:5px}
+.slide-type-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Skeleton */
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+.skeleton{background:linear-gradient(90deg,#1c2128 25%,#21262d 50%,#1c2128 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:6px}
+
+/* Save toast */
+.save-toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg-card);border:1px solid var(--accent2);border-radius:8px;padding:8px 20px;font-size:13px;color:var(--accent2);display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,.5);z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.save-toast.show{opacity:1}
+
+@media(max-width:1100px){.slide-preview-pane{display:none}}
+@media(max-width:900px){.chapter-tree{display:none}.meta-panel{display:none}}
+</style>
+</head>
+<body>
+
+<div class="editor-shell">
+  <!-- Chapter Tree -->
+  <aside class="chapter-tree">
+    <div class="tree-header">
+      <a href="webbook-dashboard.html" class="back-btn"><i class="fa fa-arrow-right"></i></a>
+      <div class="tree-book-title">2030B — كن أذكى</div>
+      <button class="back-btn" title="إعدادات الكتاب"><i class="fa fa-cog"></i></button>
+    </div>
+    <div class="tree-search">
+      <input type="text" placeholder="بحث في الفصول...">
+    </div>
+    <div class="tree-list" id="treeList">
+      <div class="tree-group">المقدمة</div>
+      <div class="tree-item active" onclick="selectChapter(this,0)">
+        <div class="ti-num">1</div>
+        <span>المقدمة والفهرس</span>
+        <span class="ti-words">1.2k</span>
+        <div class="ti-status pub"></div>
+      </div>
+      <div class="tree-group">الجزء الأول</div>
+      <div class="tree-item" onclick="selectChapter(this,1)">
+        <div class="ti-num">2</div>
+        <span>القصة والرؤية</span>
+        <span class="ti-words">3.4k</span>
+        <div class="ti-status pub"></div>
+      </div>
+      <div class="tree-item" onclick="selectChapter(this,2)">
+        <div class="ti-num">3</div>
+        <span>الفصل الثاني</span>
+        <span class="ti-words">2.8k</span>
+        <div class="ti-status pub"></div>
+      </div>
+      <div class="tree-item" onclick="selectChapter(this,3)">
+        <div class="ti-num">4</div>
+        <span>الفصلان 3 و4</span>
+        <span class="ti-words">5.1k</span>
+        <div class="ti-status draft"></div>
+      </div>
+      <div class="tree-group">الجزء الثاني</div>
+      <div class="tree-item" onclick="selectChapter(this,4)">
+        <div class="ti-num">5</div>
+        <span>SelfAI — الفصول 5-7</span>
+        <span class="ti-words">6.2k</span>
+        <div class="ti-status draft"></div>
+      </div>
+      <div class="tree-group">الخاتمة</div>
+      <div class="tree-item" onclick="selectChapter(this,5)">
+        <div class="ti-num">6</div>
+        <span>الجزء الثالث والرابع</span>
+        <span class="ti-words">4.8k</span>
+        <div class="ti-status draft"></div>
+      </div>
+    </div>
+    <div class="tree-add">
+      <button onclick="addNewChapter()"><i class="fa fa-plus"></i> فصل جديد</button>
+    </div>
+  </aside>
+
+  <!-- Editor Center -->
+  <div class="editor-center">
+    <!-- Topbar -->
+    <div class="editor-topbar">
+      <input class="chapter-name-input" id="chapterNameInput" type="text" value="المقدمة والفهرس" placeholder="عنوان الفصل...">
+      <div class="mode-tabs">
+        <div class="mode-tab active" onclick="setMode('write',this)">✍️ كتابة</div>
+        <div class="mode-tab" onclick="setMode('split',this)">⚡ مقسّم</div>
+        <div class="mode-tab" onclick="setMode('preview',this)">👁️ معاينة</div>
+        <div class="mode-tab" onclick="setMode('slides',this)">📊 شرائح</div>
+      </div>
+      <div class="editor-stats" id="editorStats">
+        <span><i class="fa fa-font"></i> <span id="wordCount">0</span> كلمة</span>
+        <span><i class="fa fa-clock"></i> <span id="readTime">0</span> دقيقة</span>
+        <span><i class="fa fa-layer-group"></i> <span id="slideCount">0</span> شريحة</span>
+      </div>
+      <div class="icon-btn" id="historyBtn" onclick="togglePanel('revisions')" title="سجل التعديلات"><i class="fa fa-history"></i></div>
+      <div class="icon-btn" id="commentBtn" onclick="togglePanel('comments')" title="التعليقات"><i class="fa fa-comment"></i></div>
+      <div class="icon-btn" id="noteBtn" onclick="togglePanel('notes')" title="الملاحظات"><i class="fa fa-sticky-note"></i></div>
+      <div class="icon-btn" id="settingsBtn" onclick="togglePanel('settings')" title="إعدادات الفصل"><i class="fa fa-sliders"></i></div>
+      <button class="btn btn-ghost" onclick="saveDraft()" id="saveBtn"><i class="fa fa-save"></i> حفظ</button>
+      <button class="btn btn-success" onclick="publishChapter()"><i class="fa fa-check"></i> نشر</button>
+    </div>
+
+    <!-- Slide Insert Toolbar -->
+    <div class="slide-toolbar" id="slideToolbar">
+      <span style="font-size:11px;color:var(--text-muted);line-height:28px">إدراج شريحة:</span>
+      <button class="slide-type-btn" onclick="insertSlideTemplate('heading')">📌 عنوان كبير</button>
+      <button class="slide-type-btn" onclick="insertSlideTemplate('quote')">💬 اقتباس</button>
+      <button class="slide-type-btn" onclick="insertSlideTemplate('image')">🖼️ صورة + نص</button>
+      <button class="slide-type-btn" onclick="insertSlideTemplate('video')">🎬 فيديو</button>
+      <button class="slide-type-btn" onclick="insertSlideTemplate('list')">📋 قائمة</button>
+      <button class="slide-type-btn" onclick="insertSlideTemplate('code')">💻 كود</button>
+      <button class="slide-type-btn" onclick="insertSlideTemplate('divider')">── فاصل</button>
+      <button class="slide-type-btn" onclick="insertSlideTemplate('bg')">🎨 خلفية مخصصة</button>
+      <button class="slide-type-btn" onclick="insertSlideTemplate('animation')">✨ رسوم متحركة</button>
+    </div>
+
+    <!-- Editor Area -->
+    <div class="editor-area" id="editorArea">
+      <!-- MD Editor -->
+      <div class="editor-pane" id="editorPane">
+        <textarea id="mdEditor"></textarea>
+      </div>
+      <!-- Live Preview -->
+      <div class="preview-pane" id="previewPane">
+        <div id="previewContent" style="max-width:720px;margin:0 auto;font-size:16px;line-height:1.8;color:var(--text-primary)"></div>
+      </div>
+    </div>
+
+    <!-- Status bar -->
+    <div class="editor-statusbar-custom">
+      <div class="status-indicator">
+        <div class="status-dot" id="statusDot" style="background:var(--text-muted)"></div>
+        <span id="statusText">جاهز</span>
+      </div>
+      <span>|</span>
+      <span id="cursorPos">سطر 1، عمود 1</span>
+      <span>|</span>
+      <span id="encodingLabel">UTF-8</span>
+      <span style="margin-right:auto"></span>
+      <span>آخر حفظ: <span id="lastSaved">—</span></span>
+      <span>|</span>
+      <span><i class="fa fa-code-branch"></i> رقم المراجعة: <span id="revNum">1</span></span>
+    </div>
+  </div>
+
+  <!-- Slide Preview Pane -->
+  <div class="slide-preview-pane" id="slidePrevPane">
+    <div class="slide-preview-header">
+      <i class="fa fa-layer-group" style="color:var(--accent)"></i> معاينة الشرائح
+      <span style="margin-right:auto;font-size:11px;color:var(--text-muted)" id="slideTotal">0 شريحة</span>
+    </div>
+    <div class="slide-preview-scroll" id="slidePreviewScroll">
+      <!-- populated by JS -->
+      <div class="skeleton" style="height:80px;margin-bottom:10px"></div>
+      <div class="skeleton" style="height:100px;margin-bottom:10px"></div>
+      <div class="skeleton" style="height:80px;margin-bottom:10px"></div>
+    </div>
+  </div>
+
+  <!-- Meta / Comments Panel -->
+  <div class="meta-panel" id="metaPanel">
+    <div class="meta-tabs">
+      <div class="meta-tab active" id="tab-settings" onclick="switchMetaTab('settings')">⚙️ إعداد</div>
+      <div class="meta-tab" id="tab-comments" onclick="switchMetaTab('comments')">💬 تعليق</div>
+      <div class="meta-tab" id="tab-revisions" onclick="switchMetaTab('revisions')">🕐 سجل</div>
+    </div>
+
+    <!-- Settings Tab -->
+    <div class="meta-body" id="panel-settings">
+      <div class="meta-group">
+        <div class="meta-label">معرّف الفصل</div>
+        <input class="meta-input" type="text" value="prologue" id="chapterId">
+      </div>
+      <div class="meta-group">
+        <div class="meta-label">المسار (Path)</div>
+        <input class="meta-input" type="text" value="book/prologue-toc.md" id="chapterPath">
+      </div>
+      <div class="meta-group">
+        <div class="meta-label">الجزء / المجموعة</div>
+        <input class="meta-input" type="text" value="المقدمة والفهرس" id="chapterPart">
+      </div>
+      <div class="meta-group">
+        <div class="meta-label">الترتيب</div>
+        <input class="meta-input" type="number" value="1" id="chapterOrder">
+      </div>
+      <div style="margin-bottom:12px">
+        <div class="toggle-row">
+          <label>منشور</label>
+          <label class="toggle"><input type="checkbox" checked id="chapterPublished"><span class="toggle-slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <label>مخفي عن القراء</label>
+          <label class="toggle"><input type="checkbox" id="chapterHidden"><span class="toggle-slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <label>تحديث المؤشر التلقائي</label>
+          <label class="toggle"><input type="checkbox" checked id="chapterAutoSync"><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+      <div class="meta-group">
+        <div class="meta-label">خلفية الشريحة (افتراضية)</div>
+        <input class="meta-input" type="text" placeholder="#0d1117 أو رابط صورة" id="chapterBg">
+      </div>
+      <div class="meta-group">
+        <div class="meta-label">اقتران كتاب API</div>
+        <select class="meta-input">
+          <option>2030B — كن أذكى</option>
+          <option>+ ربط كتاب آخر</option>
+        </select>
+      </div>
+      <button class="btn btn-ghost" style="width:100%;margin-top:8px" onclick="saveMetadata()"><i class="fa fa-save"></i> حفظ الإعدادات</button>
+    </div>
+
+    <!-- Comments Tab -->
+    <div class="meta-body" id="panel-comments" style="display:none">
+      <div class="comment-item">
+        <div class="comment-header">
+          <div class="comment-avatar">أ</div>
+          <span class="comment-author">أحمد سالم</span>
+          <span class="comment-time">منذ 3 ساعات</span>
+        </div>
+        <div class="comment-text">هذه المقدمة رائعة! هل يمكنك إضافة المزيد من الأمثلة العملية؟</div>
+        <div class="comment-actions">
+          <span class="comment-action"><i class="fa fa-reply"></i> رد</span>
+          <span class="comment-action"><i class="fa fa-thumbs-up"></i> 3</span>
+          <span class="comment-action note-link"><i class="fa fa-sticky-note"></i> ملاحظة</span>
+        </div>
+        <!-- Reply -->
+        <div class="reply-item">
+          <div class="comment-header">
+            <div class="comment-avatar" style="background:linear-gradient(135deg,var(--accent2),#0d1117);color:#0d1117;width:20px;height:20px;font-size:9px">م</div>
+            <span class="comment-author" style="font-size:11px">أنت (المؤلف)</span>
+            <span class="comment-time">منذ ساعة</span>
+          </div>
+          <div class="comment-text">شكراً! سأضيف أمثلة في الفصل الثالث</div>
+        </div>
+      </div>
+      <div class="comment-item">
+        <div class="comment-header">
+          <div class="comment-avatar" style="background:linear-gradient(135deg,#e91e63,#9c27b0)">س</div>
+          <span class="comment-author">سارة المنصوري</span>
+          <span class="comment-time">أمس</span>
+        </div>
+        <div class="comment-text">هل سيُضاف فصل عن التطبيقات العملية للذكاء الاصطناعي؟</div>
+        <div class="comment-actions">
+          <span class="comment-action"><i class="fa fa-reply"></i> رد</span>
+          <span class="comment-action"><i class="fa fa-thumbs-up"></i> 7</span>
+        </div>
+      </div>
+      <div class="comment-input-wrap">
+        <textarea class="comment-input" rows="2" placeholder="اكتب ردّك أو تعليقاً..."></textarea>
+        <div style="display:flex;justify-content:flex-left;margin-top:6px;gap:6px">
+          <button class="btn btn-ghost" style="padding:5px 10px;font-size:11px"><i class="fa fa-at"></i> إشارة</button>
+          <button class="btn btn-primary" style="padding:5px 12px;font-size:11px">إرسال</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revisions Tab -->
+    <div class="meta-body" id="panel-revisions" style="display:none">
+      <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">آخر 50 تعديل — اضغط للاستعادة</div>
+      <div id="revisionsList">
+        <div class="rev-item">
+          <div class="rev-hash">a3f7d9c</div>
+          <div class="rev-msg">تحديث: إضافة الفقرة الثالثة</div>
+          <div class="rev-meta">منذ 5 دقائق · 1,247 كلمة</div>
+        </div>
+        <div class="rev-item">
+          <div class="rev-hash">b2e1f8a</div>
+          <div class="rev-msg">تعديل: تصحيح أخطاء إملائية</div>
+          <div class="rev-meta">منذ 23 دقيقة · 1,203 كلمة</div>
+        </div>
+        <div class="rev-item">
+          <div class="rev-hash">c9d4e2b</div>
+          <div class="rev-msg">إنشاء الفصل</div>
+          <div class="rev-meta">منذ ساعتين · 980 كلمة</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Save Toast -->
+<div class="save-toast" id="saveToast"><i class="fa fa-check-circle"></i> تم الحفظ</div>
+
+<script>
+// Initial MD content
+const sampleMD = `# 🌟 مرحباً بك في رحلة 2030B
+
+## الفهرس
+
+هذا الكتاب هو رحلتك نحو بناء عقل أذكى في عصر الذكاء الاصطناعي.
+
+---
+
+## 🎯 ما ستتعلمه
+
+- **الجزء الأول**: القصة والرؤية — لماذا نحتاج إلى أن نكون أذكى
+- **الجزء الثاني**: SelfAI — كيف تبني نظام ذكاء اصطناعي شخصي
+- **الجزء الثالث**: التطبيق — من النظرية إلى الواقع
+- **الجزء الرابع**: المستقبل — كيف تستعد لعالم 2030
+
+---
+
+## 💡 كيف تقرأ هذا الكتاب
+
+> اقرأ كل شريحة بتأمل. لا تتسرع. الفهم أهم من السرعة.
+
+### نصيحة المؤلف
+
+كل فصل مصمم كوحدة مستقلة. يمكنك البدء من أي مكان،
+لكننا نوصي بالترتيب للمبتدئين.
+
+---
+
+## 🚀 ابدأ رحلتك الآن
+
+\`\`\`
+"الذكاء ليس ما تعرفه، بل ما تفعله حين لا تعرف"
+— آلبرت أينشتاين
+\`\`\`
+
+![غلاف الكتاب](https://via.placeholder.com/800x400/0d1117/58a6ff?text=2030B+Book+Cover)
+
+---`;
+
+let easyMDE;
+let currentMode = 'write';
+let autoSaveTimer;
+let revisionNum = 1;
+
+// Initialize EasyMDE
+window.addEventListener('DOMContentLoaded', () => {
+  easyMDE = new EasyMDE({
+    element: document.getElementById('mdEditor'),
+    initialValue: sampleMD,
+    spellChecker: false,
+    autofocus: true,
+    direction: 'rtl',
+    placeholder: 'ابدأ الكتابة هنا بصيغة Markdown...\n\n# عنوان الشريحة\n\nمحتوى الشريحة...\n\n---',
+    toolbar: [
+      'bold','italic','strikethrough','|',
+      'heading-1','heading-2','heading-3','|',
+      'quote','unordered-list','ordered-list','|',
+      'link','image','table','|',
+      'horizontal-rule','|',
+      { name: 'slide-break', action: insertSlide, className:'fa fa-cut', title:'إدراج فاصل شريحة (---)' },
+      '|','preview','side-by-side','fullscreen','|','guide'
+    ],
+    previewRender: (text) => {
+      return marked.parse(text);
+    },
+    status: false,
+    autosave: { enabled: false },
+    renderingConfig: { singleLineBreaks: false },
+    sideBySideFullscreen: false,
+  });
+
+  easyMDE.codemirror.on('change', onEditorChange);
+  easyMDE.codemirror.on('cursorActivity', updateCursor);
+  updateStats();
+  updateSlidePreview();
+});
+
+function insertSlide(editor) {
+  const cm = editor.codemirror;
+  const pos = cm.getCursor();
+  cm.replaceRange('\n\n---\n\n', pos);
+}
+
+function onEditorChange() {
+  updateStats();
+  updateSlidePreview();
+  setStatus('editing');
+  clearTimeout(autoSaveTimer);
+  autoSaveTimer = setTimeout(autoSave, 3000);
+  // Live preview
+  if (currentMode === 'split') {
+    document.getElementById('previewContent').innerHTML = marked.parse(easyMDE.value());
+  }
+}
+
+function updateStats() {
+  const text = easyMDE ? easyMDE.value() : '';
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const slides = (text.match(/^---$/gm) || []).length + 1;
+  const readTime = Math.ceil(words / 200);
+  document.getElementById('wordCount').textContent = words.toLocaleString('ar');
+  document.getElementById('readTime').textContent = readTime;
+  document.getElementById('slideCount').textContent = slides;
+  document.getElementById('slideTotal').textContent = `${slides} شريحة`;
+}
+
+function updateSlidePreview() {
+  if (!easyMDE) return;
+  const text = easyMDE.value();
+  const slides = text.split(/^---$/m).map(s => s.trim()).filter(s => s);
+  const container = document.getElementById('slidePreviewScroll');
+  container.innerHTML = '';
+  slides.forEach((slide, i) => {
+    const div = document.createElement('div');
+    div.className = 'slide-card' + (i === 0 ? ' active' : '');
+    const preview = marked.parse(slide).replace(/<[^>]+>/g, ' ').substring(0, 120);
+    const isHeading = slide.startsWith('#');
+    const isQuote = slide.includes('>');
+    const isImage = slide.includes('![');
+    const type = isImage ? 'image' : isHeading ? 'heading' : isQuote ? 'quote' : 'content';
+    const typeLabel = {heading:'عنوان',content:'محتوى',image:'صورة',quote:'اقتباس'}[type];
+    div.innerHTML = `
+      <div class="slide-num">الشريحة ${i+1}</div>
+      <span class="slide-type-badge ${type}">${typeLabel}</span>
+      <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">${preview}...</div>`;
+    div.onclick = () => jumpToSlide(i);
+    container.appendChild(div);
+  });
+}
+
+function jumpToSlide(idx) {
+  document.querySelectorAll('.slide-card').forEach((c,i) => c.classList.toggle('active', i === idx));
+  if (!easyMDE) return;
+  const text = easyMDE.value();
+  const parts = text.split(/^---$/m);
+  let charPos = 0;
+  for (let i = 0; i < idx; i++) charPos += parts[i].length + 3;
+  const cm = easyMDE.codemirror;
+  const line = cm.posFromIndex(charPos);
+  cm.setCursor(line);
+  cm.scrollIntoView(line, 100);
+}
+
+function updateCursor() {
+  if (!easyMDE) return;
+  const cur = easyMDE.codemirror.getCursor();
+  document.getElementById('cursorPos').textContent = `سطر ${cur.line+1}، عمود ${cur.ch+1}`;
+}
+
+function setMode(mode, tab) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const ep = document.getElementById('editorPane');
+  const pp = document.getElementById('previewPane');
+  const sp = document.getElementById('slidePrevPane');
+
+  ep.style.display = mode === 'preview' ? 'none' : 'flex';
+  pp.classList.toggle('show', mode === 'split' || mode === 'preview');
+  if (mode === 'split') {
+    document.getElementById('previewContent').innerHTML = marked.parse(easyMDE.value());
+    ep.style.flex = '1'; pp.style.flex = '1';
+  }
+  if (mode === 'slides') {
+    sp.style.display = 'flex';
+  }
+  if (mode === 'preview') {
+    document.getElementById('previewContent').innerHTML = marked.parse(easyMDE.value());
+  }
+}
+
+function insertSlideTemplate(type) {
+  if (!easyMDE) return;
+  const templates = {
+    heading: '\n\n---\n\n# 🎯 عنوان الشريحة\n\nمحتوى موجز هنا\n\n',
+    quote: '\n\n---\n\n> 💬 "نص الاقتباس هنا"\n>\n> — اسم القائل\n\n',
+    image: '\n\n---\n\n## عنوان الشريحة\n\n![وصف الصورة](رابط-الصورة)\n\nنص تفسيري أسفل الصورة.\n\n',
+    video: '\n\n---\n\n## 🎬 عنوان الفيديو\n\n<video controls>\n  <source src="رابط-الفيديو.mp4" type="video/mp4">\n</video>\n\n',
+    list: '\n\n---\n\n## 📋 عنوان القائمة\n\n- **النقطة الأولى**: تفاصيل\n- **النقطة الثانية**: تفاصيل\n- **النقطة الثالثة**: تفاصيل\n\n',
+    code: '\n\n---\n\n## 💻 مثال عملي\n\n```javascript\n// كود هنا\nconst example = "Hello World";\nconsole.log(example);\n```\n\n',
+    divider: '\n\n---\n\n',
+    bg: '\n\n---\n\n<!-- bg:#1a3a5c -->\n\n# 🎨 شريحة بخلفية مخصصة\n\nيمكنك تحديد لون أو صورة خلفية\n\n',
+    animation: '\n\n---\n\n<!-- animate:fadeIn -->\n\n# ✨ شريحة متحركة\n\nستظهر هذه الشريحة بتأثير fadeIn\n\n',
+  };
+  const cm = easyMDE.codemirror;
+  cm.replaceRange(templates[type] || '', cm.getCursor());
+  cm.focus();
+}
+
+function setStatus(status) {
+  const dot = document.getElementById('statusDot');
+  const text = document.getElementById('statusText');
+  if (status === 'editing') { dot.style.background = 'var(--accent4)'; text.textContent = 'جاري التعديل...'; }
+  else if (status === 'saving') { dot.style.background = 'var(--accent)'; text.textContent = 'جاري الحفظ...'; }
+  else if (status === 'saved') { dot.style.background = 'var(--accent2)'; text.textContent = 'محفوظ'; }
+  else { dot.style.background = 'var(--text-muted)'; text.textContent = 'جاهز'; }
+}
+
+function autoSave() { saveDraft(true); }
+
+async function saveDraft(silent = false) {
+  setStatus('saving');
+  const content = easyMDE ? easyMDE.value() : '';
+  const words = content.trim().split(/\s+/).length;
+  const token = localStorage.getItem('wb_token') || '';
+
+  try {
+    // Save to API
+    const r = await fetch('https://2030b.com/webbook/api/books/BOOK_ID/chapters/CHAPTER_ID', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ content, word_count: words })
+    });
+  } catch(e) { /* offline */ }
+
+  revisionNum++;
+  document.getElementById('revNum').textContent = revisionNum;
+  document.getElementById('lastSaved').textContent = new Date().toLocaleTimeString('ar');
+  setStatus('saved');
+  if (!silent) {
+    const toast = document.getElementById('saveToast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+  addRevisionEntry();
+}
+
+function addRevisionEntry() {
+  const list = document.getElementById('revisionsList');
+  const item = document.createElement('div');
+  item.className = 'rev-item';
+  const hash = Math.random().toString(36).substr(2, 7);
+  const wc = document.getElementById('wordCount').textContent;
+  item.innerHTML = `<div class="rev-hash">${hash}</div><div class="rev-msg">حفظ تلقائي</div><div class="rev-meta">الآن · ${wc} كلمة</div>`;
+  list.insertBefore(item, list.firstChild);
+}
+
+async function publishChapter() {
+  await saveDraft(true);
+  alert('✅ تم نشر الفصل بنجاح!');
+  document.querySelectorAll('.tree-item.active .ti-status').forEach(d => { d.classList.remove('draft'); d.classList.add('pub'); });
+}
+
+function togglePanel(panel) {
+  switchMetaTab(panel);
+  document.getElementById('tab-' + panel).click();
+}
+
+function switchMetaTab(tab) {
+  ['settings','comments','revisions'].forEach(t => {
+    document.getElementById(`tab-${t}`).classList.toggle('active', t === tab);
+    document.getElementById(`panel-${t}`).style.display = t === tab ? 'block' : 'none';
+  });
+  ['historyBtn','commentBtn','noteBtn','settingsBtn'].forEach(b => document.getElementById(b).classList.remove('active'));
+  const btnMap = { revisions:'historyBtn', comments:'commentBtn', notes:'noteBtn', settings:'settingsBtn' };
+  if (btnMap[tab]) document.getElementById(btnMap[tab]).classList.add('active');
+}
+
+function selectChapter(el, idx) {
+  document.querySelectorAll('.tree-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  // In real app: load chapter content from API
+  const titles = ['المقدمة والفهرس','القصة والرؤية','الفصل الثاني','الفصلان 3 و4','SelfAI — الفصول 5-7','الجزء الثالث والرابع'];
+  document.getElementById('chapterNameInput').value = titles[idx] || `فصل ${idx+1}`;
+}
+
+function addNewChapter() {
+  window.location.href = 'webbook-create.html';
+}
+
+function saveMetadata() {
+  const toast = document.getElementById('saveToast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); saveDraft(); }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'p') { e.preventDefault(); publishChapter(); }
+});
+</script>
+</body>
+</html>

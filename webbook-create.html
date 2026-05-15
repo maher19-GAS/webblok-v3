@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebBook — إنشاء كتاب جديد</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root {
+  --bg-primary:#0d1117; --bg-secondary:#161b22; --bg-card:#1c2128; --bg-hover:#21262d;
+  --border:#30363d; --border-light:#21262d;
+  --accent:#58a6ff; --accent-glow:rgba(88,166,255,.15); --accent2:#3fb950; --accent3:#d2a8ff;
+  --accent4:#ffa657; --accent5:#f85149;
+  --text-primary:#e6edf3; --text-secondary:#8b949e; --text-muted:#484f58;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Cairo',sans-serif;background:var(--bg-primary);color:var(--text-primary);min-height:100vh}
+
+/* Layout */
+.sidebar{width:260px;background:var(--bg-secondary);border-left:1px solid var(--border);height:100vh;position:fixed;right:0;top:0;display:flex;flex-direction:column;z-index:100}
+.sidebar-logo{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent3));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.sidebar-nav{flex:1;padding:12px 0;overflow-y:auto}
+.nav-section{padding:8px 16px 4px;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 24px;color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:all .2s;border-right:3px solid transparent;cursor:pointer}
+.nav-item:hover{color:var(--text-primary);background:var(--bg-hover)}
+.nav-item.active{color:var(--accent);background:var(--accent-glow);border-right-color:var(--accent)}
+.nav-item .nav-icon{width:20px;text-align:center;font-size:15px}
+.sidebar-footer{padding:16px 24px;border-top:1px solid var(--border)}
+.user-chip{display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px;border-radius:10px;transition:background .2s}
+.user-chip:hover{background:var(--bg-hover)}
+.user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+
+.main{margin-right:260px;min-height:100vh;display:flex;flex-direction:column}
+.topbar{height:64px;background:var(--bg-secondary);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 32px;gap:16px;position:sticky;top:0;z-index:50}
+.topbar-title{font-size:18px;font-weight:700;flex:1}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-primary{background:var(--accent);color:#0d1117}
+.btn-primary:hover{background:#79c0ff}
+.btn-ghost{background:transparent;color:var(--text-secondary);border:1px solid var(--border)}
+.btn-ghost:hover{color:var(--text-primary);border-color:var(--accent)}
+.btn-success{background:var(--accent2);color:#0d1117}
+.btn-success:hover{background:#56d364}
+
+.content{padding:32px;flex:1}
+
+/* Wizard Steps */
+.wizard-bar{display:flex;align-items:center;margin-bottom:32px;gap:0}
+.wizard-step{display:flex;align-items:center;gap:10px;flex:1}
+.step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;border:2px solid var(--border);color:var(--text-muted);background:var(--bg-card);transition:all .3s}
+.step-num.active{border-color:var(--accent);color:var(--accent);background:var(--accent-glow)}
+.step-num.done{border-color:var(--accent2);color:#0d1117;background:var(--accent2)}
+.step-label{font-size:13px;font-weight:600;color:var(--text-muted)}
+.step-label.active{color:var(--text-primary)}
+.step-line{flex:1;height:2px;background:var(--border);margin:0 8px}
+.step-line.done{background:var(--accent2)}
+
+/* Form */
+.form-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px}
+.form-section{padding:24px 28px;border-bottom:1px solid var(--border)}
+.form-section:last-child{border-bottom:none}
+.form-section-title{font-size:15px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+label{font-size:13px;font-weight:600;color:var(--text-secondary)}
+input[type=text],input[type=url],select,textarea{background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-family:inherit;font-size:14px;padding:10px 14px;width:100%;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+input::placeholder,textarea::placeholder{color:var(--text-muted)}
+.field-hint{font-size:11px;color:var(--text-muted);margin-top:2px}
+.char-count{font-size:11px;color:var(--text-muted);text-align:left}
+
+/* Language selector */
+.lang-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.lang-opt{padding:10px;border:2px solid var(--border);border-radius:10px;text-align:center;cursor:pointer;transition:all .2s;font-size:13px}
+.lang-opt:hover{border-color:var(--accent)}
+.lang-opt.selected{border-color:var(--accent);background:var(--accent-glow);color:var(--accent)}
+.lang-flag{font-size:20px;display:block;margin-bottom:4px}
+
+/* Theme selector */
+.theme-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.theme-opt{border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .2s}
+.theme-opt:hover{border-color:var(--accent)}
+.theme-opt.selected{border-color:var(--accent)}
+.theme-preview{height:60px;display:flex;flex-direction:column;gap:4px;padding:8px}
+.theme-bar{border-radius:3px;height:6px}
+.theme-name{font-size:11px;text-align:center;padding:6px;color:var(--text-secondary);border-top:1px solid var(--border)}
+
+/* Cover upload */
+.cover-upload{width:140px;height:200px;border:2px dashed var(--border);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:all .2s;background:var(--bg-hover);font-size:12px;color:var(--text-muted);text-align:center;padding:12px}
+.cover-upload:hover{border-color:var(--accent);color:var(--accent)}
+.cover-upload i{font-size:28px}
+.cover-preview{width:140px;height:200px;border-radius:12px;object-fit:cover;display:none}
+
+/* Chapter list */
+.chapter-list{display:flex;flex-direction:column;gap:10px}
+.chapter-item{display:flex;align-items:center;gap:12px;background:var(--bg-hover);border:1px solid var(--border);border-radius:10px;padding:12px 16px;cursor:grab}
+.chapter-item:hover{border-color:var(--accent)}
+.chapter-drag{color:var(--text-muted);cursor:grab}
+.chapter-num{width:28px;height:28px;border-radius:8px;background:var(--accent-glow);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.chapter-title-input{flex:1;background:none;border:none;color:var(--text-primary);font-family:inherit;font-size:14px;outline:none}
+.chapter-title-input::placeholder{color:var(--text-muted)}
+.chapter-actions{display:flex;gap:6px}
+.chapter-btn{width:28px;height:28px;border-radius:6px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s}
+.chapter-btn.del{background:rgba(248,81,73,.1);color:var(--accent5)}
+.chapter-btn.del:hover{background:var(--accent5);color:#fff}
+.add-chapter-btn{border:2px dashed var(--border);border-radius:10px;padding:12px;text-align:center;color:var(--text-muted);cursor:pointer;transition:all .2s;font-size:13px}
+.add-chapter-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-glow)}
+
+/* Visibility toggle */
+.vis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.vis-opt{border:2px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s}
+.vis-opt:hover{border-color:var(--accent)}
+.vis-opt.selected{border-color:var(--accent);background:var(--accent-glow)}
+.vis-opt .vis-icon{font-size:22px;margin-bottom:8px}
+.vis-opt .vis-name{font-size:13px;font-weight:700}
+.vis-opt .vis-desc{font-size:11px;color:var(--text-muted);margin-top:4px}
+
+/* Progress saving */
+.save-bar{position:fixed;bottom:24px;left:50%;transform:translateX(50%);background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:12px 24px;display:flex;align-items:center;gap:16px;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:200;margin-left:-260px}
+.save-status{font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:8px}
+.save-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Skeleton */
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+.skeleton{background:linear-gradient(90deg,#1c2128 25%,#21262d 50%,#1c2128 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:6px}
+
+@media(max-width:900px){.sidebar{display:none}.main{margin-right:0}.form-grid{grid-template-columns:1fr}.lang-grid{grid-template-columns:repeat(3,1fr)}.theme-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">📚</div>
+    <div style="font-size:18px;font-weight:700">WebBook</div>
+    <span style="font-size:10px;color:var(--text-secondary);background:var(--bg-hover);padding:2px 6px;border-radius:10px">v6</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">الرئيسية</div>
+    <a class="nav-item" href="webbook-dashboard.html"><span class="nav-icon"><i class="fa fa-home"></i></span>لوحة التحكم</a>
+    <a class="nav-item" href="webbook-author-dashboard.html"><span class="nav-icon"><i class="fa fa-pen-nib"></i></span>لوحة المؤلف</a>
+    <div class="nav-section">إدارة الكتب</div>
+    <a class="nav-item active" href="webbook-create.html"><span class="nav-icon"><i class="fa fa-plus-circle"></i></span>إنشاء كتاب</a>
+    <a class="nav-item" href="webbook-edit.html"><span class="nav-icon"><i class="fa fa-edit"></i></span>تعديل الكتب</a>
+    <a class="nav-item" href="webbook-fork.html"><span class="nav-icon"><i class="fa fa-code-branch"></i></span>نسخ كتاب</a>
+    <div class="nav-section">المجتمع</div>
+    <a class="nav-item" href="#"><span class="nav-icon"><i class="fa fa-comments"></i></span>التعليقات</a>
+    <a class="nav-item" href="#"><span class="nav-icon"><i class="fa fa-bookmark"></i></span>المفضلة</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-chip">
+      <div class="user-avatar">م</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:600">محمد المؤلف</div>
+        <div style="font-size:11px;color:var(--accent4)">✨ Pro Plan</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="main">
+  <header class="topbar">
+    <div style="display:flex;align-items:center;gap:10px;flex:1">
+      <a href="webbook-dashboard.html" class="btn btn-ghost" style="padding:6px 12px"><i class="fa fa-arrow-right"></i></a>
+      <h2 class="topbar-title">إنشاء كتاب جديد</h2>
+    </div>
+    <button class="btn btn-ghost" id="saveDraftBtn"><i class="fa fa-save"></i> حفظ مسودة</button>
+    <button class="btn btn-success" id="publishBtn" onclick="publishBook()"><i class="fa fa-rocket"></i> نشر الكتاب</button>
+  </header>
+
+  <div class="content">
+    <!-- Wizard Steps -->
+    <div class="wizard-bar">
+      <div class="wizard-step">
+        <div class="step-num active" id="s1">1</div>
+        <div class="step-label active" id="sl1">المعلومات الأساسية</div>
+      </div>
+      <div class="step-line" id="line1"></div>
+      <div class="wizard-step">
+        <div class="step-num" id="s2">2</div>
+        <div class="step-label" id="sl2">الفصول والمحتوى</div>
+      </div>
+      <div class="step-line" id="line2"></div>
+      <div class="wizard-step">
+        <div class="step-num" id="s3">3</div>
+        <div class="step-label" id="sl3">المظهر والنشر</div>
+      </div>
+      <div class="step-line" id="line3"></div>
+      <div class="wizard-step">
+        <div class="step-num" id="s4">4</div>
+        <div class="step-label" id="sl4">مراجعة ونشر</div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Basic Info -->
+    <div id="step1">
+      <div class="form-card">
+        <div class="form-section">
+          <div class="form-section-title"><i class="fa fa-book" style="color:var(--accent)"></i> معلومات الكتاب</div>
+          <div style="display:flex;gap:28px;align-items:flex-start">
+            <!-- Cover -->
+            <div>
+              <label style="display:block;margin-bottom:8px">غلاف الكتاب</label>
+              <div class="cover-upload" id="coverUpload" onclick="document.getElementById('coverInput').click()">
+                <i class="fa fa-image"></i>
+                <span>اختر صورة الغلاف</span>
+                <span style="font-size:10px">JPG, PNG, WebP · 10MB</span>
+              </div>
+              <img id="coverPreview" class="cover-preview" alt="Cover">
+              <input type="file" id="coverInput" accept="image/*" style="display:none" onchange="previewCover(this)">
+              <div style="display:flex;gap:6px;margin-top:8px">
+                <button class="btn btn-ghost" style="padding:4px 10px;font-size:11px;flex:1" onclick="generateAICover()"><i class="fa fa-magic"></i> AI غلاف</button>
+                <button class="btn btn-ghost" style="padding:4px 10px;font-size:11px;flex:1" onclick="document.getElementById('coverInput').click()"><i class="fa fa-upload"></i> رفع</button>
+              </div>
+            </div>
+            <!-- Fields -->
+            <div class="form-grid" style="flex:1">
+              <div class="form-group full">
+                <label>عنوان الكتاب *</label>
+                <input type="text" id="bookTitle" placeholder="مثال: 2030B — كن أذكى" maxlength="120" oninput="updateSlug();updateCharCount(this,'titleCount')">
+                <div style="display:flex;justify-content:space-between">
+                  <span class="field-hint">عنوان جذاب وواضح يصف محتوى كتابك</span>
+                  <span class="char-count"><span id="titleCount">0</span>/120</span>
+                </div>
+              </div>
+              <div class="form-group full">
+                <label>الوصف المختصر *</label>
+                <textarea id="bookDesc" placeholder="اكتب وصفاً موجزاً للكتاب يشجع القراء على القراءة..." rows="3" maxlength="500" oninput="updateCharCount(this,'descCount')"></textarea>
+                <div style="display:flex;justify-content:space-between">
+                  <span class="field-hint">يظهر في نتائج البحث وصفحة الكتاب العامة</span>
+                  <span class="char-count"><span id="descCount">0</span>/500</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>الرابط المخصص (Slug)</label>
+                <div style="display:flex;align-items:center;background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;overflow:hidden">
+                  <span style="padding:10px 12px;color:var(--text-muted);font-size:12px;border-left:1px solid var(--border);background:var(--bg-card)">2030b.com/webbook/</span>
+                  <input type="text" id="bookSlug" placeholder="my-book-slug" style="border:none;border-radius:0;background:transparent" oninput="validateSlug(this)">
+                </div>
+                <span class="field-hint" id="slugStatus">أدخل عنوان الكتاب لتوليد رابط تلقائي</span>
+              </div>
+              <div class="form-group">
+                <label>الفئة / التصنيف</label>
+                <select id="bookCategory">
+                  <option value="">اختر التصنيف...</option>
+                  <option>تطوير الذات</option>
+                  <option>التقنية والذكاء الاصطناعي</option>
+                  <option>ريادة الأعمال</option>
+                  <option>العلوم والمعرفة</option>
+                  <option>الأدب والفنون</option>
+                  <option>التاريخ والثقافة</option>
+                  <option>الصحة واللياقة</option>
+                  <option>أخرى</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Language -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="fa fa-language" style="color:var(--accent3)"></i> اللغة والاتجاه</div>
+          <div class="lang-grid" id="langGrid">
+            <div class="lang-opt selected" onclick="selectLang(this,'ar','rtl')"><span class="lang-flag">🇸🇦</span>العربية</div>
+            <div class="lang-opt" onclick="selectLang(this,'en','ltr')"><span class="lang-flag">🇺🇸</span>English</div>
+            <div class="lang-opt" onclick="selectLang(this,'fr','ltr')"><span class="lang-flag">🇫🇷</span>Français</div>
+            <div class="lang-opt" onclick="selectLang(this,'de','ltr')"><span class="lang-flag">🇩🇪</span>Deutsch</div>
+            <div class="lang-opt" onclick="selectLang(this,'es','ltr')"><span class="lang-flag">🇪🇸</span>Español</div>
+            <div class="lang-opt" onclick="selectLang(this,'tr','ltr')"><span class="lang-flag">🇹🇷</span>Türkçe</div>
+            <div class="lang-opt" onclick="selectLang(this,'ur','rtl')"><span class="lang-flag">🇵🇰</span>اردو</div>
+            <div class="lang-opt" onclick="selectLang(this,'fa','rtl')"><span class="lang-flag">🇮🇷</span>فارسی</div>
+            <div class="lang-opt" onclick="selectLang(this,'zh','ltr')"><span class="lang-flag">🇨🇳</span>中文</div>
+            <div class="lang-opt" onclick="selectLang(this,'ja','ltr')"><span class="lang-flag">🇯🇵</span>日本語</div>
+            <div class="lang-opt" onclick="selectLang(this,'ru','ltr')"><span class="lang-flag">🇷🇺</span>Русский</div>
+            <div class="lang-opt" onclick="selectLang(this,'hi','ltr')"><span class="lang-flag">🇮🇳</span>हिन्दी</div>
+          </div>
+          <div style="margin-top:12px;display:flex;align-items:center;gap:12px">
+            <span style="font-size:13px;color:var(--text-secondary)">الاتجاه المحدد:</span>
+            <span id="dirLabel" style="padding:3px 12px;border-radius:20px;background:var(--accent-glow);color:var(--accent);font-size:12px;font-weight:600">RTL (يمين لليسار)</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:flex-left">
+        <button class="btn btn-primary" onclick="goStep(2)">التالي: الفصول <i class="fa fa-arrow-left"></i></button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Chapters -->
+    <div id="step2" style="display:none">
+      <div class="form-card">
+        <div class="form-section">
+          <div class="form-section-title"><i class="fa fa-list-ol" style="color:var(--accent2)"></i> هيكل الكتاب والفصول</div>
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:20px">أضف الفصول ورتّبها بالسحب والإفلات. محتوى كل فصل يُكتب في المرحلة التالية.</p>
+
+          <div class="chapter-list" id="chapterList">
+            <div class="chapter-item" draggable="true">
+              <i class="fa fa-grip-vertical chapter-drag" style="color:var(--text-muted)"></i>
+              <div class="chapter-num">1</div>
+              <div style="flex:1">
+                <input class="chapter-title-input" type="text" placeholder="عنوان الفصل الأول..." value="المقدمة والفهرس">
+                <div style="display:flex;gap:16px;margin-top:4px">
+                  <input type="text" placeholder="المجموعة / الجزء..." style="background:none;border:none;color:var(--text-muted);font-size:11px;font-family:inherit;outline:none;flex:1" value="المقدمة">
+                  <input type="text" placeholder="معرّف فريد..." style="background:none;border:none;color:var(--text-muted);font-size:11px;font-family:inherit;outline:none;width:100px" value="prologue">
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:11px;color:var(--text-muted)">0 كلمة</span>
+                <button class="chapter-btn" style="background:rgba(88,166,255,.1);color:var(--accent)" onclick="openEditor(0)"><i class="fa fa-edit"></i></button>
+                <button class="chapter-btn del" onclick="removeChapter(this)"><i class="fa fa-trash"></i></button>
+              </div>
+            </div>
+            <div class="chapter-item" draggable="true">
+              <i class="fa fa-grip-vertical chapter-drag" style="color:var(--text-muted)"></i>
+              <div class="chapter-num">2</div>
+              <div style="flex:1">
+                <input class="chapter-title-input" type="text" placeholder="عنوان الفصل..." value="الفصل الأول — القصة والرؤية">
+                <div style="display:flex;gap:16px;margin-top:4px">
+                  <input type="text" placeholder="الجزء..." style="background:none;border:none;color:var(--text-muted);font-size:11px;font-family:inherit;outline:none;flex:1" value="الجزء الأول">
+                  <input type="text" placeholder="id..." style="background:none;border:none;color:var(--text-muted);font-size:11px;font-family:inherit;outline:none;width:100px" value="ch01">
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:11px;color:var(--text-muted)">0 كلمة</span>
+                <button class="chapter-btn" style="background:rgba(88,166,255,.1);color:var(--accent)" onclick="openEditor(1)"><i class="fa fa-edit"></i></button>
+                <button class="chapter-btn del" onclick="removeChapter(this)"><i class="fa fa-trash"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="add-chapter-btn" style="margin-top:12px" onclick="addChapter()">
+            <i class="fa fa-plus"></i> إضافة فصل جديد
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title"><i class="fa fa-file-import" style="color:var(--accent4)"></i> استيراد المحتوى</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+            <div class="add-chapter-btn" onclick="importMD()"><i class="fa fa-file-code"></i><br>استيراد Markdown</div>
+            <div class="add-chapter-btn" onclick="importGit()"><i class="fa fa-github"></i><br>من GitHub Repo</div>
+            <div class="add-chapter-btn" onclick="importURL()"><i class="fa fa-link"></i><br>من رابط URL</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between">
+        <button class="btn btn-ghost" onclick="goStep(1)"><i class="fa fa-arrow-right"></i> السابق</button>
+        <button class="btn btn-primary" onclick="goStep(3)">التالي: المظهر <i class="fa fa-arrow-left"></i></button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Appearance -->
+    <div id="step3" style="display:none">
+      <div class="form-card">
+        <div class="form-section">
+          <div class="form-section-title"><i class="fa fa-palette" style="color:var(--accent3)"></i> المظهر والثيم</div>
+          <div class="theme-grid" id="themeGrid">
+            <div class="theme-opt selected" onclick="selectTheme(this,'dark-night')">
+              <div class="theme-preview" style="background:#0a0e1a">
+                <div class="theme-bar" style="background:#58a6ff;width:80%"></div>
+                <div class="theme-bar" style="background:#30363d;width:60%"></div>
+                <div class="theme-bar" style="background:#21262d;width:90%"></div>
+              </div>
+              <div class="theme-name">Dark Night</div>
+            </div>
+            <div class="theme-opt" onclick="selectTheme(this,'deep-ocean')">
+              <div class="theme-preview" style="background:#0a1628">
+                <div class="theme-bar" style="background:#00d4ff;width:80%"></div>
+                <div class="theme-bar" style="background:#1a3a5c;width:60%"></div>
+                <div class="theme-bar" style="background:#0d2137;width:90%"></div>
+              </div>
+              <div class="theme-name">Deep Ocean</div>
+            </div>
+            <div class="theme-opt" onclick="selectTheme(this,'emerald')">
+              <div class="theme-preview" style="background:#0a1a0a">
+                <div class="theme-bar" style="background:#3fb950;width:80%"></div>
+                <div class="theme-bar" style="background:#1a3a1a;width:60%"></div>
+                <div class="theme-bar" style="background:#0d200d;width:90%"></div>
+              </div>
+              <div class="theme-name">Emerald</div>
+            </div>
+            <div class="theme-opt" onclick="selectTheme(this,'sunset')">
+              <div class="theme-preview" style="background:#1a0a14">
+                <div class="theme-bar" style="background:#ff7b72;width:80%"></div>
+                <div class="theme-bar" style="background:#3a1a2a;width:60%"></div>
+                <div class="theme-bar" style="background:#200d18;width:90%"></div>
+              </div>
+              <div class="theme-name">Sunset</div>
+            </div>
+            <div class="theme-opt" onclick="selectTheme(this,'royal-purple')">
+              <div class="theme-preview" style="background:#110a1a">
+                <div class="theme-bar" style="background:#d2a8ff;width:80%"></div>
+                <div class="theme-bar" style="background:#2a1a3a;width:60%"></div>
+                <div class="theme-bar" style="background:#180d20;width:90%"></div>
+              </div>
+              <div class="theme-name">Royal Purple</div>
+            </div>
+            <div class="theme-opt" onclick="selectTheme(this,'neon')">
+              <div class="theme-preview" style="background:#060606">
+                <div class="theme-bar" style="background:#00ff9f;width:80%"></div>
+                <div class="theme-bar" style="background:#151515;width:60%"></div>
+                <div class="theme-bar" style="background:#0d0d0d;width:90%"></div>
+              </div>
+              <div class="theme-name">Neon</div>
+            </div>
+            <div class="theme-opt" onclick="selectTheme(this,'desert')">
+              <div class="theme-preview" style="background:#1a130a">
+                <div class="theme-bar" style="background:#ffa657;width:80%"></div>
+                <div class="theme-bar" style="background:#3a2a1a;width:60%"></div>
+                <div class="theme-bar" style="background:#20180d;width:90%"></div>
+              </div>
+              <div class="theme-name">Desert</div>
+            </div>
+            <div class="theme-opt" onclick="selectTheme(this,'rose-gold')">
+              <div class="theme-preview" style="background:#1a0f12">
+                <div class="theme-bar" style="background:#e8a598;width:80%"></div>
+                <div class="theme-bar" style="background:#3a2028;width:60%"></div>
+                <div class="theme-bar" style="background:#201318;width:90%"></div>
+              </div>
+              <div class="theme-name">Rose Gold</div>
+            </div>
+            <div class="theme-opt" onclick="selectTheme(this,'slate')">
+              <div class="theme-preview" style="background:#0f1419">
+                <div class="theme-bar" style="background:#a8b6c8;width:80%"></div>
+                <div class="theme-bar" style="background:#243040;width:60%"></div>
+                <div class="theme-bar" style="background:#18222e;width:90%"></div>
+              </div>
+              <div class="theme-name">Slate</div>
+            </div>
+            <div class="theme-opt" onclick="selectTheme(this,'light-clean')">
+              <div class="theme-preview" style="background:#f8f9fa">
+                <div class="theme-bar" style="background:#0969da;width:80%"></div>
+                <div class="theme-bar" style="background:#d0d7de;width:60%"></div>
+                <div class="theme-bar" style="background:#eaeef2;width:90%"></div>
+              </div>
+              <div class="theme-name">Light Clean</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reading Settings -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="fa fa-sliders" style="color:var(--accent2)"></i> إعدادات القراءة</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>سرعة القراءة (كلمة/دقيقة)</label>
+              <input type="text" id="readingWPM" value="200" placeholder="200">
+              <span class="field-hint">تُستخدم لحساب وقت القراءة التقديري</span>
+            </div>
+            <div class="form-group">
+              <label>حجم الشريحة (موبايل)</label>
+              <div style="display:flex;gap:8px;align-items:center">
+                <input type="text" placeholder="الحد الأدنى" value="120" style="flex:1">
+                <span style="color:var(--text-muted)">—</span>
+                <input type="text" placeholder="الحد الأقصى" value="170" style="flex:1">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>حجم الشريحة (سطح المكتب)</label>
+              <div style="display:flex;gap:8px;align-items:center">
+                <input type="text" placeholder="الحد الأدنى" value="450" style="flex:1">
+                <span style="color:var(--text-muted)">—</span>
+                <input type="text" placeholder="الحد الأقصى" value="550" style="flex:1">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>قاعدة بيانات IndexedDB</label>
+              <input type="text" id="dbName" value="wb6_v6" placeholder="wb6_v6">
+              <span class="field-hint">اسم قاعدة بيانات المتصفح (لا تغيّر إلا للتطوير)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visibility -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="fa fa-eye" style="color:var(--accent4)"></i> الرؤية والوصول</div>
+          <div class="vis-grid">
+            <div class="vis-opt" onclick="selectVis(this,'public')">
+              <div class="vis-icon">🌍</div>
+              <div class="vis-name">عام</div>
+              <div class="vis-desc">يظهر في البحث ويمكن لأي شخص القراءة</div>
+            </div>
+            <div class="vis-opt selected" onclick="selectVis(this,'unlisted')">
+              <div class="vis-icon">🔗</div>
+              <div class="vis-name">برابط فقط</div>
+              <div class="vis-desc">من يملك الرابط يستطيع القراءة</div>
+            </div>
+            <div class="vis-opt" onclick="selectVis(this,'private')">
+              <div class="vis-icon">🔒</div>
+              <div class="vis-name">خاص</div>
+              <div class="vis-desc">أنت والمتعاونون فقط</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between">
+        <button class="btn btn-ghost" onclick="goStep(2)"><i class="fa fa-arrow-right"></i> السابق</button>
+        <button class="btn btn-primary" onclick="goStep(4)">التالي: مراجعة <i class="fa fa-arrow-left"></i></button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Review -->
+    <div id="step4" style="display:none">
+      <div class="form-card">
+        <div class="form-section">
+          <div class="form-section-title"><i class="fa fa-check-circle" style="color:var(--accent2)"></i> مراجعة الكتاب قبل النشر</div>
+          <div id="reviewContent" style="display:grid;grid-template-columns:140px 1fr;gap:28px;align-items:start">
+            <div>
+              <div id="reviewCover" style="width:140px;height:200px;background:linear-gradient(135deg,#1a3a5c,#0d2137);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:40px">📖</div>
+            </div>
+            <div>
+              <div id="reviewTitle" style="font-size:22px;font-weight:700;margin-bottom:8px">—</div>
+              <div id="reviewDesc" style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-bottom:16px">—</div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px">
+                <span id="revLang" style="padding:4px 12px;background:var(--accent-glow);color:var(--accent);border-radius:20px;font-size:12px">🌍 العربية</span>
+                <span id="revTheme" style="padding:4px 12px;background:rgba(210,168,255,.15);color:var(--accent3);border-radius:20px;font-size:12px">🎨 Dark Night</span>
+                <span id="revVis" style="padding:4px 12px;background:rgba(63,185,80,.15);color:var(--accent2);border-radius:20px;font-size:12px">🔗 برابط فقط</span>
+                <span id="revChaps" style="padding:4px 12px;background:rgba(255,166,87,.15);color:var(--accent4);border-radius:20px;font-size:12px">📄 2 فصل</span>
+              </div>
+              <div style="padding:14px;background:var(--bg-hover);border-radius:10px;font-size:13px;color:var(--text-secondary)">
+                <div style="margin-bottom:4px;font-weight:600;color:var(--text-primary)"><i class="fa fa-link"></i> رابط الكتاب:</div>
+                <code id="revLink" style="color:var(--accent);font-size:12px">https://2030b.com/webbook/—</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Integration Code -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="fa fa-code" style="color:var(--accent)"></i> كود التضمين (iframe)</div>
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">انسخ هذا الكود لتضمين الكتاب في أي صفحة PHP أو HTML:</p>
+          <pre id="embedCode" style="background:var(--bg-primary);border:1px solid var(--border);border-radius:10px;padding:16px;font-size:12px;color:#a5c8ff;overflow-x:auto;white-space:pre-wrap;direction:ltr">&lt;iframe 
+  src="https://2030b.com/webbook/—?embed=1&amp;theme=dark-night&amp;lang=ar"
+  style="width:100%;height:700px;border:none;border-radius:16px"
+  allow="fullscreen"
+  title="WebBook Reader"&gt;
+&lt;/iframe&gt;</pre>
+          <button class="btn btn-ghost" style="margin-top:8px" onclick="copyEmbed()"><i class="fa fa-copy"></i> نسخ الكود</button>
+        </div>
+
+        <!-- CFG Object -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="fa fa-cog" style="color:var(--accent4)"></i> كائن الإعداد المُولَّد (CFG)</div>
+          <pre id="cfgCode" style="background:var(--bg-primary);border:1px solid var(--border);border-radius:10px;padding:16px;font-size:12px;color:#7ee787;overflow-x:auto;white-space:pre-wrap;direction:ltr">const CFG = {
+  title: '—',
+  files: [],
+  mob: { min: 120, max: 170 },
+  desk: { min: 450, max: 550 },
+  wpm: 200,
+  dbName: 'wb6_v6',
+  dbVersion: 1
+};</pre>
+          <button class="btn btn-ghost" style="margin-top:8px" onclick="copyCFG()"><i class="fa fa-copy"></i> نسخ CFG</button>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <button class="btn btn-ghost" onclick="goStep(3)"><i class="fa fa-arrow-right"></i> السابق</button>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-ghost" onclick="saveDraft()"><i class="fa fa-save"></i> حفظ مسودة</button>
+          <button class="btn btn-success" onclick="publishBook()"><i class="fa fa-rocket"></i> نشر الكتاب الآن</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</main>
+
+<!-- Save bar -->
+<div class="save-bar" id="saveBar" style="display:none">
+  <div class="save-status"><span class="save-dot"></span> جاري الحفظ التلقائي...</div>
+  <span style="color:var(--text-muted);font-size:12px">آخر حفظ: منذ لحظات</span>
+</div>
+
+<script>
+// State
+const state = { lang:'ar', dir:'rtl', theme:'dark-night', vis:'unlisted', step:1 };
+let chapterCount = 2;
+
+function updateCharCount(el, id) {
+  document.getElementById(id).textContent = el.value.length;
+}
+
+function updateSlug() {
+  const title = document.getElementById('bookTitle').value;
+  const slug = title.toLowerCase()
+    .replace(/[\u0600-\u06FF\s]+/g, match => match.trim() ? 'book' : '-')
+    .replace(/[^a-z0-9-]/g, '-')
+    .replace(/-+/g, '-').replace(/^-|-$/g, '') || 'my-book';
+  document.getElementById('bookSlug').value = slug;
+  document.getElementById('slugStatus').textContent = `✓ رابط تلقائي: 2030b.com/webbook/${slug}`;
+  document.getElementById('slugStatus').style.color = 'var(--accent2)';
+}
+
+function validateSlug(el) {
+  el.value = el.value.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+}
+
+function selectLang(el, code, dir) {
+  document.querySelectorAll('.lang-opt').forEach(x => x.classList.remove('selected'));
+  el.classList.add('selected');
+  state.lang = code; state.dir = dir;
+  document.getElementById('dirLabel').textContent = dir === 'rtl' ? 'RTL (يمين لليسار)' : 'LTR (يسار لليمين)';
+}
+
+function selectTheme(el, name) {
+  document.querySelectorAll('.theme-opt').forEach(x => x.classList.remove('selected'));
+  el.classList.add('selected');
+  state.theme = name;
+}
+
+function selectVis(el, val) {
+  document.querySelectorAll('.vis-opt').forEach(x => x.classList.remove('selected'));
+  el.classList.add('selected');
+  state.vis = val;
+}
+
+function previewCover(input) {
+  if (input.files && input.files[0]) {
+    const r = new FileReader();
+    r.onload = e => {
+      document.getElementById('coverUpload').style.display = 'none';
+      const prev = document.getElementById('coverPreview');
+      prev.src = e.target.result; prev.style.display = 'block';
+    };
+    r.readAsDataURL(input.files[0]);
+  }
+}
+
+function generateAICover() {
+  alert('سيتم توليد غلاف بالذكاء الاصطناعي باستخدام عنوان الكتاب.\n(ميزة قيد التطوير)');
+}
+
+function goStep(n) {
+  document.getElementById(`step${state.step}`).style.display = 'none';
+  // Mark wizard
+  for (let i = 1; i <= 4; i++) {
+    const sn = document.getElementById(`s${i}`);
+    const sl = document.getElementById(`sl${i}`);
+    const ln = document.getElementById(`line${i}`);
+    if (i < n) { sn.classList.add('done'); sn.classList.remove('active'); sn.innerHTML='<i class="fa fa-check"></i>'; sl.classList.remove('active'); if(ln){ln.classList.add('done');} }
+    else if (i === n) { sn.classList.remove('done'); sn.classList.add('active'); sn.textContent=i; sl.classList.add('active'); }
+    else { sn.classList.remove('done','active'); sn.textContent=i; sl.classList.remove('active'); if(ln){ln.classList.remove('done');} }
+  }
+  state.step = n;
+  document.getElementById(`step${n}`).style.display = 'block';
+  if (n === 4) buildReview();
+  window.scrollTo(0,0);
+}
+
+function buildReview() {
+  const title = document.getElementById('bookTitle').value || '—';
+  const desc = document.getElementById('bookDesc').value || '—';
+  const slug = document.getElementById('bookSlug').value || '—';
+  document.getElementById('reviewTitle').textContent = title;
+  document.getElementById('reviewDesc').textContent = desc;
+  document.getElementById('revLink').textContent = `https://2030b.com/webbook/${slug}`;
+  document.getElementById('revChaps').textContent = `📄 ${chapterCount} فصل`;
+
+  // Chapters to CFG files array
+  const chapters = Array.from(document.querySelectorAll('.chapter-item'));
+  const files = chapters.map((c, i) => {
+    const inputs = c.querySelectorAll('input');
+    const t = inputs[0].value || `chapter-${i+1}`;
+    const part = inputs[1].value || '';
+    const id = inputs[2].value || `ch${String(i+1).padStart(2,'0')}`;
+    const path = `book/${id}.md`;
+    return `    {path:'${path}', part:'${part}', id:'${id}'}`;
+  });
+
+  document.getElementById('cfgCode').textContent =
+`const CFG = {
+  title: '${title}',
+  files: [
+${files.join(',\n')}
+  ],
+  mob: { min: 120, max: 170 },
+  desk: { min: 450, max: 550 },
+  wpm: ${document.getElementById('readingWPM').value || 200},
+  dbName: '${document.getElementById('dbName').value || 'wb6_v6'}',
+  dbVersion: 1
+};`;
+
+  document.getElementById('embedCode').textContent =
+`<iframe 
+  src="https://2030b.com/webbook/${slug}?embed=1&theme=${state.theme}&lang=${state.lang}"
+  style="width:100%;height:700px;border:none;border-radius:16px"
+  allow="fullscreen"
+  title="${title}">
+</iframe>`;
+}
+
+function addChapter() {
+  chapterCount++;
+  const list = document.getElementById('chapterList');
+  const div = document.createElement('div');
+  div.className = 'chapter-item'; div.draggable = true;
+  div.innerHTML = `
+    <i class="fa fa-grip-vertical chapter-drag" style="color:var(--text-muted)"></i>
+    <div class="chapter-num">${chapterCount}</div>
+    <div style="flex:1">
+      <input class="chapter-title-input" type="text" placeholder="عنوان الفصل...">
+      <div style="display:flex;gap:16px;margin-top:4px">
+        <input type="text" placeholder="الجزء..." style="background:none;border:none;color:var(--text-muted);font-size:11px;font-family:inherit;outline:none;flex:1">
+        <input type="text" placeholder="ch${String(chapterCount).padStart(2,'0')}" style="background:none;border:none;color:var(--text-muted);font-size:11px;font-family:inherit;outline:none;width:100px" value="ch${String(chapterCount).padStart(2,'0')}">
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <span style="font-size:11px;color:var(--text-muted)">0 كلمة</span>
+      <button class="chapter-btn" style="background:rgba(88,166,255,.1);color:var(--accent)"><i class="fa fa-edit"></i></button>
+      <button class="chapter-btn del" onclick="removeChapter(this)"><i class="fa fa-trash"></i></button>
+    </div>`;
+  list.appendChild(div);
+}
+
+function removeChapter(btn) {
+  const item = btn.closest('.chapter-item');
+  if (document.querySelectorAll('.chapter-item').length > 1) {
+    item.remove(); chapterCount--;
+    document.querySelectorAll('.chapter-num').forEach((n,i) => n.textContent = i+1);
+  }
+}
+
+function openEditor(idx) { window.location.href = 'webbook-edit.html'; }
+function importMD() { alert('سيتم فتح مربع الحوار لاستيراد ملفات Markdown'); }
+function importGit() { alert('ستربط مستودع GitHub وتستورد الفصول تلقائياً'); }
+function importURL() { alert('أدخل رابط محتوى Markdown من الإنترنت'); }
+
+async function publishBook() {
+  const title = document.getElementById('bookTitle').value;
+  if (!title) { alert('يرجى إدخال عنوان الكتاب أولاً'); goStep(1); return; }
+
+  const token = localStorage.getItem('wb_token') || '';
+  const slug = document.getElementById('bookSlug').value;
+  const body = {
+    title, slug,
+    description: document.getElementById('bookDesc').value,
+    language: state.lang,
+    direction: state.dir,
+    theme: state.theme,
+    visibility: state.vis,
+    status: 'published'
+  };
+
+  try {
+    const r = await fetch('https://2030b.com/webbook/api/books', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify(body)
+    });
+    if (r.ok) {
+      const data = await r.json();
+      alert(`✅ تم نشر الكتاب بنجاح!\nالرابط: ${data.reader_url}`);
+      window.location.href = 'webbook-author-dashboard.html';
+    } else {
+      alert('حدث خطأ في النشر. تحقق من بيانات الدخول.');
+    }
+  } catch(e) {
+    // Demo mode
+    alert('✅ (وضع التجريب) تم إنشاء الكتاب بنجاح!\nسيتم التوجيه للوحة المؤلف...');
+    setTimeout(() => window.location.href = 'webbook-author-dashboard.html', 1500);
+  }
+}
+
+function saveDraft() {
+  const saveBar = document.getElementById('saveBar');
+  saveBar.style.display = 'flex';
+  setTimeout(() => saveBar.style.display = 'none', 3000);
+}
+
+function copyEmbed() {
+  navigator.clipboard.writeText(document.getElementById('embedCode').textContent);
+  alert('✓ تم نسخ كود التضمين');
+}
+
+function copyCFG() {
+  navigator.clipboard.writeText(document.getElementById('cfgCode').textContent);
+  alert('✓ تم نسخ كائن CFG');
+}
+
+// Auto-save every 30s
+setInterval(saveDraft, 30000);
+</script>
+</body>
+</html>

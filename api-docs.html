@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2030B – API & Component Documentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #080c18;
+      --bg2:      #0e1326;
+      --bg3:      #141c35;
+      --border:   rgba(255,255,255,.08);
+      --primary:  #6c63ff;
+      --green:    #43e97b;
+      --pink:     #f093fb;
+      --blue:     #63b3ed;
+      --gold:     #f6c90e;
+      --red:      #ff6b6b;
+      --text:     rgba(255,255,255,.85);
+      --muted:    rgba(255,255,255,.45);
+      --mono:     'JetBrains Mono', monospace;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Inter',sans-serif; font-size:14px; color:var(--text);
+      background:var(--bg); line-height:1.6;
+    }
+
+    /* ─── LAYOUT ─── */
+    .layout { display:flex; min-height:100vh; }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width:260px; flex-shrink:0; position:sticky; top:0;
+      height:100vh; overflow-y:auto; scrollbar-width:thin;
+      background:var(--bg2); border-right:1px solid var(--border);
+      display:flex; flex-direction:column;
+    }
+    .sidebar-brand {
+      padding:20px 20px 16px;
+      border-bottom:1px solid var(--border);
+    }
+    .sidebar-brand .logo {
+      font-size:22px; font-weight:900;
+      background:linear-gradient(135deg,#6c63ff,#43e97b);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .sidebar-brand .sub { font-size:11px; color:var(--muted); margin-top:2px; }
+
+    .nav-section { padding:12px 12px 4px; }
+    .nav-section-title {
+      font-size:10px; font-weight:700; letter-spacing:1px;
+      text-transform:uppercase; color:var(--muted); padding:0 8px 6px;
+    }
+    .nav-link {
+      display:flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:8px; text-decoration:none;
+      color:var(--muted); font-size:12px; font-weight:500;
+      transition:all .15s; cursor:pointer;
+    }
+    .nav-link:hover, .nav-link.active {
+      background:rgba(108,99,255,.12); color:var(--text);
+    }
+    .nav-link .icon { font-size:14px; width:18px; text-align:center; }
+    .nav-badge {
+      margin-left:auto; font-size:9px; font-weight:700; padding:2px 6px;
+      border-radius:10px; background:rgba(108,99,255,.25); color:#a78bfa;
+    }
+    .nav-badge.green  { background:rgba(67,233,123,.2); color:#43e97b; }
+    .nav-badge.pink   { background:rgba(240,147,251,.2); color:#f093fb; }
+    .nav-badge.gold   { background:rgba(246,201,14,.2);  color:#f6c90e; }
+
+    /* ─── MAIN CONTENT ─── */
+    .main { flex:1; overflow-x:hidden; }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding:60px 48px 48px;
+      background:linear-gradient(135deg, rgba(108,99,255,.12) 0%, rgba(67,233,123,.06) 100%);
+      border-bottom:1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      color:var(--primary); margin-bottom:12px;
+    }
+    .hero h1 { font-size:38px; font-weight:900; line-height:1.15; }
+    .hero h1 span {
+      background:linear-gradient(135deg,#6c63ff,#43e97b,#f093fb);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .hero-sub { font-size:15px; color:var(--muted); max-width:620px; margin-top:12px; line-height:1.7; }
+    .hero-meta {
+      display:flex; gap:24px; margin-top:28px; flex-wrap:wrap;
+    }
+    .meta-chip {
+      display:flex; align-items:center; gap:6px;
+      background:rgba(255,255,255,.05); border:1px solid var(--border);
+      border-radius:8px; padding:6px 14px; font-size:12px;
+    }
+    .meta-chip strong { color:var(--text); }
+    .meta-chip span   { color:var(--muted); }
+
+    /* ─── SECTION ─── */
+    .section { padding:40px 48px; border-bottom:1px solid var(--border); }
+    .section:last-child { border-bottom:none; }
+    .section-header {
+      display:flex; align-items:center; gap:12px; margin-bottom:28px;
+    }
+    .section-icon {
+      width:42px; height:42px; border-radius:10px;
+      display:flex; align-items:center; justify-content:center; font-size:20px;
+      background:rgba(108,99,255,.15); flex-shrink:0;
+    }
+    .section-icon.green  { background:rgba(67,233,123,.15); }
+    .section-icon.pink   { background:rgba(240,147,251,.15); }
+    .section-icon.gold   { background:rgba(246,201,14,.15); }
+    .section-icon.red    { background:rgba(255,107,107,.15); }
+    .section-icon.blue   { background:rgba(99,179,237,.15); }
+    .section-title { font-size:22px; font-weight:800; }
+    .section-desc  { font-size:13px; color:var(--muted); margin-top:3px; }
+
+    /* ─── CARDS GRID ─── */
+    .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
+    .card {
+      background:var(--bg2); border:1px solid var(--border);
+      border-radius:14px; padding:20px; transition:border-color .2s;
+    }
+    .card:hover { border-color:rgba(108,99,255,.35); }
+    .card-head {
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:8px; margin-bottom:10px;
+    }
+    .card-title { font-size:14px; font-weight:700; }
+    .card-path  {
+      font-family:var(--mono); font-size:10px; color:var(--primary);
+      background:rgba(108,99,255,.1); padding:2px 7px; border-radius:5px; white-space:nowrap;
+    }
+    .card-desc  { font-size:12px; color:var(--muted); line-height:1.6; }
+    .card-tags  { display:flex; gap:5px; margin-top:10px; flex-wrap:wrap; }
+    .tag {
+      font-size:10px; font-weight:600; padding:2px 8px; border-radius:10px;
+      background:rgba(255,255,255,.06); color:var(--muted); border:1px solid var(--border);
+    }
+    .tag.green  { background:rgba(67,233,123,.1);  color:#43e97b; border-color:rgba(67,233,123,.2); }
+    .tag.purple { background:rgba(108,99,255,.12); color:#a78bfa; border-color:rgba(108,99,255,.2); }
+    .tag.pink   { background:rgba(240,147,251,.1); color:#f093fb; border-color:rgba(240,147,251,.2); }
+    .tag.gold   { background:rgba(246,201,14,.1);  color:#f6c90e; border-color:rgba(246,201,14,.2); }
+    .tag.red    { background:rgba(255,107,107,.1); color:#ff6b6b; border-color:rgba(255,107,107,.2); }
+    .tag.blue   { background:rgba(99,179,237,.1);  color:#63b3ed; border-color:rgba(99,179,237,.2); }
+
+    /* ─── TABLE ─── */
+    .tbl-wrap { overflow-x:auto; border-radius:12px; border:1px solid var(--border); }
+    table { width:100%; border-collapse:collapse; }
+    th {
+      background:rgba(255,255,255,.03); padding:10px 14px; text-align:left;
+      font-size:11px; font-weight:700; letter-spacing:.5px; text-transform:uppercase;
+      color:var(--muted); border-bottom:1px solid var(--border);
+    }
+    td { padding:10px 14px; font-size:12px; border-bottom:1px solid var(--border); }
+    tr:last-child td { border-bottom:none; }
+    tr:hover td { background:rgba(255,255,255,.015); }
+    code {
+      font-family:var(--mono); font-size:11px;
+      background:rgba(108,99,255,.12); color:#a78bfa; padding:2px 6px; border-radius:4px;
+    }
+    code.green  { background:rgba(67,233,123,.1);  color:#43e97b; }
+    code.blue   { background:rgba(99,179,237,.1);  color:#63b3ed; }
+    code.pink   { background:rgba(240,147,251,.1); color:#f093fb; }
+    code.gold   { background:rgba(246,201,14,.1);  color:#f6c90e; }
+
+    /* ─── API BLOCK ─── */
+    .api-block {
+      background:var(--bg3); border:1px solid var(--border);
+      border-radius:12px; margin-bottom:20px; overflow:hidden;
+    }
+    .api-head {
+      display:flex; align-items:center; gap:10px;
+      padding:12px 16px; border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,.02);
+    }
+    .api-method {
+      font-family:var(--mono); font-size:11px; font-weight:700;
+      padding:3px 9px; border-radius:6px; flex-shrink:0;
+    }
+    .api-method.get    { background:rgba(67,233,123,.15);  color:#43e97b; }
+    .api-method.post   { background:rgba(99,179,237,.15);  color:#63b3ed; }
+    .api-method.put    { background:rgba(246,201,14,.15);  color:#f6c90e; }
+    .api-method.patch  { background:rgba(240,147,251,.15); color:#f093fb; }
+    .api-method.delete { background:rgba(255,107,107,.15); color:#ff6b6b; }
+    .api-path { font-family:var(--mono); font-size:13px; font-weight:600; }
+    .api-summary { font-size:12px; color:var(--muted); margin-left:auto; }
+    .api-body { padding:16px; }
+    .api-params { margin-top:10px; }
+    .api-param-row { display:flex; gap:10px; padding:6px 0; border-bottom:1px solid rgba(255,255,255,.04); font-size:12px; }
+    .api-param-row:last-child { border-bottom:none; }
+    .param-name { font-family:var(--mono); color:#a78bfa; min-width:140px; }
+    .param-type { color:var(--green); min-width:70px; }
+    .param-req  { color:var(--red); min-width:60px; font-size:10px; font-weight:700; }
+    .param-opt  { color:var(--muted); min-width:60px; font-size:10px; }
+    .param-desc { color:var(--muted); }
+
+    /* ─── SLIDE INDEX ─── */
+    .slide-index { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; }
+    .slide-item {
+      background:var(--bg2); border:1px solid var(--border);
+      border-radius:10px; padding:12px 14px;
+      display:flex; align-items:center; gap:10px; transition:border-color .2s;
+    }
+    .slide-item:hover { border-color:rgba(108,99,255,.3); }
+    .slide-num {
+      font-family:var(--mono); font-size:11px; font-weight:700;
+      color:var(--primary); background:rgba(108,99,255,.1);
+      padding:3px 8px; border-radius:6px; flex-shrink:0;
+    }
+    .slide-num.v2 { color:var(--pink); background:rgba(240,147,251,.1); }
+    .slide-num.v3 { color:var(--green); background:rgba(67,233,123,.1); }
+    .slide-icon { font-size:18px; }
+    .slide-info { flex:1; min-width:0; }
+    .slide-title { font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .slide-key   { font-size:10px; color:var(--muted); font-family:var(--mono); }
+
+    /* ─── COMPONENT TABLE ─── */
+    .comp-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+    .comp-card {
+      background:var(--bg2); border:1px solid var(--border);
+      border-radius:12px; padding:16px; transition:border-color .2s;
+    }
+    .comp-card:hover { border-color:rgba(108,99,255,.3); }
+    .comp-card-head { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+    .comp-cat-badge {
+      font-size:9px; font-weight:700; padding:2px 7px; border-radius:8px;
+      background:rgba(108,99,255,.15); color:#a78bfa; flex-shrink:0;
+    }
+    .comp-name { font-size:13px; font-weight:700; }
+    .comp-path { font-family:var(--mono); font-size:10px; color:var(--primary); margin-bottom:6px; }
+    .comp-desc { font-size:12px; color:var(--muted); line-height:1.5; }
+    .comp-props { margin-top:8px; display:flex; gap:4px; flex-wrap:wrap; }
+    .prop-chip {
+      font-size:9px; font-family:var(--mono); padding:2px 6px;
+      border-radius:5px; background:rgba(255,255,255,.05); color:var(--muted);
+      border:1px solid var(--border);
+    }
+
+    /* ─── JS API SECTION ─── */
+    .js-fn {
+      background:var(--bg3); border:1px solid var(--border);
+      border-radius:10px; padding:14px 16px; margin-bottom:10px;
+    }
+    .js-fn-sig { font-family:var(--mono); font-size:12px; color:var(--green); margin-bottom:4px; }
+    .js-fn-desc { font-size:12px; color:var(--muted); }
+    .js-fn-ret  { font-size:11px; color:var(--gold); margin-top:4px; }
+
+    /* ─── SEARCH ─── */
+    .search-wrap {
+      padding:12px 12px 0;
+    }
+    .search-input {
+      width:100%; background:rgba(255,255,255,.05); border:1px solid var(--border);
+      border-radius:8px; padding:8px 12px; font-size:12px; color:var(--text);
+      font-family:'Inter',sans-serif; outline:none; transition:border-color .2s;
+    }
+    .search-input:focus { border-color:rgba(108,99,255,.5); }
+    .search-input::placeholder { color:var(--muted); }
+
+    /* ─── CHANGELOG ─── */
+    .changelog-item {
+      display:flex; gap:16px; padding:14px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .changelog-item:last-child { border-bottom:none; }
+    .changelog-ver {
+      font-family:var(--mono); font-size:11px; font-weight:700;
+      color:var(--primary); min-width:48px; padding-top:2px;
+    }
+    .changelog-date { font-size:11px; color:var(--muted); min-width:72px; padding-top:2px; }
+    .changelog-list { font-size:12px; color:var(--muted); flex:1; line-height:1.8; }
+    .changelog-list li { list-style:none; padding-left:0; }
+    .changelog-list li::before { content:'▸ '; color:var(--primary); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width:900px) {
+      .sidebar { display:none; }
+      .hero    { padding:32px 24px; }
+      .section { padding:28px 24px; }
+      .hero h1 { font-size:26px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ────────────────────────────── SIDEBAR ────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo">2030B</div>
+      <div class="sub">API & Component Docs</div>
+    </div>
+
+    <div class="search-wrap">
+      <input class="search-input" placeholder="🔍 Search docs…" oninput="filterDocs(this.value)">
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Overview</div>
+      <a class="nav-link" href="#overview"><span class="icon">📋</span>Introduction</a>
+      <a class="nav-link" href="#architecture"><span class="icon">🏗️</span>Architecture</a>
+      <a class="nav-link" href="#changelog"><span class="icon">📝</span>Changelog</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Viewers</div>
+      <a class="nav-link" href="#viewers"><span class="icon">📺</span>Index Files <span class="nav-badge">3</span></a>
+      <a class="nav-link" href="#vol1"><span class="icon">1️⃣</span>Volume 1 (1–50)</a>
+      <a class="nav-link" href="#vol2"><span class="icon">2️⃣</span>Volume 2 (51–100) <span class="nav-badge pink">V2</span></a>
+      <a class="nav-link" href="#vol3"><span class="icon">3️⃣</span>Volume 3 (101–150) <span class="nav-badge green">V3</span></a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Data Files</div>
+      <a class="nav-link" href="#datafiles"><span class="icon">📦</span>Language JSONs <span class="nav-badge">6</span></a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">JavaScript APIs</div>
+      <a class="nav-link" href="#slide-engine"><span class="icon">⚙️</span>SlideEngine <span class="nav-badge gold">CRITICAL</span></a>
+      <a class="nav-link" href="#session-engine"><span class="icon">🧠</span>SessionEngine <span class="nav-badge gold">CRITICAL</span></a>
+      <a class="nav-link" href="#ctc-engine"><span class="icon">💰</span>CTCEngine</a>
+      <a class="nav-link" href="#animations"><span class="icon">✨</span>AnimationSystem</a>
+      <a class="nav-link" href="#loader"><span class="icon">📡</span>Loader</a>
+      <a class="nav-link" href="#slide-utils"><span class="icon">🔧</span>SlideUtils</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Components</div>
+      <a class="nav-link" href="#comp-layout"><span class="icon">📐</span>Layout <span class="nav-badge">6</span></a>
+      <a class="nav-link" href="#comp-economy"><span class="icon">💰</span>Economy UI <span class="nav-badge">3</span></a>
+      <a class="nav-link" href="#comp-cognitive"><span class="icon">🧠</span>Cognitive UX <span class="nav-badge">5</span></a>
+      <a class="nav-link" href="#comp-progression"><span class="icon">📈</span>Progression <span class="nav-badge">5</span></a>
+      <a class="nav-link" href="#comp-video"><span class="icon">🎬</span>Video <span class="nav-badge">4</span></a>
+      <a class="nav-link" href="#comp-identity"><span class="icon">👤</span>Identity <span class="nav-badge">1</span></a>
+      <a class="nav-link" href="#comp-governance"><span class="icon">🗳️</span>Governance <span class="nav-badge">2</span></a>
+      <a class="nav-link" href="#comp-ecosystem"><span class="icon">🌐</span>Ecosystem <span class="nav-badge">3</span></a>
+      <a class="nav-link" href="#comp-marketplace"><span class="icon">🛒</span>Marketplace <span class="nav-badge">2</span></a>
+      <a class="nav-link" href="#comp-certification"><span class="icon">🏅</span>Certification <span class="nav-badge">1</span></a>
+      <a class="nav-link" href="#comp-public"><span class="icon">🌍</span>Public <span class="nav-badge">2</span></a>
+      <a class="nav-link" href="#comp-system"><span class="icon">🖥️</span>System <span class="nav-badge">2</span></a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Slides</div>
+      <a class="nav-link" href="#slides-v1"><span class="icon">📑</span>Vol 1 Slides (1–50)</a>
+      <a class="nav-link" href="#slides-v2"><span class="icon">📑</span>Vol 2 Slides (51–100)</a>
+      <a class="nav-link" href="#slides-v3"><span class="icon">📑</span>Vol 3 Slides (101–150)</a>
+    </div>
+  </aside>
+
+  <!-- ────────────────────────────── MAIN ────────────────────────────── -->
+  <main class="main" id="main">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">2030B · Be Smarter</div>
+      <h1>API & Component <span>Documentation</span></h1>
+      <p class="hero-sub">Complete reference for all JavaScript APIs, HTML components, slide data schemas, JSON language files, and viewer architecture across all three volumes of the 2030B cognitive enhancement ecosystem.</p>
+      <div class="hero-meta">
+        <div class="meta-chip"><strong>150</strong><span>Total Slides</span></div>
+        <div class="meta-chip"><strong>50+</strong><span>Components</span></div>
+        <div class="meta-chip"><strong>6</strong><span>Language JSON Files</span></div>
+        <div class="meta-chip"><strong>6</strong><span>Core JS Modules</span></div>
+        <div class="meta-chip"><strong>3</strong><span>Volume Viewers</span></div>
+        <div class="meta-chip"><strong>12</strong><span>Component Categories</span></div>
+      </div>
+    </div>
+
+    <!-- ─── OVERVIEW ─── -->
+    <div class="section" id="overview">
+      <div class="section-header">
+        <div class="section-icon">📋</div>
+        <div><div class="section-title">Introduction</div><div class="section-desc">Project overview, conventions, and quick-start guide</div></div>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-head"><div class="card-title">🚀 Quick Start</div></div>
+          <div class="card-desc">Open <code>a1-index.html</code> for Vol 1, <code>a2-index.html</code> for Vol 2, or <code>a3-index.html</code> for Vol 3. All viewers are self-contained and link to the shared <code>css/styles.css</code> and <code>js/</code> scripts.</div>
+          <div class="card-tags"><span class="tag green">No Build Required</span><span class="tag purple">Static HTML</span></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">📁 Directory Structure</div></div>
+          <div class="card-desc">Root: <code>a1/2/3-index.html</code>, <code>en/ar 1/2/3.json</code>. Subdirs: <code>slides/</code> (150 files), <code>components/</code> (12 categories), <code>css/</code>, <code>js/</code>.</div>
+          <div class="card-tags"><span class="tag">slides/</span><span class="tag">components/</span><span class="tag">js/</span><span class="tag">css/</span></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">🌐 Language Support</div></div>
+          <div class="card-desc">Full bilingual support (EN/AR) via JSON data files. RTL layout auto-activates for Arabic. Language preference persisted via <code>localStorage</code> key <code>2030b_lang</code>.</div>
+          <div class="card-tags"><span class="tag blue">English</span><span class="tag gold">Arabic / RTL</span></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">🧩 Component System</div></div>
+          <div class="card-desc">All components are standalone HTML files with embedded CSS and optional JS. They can be embedded via <code>&lt;iframe&gt;</code> or inlined. Props are passed via <code>data-*</code> attributes or JavaScript.</div>
+          <div class="card-tags"><span class="tag purple">data-* Props</span><span class="tag">CSS Variables</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── ARCHITECTURE ─── -->
+    <div class="section" id="architecture">
+      <div class="section-header">
+        <div class="section-icon blue">🏗️</div>
+        <div><div class="section-title">System Architecture</div><div class="section-desc">How the system layers interact</div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Layer</th><th>Files</th><th>Responsibility</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Viewers</strong></td><td><code>a1/a2/a3-index.html</code></td><td>Navigation shell, iframe carousel, lang toggle, slide rail, progress bar</td><td><code class="green">✓ Live</code></td></tr>
+            <tr><td><strong>Slide Engine</strong></td><td><code>js/slide-engine.js</code></td><td>Navigation, transitions, keyboard/swipe, autoplay, vol1–3 URL building</td><td><code class="green">✓ v3.0</code></td></tr>
+            <tr><td><strong>Session Engine</strong></td><td><code>js/session.js</code></td><td>CTC state, cognition scores, NAE hooks, spatial state, UBCTC, events</td><td><code class="green">✓ v3.0</code></td></tr>
+            <tr><td><strong>CTC Engine</strong></td><td><code>js/ctc-engine.js</code></td><td>Token transactions, staking, governance, DeFi yield simulation</td><td><code class="green">✓ Live</code></td></tr>
+            <tr><td><strong>Animations</strong></td><td><code>js/animations.js</code></td><td>Particle systems, entrance animations, micro-interactions</td><td><code class="green">✓ Live</code></td></tr>
+            <tr><td><strong>Loader</strong></td><td><code>js/loader.js</code></td><td>JSON data fetching, slide init, language switching, error states</td><td><code class="green">✓ Live</code></td></tr>
+            <tr><td><strong>Slide Utils</strong></td><td><code>js/slide-utils.js</code></td><td>Helper renderers, number formatting, badge generation, chart helpers</td><td><code class="green">✓ Live</code></td></tr>
+            <tr><td><strong>Slides Vol 1</strong></td><td><code>slides/slide-01..50.html</code></td><td>Interactive slide content referencing en.json/ar.json</td><td><code class="green">✓ 50 slides</code></td></tr>
+            <tr><td><strong>Slides Vol 2</strong></td><td><code>slides/slide-51..100.html</code></td><td>Ecosystem, Economy, Governance content from en2.json/ar2.json</td><td><code class="green">✓ 50 slides</code></td></tr>
+            <tr><td><strong>Slides Vol 3</strong></td><td><code>slides/slide-101..150.html</code></td><td>NAE, Spatial, Cross-Chain, CGDP, UBCTC, Enterprise, Vision content from en3.json/ar3.json</td><td><code class="green">✓ 50 slides</code></td></tr>
+            <tr><td><strong>Components</strong></td><td><code>components/**/*.html</code></td><td>50+ reusable UI components across 12 categories</td><td><code class="green">✓ Live</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── VIEWERS ─── -->
+    <div class="section" id="viewers">
+      <div class="section-header">
+        <div class="section-icon blue">📺</div>
+        <div><div class="section-title">Volume Viewer Files</div><div class="section-desc">Three master index files, one per volume</div></div>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-head"><div class="card-title">a1-index.html</div><div class="card-path">/ root</div></div>
+          <div class="card-desc">Volume 1 viewer. Displays slides 1–50 from <code>en.json</code> / <code>ar.json</code>. Features keyboard nav, touch swipe, thumbnail rail, language toggle. Progress bar shows 1–50 completion.</div>
+          <div class="card-tags"><span class="tag purple">Vol 1</span><span class="tag">Slides 1–50</span><span class="tag blue">EN/AR</span></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">a2-index.html</div><div class="card-path">/ root</div></div>
+          <div class="card-desc">Volume 2 viewer. Displays slides 51–100. Pink accent theme. Uses <code>en2.json</code> / <code>ar2.json</code>. Cross-volume navigation links to a1 and a3 in top bar.</div>
+          <div class="card-tags"><span class="tag pink">Vol 2</span><span class="tag">Slides 51–100</span><span class="tag blue">EN/AR</span></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">a3-index.html</div><div class="card-path">/ root</div></div>
+          <div class="card-desc">Volume 3 viewer. Displays slides 101–150. Green accent theme. Features an additional <strong>chapter strip</strong> with 7 chapter jump chips (NAE, Spatial, Cross-Chain, CGDP, UBCTC, Enterprise, Vision). Slide numbers use 3-digit padding.</div>
+          <div class="card-tags"><span class="tag green">Vol 3</span><span class="tag">Slides 101–150</span><span class="tag gold">Chapter Strip</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── DATA FILES ─── -->
+    <div class="section" id="datafiles">
+      <div class="section-header">
+        <div class="section-icon gold">📦</div>
+        <div><div class="section-title">Language JSON Data Files</div><div class="section-desc">Bilingual content schema for all 150 slides across 3 volumes</div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>File</th><th>Language</th><th>Volume</th><th>Slides</th><th>Size</th><th>Top-Level Keys</th></tr></thead>
+          <tbody>
+            <tr><td><code>en.json</code></td><td>🇺🇸 English</td><td>1</td><td>1–50</td><td>36 KB</td><td><code>brand</code>, <code>vol</code>, <code>slides[]</code></td></tr>
+            <tr><td><code>ar.json</code></td><td>🇸🇦 Arabic</td><td>1</td><td>1–50</td><td>43 KB</td><td><code>brand</code>, <code>vol</code>, <code>slides[]</code></td></tr>
+            <tr><td><code>en2.json</code></td><td>🇺🇸 English</td><td>2</td><td>51–100</td><td>46 KB</td><td><code>brand</code>, <code>vol</code>, <code>slides[]</code></td></tr>
+            <tr><td><code>ar2.json</code></td><td>🇸🇦 Arabic</td><td>2</td><td>51–100</td><td>57 KB</td><td><code>brand</code>, <code>vol</code>, <code>slides[]</code></td></tr>
+            <tr><td><code>en3.json</code></td><td>🇺🇸 English</td><td>3</td><td>101–150</td><td>69 KB</td><td><code>brand</code>, <code>vol</code>, <code>slides[]</code></td></tr>
+            <tr><td><code>ar3.json</code></td><td>🇸🇦 Arabic</td><td>3</td><td>101–150</td><td>65 KB</td><td><code>brand</code>, <code>vol</code>, <code>slides[]</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <p style="font-size:12px;color:var(--muted)">Each slide object in the array contains: <code>id</code>, <code>key</code>, <code>header</code>, <code>subtitle</code>, <code>description</code>, and type-specific data arrays (e.g., <code>pillars[]</code>, <code>milestones[]</code>, <code>dimensions[]</code>, <code>phases[]</code>, etc.). The <code>key</code> is a unique snake_case identifier used by slide renderers.</p>
+    </div>
+
+    <!-- ─── SLIDE ENGINE ─── -->
+    <div class="section" id="slide-engine">
+      <div class="section-header">
+        <div class="section-icon gold">⚙️</div>
+        <div><div class="section-title">SlideEngine API</div><div class="section-desc"><code>js/slide-engine.js</code> · Version 3.0 · Global: <code>window.SlideEngine</code></div></div>
+      </div>
+
+      <div class="api-block">
+        <div class="api-head"><span class="api-method post">INIT</span><span class="api-path">SlideEngine.init(options)</span><span class="api-summary">Initialize the engine</span></div>
+        <div class="api-body">
+          <div class="card-desc">Configures totalSlides (default 150), startIndex, baseUrl, transitionMs, lang, rtl. Binds keyboard and touch. Returns <code>SlideEngine</code> for chaining.</div>
+          <div class="api-params">
+            <div class="api-param-row"><span class="param-name">totalSlides</span><span class="param-type">number</span><span class="param-opt">optional</span><span class="param-desc">Default: 150. Set to 50/100/150 per volume.</span></div>
+            <div class="api-param-row"><span class="param-name">startIndex</span><span class="param-type">number</span><span class="param-opt">optional</span><span class="param-desc">First slide number to display on init.</span></div>
+            <div class="api-param-row"><span class="param-name">lang</span><span class="param-type">string</span><span class="param-opt">optional</span><span class="param-desc">'en' or 'ar'. Sets RTL automatically.</span></div>
+            <div class="api-param-row"><span class="param-name">transitionMs</span><span class="param-type">number</span><span class="param-opt">optional</span><span class="param-desc">Slide transition duration in ms. Default: 380.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Method</th><th>Signature</th><th>Description</th><th>Returns</th></tr></thead>
+          <tbody>
+            <tr><td><code>goTo</code></td><td><code>goTo(n, opts?)</code></td><td>Navigate to slide n. opts: <code>{force, direction}</code></td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>next</code></td><td><code>next()</code></td><td>Navigate to next slide</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>prev</code></td><td><code>prev()</code></td><td>Navigate to previous slide</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>first</code></td><td><code>first()</code></td><td>Jump to slide 1</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>last</code></td><td><code>last()</code></td><td>Jump to last slide</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>back</code></td><td><code>back()</code></td><td>Go back in history stack</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>setLang</code></td><td><code>setLang(lang)</code></td><td>Switch language and reload slide</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>startAutoPlay</code></td><td><code>startAutoPlay(ms?)</code></td><td>Auto-advance slides every ms</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>stopAutoPlay</code></td><td><code>stopAutoPlay()</code></td><td>Stop auto-advance</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>toggleFullscreen</code></td><td><code>toggleFullscreen()</code></td><td>Enter/exit browser fullscreen</td><td><code>void</code></td></tr>
+            <tr><td><code>getVolume</code></td><td><code>getVolume()</code></td><td>Returns 1, 2, or 3 based on current slide</td><td><code>number</code></td></tr>
+            <tr><td><code>goToVolume</code></td><td><code>goToVolume(vol)</code></td><td>Jump to first slide of volume 1/2/3</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>buildThumbnailRail</code></td><td><code>buildThumbnailRail(id, range?)</code></td><td>Populate a thumbnail rail element</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>on</code></td><td><code>on(event, handler)</code></td><td>Subscribe to event</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>off</code></td><td><code>off(event, handler)</code></td><td>Unsubscribe from event</td><td><code>SlideEngine</code></td></tr>
+            <tr><td><code>getCurrent</code></td><td><code>getCurrent()</code></td><td>Current slide number</td><td><code>number</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <p style="font-size:12px;color:var(--muted)"><strong>Events:</strong> <code>init</code>, <code>beforeNavigate</code>, <code>navigate</code>, <code>autoplay</code>, <code>langChange</code>. URL building auto-pads to 2 digits for slides 1–99, 3 digits for 100+.</p>
+    </div>
+
+    <!-- ─── SESSION ENGINE ─── -->
+    <div class="section" id="session-engine">
+      <div class="section-header">
+        <div class="section-icon gold">🧠</div>
+        <div><div class="section-title">SessionEngine API</div><div class="section-desc"><code>js/session.js</code> · Version 3.0 · Global: <code>window.SessionEngine</code></div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Module</th><th>Method</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Core</strong></td><td><code>init(overrides?)</code></td><td>Initialize session, load from localStorage (key: <code>2030b_session_v3</code>)</td></tr>
+            <tr><td></td><td><code>reset()</code></td><td>Reset to defaults, clear storage</td></tr>
+            <tr><td></td><td><code>getSnapshot()</code></td><td>Returns full state snapshot including nae, spatial, ubctc</td></tr>
+            <tr><td><strong>CTC</strong></td><td><code>earnCTC(amount, source)</code></td><td>Add CTC to liquid balance, emit ctcEarned</td></tr>
+            <tr><td></td><td><code>spendCTC(amount, purpose)</code></td><td>Deduct CTC; returns false if insufficient</td></tr>
+            <tr><td></td><td><code>stakeCTC(amount, days)</code></td><td>Move CTC from liquid to staked</td></tr>
+            <tr><td><strong>Session</strong></td><td><code>startSession(type, opts?)</code></td><td>Begin a tracked session (challenge, project, etc.)</td></tr>
+            <tr><td></td><td><code>endSession(result?)</code></td><td>End session, distribute rewards, return summary</td></tr>
+            <tr><td></td><td><code>interruptSession()</code></td><td>Abort session without rewards</td></tr>
+            <tr><td><strong>Cognition</strong></td><td><code>applyDimensionGains(gains)</code></td><td>Update dimension scores (max 100), recalculate overall</td></tr>
+            <tr><td></td><td><code>calcCognitiveYield(growthPct)</code></td><td>Returns monthly CTC yield estimate based on growth %</td></tr>
+            <tr><td></td><td><code>getCognitionState()</code></td><td>Returns cognition state including all 7 dimension scores</td></tr>
+            <tr><td><strong>NAE (Vol 3)</strong></td><td><code>updateNAE(signals)</code></td><td>Feed biometric signals, updates load_level and flow_state</td></tr>
+            <tr><td></td><td><code>setNAEMode(mode)</code></td><td>'focus'|'creative'|'memory'|'recovery'|'sprint'</td></tr>
+            <tr><td></td><td><code>getNAEState()</code></td><td>Returns current NAE state including flow detection</td></tr>
+            <tr><td><strong>Spatial (Vol 3)</strong></td><td><code>enterSpatialRoom(roomId)</code></td><td>Track spatial room entry, add to visited list</td></tr>
+            <tr><td></td><td><code>exitSpatialRoom()</code></td><td>Exit current spatial room</td></tr>
+            <tr><td></td><td><code>addCosmosNodes(n)</code></td><td>Grow the Concept Cosmos node count</td></tr>
+            <tr><td><strong>UBCTC (Vol 3)</strong></td><td><code>enrollUBCTC(monthlyAmount)</code></td><td>Enroll user in Universal Basic CTC program</td></tr>
+            <tr><td></td><td><code>distributeUBCTC()</code></td><td>Trigger monthly UBCTC distribution to liquid balance</td></tr>
+            <tr><td><strong>Tier</strong></td><td><code>checkTierUpgrade()</code></td><td>Check and apply Explorer→Thinker→Architect→Visionary upgrade</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── COMPONENTS ─── -->
+    <div class="section" id="comp-layout">
+      <div class="section-header">
+        <div class="section-icon">📐</div>
+        <div><div class="section-title">Layout Components</div><div class="section-desc"><code>components/layout/</code> · CRITICAL priority</div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">CRITICAL</span><span class="comp-name">App Shell</span></div>
+          <div class="comp-path">components/layout/app-shell.html</div>
+          <div class="comp-desc">Full application shell with top bar, sidebar, main area, bottom nav. Responsive across all breakpoints.</div>
+          <div class="comp-props"><span class="prop-chip">data-layout</span><span class="prop-chip">data-sidebar</span><span class="prop-chip">data-theme</span></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">CRITICAL</span><span class="comp-name">Slide Container – Full</span></div>
+          <div class="comp-path">components/layout/slide-container-full.html</div>
+          <div class="comp-desc">Full-viewport slide wrapper. Video/gradient BG layers, noise texture, safe-area content zone, pip navigation.</div>
+          <div class="comp-props"><span class="prop-chip">data-bg-color</span><span class="prop-chip">data-bg-video</span><span class="prop-chip">data-align</span></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">CRITICAL</span><span class="comp-name">Slide Container – Card</span></div>
+          <div class="comp-path">components/layout/slide-container-card.html</div>
+          <div class="comp-desc">Centered card layout with ambient orbs. Supports glass morphism or solid variants. Width: sm/md/lg/xl.</div>
+          <div class="comp-props"><span class="prop-chip">data-card-width</span><span class="prop-chip">data-glass</span></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">CRITICAL</span><span class="comp-name">Slide Container – Split</span></div>
+          <div class="comp-path">components/layout/slide-container-split.html</div>
+          <div class="comp-desc">Two-column split with animated divider dot. Supports 50-50, 40-60, 60-40, 30-70 ratios. Reverse and mobile stacking.</div>
+          <div class="comp-props"><span class="prop-chip">data-ratio</span><span class="prop-chip">data-reverse</span><span class="prop-chip">data-divider</span></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">CRITICAL</span><span class="comp-name">Section Wrapper</span></div>
+          <div class="comp-path">components/layout/section-wrapper.html</div>
+          <div class="comp-desc">Semantic section container with configurable padding, max-width, background variant, and enter animations.</div>
+          <div class="comp-props"><span class="prop-chip">data-pad</span><span class="prop-chip">data-bg</span></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">CRITICAL</span><span class="comp-name">Grid System</span></div>
+          <div class="comp-path">components/layout/grid-system.html</div>
+          <div class="comp-desc">CSS Grid with auto-fit, 1–6 fixed columns, gap variants, dense packing, named areas (dashboard layout). ResizeObserver breakpoint reporting.</div>
+          <div class="comp-props"><span class="prop-chip">data-cols</span><span class="prop-chip">data-gap</span><span class="prop-chip">data-dense</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-economy">
+      <div class="section-header">
+        <div class="section-icon gold">💰</div>
+        <div><div class="section-title">Economy UI Components</div><div class="section-desc"><code>components/economy-ui/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">CTC Balance Display</span></div>
+          <div class="comp-path">components/economy-ui/ctc-balance-display.html</div>
+          <div class="comp-desc">Animated CTC balance with liquid/staked/pending breakdown. Integrates with SessionEngine.ctc. Ticker animation on balance change.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Spend Confirmation Modal</span></div>
+          <div class="comp-path">components/economy-ui/spend-confirmation-modal.html</div>
+          <div class="comp-desc">Two-step confirmation dialog for CTC spending with purpose label, amount display, balance check, and confirm/cancel actions.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Transaction History</span></div>
+          <div class="comp-path">components/economy-ui/transaction-history.html</div>
+          <div class="comp-desc">Paginated CTC transaction log with type icons (earn/spend/stake/bridge), amount formatting, and date grouping.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-cognitive">
+      <div class="section-header">
+        <div class="section-icon">🧠</div>
+        <div><div class="section-title">Cognitive UX Components</div><div class="section-desc"><code>components/cognitive-ux/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Focus Mode Toggle</span></div>
+          <div class="comp-path">components/cognitive-ux/focus-mode-toggle.html</div>
+          <div class="comp-desc">Ambient focus mode UI with distraction removal, Pomodoro-style timer, and session tracking via SessionEngine.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Reflection Prompt</span></div>
+          <div class="comp-path">components/cognitive-ux/reflection-prompt.html</div>
+          <div class="comp-desc">Post-session meta-cognition prompts with guided questions, insight capture, and daily journal persistence.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Session Summary</span></div>
+          <div class="comp-path">components/cognitive-ux/session-summary.html</div>
+          <div class="comp-desc">End-of-session report: score, CTC earned, dimension gains, flow time, and share card generator.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Cognitive Load Indicator</span></div>
+          <div class="comp-path">components/cognitive-ux/cognitive-load-indicator.html</div>
+          <div class="comp-desc">Visual ring indicator for real-time cognitive load level from NAE. Color-coded: green (flow), amber (high load), red (overload).</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Interruption Guard</span></div>
+          <div class="comp-path">components/cognitive-ux/interruption-guard.html</div>
+          <div class="comp-desc">Overlay modal that intercepts navigation-away attempts during active sessions, with save/discard/continue options.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-progression">
+      <div class="section-header">
+        <div class="section-icon green">📈</div>
+        <div><div class="section-title">Progression Components</div><div class="section-desc"><code>components/progression/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Skill Tree</span></div>
+          <div class="comp-path">components/progression/skill-tree.html</div>
+          <div class="comp-desc">Interactive SVG-based skill tree with node states (locked/available/completed), prerequisite links, and CTC unlock costs.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Tier Card</span></div>
+          <div class="comp-path">components/progression/tier-card.html</div>
+          <div class="comp-desc">Displays current tier (Explorer/Thinker/Architect/Visionary) with CTC threshold, perks list, and upgrade progress ring.</div>
+          <div class="comp-props"><span class="prop-chip">data-tier</span><span class="prop-chip">data-ctc</span></div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Milestone Badge</span></div>
+          <div class="comp-path">components/progression/milestone-badge.html</div>
+          <div class="comp-desc">Achievement badge with icon, name, earned date, and rarity indicator (common/rare/epic/legendary).</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Progress Bar</span></div>
+          <div class="comp-path">components/progression/progress-bar.html</div>
+          <div class="comp-desc">Animated progress bar with gradient fill, label, value, and optional milestone markers.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Benchmark Panel</span></div>
+          <div class="comp-path">components/progression/benchmark-panel.html</div>
+          <div class="comp-desc">Radar/spider chart for 7 cognitive dimensions with user vs. community benchmark overlay.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-video">
+      <div class="section-header">
+        <div class="section-icon red">🎬</div>
+        <div><div class="section-title">Video Module Components</div><div class="section-desc"><code>components/video/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Video Player</span></div>
+          <div class="comp-path">components/video/video-player.html</div>
+          <div class="comp-desc">Custom-styled HTML5 video player with cognitive chapter markers, playback speed, and session tracking hooks.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Module Structure Block</span></div>
+          <div class="comp-path">components/video/module-structure-block.html</div>
+          <div class="comp-desc">Learning module outline with units, estimated time, difficulty badges, and completion state.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Scenario Card</span></div>
+          <div class="comp-path">components/video/scenario-card.html</div>
+          <div class="comp-desc">Interactive decision scenario with choice buttons, outcome preview, and CTC reward display.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Guided Practice Panel</span></div>
+          <div class="comp-path">components/video/guided-practice-panel.html</div>
+          <div class="comp-desc">Step-by-step practice guide with progress stepper, hint system, and per-step CTC micro-rewards.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-governance">
+      <div class="section-header">
+        <div class="section-icon blue">🗳️</div>
+        <div><div class="section-title">Governance Components</div><div class="section-desc"><code>components/governance/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Proposal Card</span></div>
+          <div class="comp-path">components/governance/proposal-card.html</div>
+          <div class="comp-desc">Governance proposal with vote counts, quorum bar, time remaining, status badge, and one-click vote UI.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Treasury Panel</span></div>
+          <div class="comp-path">components/governance/treasury-panel.html</div>
+          <div class="comp-desc">Real-time treasury balance, allocation breakdown chart, surplus/deficit indicator, and next vote date.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-ecosystem">
+      <div class="section-header">
+        <div class="section-icon green">🌐</div>
+        <div><div class="section-title">Ecosystem Components</div><div class="section-desc"><code>components/ecosystem/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Sector Map</span></div>
+          <div class="comp-path">components/ecosystem/sector-map.html</div>
+          <div class="comp-desc">Visual grid of 8 knowledge sectors with project counts, top skills, and CTC pool sizes.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Partner Tier</span></div>
+          <div class="comp-path">components/ecosystem/partner-tier.html</div>
+          <div class="comp-desc">Partner classification card (Platinum/Gold/Silver) with benefits list and partner logo slot.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Roadmap Timeline</span></div>
+          <div class="comp-path">components/ecosystem/roadmap-timeline.html</div>
+          <div class="comp-desc">Horizontal/vertical timeline with milestone markers, status indicators, and year labels.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-identity">
+      <div class="section-header">
+        <div class="section-icon pink">👤</div>
+        <div><div class="section-title">User Identity Components</div><div class="section-desc"><code>components/identity/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Profile Card</span></div>
+          <div class="comp-path">components/identity/profile-card.html</div>
+          <div class="comp-desc">User profile with avatar, CogniScore ring, tier badge, CTC balance, streak, and reputation score. Binds to SessionEngine snapshot.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-marketplace">
+      <div class="section-header">
+        <div class="section-icon gold">🛒</div>
+        <div><div class="section-title">Marketplace Components</div><div class="section-desc"><code>components/marketplace/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Content Card</span></div>
+          <div class="comp-path">components/marketplace/content-card.html</div>
+          <div class="comp-desc">Marketplace listing card with preview, type badge (course/tool/IP), price in CTC, author, and purchase button.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Rating & Review</span></div>
+          <div class="comp-path">components/marketplace/rating-review.html</div>
+          <div class="comp-desc">Star rating display with review count, review list, and submit-review form with CTC-gated submission.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-certification">
+      <div class="section-header">
+        <div class="section-icon gold">🏅</div>
+        <div><div class="section-title">Certification Components</div><div class="section-desc"><code>components/certification/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">HIGH</span><span class="comp-name">Certification Card</span></div>
+          <div class="comp-path">components/certification/certification-card.html</div>
+          <div class="comp-desc">Digital credential card with issuer logo, skills verified, issue date, CTC reward, and share/verify actions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-public">
+      <div class="section-header">
+        <div class="section-icon green">🌍</div>
+        <div><div class="section-title">Public-Facing Components</div><div class="section-desc"><code>components/public/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">CRITICAL</span><span class="comp-name">Landing Hero</span></div>
+          <div class="comp-path">components/public/landing-hero.html</div>
+          <div class="comp-desc">Full-screen hero for public landing page. Animated tagline, CTA buttons, live stats ticker, and particle background.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">MEDIUM</span><span class="comp-name">Explainer Slides</span></div>
+          <div class="comp-path">components/public/explainer-slides.html</div>
+          <div class="comp-desc">Three-step explainer carousel for marketing pages explaining the 2030B ecosystem to new visitors.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="comp-system">
+      <div class="section-header">
+        <div class="section-icon red">🖥️</div>
+        <div><div class="section-title">System-Level Components</div><div class="section-desc"><code>components/system/</code></div></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">CRITICAL</span><span class="comp-name">Slide Engine Component</span></div>
+          <div class="comp-path">components/system/slide-engine.html</div>
+          <div class="comp-desc">Embeddable SlideEngine UI wrapper: progress bar, counter, nav arrows, keyboard hint. Mount and configure via data attributes.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-head"><span class="comp-cat-badge">CRITICAL</span><span class="comp-name">AI Assistant Panel (CORA)</span></div>
+          <div class="comp-path">components/system/ai-assistant.html</div>
+          <div class="comp-desc">CORA AI assistant panel with collapsible chat interface, suggestion chips, NAE mode selector, and SessionEngine integration.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SLIDES REFERENCE ─── -->
+    <div class="section" id="slides-v1">
+      <div class="section-header">
+        <div class="section-icon">📑</div>
+        <div><div class="section-title">Volume 1 Slides — 1 to 50</div><div class="section-desc">Data source: <code>en.json</code> / <code>ar.json</code></div></div>
+      </div>
+      <div class="slide-index">
+        <div class="slide-item"><span class="slide-num">01</span><span class="slide-icon">🏠</span><div class="slide-info"><div class="slide-title">Welcome Dashboard</div><div class="slide-key">welcome_dashboard</div></div></div>
+        <div class="slide-item"><span class="slide-num">02</span><span class="slide-icon">🧠</span><div class="slide-info"><div class="slide-title">Cognitive Enhancement</div><div class="slide-key">cognitive_enhancement_status</div></div></div>
+        <div class="slide-item"><span class="slide-num">03</span><span class="slide-icon">🧩</span><div class="slide-info"><div class="slide-title">Daily Challenge</div><div class="slide-key">daily_cognitive_challenge</div></div></div>
+        <div class="slide-item"><span class="slide-num">04</span><span class="slide-icon">💎</span><div class="slide-info"><div class="slide-title">CTC Wallet</div><div class="slide-key">ctc_wallet</div></div></div>
+        <div class="slide-item"><span class="slide-num">05</span><span class="slide-icon">🚀</span><div class="slide-info"><div class="slide-title">Projects Discovery</div><div class="slide-key">projects_discovery</div></div></div>
+        <div class="slide-item"><span class="slide-num">06</span><span class="slide-icon">🏗️</span><div class="slide-info"><div class="slide-title">Project Detail</div><div class="slide-key">project_detail</div></div></div>
+        <div class="slide-item"><span class="slide-num">07–50</span><span class="slide-icon">📑</span><div class="slide-info"><div class="slide-title">45 Additional Slides</div><div class="slide-key">See en.json slides[]</div></div></div>
+      </div>
+    </div>
+
+    <div class="section" id="slides-v2">
+      <div class="section-header">
+        <div class="section-icon pink">📑</div>
+        <div><div class="section-title">Volume 2 Slides — 51 to 100</div><div class="section-desc">Data source: <code>en2.json</code> / <code>ar2.json</code></div></div>
+      </div>
+      <div class="slide-index">
+        <div class="slide-item"><span class="slide-num v2">51</span><span class="slide-icon">🌐</span><div class="slide-info"><div class="slide-title">Ecosystem Overview</div><div class="slide-key">ecosystem_overview</div></div></div>
+        <div class="slide-item"><span class="slide-num v2">52</span><span class="slide-icon">🚀</span><div class="slide-info"><div class="slide-title">Vision 2030</div><div class="slide-key">vision_2030</div></div></div>
+        <div class="slide-item"><span class="slide-num v2">53</span><span class="slide-icon">⚠️</span><div class="slide-info"><div class="slide-title">The Problem</div><div class="slide-key">problem_statement</div></div></div>
+        <div class="slide-item"><span class="slide-num v2">54</span><span class="slide-icon">💡</span><div class="slide-info"><div class="slide-title">The Solution</div><div class="slide-key">solution_layers</div></div></div>
+        <div class="slide-item"><span class="slide-num v2">55</span><span class="slide-icon">🧠</span><div class="slide-info"><div class="slide-title">Be Smarter Program</div><div class="slide-key">be_smarter_tiers</div></div></div>
+        <div class="slide-item"><span class="slide-num v2">56–60</span><span class="slide-icon">🔮</span><div class="slide-info"><div class="slide-title">7 Dimensions → Lifecycle</div><div class="slide-key">dimensions, challenges, skill_match, dvm, lifecycle</div></div></div>
+        <div class="slide-item"><span class="slide-num v2">61–70</span><span class="slide-icon">💰</span><div class="slide-info"><div class="slide-title">Tokenomics + Governance</div><div class="slide-key">ctc_tokenomics → social_feed</div></div></div>
+        <div class="slide-item"><span class="slide-num v2">71–85</span><span class="slide-icon">🤖</span><div class="slide-info"><div class="slide-title">AI, Privacy, Stories, FAQ</div><div class="slide-key">ai_systems → closing_vision</div></div></div>
+        <div class="slide-item"><span class="slide-num v2">86–100</span><span class="slide-icon">🔮</span><div class="slide-info"><div class="slide-title">Feature Previews + CTAs</div><div class="slide-key">vol3 teaser slides</div></div></div>
+      </div>
+    </div>
+
+    <div class="section" id="slides-v3">
+      <div class="section-header">
+        <div class="section-icon green">📑</div>
+        <div><div class="section-title">Volume 3 Slides — 101 to 150</div><div class="section-desc">Data source: <code>en3.json</code> / <code>ar3.json</code></div></div>
+      </div>
+      <div class="slide-index">
+        <div class="slide-item"><span class="slide-num v3">101</span><span class="slide-icon">🧬</span><div class="slide-info"><div class="slide-title">Vol 3 Intro</div><div class="slide-key">vol3_intro</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">102</span><span class="slide-icon">🔬</span><div class="slide-info"><div class="slide-title">NAE Intro</div><div class="slide-key">neuro_adaptive_intro</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">103</span><span class="slide-icon">🎯</span><div class="slide-info"><div class="slide-title">7 Adaptive Dimensions</div><div class="slide-key">nae_dimensions</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">104</span><span class="slide-icon">🌊</span><div class="slide-info"><div class="slide-title">Flow State Engineering</div><div class="slide-key">nae_flow_state</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">105</span><span class="slide-icon">📡</span><div class="slide-info"><div class="slide-title">Biometric Proxy Layer</div><div class="slide-key">nae_biometric_layer</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">106</span><span class="slide-icon">📚</span><div class="slide-info"><div class="slide-title">Personalized Curriculum</div><div class="slide-key">nae_personalized_curriculum</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">107</span><span class="slide-icon">🤖</span><div class="slide-info"><div class="slide-title">CORA AI Assistant</div><div class="slide-key">nae_ai_assistant</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">108</span><span class="slide-icon">🎵</span><div class="slide-info"><div class="slide-title">Cognitive Music System</div><div class="slide-key">cognitive_music_system</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">109</span><span class="slide-icon">⏰</span><div class="slide-info"><div class="slide-title">Daily Conditioning 3.0</div><div class="slide-key">daily_conditioning_v3</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">110</span><span class="slide-icon">📊</span><div class="slide-info"><div class="slide-title">NAE Performance Dashboard</div><div class="slide-key">nae_performance_dashboard</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">111</span><span class="slide-icon">🏛️</span><div class="slide-info"><div class="slide-title">Spatial Learning Intro</div><div class="slide-key">spatial_learning_intro</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">112</span><span class="slide-icon">🏰</span><div class="slide-info"><div class="slide-title">Memory Palace System</div><div class="slide-key">spatial_memory_palace</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">113</span><span class="slide-icon">🌌</span><div class="slide-info"><div class="slide-title">Concept Cosmos</div><div class="slide-key">concept_cosmos</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">114</span><span class="slide-icon">🖥️</span><div class="slide-info"><div class="slide-title">WebXR Architecture</div><div class="slide-key">webxr_architecture</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">115</span><span class="slide-icon">🤝</span><div class="slide-info"><div class="slide-title">Multiplayer Learning</div><div class="slide-key">multiplayer_learning</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">116</span><span class="slide-icon">🏅</span><div class="slide-info"><div class="slide-title">Spatial Certification</div><div class="slide-key">spatial_certification</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">117</span><span class="slide-icon">🏙️</span><div class="slide-info"><div class="slide-title">Spatial Social Hub</div><div class="slide-key">spatial_social_hub</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">118</span><span class="slide-icon">🗺️</span><div class="slide-info"><div class="slide-title">Spatial Roadmap</div><div class="slide-key">spatial_roadmap</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">119</span><span class="slide-icon">⛓️</span><div class="slide-info"><div class="slide-title">Cross-Chain Bridge</div><div class="slide-key">crosschain_intro</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">120</span><span class="slide-icon">💱</span><div class="slide-info"><div class="slide-title">DeFi Integration</div><div class="slide-key">defi_integration</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">121</span><span class="slide-icon">📈</span><div class="slide-info"><div class="slide-title">Exchange Listing</div><div class="slide-key">ctc_exchange_listing</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">122</span><span class="slide-icon">💰</span><div class="slide-info"><div class="slide-title">Tokenomics V3</div><div class="slide-key">tokenomics_v3</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">123</span><span class="slide-icon">🌱</span><div class="slide-info"><div class="slide-title">Cognitive Yield</div><div class="slide-key">cognitive_yield</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">124</span><span class="slide-icon">🔒</span><div class="slide-info"><div class="slide-title">ZK Identity Layer</div><div class="slide-key">zk_identity</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">125</span><span class="slide-icon">🗳️</span><div class="slide-info"><div class="slide-title">On-Chain Governance V2</div><div class="slide-key">chain_governance</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">126</span><span class="slide-icon">📊</span><div class="slide-info"><div class="slide-title">CGDP Index</div><div class="slide-key">cognitive_gdp_index</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">127–132</span><span class="slide-icon">🔬</span><div class="slide-info"><div class="slide-title">CGDP Deep Dive</div><div class="slide-key">cgdp_methodology → ubctc_pilot</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">133–139</span><span class="slide-icon">🏢</span><div class="slide-info"><div class="slide-title">Enterprise Layer</div><div class="slide-key">enterprise_layer → cognitive_insurance</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">140–145</span><span class="slide-icon">🚦</span><div class="slide-info"><div class="slide-title">Vision Status + Finance</div><div class="slide-key">vision_2030_status → ecosystem_partnerships</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">146</span><span class="slide-icon">🔮</span><div class="slide-info"><div class="slide-title">The Cognitive Future</div><div class="slide-key">the_cognitive_future</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">147</span><span class="slide-icon">🐙</span><div class="slide-info"><div class="slide-title">Open Source Vision</div><div class="slide-key">open_source_vision</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">148</span><span class="slide-icon">🌍</span><div class="slide-info"><div class="slide-title">Global Impact Dashboard</div><div class="slide-key">global_impact_dashboard</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">149</span><span class="slide-icon">📣</span><div class="slide-info"><div class="slide-title">Join the Movement</div><div class="slide-key">join_the_movement</div></div></div>
+        <div class="slide-item"><span class="slide-num v3">150</span><span class="slide-icon">🌟</span><div class="slide-info"><div class="slide-title">Closing Vision V3</div><div class="slide-key">closing_vision_v3</div></div></div>
+      </div>
+    </div>
+
+    <!-- ─── CHANGELOG ─── -->
+    <div class="section" id="changelog">
+      <div class="section-header">
+        <div class="section-icon">📝</div>
+        <div><div class="section-title">Changelog</div><div class="section-desc">Release history and version notes</div></div>
+      </div>
+      <div class="changelog-item">
+        <div class="changelog-ver">v3.1</div>
+        <div class="changelog-date">Apr 01 2026</div>
+        <ul class="changelog-list">
+          <li>Created missing slides 148 (Global Impact Dashboard), 149 (Join the Movement), 150 (Closing Vision V3) — all 150 slides now complete</li>
+          <li>Fixed critical RTL bug: <code>body.setAttribute('dir','ar')</code> → <code>'rtl'</code> in a1, a2, a3-index.html and index.html</li>
+          <li>Corrected a3-index.html chapter strip labels (UBCTC → Enterprise for slides 133–139, consolidated Vision to 140–150)</li>
+          <li>Corrected CHAPTERS constant in a3-index.html to align with updated strip (6 chapters, last covers 140–150)</li>
+          <li>Updated slide metadata icons for 148–150 in a3-index.html to match actual slide content</li>
+          <li>Updated api-docs.html: Vol 3 status now ✓ 50 slides; slide 148–150 entries corrected; this changelog added</li>
+        </ul>
+      </div>
+      <div class="changelog-item">
+        <div class="changelog-ver">v3.0</div>
+        <div class="changelog-date">Mar 31 2025</div>
+        <ul class="changelog-list">
+          <li>Generated <code>en3.json</code> + <code>ar3.json</code> (50 slides each, full bilingual, 101–150)</li>
+          <li>Created <code>a1-index.html</code>, <code>a2-index.html</code>, <code>a3-index.html</code> volume viewers</li>
+          <li>Added vol-nav cross-volume links to all 3 viewers</li>
+          <li>a3-index: new Chapter Strip with 7 chapter jump chips</li>
+          <li>Added 3 new layout components: slide-container-full, slide-container-card, slide-container-split</li>
+          <li>Added grid-system.html with named areas, auto breakpoints, ResizeObserver</li>
+          <li>slide-engine.js v3.0: auto 2/3-digit URL padding, getVolume(), goToVolume(), totalSlides=150</li>
+          <li>session.js v3.0: NAE integration, Spatial state, UBCTC, Cognitive Yield, v3 localStorage key</li>
+          <li>Generated this API documentation file</li>
+        </ul>
+      </div>
+      <div class="changelog-item">
+        <div class="changelog-ver">v2.0</div>
+        <div class="changelog-date">Mar 24 2025</div>
+        <ul class="changelog-list">
+          <li>Generated <code>en2.json</code> + <code>ar2.json</code> (slides 51–100)</li>
+          <li>Created slides 51–100 HTML files</li>
+          <li>Added 20+ component files across economy-ui, cognitive-ux, progression, governance, ecosystem, identity, marketplace, public, system, video, certification categories</li>
+          <li>Built slide-engine.js v2.0 + session.js v1.0</li>
+          <li>Added ctc-engine.js</li>
+        </ul>
+      </div>
+      <div class="changelog-item">
+        <div class="changelog-ver">v1.0</div>
+        <div class="changelog-date">Mar 22 2025</div>
+        <ul class="changelog-list">
+          <li>Initial project: slides 1–50, en.json, ar.json, index.html</li>
+          <li>Core CSS system, animations.js, loader.js, slide-utils.js</li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // Active nav highlight
+  const sections = document.querySelectorAll('.section[id]');
+  const navLinks  = document.querySelectorAll('.nav-link[href^="#"]');
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(s => obs.observe(s));
+
+  // Search filter (highlights matching cards)
+  function filterDocs(query) {
+    const q = query.toLowerCase().trim();
+    if (!q) {
+      document.querySelectorAll('.comp-card, .card, .slide-item, .api-block').forEach(el => el.style.opacity = '1');
+      return;
+    }
+    document.querySelectorAll('.comp-card, .card, .slide-item, .api-block').forEach(el => {
+      const text = el.textContent.toLowerCase();
+      el.style.opacity = text.includes(q) ? '1' : '0.25';
+    });
+  }
+</script>
+</body>
+</html>

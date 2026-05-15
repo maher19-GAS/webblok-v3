@@ -1,0 +1,44 @@
+/* ═══════════════════════════════════════════
+   THEME: Desert — Dark Mode
+   Sandy Dusk · Amber Accent
+═══════════════════════════════════════════ */
+:root {
+  --bg-primary:    #120c02;
+  --bg-secondary:  #1c1204;
+  --bg-card:       rgba(217,119,6,.07);
+  --bg-nav:        rgba(18,12,2,.96);
+  --border:        rgba(217,119,6,.18);
+  --border-card:   rgba(255,255,255,.07);
+  --text-primary:  #fef3c7;
+  --text-secondary:#fcd34d;
+  --text-muted:    #d97706;
+  --accent:        #d97706;
+  --accent-2:      #f59e0b;
+  --accent-3:      #fbbf24;
+  --accent-light:  #fcd34d;
+  --accent-glow:   rgba(217,119,6,.25);
+  --gold:          #fbbf24;
+  --jade:          #34d399;
+  --rose:          #f87171;
+  --violet:        #c084fc;
+  --progress-bar:  linear-gradient(90deg,#d97706,#f59e0b,#fbbf24);
+  --slide-bg:      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(217,119,6,.06), transparent);
+  --slide-cur:     radial-gradient(ellipse 70% 40% at 50% 0%, rgba(217,119,6,.15), transparent);
+  --btn-primary:   linear-gradient(135deg,#d97706,#f59e0b);
+  --scrollbar-thumb: rgba(217,119,6,.35);
+  --overlay:       rgba(0,0,0,.75);
+  --toast-bg:      rgba(26,16,2,.97);
+  --sel-menu-bg:   rgba(20,12,2,.98);
+  --loading-bg:    #120c02;
+}
+[data-mode="light"] body{background:#fffbeb!important;color:#78350f!important}
+[data-mode="light"] #top-nav,[data-mode="light"] #bottom-nav{background:rgba(255,251,235,.97)!important;border-color:rgba(217,119,6,.2)!important}
+[data-mode="light"] .aside-panel{background:#fef3c7!important}
+[data-mode="light"] .ann-card,[data-mode="light"] .stat-card-p,[data-mode="light"] .s-card{background:#fffbeb!important}
+[data-mode="light"] .s-body{color:#78350f!important}
+[data-mode="light"] .scp-value,[data-mode="light"] .bc-cur{color:#78350f!important}
+[data-mode="light"] .toc-item,[data-mode="light"] .hist-item{color:#92400e!important}
+[data-mode="light"] .skeleton{background:linear-gradient(90deg,#fef3c7 25%,#fffbeb 50%,#fef3c7 75%)!important;background-size:200% 100%!important}
+[data-mode="light"] #loading-overlay{background:#fffbeb!important}
+[data-mode="light"] .toast{background:rgba(255,251,235,.97)!important;color:#78350f!important;border-color:rgba(0,0,0,.1)!important}
+[data-mode="light"] #sel-menu{background:rgba(254,243,199,.98)!important}

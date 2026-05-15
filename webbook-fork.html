@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebBook — نسخ كتاب (Fork)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--bg-primary:#0d1117;--bg-secondary:#161b22;--bg-card:#1c2128;--bg-hover:#21262d;--border:#30363d;--border-light:#21262d;--accent:#58a6ff;--accent-glow:rgba(88,166,255,.15);--accent2:#3fb950;--accent3:#d2a8ff;--accent4:#ffa657;--accent5:#f85149;--text-primary:#e6edf3;--text-secondary:#8b949e;--text-muted:#484f58}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Cairo',sans-serif;background:var(--bg-primary);color:var(--text-primary);min-height:100vh}
+.sidebar{width:260px;background:var(--bg-secondary);border-left:1px solid var(--border);height:100vh;position:fixed;right:0;top:0;display:flex;flex-direction:column;z-index:100}
+.sidebar-logo{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent3));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.sidebar-nav{flex:1;padding:12px 0;overflow-y:auto}
+.nav-section{padding:8px 16px 4px;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 24px;color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:all .2s;border-right:3px solid transparent;cursor:pointer}
+.nav-item:hover{color:var(--text-primary);background:var(--bg-hover)}
+.nav-item.active{color:var(--accent);background:var(--accent-glow);border-right-color:var(--accent)}
+.nav-item .nav-icon{width:20px;text-align:center;font-size:15px}
+.sidebar-footer{padding:16px 24px;border-top:1px solid var(--border)}
+.user-chip{display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px;border-radius:10px}
+.user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.main{margin-right:260px;min-height:100vh;display:flex;flex-direction:column}
+.topbar{height:64px;background:var(--bg-secondary);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 32px;gap:16px;position:sticky;top:0;z-index:50}
+.topbar-title{font-size:18px;font-weight:700;flex:1}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-primary{background:var(--accent);color:#0d1117}
+.btn-primary:hover{background:#79c0ff}
+.btn-ghost{background:transparent;color:var(--text-secondary);border:1px solid var(--border)}
+.btn-ghost:hover{color:var(--text-primary);border-color:var(--accent)}
+.btn-success{background:var(--accent2);color:#0d1117}
+.content{padding:32px;flex:1}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.card-header{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.card-title{font-size:15px;font-weight:700;flex:1}
+.card-body{padding:20px 24px}
+input[type=text],input[type=url],select,textarea{background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-family:inherit;font-size:14px;padding:10px 14px;width:100%;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+input::placeholder,textarea::placeholder{color:var(--text-muted)}
+label{font-size:13px;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:6px}
+
+/* Search results */
+.search-wrap{position:relative;margin-bottom:20px}
+.search-input-wrap{display:flex;align-items:center;gap:10px;background:var(--bg-hover);border:1px solid var(--border);border-radius:10px;padding:10px 16px}
+.search-input-wrap input{background:none;border:none;flex:1;color:var(--text-primary);font-family:inherit;font-size:15px;outline:none}
+.search-input-wrap input::placeholder{color:var(--text-muted)}
+.search-results{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:none}
+.search-results.show{display:block}
+.search-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--border-light);cursor:pointer;transition:background .15s}
+.search-item:last-child{border-bottom:none}
+.search-item:hover{background:var(--bg-hover)}
+.search-item.selected{background:var(--accent-glow);border-right:3px solid var(--accent)}
+.book-thumb{width:50px;height:70px;border-radius:8px;object-fit:cover;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px}
+.book-thumb.blue{background:linear-gradient(135deg,#1a3a5c,#0d2137)}
+.book-thumb.purple{background:linear-gradient(135deg,#2a1a3a,#180d20)}
+.book-thumb.green{background:linear-gradient(135deg,#1a3a1a,#0d200d)}
+.book-thumb.orange{background:linear-gradient(135deg,#3a2a1a,#20180d)}
+.book-info{flex:1}
+.book-title-s{font-size:14px;font-weight:700}
+.book-author{font-size:12px;color:var(--text-muted);margin:2px 0}
+.book-meta-s{display:flex;gap:12px;font-size:11px;color:var(--text-secondary);margin-top:4px}
+.badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-pub{background:rgba(63,185,80,.15);color:var(--accent2)}
+.badge-unlisted{background:rgba(88,166,255,.15);color:var(--accent)}
+
+/* Source book preview */
+.source-preview{display:flex;gap:20px;padding:20px;background:var(--bg-hover);border-radius:12px;margin-bottom:20px;display:none}
+.source-preview.show{display:flex}
+.sp-cover{width:80px;height:110px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;background:linear-gradient(135deg,#1a3a5c,#0d2137)}
+.sp-info{flex:1}
+.sp-title{font-size:18px;font-weight:700;margin-bottom:6px}
+.sp-desc{font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:12px}
+.sp-stats{display:flex;gap:16px;flex-wrap:wrap}
+.sp-stat{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:5px}
+
+/* Fork options */
+.fork-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.fork-opt{border:2px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all .2s}
+.fork-opt:hover{border-color:var(--accent)}
+.fork-opt.selected{border-color:var(--accent);background:var(--accent-glow)}
+.fork-opt .fo-icon{font-size:24px;margin-bottom:8px}
+.fork-opt .fo-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.fork-opt .fo-desc{font-size:12px;color:var(--text-muted)}
+
+/* Chapter selection */
+.chap-select-list{max-height:260px;overflow-y:auto;border:1px solid var(--border);border-radius:10px;margin-top:12px}
+.chap-select-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border-light);cursor:pointer;transition:background .15s}
+.chap-select-item:last-child{border-bottom:none}
+.chap-select-item:hover{background:var(--bg-hover)}
+.chap-check{width:18px;height:18px;border-radius:5px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all .2s}
+.chap-select-item.checked .chap-check{background:var(--accent2);border-color:var(--accent2);color:#0d1117}
+
+/* Progress overlay */
+.fork-progress{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;align-items:center;justify-content:center}
+.fork-progress.show{display:flex}
+.progress-box{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:40px;text-align:center;min-width:360px}
+.progress-bar-wrap{background:var(--bg-hover);border-radius:10px;height:8px;overflow:hidden;margin:20px 0}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent3));border-radius:10px;transition:width .4s ease;width:0}
+.progress-steps{display:flex;flex-direction:column;gap:6px;text-align:right;margin-top:16px}
+.progress-step{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:8px}
+.progress-step.done{color:var(--accent2)}
+.progress-step.active{color:var(--text-primary)}
+
+/* Skeleton */
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+.skeleton{background:linear-gradient(90deg,#1c2128 25%,#21262d 50%,#1c2128 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:6px}
+
+@media(max-width:900px){.sidebar{display:none}.main{margin-right:0}.fork-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">📚</div>
+    <div style="font-size:18px;font-weight:700">WebBook</div>
+    <span style="font-size:10px;color:var(--text-secondary);background:var(--bg-hover);padding:2px 6px;border-radius:10px">v6</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">الرئيسية</div>
+    <a class="nav-item" href="webbook-dashboard.html"><span class="nav-icon"><i class="fa fa-home"></i></span>لوحة التحكم</a>
+    <a class="nav-item" href="webbook-author-dashboard.html"><span class="nav-icon"><i class="fa fa-pen-nib"></i></span>لوحة المؤلف</a>
+    <div class="nav-section">إدارة الكتب</div>
+    <a class="nav-item" href="webbook-create.html"><span class="nav-icon"><i class="fa fa-plus-circle"></i></span>إنشاء كتاب</a>
+    <a class="nav-item" href="webbook-edit.html"><span class="nav-icon"><i class="fa fa-edit"></i></span>تعديل الكتب</a>
+    <a class="nav-item active" href="webbook-fork.html"><span class="nav-icon"><i class="fa fa-code-branch"></i></span>نسخ كتاب</a>
+    <div class="nav-section">المجتمع</div>
+    <a class="nav-item" href="#"><span class="nav-icon"><i class="fa fa-comments"></i></span>التعليقات</a>
+    <a class="nav-item" href="#"><span class="nav-icon"><i class="fa fa-bookmark"></i></span>المفضلة</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-chip">
+      <div class="user-avatar">م</div>
+      <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">محمد المؤلف</div><div style="font-size:11px;color:var(--accent4)">✨ Pro</div></div>
+    </div>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="main">
+  <header class="topbar">
+    <div style="display:flex;align-items:center;gap:10px;flex:1">
+      <a href="webbook-dashboard.html" class="btn btn-ghost" style="padding:6px 12px"><i class="fa fa-arrow-right"></i></a>
+      <h2 class="topbar-title">نسخ كتاب (Fork)</h2>
+    </div>
+    <button class="btn btn-ghost" onclick="location.href='webbook-create.html'"><i class="fa fa-plus"></i> إنشاء من الصفر</button>
+  </header>
+
+  <div class="content">
+    <div style="max-width:800px;margin:0 auto">
+
+      <!-- Intro -->
+      <div style="background:linear-gradient(135deg,rgba(88,166,255,.08),rgba(210,168,255,.08));border:1px solid rgba(88,166,255,.2);border-radius:14px;padding:20px 24px;margin-bottom:28px;display:flex;gap:16px;align-items:flex-start">
+        <div style="font-size:32px">🍴</div>
+        <div>
+          <div style="font-size:16px;font-weight:700;margin-bottom:6px">نسخ كتاب موجود</div>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.6">استنسخ أي كتاب عام أو من كتبك، وابدأ بتعديله بشكل مستقل. الفصول والمحتوى ينسخ بالكامل — تماماً كـ Fork في GitHub.</div>
+        </div>
+      </div>
+
+      <!-- Step 1: Search -->
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-header">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">1</div>
+          <span class="card-title">اختر الكتاب المصدر</span>
+        </div>
+        <div class="card-body">
+          <div class="search-wrap">
+            <div class="search-input-wrap">
+              <i class="fa fa-search" style="color:var(--text-muted)"></i>
+              <input type="text" id="bookSearchInput" placeholder="ابحث باسم الكتاب أو المؤلف أو الرابط..." oninput="searchBooks(this.value)">
+              <button class="btn btn-ghost" style="padding:4px 10px;font-size:12px" onclick="loadMyBooks()"><i class="fa fa-book"></i> كتبي</button>
+            </div>
+          </div>
+          <div class="search-results show" id="searchResults">
+            <div class="search-item selected" onclick="selectBook(this,'2030B','2030b','6','1204')">
+              <div class="book-thumb blue">📖</div>
+              <div class="book-info">
+                <div class="book-title-s">2030B — كن أذكى</div>
+                <div class="book-author">✍️ محمد المؤلف</div>
+                <div class="book-meta-s">
+                  <span><i class="fa fa-book-open"></i> 6 فصول</span>
+                  <span><i class="fa fa-users"></i> 1,204 قارئ</span>
+                  <span><i class="fa fa-language"></i> عربي · RTL</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+                <span class="badge badge-pub">عام</span>
+                <span style="font-size:11px;color:var(--text-muted)">dark-night</span>
+              </div>
+            </div>
+            <div class="search-item" onclick="selectBook(this,'AI Future','ai-future','12','432')">
+              <div class="book-thumb purple">🤖</div>
+              <div class="book-info">
+                <div class="book-title-s">مستقبل الذكاء الاصطناعي</div>
+                <div class="book-author">✍️ محمد المؤلف</div>
+                <div class="book-meta-s">
+                  <span><i class="fa fa-book-open"></i> 12 فصلاً</span>
+                  <span><i class="fa fa-users"></i> 432 قارئ</span>
+                  <span><i class="fa fa-language"></i> عربي · RTL</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+                <span class="badge badge-pub">عام</span>
+                <span style="font-size:11px;color:var(--text-muted)">deep-ocean</span>
+              </div>
+            </div>
+            <div class="search-item" onclick="selectBook(this,'Digital Business','digital-biz','8','211')">
+              <div class="book-thumb green">🚀</div>
+              <div class="book-info">
+                <div class="book-title-s">ريادة الأعمال الرقمية</div>
+                <div class="book-author">✍️ أحمد سالم</div>
+                <div class="book-meta-s">
+                  <span><i class="fa fa-book-open"></i> 8 فصول</span>
+                  <span><i class="fa fa-users"></i> 211 قارئ</span>
+                  <span><i class="fa fa-language"></i> عربي · RTL</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+                <span class="badge badge-unlisted">برابط</span>
+                <span style="font-size:11px;color:var(--text-muted)">emerald</span>
+              </div>
+            </div>
+            <div class="search-item" onclick="selectBook(this,'Learning','learning','4','98')">
+              <div class="book-thumb orange">🌱</div>
+              <div class="book-info">
+                <div class="book-title-s">فن التعلم المستمر</div>
+                <div class="book-author">✍️ سارة المنصوري</div>
+                <div class="book-meta-s">
+                  <span><i class="fa fa-book-open"></i> 4 فصول</span>
+                  <span><i class="fa fa-users"></i> 98 قارئ</span>
+                  <span><i class="fa fa-language"></i> عربي · RTL</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+                <span class="badge badge-pub">عام</span>
+                <span style="font-size:11px;color:var(--text-muted)">sunset</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selected book preview -->
+          <div class="source-preview show" id="sourcePreview">
+            <div class="sp-cover" id="sp-cover">📖</div>
+            <div class="sp-info">
+              <div class="sp-title" id="sp-title">2030B — كن أذكى</div>
+              <div class="sp-desc" id="sp-desc">كتاب شامل عن بناء عقل أذكى في عصر الذكاء الاصطناعي. يضم 6 فصول تتناول القصة والرؤية، SelfAI، والتطبيق العملي.</div>
+              <div class="sp-stats">
+                <span class="sp-stat"><i class="fa fa-book-open"></i> <span id="sp-chapters">6</span> فصول</span>
+                <span class="sp-stat"><i class="fa fa-users"></i> <span id="sp-readers">1,204</span> قارئ</span>
+                <span class="sp-stat"><i class="fa fa-code-branch"></i> <span id="sp-forks">23</span> نسخة</span>
+                <span class="sp-stat"><i class="fa fa-star"></i> 4.8/5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Fork Options -->
+      <div class="card" style="margin-bottom:20px" id="step2Card">
+        <div class="card-header">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">2</div>
+          <span class="card-title">نوع النسخ</span>
+        </div>
+        <div class="card-body">
+          <div class="fork-grid">
+            <div class="fork-opt selected" onclick="selectForkType(this,'full')">
+              <div class="fo-icon">📋</div>
+              <div class="fo-name">نسخة كاملة</div>
+              <div class="fo-desc">نسخ جميع الفصول والمحتوى والإعدادات كاملاً</div>
+            </div>
+            <div class="fork-opt" onclick="selectForkType(this,'selective')">
+              <div class="fo-icon">✂️</div>
+              <div class="fo-name">نسخة انتقائية</div>
+              <div class="fo-desc">اختر الفصول التي تريد نسخها فقط</div>
+            </div>
+            <div class="fork-opt" onclick="selectForkType(this,'template')">
+              <div class="fo-icon">🎨</div>
+              <div class="fo-name">هيكل فقط</div>
+              <div class="fo-desc">نسخ الهيكل والإعدادات دون محتوى الفصول</div>
+            </div>
+            <div class="fork-opt" onclick="selectForkType(this,'theme')">
+              <div class="fo-icon">🎭</div>
+              <div class="fo-name">الثيم والإعدادات</div>
+              <div class="fo-desc">نسخ المظهر والإعدادات فقط لكتاب جديد</div>
+            </div>
+          </div>
+
+          <!-- Selective chapters -->
+          <div id="selectiveChapters" style="display:none">
+            <div style="font-size:13px;font-weight:600;margin-bottom:6px">اختر الفصول:</div>
+            <div style="display:flex;gap:8px;margin-bottom:8px">
+              <button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="selectAllChapters(true)">تحديد الكل</button>
+              <button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="selectAllChapters(false)">إلغاء الكل</button>
+            </div>
+            <div class="chap-select-list" id="chapSelectList">
+              <div class="chap-select-item checked" onclick="toggleChapter(this)">
+                <div class="chap-check"><i class="fa fa-check"></i></div>
+                <div class="ti-num" style="width:22px;height:22px;border-radius:6px;background:var(--accent-glow);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">1</div>
+                <div style="flex:1"><div style="font-size:13px">المقدمة والفهرس</div><div style="font-size:11px;color:var(--text-muted)">1.2k كلمة</div></div>
+              </div>
+              <div class="chap-select-item checked" onclick="toggleChapter(this)">
+                <div class="chap-check"><i class="fa fa-check"></i></div>
+                <div class="ti-num" style="width:22px;height:22px;border-radius:6px;background:var(--accent-glow);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">2</div>
+                <div style="flex:1"><div style="font-size:13px">القصة والرؤية</div><div style="font-size:11px;color:var(--text-muted)">3.4k كلمة</div></div>
+              </div>
+              <div class="chap-select-item checked" onclick="toggleChapter(this)">
+                <div class="chap-check"><i class="fa fa-check"></i></div>
+                <div class="ti-num" style="width:22px;height:22px;border-radius:6px;background:var(--accent-glow);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">3</div>
+                <div style="flex:1"><div style="font-size:13px">الفصل الثاني</div><div style="font-size:11px;color:var(--text-muted)">2.8k كلمة</div></div>
+              </div>
+              <div class="chap-select-item" onclick="toggleChapter(this)">
+                <div class="chap-check"></div>
+                <div class="ti-num" style="width:22px;height:22px;border-radius:6px;background:var(--bg-hover);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">4</div>
+                <div style="flex:1"><div style="font-size:13px">الفصلان 3 و4</div><div style="font-size:11px;color:var(--text-muted)">5.1k كلمة</div></div>
+              </div>
+              <div class="chap-select-item" onclick="toggleChapter(this)">
+                <div class="chap-check"></div>
+                <div class="ti-num" style="width:22px;height:22px;border-radius:6px;background:var(--bg-hover);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">5</div>
+                <div style="flex:1"><div style="font-size:13px">SelfAI — الفصول 5-7</div><div style="font-size:11px;color:var(--text-muted)">6.2k كلمة</div></div>
+              </div>
+              <div class="chap-select-item" onclick="toggleChapter(this)">
+                <div class="chap-check"></div>
+                <div class="ti-num" style="width:22px;height:22px;border-radius:6px;background:var(--bg-hover);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">6</div>
+                <div style="flex:1"><div style="font-size:13px">الجزء الثالث والرابع</div><div style="font-size:11px;color:var(--text-muted)">4.8k كلمة</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: New Book Settings -->
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-header">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">3</div>
+          <span class="card-title">إعدادات الكتاب الجديد</span>
+        </div>
+        <div class="card-body">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <label>عنوان الكتاب الجديد</label>
+              <input type="text" id="newTitle" placeholder="مثال: نسخة 2030B المعدّلة" value="نسخة 2030B — كن أذكى">
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <label>الرابط (Slug)</label>
+              <input type="text" id="newSlug" placeholder="fork-2030b" value="fork-2030b">
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;grid-column:1/-1">
+              <label>وصف مختصر (اختياري)</label>
+              <textarea id="newDesc" rows="2" placeholder="وصف نسختك من الكتاب...">نسخة معدّلة من كتاب 2030B تتضمن محتوى إضافي وتجارب شخصية.</textarea>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <label>الرؤية</label>
+              <select id="newVis">
+                <option value="private">🔒 خاص (أنا فقط)</option>
+                <option value="unlisted" selected>🔗 برابط فقط</option>
+                <option value="public">🌍 عام</option>
+              </select>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <label>الثيم</label>
+              <select id="newTheme">
+                <option value="dark-night" selected>🌙 Dark Night</option>
+                <option value="deep-ocean">🌊 Deep Ocean</option>
+                <option value="emerald">🌿 Emerald</option>
+                <option value="sunset">🌅 Sunset</option>
+                <option value="royal-purple">👑 Royal Purple</option>
+                <option value="neon">💚 Neon</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Attribution -->
+          <div style="margin-top:20px;padding:14px;background:var(--bg-hover);border-radius:10px;border:1px solid var(--border)">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+              <i class="fa fa-award" style="color:var(--accent4)"></i>
+              <span style="font-size:13px;font-weight:700">نسب العمل الأصلي</span>
+            </div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+              سيُضاف تلقائياً: <em>"نسخة معدّلة من كتاب <strong id="attrTitle">2030B — كن أذكى</strong> للمؤلف محمد المؤلف"</em>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
+              <label class="toggle" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer">
+                <div style="position:relative;width:36px;height:20px">
+                  <input type="checkbox" checked id="attrToggle" style="opacity:0;position:absolute">
+                  <div id="attrSlider" style="position:absolute;inset:0;background:var(--accent2);border-radius:20px;cursor:pointer;transition:.3s"></div>
+                  <div style="position:absolute;width:14px;height:14px;left:2px;top:2px;background:#fff;border-radius:50%;transition:.3s"></div>
+                </div>
+                <span style="font-size:12px;color:var(--text-secondary)">إظهار نسب العمل الأصلي</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <button class="btn btn-ghost" onclick="location.href='webbook-dashboard.html'"><i class="fa fa-arrow-right"></i> إلغاء</button>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-ghost" onclick="previewFork()"><i class="fa fa-eye"></i> معاينة</button>
+          <button class="btn btn-primary" onclick="startFork()"><i class="fa fa-code-branch"></i> بدء النسخ</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- Fork Progress Overlay -->
+<div class="fork-progress" id="forkProgress">
+  <div class="progress-box">
+    <div style="font-size:36px;margin-bottom:12px">🍴</div>
+    <div style="font-size:18px;font-weight:700;margin-bottom:6px">جاري نسخ الكتاب...</div>
+    <div style="font-size:13px;color:var(--text-secondary)" id="progressLabel">التحضير...</div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+    <div class="progress-steps" id="progressSteps">
+      <div class="progress-step active" id="ps1"><i class="fa fa-circle-notch fa-spin"></i> إنشاء الكتاب الجديد</div>
+      <div class="progress-step" id="ps2"><i class="fa fa-circle"></i> نسخ البيانات الوصفية</div>
+      <div class="progress-step" id="ps3"><i class="fa fa-circle"></i> نسخ الفصول</div>
+      <div class="progress-step" id="ps4"><i class="fa fa-circle"></i> تحديث قاعدة البيانات</div>
+      <div class="progress-step" id="ps5"><i class="fa fa-circle"></i> الانتهاء</div>
+    </div>
+  </div>
+</div>
+
+<script>
+let selectedBook = { title:'2030B — كن أذكى', slug:'2030b', chapters:6, readers:'1,204' };
+let forkType = 'full';
+
+function selectBook(el, title, slug, chapters, readers) {
+  document.querySelectorAll('.search-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedBook = { title, slug, chapters, readers };
+  document.getElementById('sp-title').textContent = title;
+  document.getElementById('sp-chapters').textContent = chapters;
+  document.getElementById('sp-readers').textContent = readers;
+  document.getElementById('sourcePreview').classList.add('show');
+  document.getElementById('newTitle').value = `نسخة ${title}`;
+  document.getElementById('newSlug').value = `fork-${slug}`;
+  document.getElementById('attrTitle').textContent = title;
+}
+
+function selectForkType(el, type) {
+  document.querySelectorAll('.fork-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  forkType = type;
+  document.getElementById('selectiveChapters').style.display = type === 'selective' ? 'block' : 'none';
+}
+
+function toggleChapter(el) {
+  el.classList.toggle('checked');
+  const check = el.querySelector('.chap-check');
+  if (el.classList.contains('checked')) {
+    check.innerHTML = '<i class="fa fa-check"></i>';
+    check.style.background = 'var(--accent2)';
+    check.style.borderColor = 'var(--accent2)';
+    check.style.color = '#0d1117';
+  } else {
+    check.innerHTML = '';
+    check.style.background = '';
+    check.style.borderColor = '';
+    check.style.color = '';
+  }
+}
+
+function selectAllChapters(select) {
+  document.querySelectorAll('.chap-select-item').forEach(item => {
+    if (select && !item.classList.contains('checked')) toggleChapter(item);
+    else if (!select && item.classList.contains('checked')) toggleChapter(item);
+  });
+}
+
+function searchBooks(q) {
+  // In real app: fetch from API
+  const results = document.getElementById('searchResults');
+  results.classList.add('show');
+}
+
+function loadMyBooks() {
+  document.getElementById('bookSearchInput').value = 'كتبي';
+  searchBooks('mine');
+}
+
+function previewFork() {
+  alert('ستُفتح نافذة معاينة تُظهر كيف سيبدو الكتاب بعد النسخ');
+}
+
+async function startFork() {
+  const newTitle = document.getElementById('newTitle').value;
+  if (!newTitle || !selectedBook.slug) {
+    alert('يرجى اختيار كتاب وإدخال العنوان الجديد');
+    return;
+  }
+
+  const overlay = document.getElementById('forkProgress');
+  overlay.classList.add('show');
+
+  const steps = [
+    { id:'ps1', label:'إنشاء الكتاب الجديد...', pct:20 },
+    { id:'ps2', label:'نسخ البيانات الوصفية...', pct:40 },
+    { id:'ps3', label:'نسخ الفصول والمحتوى...', pct:65 },
+    { id:'ps4', label:'تحديث قاعدة البيانات...', pct:85 },
+    { id:'ps5', label:'الانتهاء وإعادة التوجيه...', pct:100 },
+  ];
+
+  for (let i = 0; i < steps.length; i++) {
+    await sleep(900);
+    const s = steps[i];
+    document.getElementById('progressLabel').textContent = s.label;
+    document.getElementById('progressBar').style.width = s.pct + '%';
+    document.getElementById(s.id).classList.remove('active');
+    document.getElementById(s.id).classList.add('done');
+    document.getElementById(s.id).innerHTML = `<i class="fa fa-check-circle"></i> ${document.getElementById(s.id).textContent.trim()}`;
+    if (i < steps.length - 1) {
+      document.getElementById(steps[i+1].id).classList.add('active');
+      document.getElementById(steps[i+1].id).innerHTML = `<i class="fa fa-circle-notch fa-spin"></i> ${document.getElementById(steps[i+1].id).textContent.trim()}`;
+    }
+  }
+
+  await sleep(600);
+  overlay.classList.remove('show');
+  alert(`✅ تم نسخ الكتاب بنجاح!\n"${newTitle}" جاهز للتعديل.`);
+  window.location.href = 'webbook-edit.html';
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+</script>
+</body>
+</html>

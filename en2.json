@@ -1,0 +1,784 @@
+{
+  "brand": {
+    "name": "2030B",
+    "tagline": "Be Smarter",
+    "subtitle": "Cognitive Enhancement Ecosystem"
+  },
+  "vol": 2,
+  "slides": [
+    {
+      "id": 51,
+      "key": "ecosystem_overview",
+      "header": "The 2030B Ecosystem",
+      "subtitle": "A Living Network of Intelligence",
+      "description": "2030B is a fully integrated cognitive enhancement ecosystem connecting individuals, projects, governance, and a tokenized economy into a single seamless experience.",
+      "pillars": [
+        { "icon": "🧠", "title": "Be Smarter", "desc": "Cognitive enhancement programs for all levels" },
+        { "icon": "🏗️", "title": "DVM Projects", "desc": "Real-world projects powered by human intelligence" },
+        { "icon": "💰", "title": "CTC Economy", "desc": "Token-based reward and governance system" },
+        { "icon": "🌐", "title": "Governance", "desc": "Community-driven transparent decision-making" }
+      ],
+      "stat": { "users": "2.4M", "projects": "18,400", "ctc_in_circulation": "140B", "countries": 97 }
+    },
+    {
+      "id": 52,
+      "key": "vision_2030",
+      "header": "Vision 2030",
+      "subtitle": "A World Where Thinking is the Currency",
+      "quote": "We believe every human being carries untapped cognitive potential. 2030B exists to unlock it — and reward it fairly.",
+      "milestones": [
+        { "year": 2025, "title": "Global Launch", "status": "active" },
+        { "year": 2026, "title": "10M Users", "status": "planned" },
+        { "year": 2027, "title": "CTC Exchange Listing", "status": "planned" },
+        { "year": 2028, "title": "Decentralized Governance", "status": "planned" },
+        { "year": 2030, "title": "1B Lives Impacted", "status": "vision" }
+      ],
+      "cta": "Join the Movement"
+    },
+    {
+      "id": 53,
+      "key": "problem_statement",
+      "header": "The Problem",
+      "subtitle": "Human Potential is Underutilized",
+      "problems": [
+        { "icon": "📉", "title": "Talent Mismatch", "desc": "78% of skilled individuals are in wrong roles", "stat": "78%" },
+        { "icon": "🔒", "title": "Locked Knowledge", "desc": "Research locked behind paywalls or lost in silos", "stat": "90B$" },
+        { "icon": "💸", "title": "Unfair Rewards", "desc": "Creators capture only 3% of value they generate", "stat": "3%" },
+        { "icon": "🚧", "title": "Broken Access", "desc": "2.4B people lack access to quality learning", "stat": "2.4B" }
+      ],
+      "insight": "The cognitive economy is worth $25 trillion yet 97% of its value is captured by intermediaries."
+    },
+    {
+      "id": 54,
+      "key": "solution_architecture",
+      "header": "The Solution",
+      "subtitle": "A Self-Sustaining Intelligence Engine",
+      "layers": [
+        { "order": 1, "name": "Cognitive Layer", "desc": "Personalized enhancement programs, challenges, and learning paths", "color": "blue" },
+        { "order": 2, "name": "Contribution Layer", "desc": "Real-world projects where cognitive skill generates measurable value", "color": "purple" },
+        { "order": 3, "name": "Economy Layer", "desc": "CTC token rewards, staking, and marketplace transactions", "color": "cyan" },
+        { "order": 4, "name": "Governance Layer", "desc": "Decentralized voting, policy proposals, and community treasury", "color": "emerald" }
+      ],
+      "outcome": "Every layer feeds the next — learning unlocks projects, projects earn CTC, CTC powers governance."
+    },
+    {
+      "id": 55,
+      "key": "be_smarter_program",
+      "header": "Be Smarter Program",
+      "subtitle": "Structured Cognitive Enhancement for Everyone",
+      "tiers": [
+        { "name": "Explorer", "level": 1, "ctc_unlock": 0, "features": ["Daily challenges", "Basic analytics", "Community access"], "color": "slate" },
+        { "name": "Thinker", "level": 2, "ctc_unlock": 1000, "features": ["Advanced challenges", "Mentor access", "Project eligibility"], "color": "blue" },
+        { "name": "Architect", "level": 3, "ctc_unlock": 5000, "features": ["Design challenges", "Lead projects", "Governance vote"], "color": "purple" },
+        { "name": "Visionary", "level": 4, "ctc_unlock": 20000, "features": ["Create programs", "Advisory board", "Treasury access"], "color": "amber" }
+      ],
+      "progression_note": "Progress is skill-based, not time-based. Advance when you're ready."
+    },
+    {
+      "id": 56,
+      "key": "cognitive_dimensions",
+      "header": "7 Cognitive Dimensions",
+      "subtitle": "Measuring Intelligence Beyond IQ",
+      "dimensions": [
+        { "id": 1, "name": "Analytical Thinking", "icon": "🔢", "desc": "Breaking down complex problems into solvable parts", "sample": "Logical deduction puzzles, data analysis tasks" },
+        { "id": 2, "name": "Creative Intelligence", "icon": "🎨", "desc": "Generating novel connections and original ideas", "sample": "Open-ended design challenges, lateral thinking" },
+        { "id": 3, "name": "Systems Thinking", "icon": "🕸️", "desc": "Understanding feedback loops and emergent properties", "sample": "Ecosystem mapping, causal chain analysis" },
+        { "id": 4, "name": "Emotional Intelligence", "icon": "💛", "desc": "Recognizing and managing emotions in self and others", "sample": "Scenario simulations, empathy mapping" },
+        { "id": 5, "name": "Pattern Recognition", "icon": "🧩", "desc": "Identifying non-obvious regularities in noisy data", "sample": "Visual matrices, sequence completion" },
+        { "id": 6, "name": "Memory Architecture", "icon": "💾", "desc": "Encoding, storage, and retrieval optimization", "sample": "Spaced-repetition exercises, memory palace" },
+        { "id": 7, "name": "Consciousness Expansion", "icon": "🌌", "desc": "Meta-awareness, deep focus, and presence", "sample": "Mindfulness protocols, flow-state induction" }
+      ]
+    },
+    {
+      "id": 57,
+      "key": "daily_challenge_system",
+      "header": "Challenge System",
+      "subtitle": "Earn While You Think",
+      "types": [
+        { "name": "Daily Spark", "duration": "5 min", "reward": "50 CTC", "freq": "Every day", "icon": "⚡" },
+        { "name": "Weekly Deep Dive", "duration": "45 min", "reward": "500 CTC", "freq": "Every week", "icon": "🔭" },
+        { "name": "Sprint Challenge", "duration": "2 hrs", "reward": "2,000 CTC", "freq": "Monthly", "icon": "🏃" },
+        { "name": "Grand Tournament", "duration": "3 days", "reward": "25,000 CTC", "freq": "Quarterly", "icon": "🏆" }
+      ],
+      "leaderboard_top": [
+        { "rank": 1, "name": "ZoraKhan_92", "score": 9842, "badge": "🏆" },
+        { "rank": 2, "name": "NexusMind", "score": 9701, "badge": "🥈" },
+        { "rank": 3, "name": "ArcSolver", "score": 9560, "badge": "🥉" }
+      ],
+      "your_streak": 14
+    },
+    {
+      "id": 58,
+      "key": "skill_matching_engine",
+      "header": "Skill Matching Engine",
+      "subtitle": "AI-Powered Talent × Project Alignment",
+      "how_it_works": [
+        { "step": 1, "title": "Cognitive Profile Scan", "desc": "System reads your 7-dimension profile and task history" },
+        { "step": 2, "title": "Project Requirement Parse", "desc": "NLP extracts skill vectors from project descriptions" },
+        { "step": 3, "title": "Match Scoring", "desc": "Cosine similarity + availability weighting produces match %" },
+        { "step": 4, "title": "Ranked Recommendations", "desc": "Top 10 projects served with explanation cards" }
+      ],
+      "accuracy_rate": "91%",
+      "avg_match_score": 78,
+      "sample_matches": [
+        { "project": "Quantum Climate Model", "match": 95, "skills": ["Systems Thinking", "Pattern Recognition"] },
+        { "project": "Neural Interface SDK", "match": 87, "skills": ["Analytical", "Memory Architecture"] },
+        { "project": "EduBot Arabic NLP", "match": 82, "skills": ["Creativity", "Emotional Intelligence"] }
+      ]
+    },
+    {
+      "id": 59,
+      "key": "dvm_project_ecosystem",
+      "header": "DVM Projects",
+      "subtitle": "Distributed Value Missions – Real Work, Real Impact",
+      "categories": [
+        { "name": "Technology", "count": 4820, "icon": "💻", "top_ctc": "5,000/mo" },
+        { "name": "Science", "count": 3210, "icon": "🔬", "top_ctc": "4,500/mo" },
+        { "name": "Social Impact", "count": 2840, "icon": "🌍", "top_ctc": "3,000/mo" },
+        { "name": "Creative", "count": 2190, "icon": "🎭", "top_ctc": "2,800/mo" },
+        { "name": "Education", "count": 3100, "icon": "📚", "top_ctc": "2,500/mo" },
+        { "name": "Health", "count": 2260, "icon": "🏥", "top_ctc": "4,000/mo" }
+      ],
+      "total_active": 18420,
+      "avg_duration": "3 months",
+      "success_rate": "84%"
+    },
+    {
+      "id": 60,
+      "key": "project_lifecycle",
+      "header": "Project Lifecycle",
+      "subtitle": "From Idea to Verified Impact",
+      "phases": [
+        { "phase": 1, "name": "Proposal", "desc": "Any member can propose a project with scope, budget, and skill requirements", "duration": "7 days", "status": "open" },
+        { "phase": 2, "name": "Governance Vote", "desc": "Stakers vote to fund the project from the community treasury", "duration": "5 days", "status": "vote" },
+        { "phase": 3, "name": "Talent Matching", "desc": "Skill engine assembles an optimal team automatically", "duration": "3 days", "status": "match" },
+        { "phase": 4, "name": "Active Execution", "desc": "Team works in sprints; contributions verified by AI + peer review", "duration": "Varies", "status": "active" },
+        { "phase": 5, "name": "Delivery & Audit", "desc": "Final output audited by 3 senior reviewers; CTC disbursed", "duration": "7 days", "status": "audit" },
+        { "phase": 6, "name": "Impact Scoring", "desc": "Outcomes measured against KPIs; reputation points awarded", "duration": "Ongoing", "status": "score" }
+      ]
+    },
+    {
+      "id": 61,
+      "key": "ctc_tokenomics",
+      "header": "CTC Tokenomics",
+      "subtitle": "Cognitive Token Currency – Full Economic Model",
+      "total_supply": "1,000,000,000",
+      "allocation": [
+        { "category": "Community Rewards", "pct": 40, "amount": "400M", "color": "#63B3ED" },
+        { "category": "Project Treasury", "pct": 25, "amount": "250M", "color": "#9F7AEA" },
+        { "category": "Founding Team (4yr vest)", "pct": 15, "amount": "150M", "color": "#F6AD55" },
+        { "category": "Ecosystem Partners", "pct": 10, "amount": "100M", "color": "#68D391" },
+        { "category": "Reserve Fund", "pct": 10, "amount": "100M", "color": "#FC8181" }
+      ],
+      "emission_schedule": "Halving every 4 years",
+      "current_circulating": "140M",
+      "staking_yield": "12.5% APY"
+    },
+    {
+      "id": 62,
+      "key": "ctc_earning_paths",
+      "header": "How to Earn CTC",
+      "subtitle": "Multiple Paths to Cognitive Wealth",
+      "paths": [
+        { "method": "Daily Challenges", "avg_monthly": "1,500", "effort": "Low", "icon": "⚡" },
+        { "method": "Project Contributions", "avg_monthly": "8,500", "effort": "High", "icon": "🏗️" },
+        { "method": "Peer Mentorship", "avg_monthly": "2,200", "effort": "Medium", "icon": "🤝" },
+        { "method": "Content Creation", "avg_monthly": "3,000", "effort": "Medium", "icon": "✍️" },
+        { "method": "Governance Participation", "avg_monthly": "500", "effort": "Low", "icon": "🗳️" },
+        { "method": "Staking Rewards", "avg_monthly": "1,040", "effort": "Passive", "icon": "💎" }
+      ],
+      "top_earner_monthly": "42,000 CTC",
+      "median_earner_monthly": "4,800 CTC"
+    },
+    {
+      "id": 63,
+      "key": "ctc_spending_utility",
+      "header": "CTC Utility & Spending",
+      "subtitle": "A Currency With Real-World Power",
+      "utilities": [
+        { "category": "Services", "items": ["Advanced analytics", "Premium mentor sessions", "Priority project matching"], "icon": "🛠️" },
+        { "category": "Governance", "items": ["Vote on proposals", "Submit new projects", "Shape platform rules"], "icon": "🗳️" },
+        { "category": "Marketplace", "items": ["Buy cognitive tools", "License IP assets", "Trade skills B2B"], "icon": "🏪" },
+        { "category": "Staking", "items": ["Lock CTC for APY", "Earn governance weight", "Unlock higher tiers"], "icon": "💎" },
+        { "category": "Rewards Boosts", "items": ["2× challenge rewards (7 days)", "Reputation multiplier", "Team bonus sharing"], "icon": "🚀" }
+      ]
+    },
+    {
+      "id": 64,
+      "key": "lock_mechanism",
+      "header": "CTC Lock Mechanism",
+      "subtitle": "Align Incentives, Reduce Volatility",
+      "lock_tiers": [
+        { "duration": "30 days", "multiplier": "1.0×", "bonus_label": "Base", "min_amount": 1000 },
+        { "duration": "90 days", "multiplier": "1.25×", "bonus_label": "+25%", "min_amount": 5000 },
+        { "duration": "180 days", "multiplier": "1.6×", "bonus_label": "+60%", "min_amount": 10000 },
+        { "duration": "365 days", "multiplier": "2.0×", "bonus_label": "+100%", "min_amount": 25000 }
+      ],
+      "total_locked": "62M CTC",
+      "avg_lock_duration": "147 days",
+      "governance_note": "Locked CTC grants proportional governance voting weight for the duration of the lock."
+    },
+    {
+      "id": 65,
+      "key": "governance_overview",
+      "header": "2030B Governance",
+      "subtitle": "Community-First Decision Making",
+      "principles": [
+        { "title": "Transparency", "desc": "All proposals, votes, and treasury movements are publicly auditable on-chain" },
+        { "title": "Proportionality", "desc": "Voting weight scales with locked CTC + reputation score, not token holdings alone" },
+        { "title": "Inclusivity", "desc": "Any member with ≥100 CTC staked can submit a proposal" },
+        { "title": "Accountability", "desc": "Elected councils serve 6-month terms with performance-linked renewal" }
+      ],
+      "active_proposals": 12,
+      "voter_turnout": "64%",
+      "treasury_balance": "18.4M CTC"
+    },
+    {
+      "id": 66,
+      "key": "governance_councils",
+      "header": "Governance Councils",
+      "subtitle": "Elected Bodies with Defined Mandates",
+      "councils": [
+        { "name": "Technical Council", "seats": 7, "mandate": "Platform architecture, security, integrations", "term": "6 months" },
+        { "name": "Economic Council", "seats": 5, "mandate": "CTC emission, treasury allocation, tokenomics", "term": "6 months" },
+        { "name": "Ethics Council", "seats": 5, "mandate": "Community standards, dispute resolution, inclusion", "term": "12 months" },
+        { "name": "Projects Council", "seats": 9, "mandate": "DVM project approval, quality standards, audits", "term": "6 months" }
+      ],
+      "election_mechanism": "Quadratic voting weighted by reputation + locked CTC",
+      "next_election": "April 2025"
+    },
+    {
+      "id": 67,
+      "key": "proposal_flow",
+      "header": "Submit a Governance Proposal",
+      "subtitle": "Your Voice Shapes the Platform",
+      "steps": [
+        { "step": 1, "title": "Draft Proposal", "desc": "Write title, motivation, specification, and expected impact", "tool": "Proposal Editor" },
+        { "step": 2, "title": "Community Discussion", "desc": "7-day open forum for feedback and amendments", "tool": "Forum Thread" },
+        { "step": 3, "title": "Snapshot Vote", "desc": "5-day off-chain vote; quorum = 5% of locked CTC", "tool": "Vote Interface" },
+        { "step": 4, "title": "On-Chain Execution", "desc": "If passed, smart contract executes changes automatically", "tool": "Chain TX" }
+      ],
+      "current_active": [
+        { "title": "Increase Grand Tournament Reward to 50K CTC", "votes_for": 72, "votes_against": 28, "days_left": 3 },
+        { "title": "Add Healthcare as a DVM Category", "votes_for": 88, "votes_against": 12, "days_left": 5 }
+      ]
+    },
+    {
+      "id": 68,
+      "key": "sector_map",
+      "header": "Sector Map",
+      "subtitle": "Domains of Human Knowledge – All Covered",
+      "sectors": [
+        { "id": "S01", "name": "Technology & Engineering", "projects": 4820, "top_skill": "Systems Thinking", "ctc_pool": "12M" },
+        { "id": "S02", "name": "Life Sciences & Health", "projects": 2260, "top_skill": "Analytical", "ctc_pool": "8M" },
+        { "id": "S03", "name": "Social Sciences", "projects": 1940, "top_skill": "Emotional Intelligence", "ctc_pool": "5M" },
+        { "id": "S04", "name": "Arts & Creative", "projects": 2190, "top_skill": "Creative Intelligence", "ctc_pool": "4M" },
+        { "id": "S05", "name": "Education & Learning", "projects": 3100, "top_skill": "Memory Architecture", "ctc_pool": "7M" },
+        { "id": "S06", "name": "Climate & Environment", "projects": 1820, "top_skill": "Systems Thinking", "ctc_pool": "6M" },
+        { "id": "S07", "name": "Governance & Policy", "projects": 890, "top_skill": "Pattern Recognition", "ctc_pool": "3M" },
+        { "id": "S08", "name": "Philosophy & Consciousness", "projects": 540, "top_skill": "Consciousness", "ctc_pool": "2M" }
+      ]
+    },
+    {
+      "id": 69,
+      "key": "dependency_tree",
+      "header": "Ecosystem Dependency Map",
+      "subtitle": "How Every Layer Connects",
+      "nodes": [
+        { "id": "n1", "label": "User", "type": "root", "connects_to": ["n2", "n3"] },
+        { "id": "n2", "label": "Be Smarter", "type": "branch", "connects_to": ["n4", "n5"] },
+        { "id": "n3", "label": "DVM Projects", "type": "branch", "connects_to": ["n5", "n6"] },
+        { "id": "n4", "label": "Challenges", "type": "leaf", "connects_to": [] },
+        { "id": "n5", "label": "CTC Economy", "type": "bridge", "connects_to": ["n6", "n7"] },
+        { "id": "n6", "label": "Governance", "type": "leaf", "connects_to": ["n7"] },
+        { "id": "n7", "label": "Treasury", "type": "leaf", "connects_to": [] }
+      ],
+      "key_insight": "CTC is the connective tissue — every action produces or consumes it."
+    },
+    {
+      "id": 70,
+      "key": "roadmap_2025_2030",
+      "header": "Roadmap 2025 → 2030",
+      "subtitle": "Five Years of Transformation",
+      "phases": [
+        { "year": "2025", "label": "Phase 1: Foundation", "items": ["Public beta launch", "First 50K users", "DVM v1.0", "CTC Genesis Mint"], "status": "active" },
+        { "year": "2026", "label": "Phase 2: Scale", "items": ["Mobile apps", "10M users", "API ecosystem", "Sector councils"], "status": "planned" },
+        { "year": "2027", "label": "Phase 3: Economy", "items": ["CTC exchange listing", "B2B marketplace", "Institutional partnerships", "Cross-chain bridges"], "status": "planned" },
+        { "year": "2028", "label": "Phase 4: Governance", "items": ["Full decentralization", "DAO transition", "Community constitution", "AI Auditors"], "status": "vision" },
+        { "year": "2030", "label": "Phase 5: Impact", "items": ["1B users", "100M projects completed", "Cognitive GDP metric", "Universal Basic CTC"], "status": "vision" }
+      ]
+    },
+    {
+      "id": 71,
+      "key": "mentorship_network",
+      "header": "Mentorship Network",
+      "subtitle": "Knowledge Flows Both Ways",
+      "stats": { "active_mentors": "14,200", "sessions_this_month": "48,900", "avg_rating": 4.8, "avg_duration_min": 45 },
+      "mentor_tiers": [
+        { "tier": "Guide", "req": "Level 3+, 50 sessions", "rate": "200 CTC/hr", "count": 8200 },
+        { "tier": "Expert", "req": "Level 5+, 200 sessions", "rate": "500 CTC/hr", "count": 4800 },
+        { "tier": "Master", "req": "Level 7+, 500 sessions", "rate": "1,200 CTC/hr", "count": 1200 }
+      ],
+      "topic_demand": [
+        { "topic": "Systems Thinking", "demand_pct": 28 },
+        { "topic": "AI & Quantum Computing", "demand_pct": 24 },
+        { "topic": "Emotional Intelligence", "demand_pct": 18 },
+        { "topic": "Financial Cognition", "demand_pct": 15 },
+        { "topic": "Creative Problem Solving", "demand_pct": 15 }
+      ]
+    },
+    {
+      "id": 72,
+      "key": "certification_system",
+      "header": "Cognitive Certifications",
+      "subtitle": "Credentials Employers Actually Trust",
+      "certs": [
+        { "id": "C01", "name": "Cognitive Analyst", "level": "Foundation", "skills": ["Analytical", "Pattern Recognition"], "ctc_cost": 500, "validity": "2 years" },
+        { "id": "C02", "name": "Systems Architect", "level": "Professional", "skills": ["Systems Thinking", "Logic"], "ctc_cost": 1500, "validity": "2 years" },
+        { "id": "C03", "name": "Innovation Strategist", "level": "Expert", "skills": ["Creativity", "Systems Thinking", "Emotional Intelligence"], "ctc_cost": 3000, "validity": "3 years" },
+        { "id": "C04", "name": "Quantum Cognition Master", "level": "Master", "skills": ["All 7 Dimensions ≥80%"], "ctc_cost": 8000, "validity": "Lifetime" }
+      ],
+      "recognized_by": ["MIT OpenCourseWare", "Google", "UN Digital Inclusion Initiative", "World Economic Forum"]
+    },
+    {
+      "id": 73,
+      "key": "analytics_dashboard",
+      "header": "Your Analytics Hub",
+      "subtitle": "Deep Insights Into Your Growth",
+      "weekly_summary": {
+        "challenges_completed": 12,
+        "ctc_earned": 1840,
+        "learning_hours": 8.5,
+        "reputation_gained": 120
+      },
+      "growth_chart": [
+        { "week": "W1", "score": 54 },
+        { "week": "W2", "score": 58 },
+        { "week": "W3", "score": 61 },
+        { "week": "W4", "score": 67 },
+        { "week": "W5", "score": 72 },
+        { "week": "W6", "score": 70 },
+        { "week": "W7", "score": 78 },
+        { "week": "W8", "score": 82 }
+      ],
+      "top_strength": "Pattern Recognition",
+      "growth_area": "Emotional Intelligence",
+      "percentile": 88
+    },
+    {
+      "id": 74,
+      "key": "team_collaboration",
+      "header": "Team Dynamics",
+      "subtitle": "Collaborative Intelligence Multiplied",
+      "your_team": "DVM Cloud Architecture Team Alpha",
+      "members": [
+        { "name": "Dr. Sarah Chen", "role": "Lead Researcher", "score": 91, "avatar": "SC", "status": "online" },
+        { "name": "Marcus Wei", "role": "Security Engineer", "score": 87, "avatar": "MW", "status": "online" },
+        { "name": "Aisha Noor", "role": "Data Analyst", "score": 84, "avatar": "AN", "status": "busy" },
+        { "name": "Alex Johnson", "role": "Systems Designer", "score": 82, "avatar": "AJ", "status": "online" },
+        { "name": "Leo Fontaine", "role": "Visualizations", "score": 78, "avatar": "LF", "status": "offline" }
+      ],
+      "team_cohesion_score": 86,
+      "sprint_velocity": "92%",
+      "shared_ctc_this_sprint": "4,200"
+    },
+    {
+      "id": 75,
+      "key": "contribution_types",
+      "header": "Types of Contribution",
+      "subtitle": "Many Ways to Add Value",
+      "types": [
+        { "name": "Research & Analysis", "icon": "🔬", "avg_ctc": "2,000–6,000", "verification": "Peer reviewed (3 experts)" },
+        { "name": "Engineering & Build", "icon": "⚙️", "avg_ctc": "3,000–8,000", "verification": "Technical audit + CI/CD" },
+        { "name": "Design & UX", "icon": "🎨", "avg_ctc": "1,500–4,000", "verification": "Community rating ≥4.5★" },
+        { "name": "Content & Narrative", "icon": "✍️", "avg_ctc": "800–2,500", "verification": "Plagiarism scan + editorial" },
+        { "name": "Data Collection", "icon": "📊", "avg_ctc": "500–2,000", "verification": "Schema validation + sample audit" },
+        { "name": "Mentorship Delivery", "icon": "🎓", "avg_ctc": "300–1,200/hr", "verification": "Learner rating ≥4.0★" }
+      ]
+    },
+    {
+      "id": 76,
+      "key": "impact_metrics",
+      "header": "Real-World Impact",
+      "subtitle": "Measuring What Matters",
+      "metrics": [
+        { "label": "Jobs Created via DVM Projects", "value": "124,000", "icon": "👷" },
+        { "label": "Research Papers Published", "value": "8,400", "icon": "📄" },
+        { "label": "Schools Built (Social Impact)", "value": "340", "icon": "🏫" },
+        { "label": "CO₂ Reduced (Climate Projects)", "value": "2.1M tons", "icon": "🌿" },
+        { "label": "Patents Filed", "value": "3,200", "icon": "⚖️" },
+        { "label": "Countries Impacted", "value": "97", "icon": "🌐" }
+      ],
+      "un_sdg_alignment": ["SDG 4 – Quality Education", "SDG 8 – Decent Work", "SDG 9 – Innovation", "SDG 10 – Reduced Inequalities", "SDG 13 – Climate Action"]
+    },
+    {
+      "id": 77,
+      "key": "partner_ecosystem",
+      "header": "Partner Ecosystem",
+      "subtitle": "Institutions Backing the Vision",
+      "partners": [
+        { "tier": "Platinum", "name": "Quantum Futures Foundation", "role": "Research funding" },
+        { "tier": "Platinum", "name": "NovaMind Institute", "role": "Certification validation" },
+        { "tier": "Gold", "name": "CogniTech Alliance", "role": "Technology integration" },
+        { "tier": "Gold", "name": "Global Learning Network", "role": "Education infrastructure" },
+        { "tier": "Silver", "name": "Open Science Collective", "role": "Research access" },
+        { "tier": "Silver", "name": "SynthCity DAO", "role": "Blockchain infrastructure" }
+      ],
+      "integration_count": 84,
+      "api_calls_monthly": "14.2M"
+    },
+    {
+      "id": 78,
+      "key": "marketplace_overview",
+      "header": "2030B Marketplace",
+      "subtitle": "Buy, Sell, Trade Cognitive Assets",
+      "categories": [
+        { "name": "Cognitive Tools", "listings": 1240, "avg_price": "120 CTC" },
+        { "name": "Learning Paths", "listings": 840, "avg_price": "250 CTC" },
+        { "name": "Research Data", "listings": 620, "avg_price": "500 CTC" },
+        { "name": "IP Licenses", "listings": 310, "avg_price": "2,000 CTC" },
+        { "name": "Skill Templates", "listings": 1800, "avg_price": "80 CTC" },
+        { "name": "Mentorship Packages", "listings": 950, "avg_price": "600 CTC" }
+      ],
+      "total_volume_last_30d": "8.4M CTC",
+      "featured": { "title": "Quantum Reasoning Bootcamp", "seller": "NovaMind Institute", "price": "1,200 CTC", "rating": 4.9 }
+    },
+    {
+      "id": 79,
+      "key": "notification_center",
+      "header": "Notification Center",
+      "subtitle": "Stay Ahead of Every Opportunity",
+      "categories": ["All", "Projects", "Challenges", "Governance", "Wallet", "Mentions"],
+      "notifications": [
+        { "type": "project", "title": "Quantum Climate Model match found", "body": "94% match – 5,000 CTC/mo available", "time": "2 min ago", "unread": true, "icon": "🏗️" },
+        { "type": "challenge", "title": "Weekly Deep Dive starts in 1 hour", "body": "Pattern Recognition: Emergent Networks", "time": "58 min ago", "unread": true, "icon": "⚡" },
+        { "type": "governance", "title": "Proposal #GP-0047 passed", "body": "Grand Tournament reward raised to 50K CTC", "time": "3 hrs ago", "unread": false, "icon": "🗳️" },
+        { "type": "wallet", "title": "+850 CTC received", "body": "DVM Cloud Architecture – Sprint 4 reward", "time": "5 hrs ago", "unread": false, "icon": "💰" }
+      ]
+    },
+    {
+      "id": 80,
+      "key": "profile_settings",
+      "header": "Profile & Settings",
+      "subtitle": "Customize Your 2030B Experience",
+      "profile": {
+        "name": "Alex Johnson",
+        "username": "@alex_j_2030b",
+        "level": 8,
+        "level_name": "Quantum Thinker",
+        "avatar": "AJ",
+        "joined": "November 2024",
+        "location": "Remote / Global"
+      },
+      "settings_groups": [
+        { "group": "Notifications", "options": ["Challenge reminders", "Project updates", "Governance alerts", "Wallet activity"] },
+        { "group": "Privacy", "options": ["Public profile", "Show earnings", "Skill visibility", "Team discovery"] },
+        { "group": "Display", "options": ["Dark mode", "RTL layout", "High contrast", "Reduced motion"] },
+        { "group": "Language", "options": ["English", "Arabic", "French", "Spanish", "Mandarin"] }
+      ]
+    },
+    {
+      "id": 81,
+      "key": "learning_paths",
+      "header": "Learning Paths",
+      "subtitle": "Guided Journeys to Mastery",
+      "paths": [
+        { "id": "LP01", "title": "Quantum Systems Thinker", "modules": 12, "duration": "6 weeks", "ctc_reward": "3,000", "level": "Advanced", "enrolled": 4820 },
+        { "id": "LP02", "title": "AI Ethics & Governance", "modules": 8, "duration": "4 weeks", "ctc_reward": "1,800", "level": "Intermediate", "enrolled": 6200 },
+        { "id": "LP03", "title": "Cognitive Finance", "modules": 10, "duration": "5 weeks", "ctc_reward": "2,500", "level": "Intermediate", "enrolled": 3400 },
+        { "id": "LP04", "title": "Creative Intelligence Bootcamp", "modules": 6, "duration": "3 weeks", "ctc_reward": "1,200", "level": "Beginner", "enrolled": 9800 }
+      ],
+      "your_active_path": "LP01",
+      "completion": 42
+    },
+    {
+      "id": 82,
+      "key": "flow_diagram_economy",
+      "header": "CTC Economic Flow",
+      "subtitle": "Where Value Enters, Moves, and Grows",
+      "flows": [
+        { "from": "User Activity", "to": "CTC Mint", "label": "Challenge rewards", "volume": "2.4M CTC/day" },
+        { "from": "CTC Mint", "to": "User Wallet", "label": "Direct credit", "volume": "2.1M CTC/day" },
+        { "from": "CTC Mint", "to": "Treasury", "label": "10% levy", "volume": "240K CTC/day" },
+        { "from": "User Wallet", "to": "Staking Pool", "label": "Lock & earn", "volume": "800K CTC/day" },
+        { "from": "User Wallet", "to": "Marketplace", "label": "Purchases", "volume": "280K CTC/day" },
+        { "from": "Treasury", "to": "Project Funding", "label": "Governance approval", "volume": "120K CTC/day" }
+      ],
+      "net_new_ctc_today": "+1.8M",
+      "burn_rate": "0.05% / transaction"
+    },
+    {
+      "id": 83,
+      "key": "economy_card_deep",
+      "header": "Your Economy Snapshot",
+      "subtitle": "Real-Time Financial Health",
+      "wallet": {
+        "liquid": "8,200 CTC",
+        "staked": "4,000 CTC",
+        "in_projects": "250 CTC",
+        "total": "12,450 CTC"
+      },
+      "yield_this_month": "+1,040 CTC",
+      "rank_in_network": "#14,820 of 2.4M",
+      "top_earning_source": "DVM Cloud Architecture",
+      "tax_estimation": "0 CTC (exempt tier)",
+      "upcoming_unlock": { "amount": "4,000 CTC", "date": "Mar 30" }
+    },
+    {
+      "id": 84,
+      "key": "social_feed",
+      "header": "Community Feed",
+      "subtitle": "Ideas, Breakthroughs, and Conversations",
+      "posts": [
+        { "author": "ZoraKhan_92", "avatar": "ZK", "time": "5 min ago", "content": "Just hit Level 9! 🎉 Thanks to my amazing team at Neural Language Model. The quantum reasoning module was a game-changer.", "likes": 248, "comments": 34, "badges": ["🏆", "⭐"] },
+        { "author": "NovaMind Institute", "avatar": "NM", "time": "2 hrs ago", "content": "We're launching a new Certification: Consciousness & AI Ethics. First 500 applicants get 50% CTC discount 🎓", "likes": 1240, "comments": 89, "badges": ["✅"] },
+        { "author": "ArcSolver", "avatar": "AS", "time": "4 hrs ago", "content": "Interesting thought: what if we applied swarm intelligence patterns to the governance voting system? Draft proposal coming soon.", "likes": 560, "comments": 112, "badges": ["💡"] }
+      ]
+    },
+    {
+      "id": 85,
+      "key": "resource_allocation",
+      "header": "Resource Allocation",
+      "subtitle": "Treasury Fund Distribution",
+      "current_quarter": "Q1 2025",
+      "budget_total": "18.4M CTC",
+      "allocations": [
+        { "category": "DVM Project Funding", "allocated": 8200000, "spent": 6100000, "pct": 44.6 },
+        { "category": "Challenge Prize Pool", "allocated": 3800000, "spent": 2900000, "pct": 20.7 },
+        { "category": "Mentorship Subsidies", "allocated": 2100000, "spent": 1400000, "pct": 11.4 },
+        { "category": "Platform Development", "allocated": 2500000, "spent": 1800000, "pct": 13.6 },
+        { "category": "Emergency Reserve", "allocated": 1800000, "spent": 0, "pct": 9.8 }
+      ],
+      "surplus": "3.6M CTC",
+      "next_allocation_vote": "April 1, 2025"
+    },
+    {
+      "id": 86,
+      "key": "ai_systems_overview",
+      "header": "2030B AI Layer",
+      "subtitle": "Intelligence Supporting Intelligence",
+      "systems": [
+        { "name": "MatchMind", "purpose": "Project–talent matching engine", "accuracy": "91%", "calls_daily": "840K" },
+        { "name": "CogniScore", "purpose": "Cognitive profile assessment AI", "accuracy": "94%", "calls_daily": "2.1M" },
+        { "name": "AuditBot", "purpose": "Contribution quality verification", "accuracy": "88%", "calls_daily": "320K" },
+        { "name": "TrendLens", "purpose": "Emerging skill demand forecasting", "accuracy": "83%", "calls_daily": "180K" },
+        { "name": "FraudGuard", "purpose": "CTC transaction anomaly detection", "accuracy": "99.2%", "calls_daily": "14M" }
+      ],
+      "data_privacy": "Federated learning; no raw personal data leaves device"
+    },
+    {
+      "id": 87,
+      "key": "regional_expansion",
+      "header": "Regional Expansion",
+      "subtitle": "Building Cognitive Capital Worldwide",
+      "regions": [
+        { "name": "Middle East & North Africa", "users": "420K", "growth": "+142%", "top_sector": "Technology", "languages": ["Arabic", "English"] },
+        { "name": "Sub-Saharan Africa", "users": "310K", "growth": "+218%", "top_sector": "Education", "languages": ["English", "Swahili", "French"] },
+        { "name": "South & Southeast Asia", "users": "680K", "growth": "+96%", "top_sector": "Science", "languages": ["English", "Hindi", "Bahasa"] },
+        { "name": "Latin America", "users": "290K", "growth": "+88%", "top_sector": "Social Impact", "languages": ["Spanish", "Portuguese"] },
+        { "name": "Europe", "users": "420K", "growth": "+54%", "top_sector": "Governance", "languages": ["English", "German", "French"] },
+        { "name": "North America", "users": "280K", "growth": "+41%", "top_sector": "Technology", "languages": ["English"] }
+      ],
+      "localization_note": "All content, challenges, and mentorship available in 24 languages."
+    },
+    {
+      "id": 88,
+      "key": "data_privacy_security",
+      "header": "Privacy & Security",
+      "subtitle": "Your Data, Your Control",
+      "principles": [
+        { "title": "Zero-Knowledge Proofs", "desc": "Cognitive assessment results verified without exposing raw scores to third parties" },
+        { "title": "Self-Sovereign Identity", "desc": "You own your credentials; revoke access anytime" },
+        { "title": "End-to-End Encrypted Workspaces", "desc": "Team communications use Signal-protocol encryption" },
+        { "title": "Open-Source Audits", "desc": "Core algorithms published and independently reviewed annually" },
+        { "title": "GDPR + Local Compliance", "desc": "Data residency options for EU, MENA, and Asia-Pacific regions" }
+      ],
+      "certifications": ["ISO 27001", "SOC 2 Type II", "GDPR Compliant", "PDPL Ready"],
+      "last_audit": "February 2025",
+      "vulnerabilities_open": 0
+    },
+    {
+      "id": 89,
+      "key": "success_stories",
+      "header": "Success Stories",
+      "subtitle": "Real People. Real Transformation.",
+      "stories": [
+        { "name": "Layla Al-Rashid", "location": "Riyadh, Saudi Arabia", "before": "Unemployed graduate", "after": "Lead AI Researcher earning 18K CTC/month", "time": "8 months", "avatar": "LA" },
+        { "name": "Kwame Asante", "location": "Accra, Ghana", "before": "Self-taught coder", "after": "DVM Project Lead — 340 school connectivity project", "time": "12 months", "avatar": "KA" },
+        { "name": "Priya Menon", "location": "Bangalore, India", "before": "Content writer", "after": "Certified Systems Architect earning 11K CTC/month", "time": "6 months", "avatar": "PM" }
+      ],
+      "total_lives_changed": "124,000+"
+    },
+    {
+      "id": 90,
+      "key": "future_features",
+      "header": "Coming Soon",
+      "subtitle": "What's Next in the 2030B Roadmap",
+      "features": [
+        { "name": "Neuro-Adaptive Challenges", "eta": "Q2 2025", "desc": "Challenge difficulty auto-adjusts in real-time based on biometric signals", "status": "beta" },
+        { "name": "Cross-Chain CTC Bridge", "eta": "Q3 2025", "desc": "Move CTC to Ethereum, Solana, and Polkadot ecosystems", "status": "dev" },
+        { "name": "Spatial Learning Rooms", "eta": "Q4 2025", "desc": "AR/VR collaborative workspaces for team projects", "status": "research" },
+        { "name": "Cognitive GDP Index", "eta": "Q1 2026", "desc": "National and regional cognitive output measured and published", "status": "research" },
+        { "name": "Universal Basic CTC", "eta": "2030", "desc": "Every human earns base CTC simply by learning and contributing", "status": "vision" }
+      ]
+    },
+    {
+      "id": 91,
+      "key": "onboarding_flow",
+      "header": "Getting Started",
+      "subtitle": "Your First 30 Days in 2030B",
+      "steps": [
+        { "day": "Day 1", "action": "Complete cognitive baseline assessment", "reward": "200 CTC + profile unlocked" },
+        { "day": "Day 3", "action": "Finish your first Daily Spark challenge", "reward": "50 CTC + streak started" },
+        { "day": "Day 7", "action": "Join your first DVM project", "reward": "250 CTC welcome bonus" },
+        { "day": "Day 14", "action": "Complete Week 2 of your Learning Path", "reward": "500 CTC + badge" },
+        { "day": "Day 21", "action": "Book a mentor session", "reward": "100 CTC rebate" },
+        { "day": "Day 30", "action": "Submit your first verified contribution", "reward": "1,000 CTC + Level Up" }
+      ],
+      "completion_bonus": "2,000 CTC for finishing all 6 milestones",
+      "avg_day30_earnings": "5,600 CTC"
+    },
+    {
+      "id": 92,
+      "key": "api_developer_hub",
+      "header": "Developer Hub",
+      "subtitle": "Build on the Cognitive Economy",
+      "sdk_languages": ["JavaScript", "Python", "Rust", "Go"],
+      "endpoints": [
+        { "method": "GET", "path": "/v1/users/{id}/profile", "desc": "Retrieve cognitive profile" },
+        { "method": "POST", "path": "/v1/challenges/submit", "desc": "Submit challenge response" },
+        { "method": "GET", "path": "/v1/projects/match", "desc": "Get matched projects for user" },
+        { "method": "POST", "path": "/v1/ctc/transfer", "desc": "Initiate CTC transfer (signed)" },
+        { "method": "GET", "path": "/v1/governance/proposals", "desc": "List active proposals" }
+      ],
+      "rate_limits": { "free_tier": "1,000 req/day", "builder_tier": "100,000 req/day", "enterprise": "Unlimited" },
+      "registered_apps": 2840
+    },
+    {
+      "id": 93,
+      "key": "transparency_report",
+      "header": "Transparency Report",
+      "subtitle": "Open Books, Trusted System",
+      "period": "Q4 2024",
+      "financial": {
+        "total_ctc_minted": "840M",
+        "total_ctc_burned": "12M",
+        "treasury_in": "84M",
+        "treasury_out": "61M",
+        "net_treasury": "+23M"
+      },
+      "governance": {
+        "proposals_submitted": 84,
+        "proposals_passed": 61,
+        "proposals_rejected": 18,
+        "proposals_withdrawn": 5
+      },
+      "security": {
+        "incidents": 0,
+        "pen_tests": 2,
+        "bug_bounties_paid": "42K CTC"
+      },
+      "next_report": "April 2025"
+    },
+    {
+      "id": 94,
+      "key": "ecosystem_comparison",
+      "header": "Why 2030B?",
+      "subtitle": "Compared to Traditional Platforms",
+      "comparison": [
+        { "feature": "Skill-to-Earning Connection", "traditional": "Indirect, slow", "b2030": "Direct, real-time", "winner": "2030B" },
+        { "feature": "Data Ownership", "traditional": "Platform owns it", "b2030": "You own it", "winner": "2030B" },
+        { "feature": "Governance", "traditional": "Top-down corporate", "b2030": "Decentralized community", "winner": "2030B" },
+        { "feature": "Reward Transparency", "traditional": "Opaque algorithms", "b2030": "On-chain verifiable", "winner": "2030B" },
+        { "feature": "Cognitive Development", "traditional": "Incidental", "b2030": "Core purpose", "winner": "2030B" },
+        { "feature": "Global Access", "traditional": "English-first bias", "b2030": "24 languages, local context", "winner": "2030B" }
+      ]
+    },
+    {
+      "id": 95,
+      "key": "cognitive_economy_theory",
+      "header": "The Cognitive Economy",
+      "subtitle": "A New Economic Paradigm",
+      "thesis": "In the 21st century, cognitive output — the quality, speed, and creativity of human thinking — is the primary driver of economic value. Yet traditional economies measure GDP by physical goods and financial transactions, leaving cognitive capital largely invisible and unrewarded.",
+      "principles": [
+        { "name": "Cognitive Labor = Productive Work", "desc": "Every verified cognitive contribution creates measurable economic value" },
+        { "name": "Decentralized Reputation", "desc": "Trust is earned and recorded on-chain, not granted by institutions" },
+        { "name": "Compound Intelligence", "desc": "Teams of cognitively aligned individuals produce super-linear outcomes" },
+        { "name": "Universal Participation", "desc": "Geography, age, and credential do not gate participation — ability does" }
+      ],
+      "estimated_market": "$25 Trillion by 2030"
+    },
+    {
+      "id": 96,
+      "key": "investment_thesis",
+      "header": "Investment Thesis",
+      "subtitle": "Why 2030B Will Define the Decade",
+      "highlights": [
+        { "point": "First-mover in cognitive tokenomics", "detail": "No comparable platform links cognitive skill directly to verifiable token rewards at scale" },
+        { "point": "Network effects compound", "detail": "Each new user improves matching quality for all users — Metcalfe's Law applied to intelligence" },
+        { "point": "Multiple revenue streams", "detail": "Transaction fees, premium subscriptions, B2B API, marketplace royalties" },
+        { "point": "Real-world utility floor", "detail": "CTC has immediate utility as project currency, preventing speculative collapse" }
+      ],
+      "target_valuation_2030": "$180B",
+      "current_round": "Series A – $24M at $240M valuation",
+      "lead_investor": "Quantum Futures Foundation"
+    },
+    {
+      "id": 97,
+      "key": "team_org_chart",
+      "header": "The 2030B Team",
+      "subtitle": "Builders of the Cognitive Future",
+      "leadership": [
+        { "name": "Nadia Karim", "role": "CEO & Co-Founder", "bg": "ex-Google DeepMind, PhD Cognitive Science", "avatar": "NK" },
+        { "name": "Dr. Tariq Hassan", "role": "CTO & Co-Founder", "bg": "ex-Ethereum Foundation, MIT PhD", "avatar": "TH" },
+        { "name": "Yuki Tanaka", "role": "Chief Economist", "bg": "ex-IMF, Harvard Economics", "avatar": "YT" },
+        { "name": "Amara Diallo", "role": "Chief Impact Officer", "bg": "ex-UNICEF, Oxford PPE", "avatar": "AD" }
+      ],
+      "team_size": 148,
+      "engineering_pct": 54,
+      "open_roles": 22,
+      "culture_note": "100% remote; 38 nationalities; English & Arabic primary working languages."
+    },
+    {
+      "id": 98,
+      "key": "faq_common",
+      "header": "Frequently Asked Questions",
+      "subtitle": "Everything You Want to Know",
+      "faqs": [
+        { "q": "Is CTC a cryptocurrency I can cash out?", "a": "CTC is a utility token. It can be traded on supported exchanges from 2027 onward. Currently it is used exclusively within the 2030B ecosystem." },
+        { "q": "How is my cognitive score calculated?", "a": "It's the weighted average of your 7 dimension scores, updated continuously based on challenge performance and verified contributions." },
+        { "q": "Can I lose CTC?", "a": "Your liquid CTC is never at risk unless you voluntarily spend it. Staked CTC has no slashing — lock-up periods are the only constraint." },
+        { "q": "How long does contribution verification take?", "a": "AI first-pass takes minutes. Full peer review completes within 2–5 business days." },
+        { "q": "Is 2030B available in my country?", "a": "Yes. 2030B is accessible globally. Some payment/fiat integrations are region-specific but the core platform has no geo-restrictions." }
+      ]
+    },
+    {
+      "id": 99,
+      "key": "community_call_to_action",
+      "header": "Join the Revolution",
+      "subtitle": "Your Mind is Your Most Valuable Asset",
+      "message": "2030B is not a product. It's a movement. A global community of thinkers, builders, and dreamers who believe that human intelligence — fairly rewarded and collectively organized — can solve the world's hardest problems.",
+      "ctas": [
+        { "label": "Start Your Journey", "type": "primary", "action": "signup" },
+        { "label": "Explore Projects", "type": "secondary", "action": "projects" },
+        { "label": "Read the Whitepaper", "type": "ghost", "action": "whitepaper" }
+      ],
+      "social_proof": "Join 2,400,000+ members across 97 countries",
+      "hashtag": "#BeSmarter #2030B #CognitiveFuture"
+    },
+    {
+      "id": 100,
+      "key": "closing_vision",
+      "header": "The Future is Cognitive",
+      "subtitle": "2030B – Be Smarter",
+      "closing_statement": "By 2030, we will live in a world where every person's cognitive contribution is measured, valued, and rewarded. Where the smartest solutions to humanity's challenges emerge from the collective intelligence of millions — not the decisions of a few. Where thinking is the most valuable form of work, and every mind can participate.",
+      "final_stats": [
+        { "number": "1B", "label": "Lives Impacted" },
+        { "number": "100M", "label": "Projects Completed" },
+        { "number": "1T CTC", "label": "Value Created" },
+        { "number": "∞", "label": "Human Potential" }
+      ],
+      "closing_cta": "Be Smarter. Start Today."
+    }
+  ]
+}

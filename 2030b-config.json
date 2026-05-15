@@ -1,0 +1,328 @@
+{
+  "project": {
+    "name": "2030B",
+    "tagline": "Be Smarter",
+    "subtitle": "Cognitive Enhancement Ecosystem",
+    "version": "3.2",
+    "description": "A global cognitive enhancement platform combining learning, contribution, token economy, and decentralized governance.",
+    "launch_year": 2025,
+    "vision_year": 2030
+  },
+  
+  "stats": {
+    "total_slides": 150,
+    "total_users": 2400000,
+    "active_projects": 18400,
+    "ctc_circulation": 140000000000,
+    "countries": 97,
+    "languages_supported": ["en", "ar", "fr"],
+    "chapters": 11,
+    "volumes": 3
+  },
+  
+  "chapters": [
+    {"id": 1, "name": "Welcome", "start": 1, "end": 10, "volume": 1},
+    {"id": 2, "name": "Cognitive Enhancement", "start": 11, "end": 30, "volume": 1},
+    {"id": 3, "name": "Economy & Rewards", "start": 31, "end": 50, "volume": 1},
+    {"id": 4, "name": "Ecosystem", "start": 51, "end": 70, "volume": 2},
+    {"id": 5, "name": "Platform", "start": 71, "end": 100, "volume": 2},
+    {"id": 6, "name": "NAE", "start": 101, "end": 110, "volume": 3},
+    {"id": 7, "name": "Spatial Computing", "start": 111, "end": 118, "volume": 3},
+    {"id": 8, "name": "Blockchain", "start": 119, "end": 125, "volume": 3},
+    {"id": 9, "name": "CGDP Protocol", "start": 126, "end": 132, "volume": 3},
+    {"id": 10, "name": "Enterprise", "start": 133, "end": 139, "volume": 3},
+    {"id": 11, "name": "Vision", "start": 140, "end": 150, "volume": 3}
+  ],
+  
+  "volumes": [
+    {"id": 1, "name": "Volume 1 – Foundation", "slides": "1-50", "chapters": [1,2,3]},
+    {"id": 2, "name": "Volume 2 – Ecosystem & Platform", "slides": "51-100", "chapters": [4,5]},
+    {"id": 3, "name": "Volume 3 – Future Technologies", "slides": "101-150", "chapters": [6,7,8,9,10,11]}
+  ],
+  
+  "cognitive_dimensions": [
+    {"id": 1, "name": "Analytical Thinking", "icon": "📊", "color": "#4FC3F7"},
+    {"id": 2, "name": "Creative Intelligence", "icon": "🎨", "color": "#69F0AE"},
+    {"id": 3, "name": "Systems Thinking", "icon": "🔗", "color": "#FFD54F"},
+    {"id": 4, "name": "Emotional Intelligence", "icon": "💙", "color": "#CE93D8"},
+    {"id": 5, "name": "Pattern Recognition", "icon": "🔍", "color": "#FF7043"},
+    {"id": 6, "name": "Memory Architecture", "icon": "🗂️", "color": "#26C6DA"},
+    {"id": 7, "name": "Consciousness Expansion", "icon": "🌌", "color": "#7E57C2"}
+  ],
+  
+  "tiers": [
+    {"level": 1, "name": "Explorer", "ctc_unlock": 0, "color": "#78909C"},
+    {"level": 2, "name": "Thinker", "ctc_unlock": 1000, "color": "#4FC3F7"},
+    {"level": 3, "name": "Architect", "ctc_unlock": 5000, "color": "#69F0AE"},
+    {"level": 4, "name": "Visionary", "ctc_unlock": 20000, "color": "#FFD54F"}
+  ],
+  
+  "challenge_types": [
+    {"name": "Daily Spark", "duration": "5 min", "reward_ctc": 50, "frequency": "daily"},
+    {"name": "Weekly Deep Dive", "duration": "45 min", "reward_ctc": 500, "frequency": "weekly"},
+    {"name": "Sprint Challenge", "duration": "2 hrs", "reward_ctc": 2000, "frequency": "monthly"}
+  ],
+  
+  "staking_pools": [
+    {"name": "Cognitive Growth", "apy": 12.5, "lock_period": "3 months", "risk": "Low"},
+    {"name": "Innovation Accelerator", "apy": 18.5, "lock_period": "6 months", "risk": "Medium"},
+    {"name": "Quantum Yield", "apy": 28.0, "lock_period": "12 months", "risk": "High"}
+  ],
+  
+  "database_tables": {
+    "users": {
+      "fields": [
+        {"name": "id", "type": "bigIncrements", "primary": true},
+        {"name": "username", "type": "string", "unique": true, "required": true},
+        {"name": "email", "type": "string", "unique": true, "required": true},
+        {"name": "password", "type": "string", "required": true},
+        {"name": "tier_level", "type": "integer", "default": 1},
+        {"name": "ctc_balance", "type": "decimal", "precision": [15,2], "default": 0},
+        {"name": "reputation", "type": "integer", "default": 0},
+        {"name": "enhancement_level", "type": "integer", "default": 0},
+        {"name": "avatar", "type": "string", "nullable": true},
+        {"name": "language", "type": "string", "default": "en"},
+        {"name": "created_at", "type": "timestamp"},
+        {"name": "updated_at", "type": "timestamp"}
+      ],
+      "indexes": ["username", "email", "tier_level"],
+      "relationships": ["hasMany:projects", "hasMany:contributions", "hasMany:achievements"]
+    },
+    
+    "projects": {
+      "fields": [
+        {"name": "id", "type": "bigIncrements", "primary": true},
+        {"name": "title", "type": "string", "required": true},
+        {"name": "description", "type": "text", "required": true},
+        {"name": "category", "type": "string", "required": true},
+        {"name": "difficulty", "type": "string", "required": true},
+        {"name": "ctc_reward_monthly", "type": "decimal", "precision": [10,2], "required": true},
+        {"name": "team_size", "type": "integer", "default": 1},
+        {"name": "deadline_days", "type": "integer", "required": true},
+        {"name": "progress", "type": "integer", "default": 0},
+        {"name": "match_algorithm", "type": "json", "nullable": true},
+        {"name": "tags", "type": "json", "required": true},
+        {"name": "status", "type": "string", "default": "open"},
+        {"name": "created_by", "type": "unsignedBigInteger", "foreign": "users.id"},
+        {"name": "created_at", "type": "timestamp"},
+        {"name": "updated_at", "type": "timestamp"}
+      ],
+      "indexes": ["category", "status", "created_by"],
+      "relationships": ["belongsTo:users", "hasMany:contributions"]
+    },
+    
+    "contributions": {
+      "fields": [
+        {"name": "id", "type": "bigIncrements", "primary": true},
+        {"name": "user_id", "type": "unsignedBigInteger", "foreign": "users.id", "required": true},
+        {"name": "project_id", "type": "unsignedBigInteger", "foreign": "projects.id", "required": true},
+        {"name": "type", "type": "string", "required": true},
+        {"name": "description", "type": "text", "required": true},
+        {"name": "ctc_earned", "type": "decimal", "precision": [10,2], "default": 0},
+        {"name": "reputation_earned", "type": "integer", "default": 0},
+        {"name": "status", "type": "string", "default": "pending"},
+        {"name": "verified_at", "type": "timestamp", "nullable": true},
+        {"name": "created_at", "type": "timestamp"},
+        {"name": "updated_at", "type": "timestamp"}
+      ],
+      "indexes": ["user_id", "project_id", "status"],
+      "relationships": ["belongsTo:users", "belongsTo:projects"]
+    },
+    
+    "achievements": {
+      "fields": [
+        {"name": "id", "type": "bigIncrements", "primary": true},
+        {"name": "user_id", "type": "unsignedBigInteger", "foreign": "users.id", "required": true},
+        {"name": "badge_name", "type": "string", "required": true},
+        {"name": "badge_rarity", "type": "string", "required": true},
+        {"name": "badge_icon", "type": "string", "required": true},
+        {"name": "description", "type": "text", "required": true},
+        {"name": "earned_at", "type": "timestamp", "required": true}
+      ],
+      "indexes": ["user_id", "badge_name"],
+      "relationships": ["belongsTo:users"]
+    },
+    
+    "cognitive_profiles": {
+      "fields": [
+        {"name": "id", "type": "bigIncrements", "primary": true},
+        {"name": "user_id", "type": "unsignedBigInteger", "foreign": "users.id", "unique": true, "required": true},
+        {"name": "analytical_thinking", "type": "integer", "default": 0},
+        {"name": "creative_intelligence", "type": "integer", "default": 0},
+        {"name": "systems_thinking", "type": "integer", "default": 0},
+        {"name": "emotional_intelligence", "type": "integer", "default": 0},
+        {"name": "pattern_recognition", "type": "integer", "default": 0},
+        {"name": "memory_architecture", "type": "integer", "default": 0},
+        {"name": "consciousness_expansion", "type": "integer", "default": 0},
+        {"name": "overall_score", "type": "integer", "default": 0},
+        {"name": "updated_at", "type": "timestamp"}
+      ],
+      "indexes": ["user_id", "overall_score"],
+      "relationships": ["belongsTo:users"]
+    },
+    
+    "transactions": {
+      "fields": [
+        {"name": "id", "type": "bigIncrements", "primary": true},
+        {"name": "user_id", "type": "unsignedBigInteger", "foreign": "users.id", "required": true},
+        {"name": "type", "type": "string", "required": true},
+        {"name": "amount", "type": "decimal", "precision": [15,2], "required": true},
+        {"name": "description", "type": "string", "required": true},
+        {"name": "reference_type", "type": "string", "nullable": true},
+        {"name": "reference_id", "type": "unsignedBigInteger", "nullable": true},
+        {"name": "balance_after", "type": "decimal", "precision": [15,2], "required": true},
+        {"name": "created_at", "type": "timestamp"}
+      ],
+      "indexes": ["user_id", "type", "created_at"],
+      "relationships": ["belongsTo:users"]
+    },
+    
+    "slides": {
+      "fields": [
+        {"name": "id", "type": "bigIncrements", "primary": true},
+        {"name": "slide_number", "type": "integer", "unique": true, "required": true},
+        {"name": "key", "type": "string", "unique": true, "required": true},
+        {"name": "chapter_id", "type": "integer", "required": true},
+        {"name": "volume", "type": "integer", "required": true},
+        {"name": "data_en", "type": "json", "required": true},
+        {"name": "data_ar", "type": "json", "required": true},
+        {"name": "data_fr", "type": "json", "required": true},
+        {"name": "created_at", "type": "timestamp"},
+        {"name": "updated_at", "type": "timestamp"}
+      ],
+      "indexes": ["slide_number", "key", "chapter_id", "volume"],
+      "relationships": []
+    }
+  },
+  
+  "laravel_config": {
+    "app_name": "2030B",
+    "app_env": "production",
+    "app_debug": false,
+    "app_url": "https://2030b.io",
+    "api_prefix": "api/v1",
+    "supported_locales": ["en", "ar", "fr"],
+    "default_locale": "en",
+    "fallback_locale": "en",
+    "rtl_locales": ["ar"],
+    "timezone": "UTC",
+    "session_lifetime": 120,
+    "cache_driver": "redis",
+    "queue_driver": "redis",
+    "filesystem_default": "s3",
+    "broadcasting_driver": "pusher"
+  },
+  
+  "api_endpoints": {
+    "auth": {
+      "register": {"method": "POST", "path": "/auth/register"},
+      "login": {"method": "POST", "path": "/auth/login"},
+      "logout": {"method": "POST", "path": "/auth/logout"},
+      "refresh": {"method": "POST", "path": "/auth/refresh"}
+    },
+    "users": {
+      "profile": {"method": "GET", "path": "/users/me"},
+      "update_profile": {"method": "PUT", "path": "/users/me"},
+      "cognitive_profile": {"method": "GET", "path": "/users/me/cognitive"},
+      "achievements": {"method": "GET", "path": "/users/me/achievements"}
+    },
+    "projects": {
+      "list": {"method": "GET", "path": "/projects"},
+      "show": {"method": "GET", "path": "/projects/{id}"},
+      "create": {"method": "POST", "path": "/projects"},
+      "update": {"method": "PUT", "path": "/projects/{id}"},
+      "delete": {"method": "DELETE", "path": "/projects/{id}"},
+      "apply": {"method": "POST", "path": "/projects/{id}/apply"}
+    },
+    "contributions": {
+      "list": {"method": "GET", "path": "/contributions"},
+      "create": {"method": "POST", "path": "/contributions"},
+      "verify": {"method": "POST", "path": "/contributions/{id}/verify"}
+    },
+    "transactions": {
+      "list": {"method": "GET", "path": "/transactions"},
+      "create": {"method": "POST", "path": "/transactions"}
+    },
+    "slides": {
+      "list": {"method": "GET", "path": "/slides"},
+      "show": {"method": "GET", "path": "/slides/{number}"},
+      "by_key": {"method": "GET", "path": "/slides/key/{key}"}
+    },
+    "challenges": {
+      "daily": {"method": "GET", "path": "/challenges/daily"},
+      "submit": {"method": "POST", "path": "/challenges/submit"}
+    }
+  },
+  
+  "blade_components": {
+    "core": ["SlideHeader", "SlideContainer", "SlideFooterNav"],
+    "cards": ["StatCard", "GlassCard", "ProgressCard", "ProjectCard", "ListCard", "ActionCard"],
+    "ui": ["Button", "IconButton", "TagChip", "FilterBar", "Tabs", "ToggleSwitch"],
+    "layout": ["AppShell", "SectionWrapper", "GridContainer", "GridSystem"],
+    "data": ["ProgressBar", "RadialProgress", "LineChart", "BarChart"],
+    "user": ["Avatar", "AvatarGroup", "ProfileBadge"],
+    "advanced": ["CapabilityGrid", "Timeline", "ChatBubble", "ResourceMeter"],
+    "effects": ["GlowRing", "GradientBorder", "Particles"],
+    "skeleton": ["SkeletonLayout", "SkeletonBlock"]
+  },
+  
+  "deployment": {
+    "platform": "Laravel Forge + AWS",
+    "server": "Ubuntu 22.04 LTS",
+    "web_server": "Nginx",
+    "php_version": "8.2",
+    "database": "PostgreSQL 15",
+    "cache": "Redis 7",
+    "queue": "Laravel Horizon",
+    "cdn": "CloudFlare + AWS CloudFront",
+    "ssl": "Let's Encrypt (auto-renewal)",
+    "monitoring": "Laravel Telescope + Sentry",
+    "backups": "Daily automated to S3"
+  },
+  
+  "artisan_commands": {
+    "setup": [
+      "composer install",
+      "npm install && npm run build",
+      "cp .env.example .env",
+      "php artisan key:generate",
+      "php artisan migrate --seed",
+      "php artisan storage:link",
+      "php artisan config:cache",
+      "php artisan route:cache",
+      "php artisan view:cache"
+    ],
+    "development": [
+      "php artisan serve",
+      "npm run dev",
+      "php artisan queue:work",
+      "php artisan migrate:fresh --seed"
+    ],
+    "components": [
+      "php artisan make:component SlideHeader",
+      "php artisan make:component StatCard",
+      "php artisan make:component ProjectCard",
+      "php artisan make:component Button"
+    ]
+  },
+  
+  "file_structure": {
+    "slides_data": "slides/data/slide-{001-150}.{en|ar|fr}.json",
+    "blade_components": "resources/views/components/{category}/{component-name}.blade.php",
+    "css": "public/css/styles.css",
+    "js": "public/js/{animations|loader|main}.js",
+    "migrations": "database/migrations/",
+    "seeders": "database/seeders/",
+    "api_routes": "routes/api.php",
+    "web_routes": "routes/web.php"
+  },
+  
+  "notes": {
+    "per_slide_json": "Each slide has 3 language files: slide-NNN.en.json, slide-NNN.ar.json, slide-NNN.fr.json",
+    "blade_comments": "All Blade components include Artisan installation commands and data source documentation",
+    "database_schema": "Use 'php artisan migrate' to create all tables from config",
+    "api_authentication": "JWT tokens via tymon/jwt-auth package",
+    "real_time": "WebSocket support via Laravel Broadcasting + Pusher",
+    "rtl_support": "Arabic language uses RTL layout with dir='rtl' attribute"
+  }
+}

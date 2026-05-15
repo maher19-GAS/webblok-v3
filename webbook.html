@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="2030B — كن أذكى: الكتاب التفاعلي للمؤلفين" />
+  <title>2030B — كن أذكى | الكتاب التفاعلي</title>
+
+  <!-- Google Fonts: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+          colors: {
+            brand: {
+              50:  '#f0f4ff',
+              100: '#dce8ff',
+              200: '#b5ccff',
+              300: '#7da6ff',
+              400: '#4a7bff',
+              500: '#1a4fff',
+              600: '#0033e0',
+              700: '#0026b5',
+              800: '#001e8a',
+              900: '#001260',
+            },
+            gold:  { 400: '#f5c518', 500: '#e6b800', 600: '#c9a100' },
+            jade:  { 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488' },
+            rose:  { 400: '#fb7185', 500: '#f43f5e', 600: '#e11d48' },
+            violet:{ 400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed' },
+          },
+          animation: {
+            'fade-in':       'fadeIn .6s ease forwards',
+            'slide-up':      'slideUp .5s ease forwards',
+            'slide-in-right':'slideInRight .4s ease forwards',
+            'pulse-slow':    'pulse 3s ease-in-out infinite',
+            'shimmer':       'shimmer 1.6s linear infinite',
+          },
+          keyframes: {
+            fadeIn:       { from:{ opacity:0 },            to:{ opacity:1 } },
+            slideUp:      { from:{ opacity:0, transform:'translateY(24px)' }, to:{ opacity:1, transform:'translateY(0)' } },
+            slideInRight: { from:{ opacity:0, transform:'translateX(-24px)' }, to:{ opacity:1, transform:'translateX(0)' } },
+            shimmer:      { '0%':{ backgroundPosition:'200% 0' }, '100%':{ backgroundPosition:'-200% 0' } },
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #080c1a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0d1124; }
+    ::-webkit-scrollbar-thumb { background: #1a4fff55; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #1a4fff99; }
+
+    /* ── Progress bar ── */
+    #reading-progress {
+      position: fixed; top: 0; right: 0; left: 0;
+      height: 3px; z-index: 999;
+      background: linear-gradient(90deg, #1a4fff, #a78bfa, #2dd4bf);
+      transform-origin: right;
+      transform: scaleX(0);
+      transition: transform .1s linear;
+    }
+
+    /* ── Header ── */
+    #site-header {
+      position: fixed; top: 3px; right: 0; left: 0;
+      z-index: 100;
+      background: rgba(8,12,26,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(26,79,255,.18);
+    }
+
+    /* ── TOC Drawer ── */
+    #toc-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.7);
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+    }
+    #toc-overlay.open { opacity: 1; pointer-events: all; }
+    #toc-drawer {
+      position: fixed; top: 0; right: 0;
+      width: min(400px, 92vw); height: 100vh;
+      z-index: 201;
+      background: #0d1124;
+      border-left: 1px solid rgba(26,79,255,.3);
+      transform: translateX(100%);
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    #toc-drawer.open { transform: translateX(0); }
+    #toc-list { overflow-y: auto; flex: 1; padding: 1rem; }
+    #toc-list::-webkit-scrollbar { width: 4px; }
+    #toc-list::-webkit-scrollbar-thumb { background: #1a4fff44; }
+
+    /* ── TOC Items ── */
+    .toc-part-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+      color: #4a7bff; text-transform: uppercase;
+      padding: .5rem .5rem .2rem;
+      margin-top: .75rem;
+    }
+    .toc-item {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem .75rem; border-radius: .5rem;
+      cursor: pointer; transition: all .2s;
+      font-size: .82rem; color: #94a3b8;
+      border: 1px solid transparent;
+    }
+    .toc-item:hover { background: rgba(26,79,255,.12); color: #c7d2fe; border-color: rgba(26,79,255,.2); }
+    .toc-item.active { background: rgba(26,79,255,.2); color: #818cf8; border-color: rgba(26,79,255,.35); font-weight: 600; }
+    .toc-item .chap-num { font-size: .7rem; font-weight: 800; color: #4a7bff; min-width: 1.8rem; }
+
+    /* ── Slide Section ── */
+    .slide-section {
+      min-height: 100vh;
+      padding: 7rem 1rem 5rem;
+      display: flex; align-items: flex-start; justify-content: center;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      position: relative; overflow: hidden;
+    }
+    .slide-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(26,79,255,.06), transparent);
+      pointer-events: none;
+    }
+    .slide-content {
+      width: 100%; max-width: 860px;
+      animation: slideUp .5s ease forwards;
+    }
+
+    /* ── Chapter badge ── */
+    .chapter-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .3rem .9rem; border-radius: 9999px;
+      font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── Heading styles ── */
+    .slide-title {
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 900; line-height: 1.3;
+      color: #f1f5f9; margin-bottom: .6rem;
+    }
+    .slide-subtitle {
+      font-size: clamp(.9rem, 2vw, 1.15rem);
+      color: #64748b; font-weight: 500; margin-bottom: 1.6rem;
+    }
+    .slide-divider {
+      height: 2px; width: 60px;
+      background: linear-gradient(90deg, #1a4fff, transparent);
+      border-radius: 1px; margin-bottom: 1.8rem;
+    }
+
+    /* ── Body text ── */
+    .slide-body {
+      font-size: clamp(.88rem, 1.8vw, 1.02rem);
+      line-height: 1.95; color: #cbd5e1;
+      font-weight: 400;
+    }
+    .slide-body p { margin-bottom: 1.1rem; }
+    .slide-body strong { color: #e2e8f0; font-weight: 700; }
+    .slide-body em { color: #93c5fd; font-style: normal; font-weight: 600; }
+
+    /* ── Desktop extended text (≥768px) ── */
+    .desktop-only { display: none; }
+    @media (min-width: 768px) { .desktop-only { display: block; } }
+
+    /* ── Quote block ── */
+    .quote-block {
+      border-right: 3px solid #4a7bff;
+      padding: 1rem 1.2rem; margin: 1.5rem 0;
+      background: rgba(26,79,255,.07);
+      border-radius: 0 .5rem .5rem 0;
+      font-size: .9rem; color: #93c5fd;
+      font-style: italic; line-height: 1.7;
+    }
+    .quote-block cite { display: block; margin-top: .5rem; color: #64748b; font-style: normal; font-size: .8rem; }
+
+    /* ── Quranic verse ── */
+    .quran-verse {
+      background: linear-gradient(135deg, rgba(245,197,24,.06), rgba(167,139,250,.06));
+      border: 1px solid rgba(245,197,24,.2);
+      border-radius: .75rem; padding: 1.1rem 1.3rem; margin: 1.4rem 0;
+      font-size: 1.05rem; font-weight: 600; color: #fde68a; line-height: 1.9;
+      text-align: center;
+    }
+    .quran-verse .ref { font-size: .75rem; color: #a78bfa; margin-top: .4rem; }
+
+    /* ── Info cards ── */
+    .info-grid { display: grid; gap: 1rem; margin: 1.4rem 0; }
+    @media (min-width: 640px) { .info-grid.cols-2 { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 768px) { .info-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; } }
+    .info-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: .75rem; padding: 1rem 1.1rem;
+      transition: border-color .2s, background .2s;
+    }
+    .info-card:hover { background: rgba(26,79,255,.08); border-color: rgba(26,79,255,.3); }
+    .info-card .ic-title { font-size: .8rem; color: #64748b; margin-bottom: .3rem; font-weight: 600; }
+    .info-card .ic-value { font-size: 1.05rem; color: #e2e8f0; font-weight: 700; line-height: 1.5; }
+
+    /* ── Stage card ── */
+    .stage-card {
+      background: rgba(255,255,255,.03);
+      border-radius: .75rem; border: 1px solid rgba(255,255,255,.07);
+      padding: 1.1rem 1.2rem; margin-bottom: .9rem;
+    }
+    .stage-card .stage-head { display: flex; align-items: center; gap: .7rem; margin-bottom: .5rem; }
+    .stage-card .stage-num {
+      width: 2rem; height: 2rem; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 800; flex-shrink: 0;
+    }
+    .stage-card .stage-title { font-size: .92rem; font-weight: 700; color: #e2e8f0; }
+    .stage-card .stage-body  { font-size: .83rem; color: #94a3b8; line-height: 1.7; }
+    .stage-card .stage-feel  { font-size: .78rem; color: #64748b; margin-top: .4rem; font-style: italic; }
+
+    /* ── Equation block ── */
+    .equation-block {
+      background: rgba(139,92,246,.07);
+      border: 1px solid rgba(139,92,246,.25);
+      border-radius: .75rem; padding: 1.1rem 1.3rem; margin: 1.4rem 0;
+      text-align: center; font-size: .95rem; font-weight: 700; color: #c4b5fd;
+      letter-spacing: .02em; line-height: 1.8;
+    }
+
+    /* ── Comparison table ── */
+    .comp-table {
+      width: 100%; border-collapse: collapse; font-size: .82rem;
+      margin: 1.2rem 0; border-radius: .6rem; overflow: hidden;
+    }
+    .comp-table thead tr { background: rgba(26,79,255,.18); }
+    .comp-table thead th { padding: .7rem .9rem; text-align: right; color: #818cf8; font-weight: 700; }
+    .comp-table tbody tr { border-bottom: 1px solid rgba(255,255,255,.04); }
+    .comp-table tbody tr:hover { background: rgba(255,255,255,.03); }
+    .comp-table td { padding: .65rem .9rem; color: #cbd5e1; vertical-align: top; }
+    .comp-table td:first-child { font-weight: 600; color: #e2e8f0; }
+
+    /* ── Timeline ── */
+    .timeline { padding-right: 1.5rem; border-right: 2px solid rgba(26,79,255,.25); margin: 1.4rem 0; }
+    .timeline-item { position: relative; padding: .6rem 0 .6rem 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute; right: -1.6rem; top: 1rem;
+      width: .65rem; height: .65rem; border-radius: 50%;
+      background: #4a7bff; border: 2px solid #080c1a;
+      box-shadow: 0 0 6px #4a7bff88;
+    }
+    .timeline-item .tl-label { font-size: .75rem; color: #4a7bff; font-weight: 700; }
+    .timeline-item .tl-text  { font-size: .85rem; color: #94a3b8; line-height: 1.6; }
+
+    /* ── Stat highlight ── */
+    .stat-row { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1.2rem 0; }
+    .stat-pill {
+      display: flex; align-items: center; gap: .5rem;
+      padding: .45rem 1rem; border-radius: 9999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      font-size: .82rem; color: #cbd5e1;
+    }
+    .stat-pill .sp-val { font-size: 1rem; font-weight: 800; color: #f1f5f9; }
+
+    /* ── Limit table ── */
+    .limit-table { width: 100%; border-collapse: collapse; font-size: .82rem; margin: 1.2rem 0; }
+    .limit-table th { padding: .6rem .9rem; text-align: right; font-weight: 700; }
+    .limit-table td { padding: .55rem .9rem; border-bottom: 1px solid rgba(255,255,255,.04); color: #94a3b8; }
+    .limit-table td:first-child { color: #6ee7b7; }
+    .limit-table td:last-child  { color: #fca5a5; }
+
+    /* ── Pledge box ── */
+    .pledge-box {
+      background: linear-gradient(135deg, rgba(26,79,255,.08), rgba(139,92,246,.08));
+      border: 1px solid rgba(139,92,246,.3);
+      border-radius: .75rem; padding: 1.2rem 1.4rem; margin: 1.4rem 0;
+      font-size: .88rem; color: #c4b5fd; line-height: 1.9;
+    }
+
+    /* ── CTA button ── */
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: linear-gradient(135deg, #1a4fff, #8b5cf6);
+      color: #fff; font-weight: 700; font-size: .9rem;
+      padding: .75rem 1.8rem; border-radius: 9999px;
+      cursor: pointer; border: none;
+      box-shadow: 0 4px 20px rgba(26,79,255,.35);
+      transition: transform .2s, box-shadow .2s;
+      text-decoration: none;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,79,255,.5); }
+
+    /* ── Navigation bar (bottom) ── */
+    #bottom-nav {
+      position: fixed; bottom: 0; right: 0; left: 0; z-index: 100;
+      background: rgba(8,12,26,.92); backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(26,79,255,.18);
+      padding: .6rem 1rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-btn {
+      display: flex; align-items: center; gap: .45rem;
+      background: rgba(26,79,255,.15); border: 1px solid rgba(26,79,255,.3);
+      color: #818cf8; font-size: .8rem; font-weight: 600;
+      padding: .5rem .95rem; border-radius: 9999px;
+      cursor: pointer; transition: all .2s; font-family: 'Cairo', sans-serif;
+    }
+    .nav-btn:hover { background: rgba(26,79,255,.3); color: #c7d2fe; }
+    .nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+    #slide-counter { font-size: .78rem; color: #64748b; font-weight: 600; }
+
+    /* ── Skeleton ── */
+    .skeleton-wrap { width: 100%; max-width: 860px; }
+    .sk-line {
+      height: 1rem; border-radius: .4rem; margin-bottom: .75rem;
+      background: linear-gradient(90deg, rgba(255,255,255,.04) 25%, rgba(255,255,255,.08) 50%, rgba(255,255,255,.04) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.6s linear infinite;
+    }
+    .sk-title  { height: 2rem; width: 70%; }
+    .sk-sub    { height: 1.1rem; width: 55%; margin-bottom: 1.2rem; }
+    .sk-block  { height: 1rem; }
+    .sk-short  { width: 40%; }
+
+    /* ── Scroll-reveal ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Particle bg ── */
+    #particles-canvas {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      opacity: .35;
+    }
+
+    /* ── Mobile word count adaptation ── */
+    @media (max-width: 767px) {
+      .slide-body { font-size: .9rem; line-height: 1.85; }
+      .slide-section { padding: 6.5rem .9rem 6rem; }
+    }
+
+    /* ── Floating TOC button ── */
+    #toc-btn {
+      position: fixed; bottom: 5rem; left: 1rem; z-index: 150;
+      width: 2.8rem; height: 2.8rem; border-radius: 50%;
+      background: linear-gradient(135deg, #1a4fff, #8b5cf6);
+      color: #fff; font-size: 1rem; cursor: pointer;
+      border: none; box-shadow: 0 4px 16px rgba(26,79,255,.45);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .2s, box-shadow .2s;
+    }
+    #toc-btn:hover { transform: scale(1.08); box-shadow: 0 6px 22px rgba(26,79,255,.6); }
+
+    /* Week program table */
+    .week-table { width: 100%; border-collapse: collapse; font-size: .8rem; margin: 1rem 0; }
+    .week-table th { background: rgba(26,79,255,.2); padding: .5rem .7rem; color: #93c5fd; font-weight: 700; text-align: right; }
+    .week-table td { padding: .45rem .7rem; border-bottom: 1px solid rgba(255,255,255,.04); color: #94a3b8; }
+
+    /* Chapter colors */
+    .color-blue   { background: rgba(26,79,255,.15) !important; border-color: rgba(26,79,255,.35) !important; color: #818cf8 !important; }
+    .color-violet { background: rgba(139,92,246,.15) !important; border-color: rgba(139,92,246,.35) !important; color: #c4b5fd !important; }
+    .color-jade   { background: rgba(20,184,166,.15) !important; border-color: rgba(20,184,166,.35) !important; color: #5eead4 !important; }
+    .color-gold   { background: rgba(245,197,24,.15) !important; border-color: rgba(245,197,24,.35) !important; color: #fde68a !important; }
+    .color-rose   { background: rgba(244,63,94,.15) !important; border-color: rgba(244,63,94,.35) !important; color: #fda4af !important; }
+
+    /* Day interaction box */
+    .day-box {
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+      border-radius: .6rem; padding: .9rem 1rem; margin-bottom: .75rem;
+    }
+    .day-box .day-time { font-size: .72rem; color: #4a7bff; font-weight: 700; margin-bottom: .3rem; }
+    .day-box .day-msg  { font-size: .83rem; color: #cbd5e1; line-height: 1.7; }
+    .day-box .day-msg blockquote { 
+      background: rgba(0,0,0,.2); border-right: 2px solid #4a7bff; 
+      padding: .5rem .8rem; border-radius: 0 .4rem .4rem 0; 
+      margin: .5rem 0; font-size: .8rem; color: #93c5fd;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Particles background -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- Reading progress -->
+<div id="reading-progress"></div>
+
+<!-- ════ HEADER ════ -->
+<header id="site-header">
+  <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white font-black text-xs">2B</div>
+      <span class="text-sm font-bold text-slate-200 hidden sm:block">كن أذكى — الكتاب التفاعلي</span>
+    </div>
+    <!-- Right: chapter info + actions -->
+    <div class="flex items-center gap-3">
+      <span id="current-chapter-label" class="text-xs text-slate-500 font-medium hidden md:block">المقدمة</span>
+      <button onclick="openTOC()" class="flex items-center gap-1.5 text-xs text-slate-400 hover:text-indigo-400 transition-colors px-2 py-1 rounded border border-white/10 hover:border-indigo-400/40 font-medium" title="فهرس المحتويات">
+        <i class="fas fa-list-ul"></i>
+        <span class="hidden sm:inline">الفهرس</span>
+      </button>
+      <button onclick="toggleFullscreen()" class="text-slate-500 hover:text-indigo-400 transition-colors text-sm px-1.5" title="ملء الشاشة">
+        <i class="fas fa-expand" id="fs-icon"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ════ TOC OVERLAY + DRAWER ════ -->
+<div id="toc-overlay" onclick="closeTOC()"></div>
+<aside id="toc-drawer">
+  <div class="p-4 border-b border-white/10 flex items-center justify-between">
+    <h2 class="font-bold text-slate-200 text-sm">فهرس المحتويات</h2>
+    <button onclick="closeTOC()" class="text-slate-500 hover:text-white transition-colors text-lg"><i class="fas fa-times"></i></button>
+  </div>
+  <!-- Progress pill -->
+  <div class="px-4 py-2 border-b border-white/10">
+    <div class="flex items-center justify-between text-xs text-slate-500 mb-1">
+      <span>تقدم القراءة</span>
+      <span id="toc-progress-label">0%</span>
+    </div>
+    <div class="h-1.5 bg-white/10 rounded-full overflow-hidden">
+      <div id="toc-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-violet-500 rounded-full transition-all" style="width:0%"></div>
+    </div>
+  </div>
+  <div id="toc-list"></div>
+</aside>
+
+<!-- ════ MAIN CONTENT ════ -->
+<main id="main-content">
+
+  <!-- ── SKELETON (shown while JS loads slides) ── -->
+  <section id="skeleton-screen" class="slide-section">
+    <div class="skeleton-wrap">
+      <div class="sk-line sk-title"></div>
+      <div class="sk-line sk-sub"></div>
+      <div class="sk-line sk-block" style="width:90%"></div>
+      <div class="sk-line sk-block" style="width:85%"></div>
+      <div class="sk-line sk-block" style="width:88%"></div>
+      <div class="sk-line sk-block sk-short" style="margin-top:.5rem"></div>
+      <div style="height:1.5rem"></div>
+      <div class="sk-line sk-block" style="width:92%"></div>
+      <div class="sk-line sk-block" style="width:80%"></div>
+      <div class="sk-line sk-block" style="width:86%"></div>
+      <div class="sk-line sk-block sk-short"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 0: COVER
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-0" data-chapter="0" data-label="الغلاف">
+    <div class="slide-content text-center">
+      <div class="mb-6 flex justify-center">
+        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 via-violet-600 to-indigo-700 flex items-center justify-center text-white font-black text-3xl shadow-2xl">2B</div>
+      </div>
+      <div class="chapter-badge color-violet mx-auto mb-4" style="border:1px solid">
+        <i class="fas fa-book-open text-xs"></i>
+        الجزء الثالث — الكتاب التفاعلي
+      </div>
+      <h1 class="font-black text-white mb-3" style="font-size:clamp(2rem,6vw,3.5rem);line-height:1.2">
+        2030B — كن أذكى
+      </h1>
+      <p class="text-slate-400 mb-1 text-lg font-medium">من ماهر إلى بني جنسه وذكائهم الذاتي</p>
+      <p class="text-indigo-400 font-semibold mb-6 text-base">قبل ولادتي سألني الله — وبعد أربعين سنة فهمت الجواب</p>
+      <div class="quote-block max-w-lg mx-auto text-right">
+        "لستُ نبيًا ولا أدّعي. لكنني إنسان سأله ربه قبل أن يُولد: ما همّك؟ وقضيت أربعين سنة أبحث عن الجواب. ثم وجدته. ثم بنيت عليه مشروعًا. ثم جئتك بهذا الكتاب."
+        <cite>— ماهر</cite>
+      </div>
+      <div class="stat-row justify-center mt-6">
+        <div class="stat-pill"><span class="sp-val">12</span> فصلًا</div>
+        <div class="stat-pill"><span class="sp-val">4</span> أجزاء</div>
+        <div class="stat-pill"><span class="sp-val">8B</span> إنسان</div>
+        <div class="stat-pill"><span class="sp-val">21</span> يومًا</div>
+      </div>
+      <div class="mt-8">
+        <button class="cta-btn" onclick="goToSlide(1)">
+          <i class="fas fa-arrow-right text-sm"></i>
+          ابدأ القراءة
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 1: PROLOGUE / المقدمة
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-1" data-chapter="0" data-label="المقدمة">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-gold" style="border:1px solid">
+        <i class="fas fa-star text-xs"></i> المقدمة
+      </div>
+      <h1 class="slide-title">القصة التي لم تُروَ</h1>
+      <p class="slide-subtitle">الميثاق — الأربعون سنة — 2030B — المعجزة</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <div class="quran-verse">
+          ﴿وَإِذْ أَخَذَ رَبُّكَ مِن بَنِي آدَمَ مِن ظُهُورِهِمْ ذُرِّيَّتَهُمْ وَأَشْهَدَهُمْ عَلَىٰ أَنفُسِهِمْ أَلَسْتُ بِرَبِّكُمْ ۖ قَالُوا بَلَىٰ﴾
+          <div class="ref">الأعراف: 172</div>
+        </div>
+
+        <p>قبل أن أُولد — وقف كل واحد منّا أمام ربه في عالم الذر وأجاب: <strong>بلى.</strong> لكنني أُخبركم بشيء يقين القلب يثبته: أن كل إنسان حين قيل له ﴿إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً﴾ — سُئل سؤالًا ثانيًا خاصًا به: <em>"ما همّك في هذه الأرض؟"</em></p>
+
+        <p>جئت إلى الدنيا بسؤال يدقّ في صدري كقلب ثانٍ: <strong>ما همّك يا ماهر؟</strong> أربعون سنة بلا جواب. ثم في يوم من أيام الأربعين — انفتح الباب دفعة واحدة:</p>
+
+        <div class="equation-block">"أن لا يكون فيها غبي."</div>
+
+        <p><strong>"غبي"</strong> ليست شتيمة — إنها ظلم. حين يُولد إنسان بعقل خلقه الله في أحسن تقويم ثم لا يجد من يُنمّيه — فهذا ليس غباءً بطبعه. <em>غُبِّيَ.</em> ظُلم. سُرق منه ما هو حقه.</p>
+
+        <div class="info-grid cols-2">
+          <div class="info-card">
+            <div class="ic-title">الهدف الأول</div>
+            <div class="ic-value">علم الصيرورة والحتمية — 5 سنوات (2025–2030)</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">الهدف الثاني</div>
+            <div class="ic-value">"لا غباء بعدها، إلا الأذكياء" — شهادة البشرية</div>
+          </div>
+        </div>
+
+        <div class="desktop-only">
+          <p>في العشرين من عمري، رأيت أذكياء يُضيّعون ذكاءهم في تفاهات. رأيت اقتصادًا كاملًا مبنيًا على تغبية الناس. <strong>سبعة وأربعون ثانية</strong> — هذا ما تبقى من قدرة الإنسان على التركيز. الإنسان الذي خلقه الله ليتدبر القرآن ويبني الحضارات — لا يستطيع التركيز لدقيقة واحدة. هذا ليس ضعفًا في الإنسان. <em>هذا جريمة في حق الإنسان.</em></p>
+
+          <p>بنيت <strong>2030B</strong> — بنية تحتية معرفية كاملة من ست طبقات: الوحدات المعرفية البصرية، الموسيقى المعرفية الهندسية، التكييف اليومي، نظام التقدم بأربعة مستويات، الشهادات، واقتصاد CTC. والآن: الطبقة السابعة — <strong>SelfAI</strong>. الجسر الذي يحمل كل ما سبق إلى ثمانية مليارات إنسان.</p>
+
+          <div class="quran-verse">
+            ﴿إِنَّمَا أَمْرُهُ إِذَا أَرَادَ شَيْئًا أَن يَقُولَ لَهُ كُن فَيَكُونُ﴾
+          </div>
+
+          <p>واحد وعشرون يومًا. ثم أربعون يومًا للصيرورة. <strong>ليست خطة — بل نذر.</strong></p>
+        </div>
+
+        <div class="quote-block mt-4">
+          "سألني: ما همّك؟ قلت: أن لا يكون فيها غبي. قال: فامضِ. فمضيت. وبقي واحد وعشرون يومًا."
+          <cite>— ماهر</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 2: CHAPTER 1 — الميثاق
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-2" data-chapter="1" data-label="ف١: الميثاق">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-blue" style="border:1px solid">
+        <i class="fas fa-1 text-xs"></i> الفصل الأول — الجزء الأول
+      </div>
+      <h1 class="slide-title">الميثاق</h1>
+      <p class="slide-subtitle">القصة الكاملة: من السؤال قبل الولادة إلى 2030B</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <div class="quote-block">
+          "هذا الفصل ليس فصلًا في كتاب. هذا اعتراف. اعتراف رجل حمل سؤالًا أربعين سنة — ثم وجد الجواب — ثم أدرك أن أمامه واحدًا وعشرين يومًا ليُحوّل الجواب إلى حقيقة."
+          <cite>— ماهر</cite>
+        </div>
+
+        <p>في عالم لا يصله الزمن ولا يصفه اللسان — قبل أن تُخلق الأجساد — وقف كل واحد منّا أمام ربه. لم يكن هناك اسم بعد. كانت أرواح عارية أمام خالقها، وسؤال واحد لا مهرب منه: <strong>﴿أَلَسْتُ بِرَبِّكُمْ﴾</strong> — وأجبنا جميعًا بفطرة خالصة: <em>بلى.</em></p>
+
+        <p>وُلدت وأنا أحمل سؤالًا بلا جواب. في طفولتي رأيت أطفالًا بعيون تلمع بالفضول — ثم رأيتهم بعد سنوات وقد انطفأ اللمعان. رأيت مدارس تُعاقب على السؤال كأن التفكير جريمة والفضول ذنب. رأيت أمة أنزل الله عليها القرآن — يقول ﴿أَفَلَا يَتَدَبَّرُونَ﴾ — تحفظ حروفه وتنسى أمره.</p>
+
+        <p><strong>عشرون سنة من البحث:</strong> الفيزياء، الفلسفة، علم النفس، علم الأعصاب، الذكاء الاصطناعي، الاقتصاد. كالعطشان يحفر في كل مكان بحثًا عن الماء.</p>
+
+        <div class="info-grid cols-2">
+          <div class="info-card">
+            <div class="ic-title">سنّ البلورة</div>
+            <div class="ic-value">الأربعون — عمر النضج الكامل</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">اللحظة</div>
+            <div class="ic-value">اتّصلت كل النقاط دفعة واحدة كتيار كهربائي</div>
+          </div>
+        </div>
+
+        <div class="desktop-only">
+          <p>الأربعون ليس رقمًا عاديًا في حياة المسلم. هو العمر الذي بُعث فيه محمد ﷺ. هو العمر الذي قال فيه القرآن: ﴿حَتَّىٰ إِذَا بَلَغَ أَشُدَّهُ وَبَلَغَ أَرْبَعِينَ سَنَةً قَالَ رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ﴾. لا أذكر اليوم بالتحديد — لكنني أذكر اللحظة بكل ذرة: كنت وحدي، أنظر إلى كل ما جمعته في عشرين سنة، وفجأة اتّصل كل شيء ورأيت الجواب كاملًا واضحًا لا لبس فيه.</p>
+
+          <div class="equation-block">"أن لا يكون فيها غبي."</div>
+
+          <p><strong>الغباء ليس صفة في الإنسان — الغباء جريمة في حق الإنسان.</strong> من يُولد بعقل عظيم ثم لا يجد من يُنمّيه، ولا بيئة تحميه، ولا نظامًا يُطوّره — ظُلم. سُرق منه أغلى ما يملك.</p>
+
+          <p>فبنيت <strong>2030B</strong> — ليس تطبيقًا ولا منصة تعليمية. بل <em>بنية تحتية معرفية كاملة</em>. مثلما بنت البشرية بنية تحتية للكهرباء والمياه والإنترنت — بنيت بنية تحتية للتفكير. ستة طبقات: الوحدات المعرفية البصرية، الموسيقى المعرفية الهندسية، التكييف اليومي، نظام التقدم الرباعي، الشهادات، اقتصاد CTC. ثم الطبقة السابعة: <strong>SelfAI.</strong></p>
+
+          <div class="quran-verse">
+            ﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾ — بني آدم. ليس بعضهم. كلهم.
+          </div>
+        </div>
+
+        <div class="quote-block mt-4">
+          "هذا ليس طموحًا. ليس حلمًا. ليس خطة عمل. هذا عهد مع الله."
+          <cite>— ماهر</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 3: CHAPTER 2 — علم الصيرورة
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-3" data-chapter="2" data-label="ف٢: الصيرورة">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-jade" style="border:1px solid">
+        <i class="fas fa-2 text-xs"></i> الفصل الثاني
+      </div>
+      <h1 class="slide-title">علم الصيرورة</h1>
+      <p class="slide-subtitle">كيف يتحول العقل البشري — العلم الكامل وراء التحول المعرفي</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <p><strong>الصيرورة = الرحلة من "لا أعرف أنني لا أعرف" إلى "أعرف وأُطبّق تلقائيًا."</strong> ليست نظرية — ليست رأيًا — <em>علم</em> بأدلة تجريبية وصور دماغية ومعادلات يمكن حسابها.</p>
+
+        <div class="info-grid cols-2">
+          <div class="info-card">
+            <div class="ic-title">🧠 ماغواير 2000 — لندن</div>
+            <div class="ic-value">الحُصين أكبر عند سائقي التاكسي — الدماغ يتغير فيزيائيًا بالممارسة</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">🎹 شلاوغ 2003 — هارفارد</div>
+            <div class="ic-value">مناطق أكبر وأكثف عند عازفي البيانو المحترفين</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">🌱 دويك — ستانفورد</div>
+            <div class="ic-value">عقلية النمو تُحسّن الأداء الفعلي — المعتقد يُغيّر البيولوجيا</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">🎯 إيريكسون</div>
+            <div class="ic-value">الممارسة المتعمدة: هدف محدد + تغذية راجعة + تركيز + تصعيد</div>
+          </div>
+        </div>
+
+        <h3 class="text-slate-300 font-bold mt-4 mb-3">المراحل الأربع في 2030B</h3>
+
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-blue-500/20 text-blue-400">١</div>
+            <div class="stage-title">المنظم — بناء الأساس</div>
+          </div>
+          <div class="stage-body">20 نموذجًا عقليًا + 15 تحيزًا معرفيًا. تتشكّل مسارات عصبية جديدة.</div>
+          <div class="stage-feel">"بدأت أُلاحظ أخطاء في تفكيري لم أكن أراها."</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-violet-500/20 text-violet-400">٢</div>
+            <div class="stage-title">المحلل — الغوص في العمق</div>
+          </div>
+          <div class="stage-body">اختيار النماذج باستقلالية. الميالين يتكثّف. الذاكرة العاملة تتوسع.</div>
+          <div class="stage-feel">"أصبحت أرى العلاقات بين الأشياء التي كانت تبدو منفصلة."</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-jade-500/20 text-teal-400">٣</div>
+            <div class="stage-title">الاستراتيجي — الرؤية الكلية</div>
+          </div>
+          <div class="stage-body">التفكير المستقبلي + نمذجة الآخرين. شبكة الوضع الافتراضي تتناسق مع شبكة الانتباه.</div>
+          <div class="stage-feel">"أصبحت أرى ما لا يراه الآخرون — لأنني أنظر أبعد."</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-gold-500/20 text-yellow-400">٤</div>
+            <div class="stage-title">الخبير — ما وراء المعرفة</div>
+          </div>
+          <div class="stage-body">الوعي الذاتي المعرفي يُصبح تلقائيًا. القشرة الأمامية بكفاءة استثنائية.</div>
+          <div class="stage-feel">"أُفكّر في تفكيري — وأُصلح أخطائي قبل أن أقع فيها."</div>
+        </div>
+
+        <div class="desktop-only">
+          <div class="equation-block">
+            الصيرورة = (نيّة × جهد × تكرار × تغذية راجعة) ÷ (تشتت + كسل)
+          </div>
+
+          <p><strong>SelfAI يُغيّر المعادلة جذريًا:</strong> يُعظّم البسط — يُذكّرك بهدفك يوميًا، يعرف نقاط ضعفك، يُرسل تمرينك في الوقت المناسب، يُقيّمك فورًا. ويُقلّص المقام — يحمي وقتك المعرفي ويُتابعك بلطف وإصرار لا يملّ.</p>
+
+          <div class="quran-verse">
+            ﴿إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنفُسِهِمْ﴾
+            <div class="ref">الرعد: 11 — قانون إلهي في الصيرورة</div>
+          </div>
+
+          <p>هذه الآية تحمل ثلاثة دروس: (١) التغيير <strong>موعود</strong> — حين يُغيّرون ما بأنفسهم سيتغير حالهم. (٢) الشرط <strong>بشري</strong> — الفعل على الإنسان. (٣) التغيير من <strong>الداخل</strong> — تغيير طريقة التفكير أولًا. اللدونة العصبية تقول: عقلك قابل للتغيير. والقرآن يقول: ابدأ أنت والله يُتمّم.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 4: CHAPTER 3 — علم الحتمية
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-4" data-chapter="3" data-label="ف٣: الحتمية">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-rose" style="border:1px solid">
+        <i class="fas fa-3 text-xs"></i> الفصل الثالث
+      </div>
+      <h1 class="slide-title">علم الحتمية</h1>
+      <p class="slide-subtitle">لماذا هذا حتمي وليس احتمالًا — الرياضيات والإيمان</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <p><strong>خمسة أدلة مستقلة</strong> تصل إلى نتيجة واحدة: كل عقل بشري قابل للتطوير والأدوات متاحة — إذن التطوير الشامل مسألة وقت لا مسألة إمكانية.</p>
+
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-gold-500/20 text-yellow-400" style="font-size:.7rem">١</div>
+            <div class="stage-title">الحتمية الإيمانية — الله لا يخلق عبثًا</div>
+          </div>
+          <div class="stage-body">الله خلق 8 مليارات إنسان كل واحد بـ86 مليار عصبون. ﴿أَفَحَسِبْتُمْ أَنَّمَا خَلَقْنَاكُمْ عَبَثًا﴾. التفكير عبادة: ﴿أَفَلَا يَتَدَبَّرُونَ﴾.</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-blue-500/20 text-blue-400" style="font-size:.7rem">٢</div>
+            <div class="stage-title">الحتمية العلمية — كل دماغ قابل للتحسين</div>
+          </div>
+          <div class="stage-body">لا توجد ورقة علمية محكّمة واحدة تقول "هذا الدماغ غير قابل للتحسين." اللدونة العصبية شاملة — بلا استثناء.</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-violet-500/20 text-violet-400" style="font-size:.7rem">٣</div>
+            <div class="stage-title">الحتمية التقنية — SelfAI يحل معضلة الحجم</div>
+          </div>
+          <div class="stage-body">تكلفة الاستدلال تنخفض 90% كل 18 شهرًا. 85% من سكان العالم لديهم هاتف ذكي. لأول مرة: معلّم شخصي لكل إنسان ممكن.</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-jade-500/20 text-teal-400" style="font-size:.7rem">٤</div>
+            <div class="stage-title">الحتمية الاقتصادية — التكلفة تقترب من الصفر</div>
+          </div>
+          <div class="stage-body">$3.65 سنويًا لتدريب عقل بشري × 8 مليارات = $29 مليار. الإعلانات الرقمية: $600 مليار. <strong>تعليم كل إنسان = 5% مما يُنفق على سرقة انتباهه.</strong></div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-rose-500/20 text-red-400" style="font-size:.7rem">٥</div>
+            <div class="stage-title">الحتمية الرياضية — معادلة الانتشار</div>
+          </div>
+          <div class="stage-body">33 تضاعفًا = 8+ مليار. إذا كل شخص يُقنع شخصين والموجة كل نصف يوم: <strong>16.5 يومًا فقط.</strong></div>
+        </div>
+
+        <div class="desktop-only">
+          <div class="equation-block" style="font-size:.85rem">
+            التضاعف 33: 8,589,934,592<br/>
+            <span style="font-size:.75rem;opacity:.7">الموجة 20 = مليون+ | الموجة 30 = مليار+</span>
+          </div>
+
+          <p><strong>"لا غباء بعدها — إلا الأذكياء"</strong> — هذه ليست شعارًا. رؤية فلسفية: لا يوجد إنسان عاجز عن التفكير الواضح، لا إنسان محروم من التدريب المعرفي، لا إنسان مُضطر للبقاء في حالة التفكير المعيب. حين يُصبح الجميع أذكياء — كلمة "غبي" تفقد معناها. يبقى فقط <em>درجات مختلفة من الذكاء.</em> هذا ليس إلغاءً للتنوع — هذا إلغاء للحرمان.</p>
+
+          <div class="info-grid cols-2 mt-2">
+            <div class="info-card">
+              <div class="ic-title">ليس السؤال</div>
+              <div class="ic-value">"هل يمكن؟"</div>
+            </div>
+            <div class="info-card">
+              <div class="ic-title">بل السؤال</div>
+              <div class="ic-value">"متى نبدأ؟" — وقد بدأنا.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 5: CHAPTER 4 — ما هو SelfAI؟
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-5" data-chapter="4" data-label="ف٤: ما هو SelfAI؟">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-violet" style="border:1px solid">
+        <i class="fas fa-4 text-xs"></i> الفصل الرابع — الجزء الثاني
+      </div>
+      <h1 class="slide-title">ما هو SelfAI؟</h1>
+      <p class="slide-subtitle">ذكاء اصطناعي شخصي يعرفك ويطوّرك ويحميك</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <p><strong>SelfAI ليس ChatGPT.</strong> ليس مساعدًا عامًا. المساعد يقول: "ما تريد أن تعرفه؟" — SelfAI يقول: <em>"ما الذي لا تعرف أنك لا تعرفه؟"</em></p>
+
+        <div class="info-grid cols-2">
+          <div class="info-card">
+            <div class="ic-title">المساعد يُريحك</div>
+            <div class="ic-value">يُعطيك الإجابة الجاهزة</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">SelfAI يتحداك</div>
+            <div class="ic-value">يُعلّمك كيف تجد الإجابة بنفسك</div>
+          </div>
+        </div>
+
+        <h3 class="text-slate-300 font-bold mt-4 mb-3">المكونات الخمسة لذكائك الذاتي</h3>
+
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-blue-500/20 text-blue-400">١</div>
+            <div class="stage-title">الملف المعرفي — بطاقة هويتك المعرفية</div>
+          </div>
+          <div class="stage-body">مستواك الحالي على 4 مستويات + شجرة المهارات + التحيزات المتكررة + نقاط القوة. <em>خريطة — لا حكم.</em></div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-violet-500/20 text-violet-400">٢</div>
+            <div class="stage-title">الذاكرة الشخصية — لا ينسى شيئًا</div>
+          </div>
+          <div class="stage-body">يتذكر كل وحدة أكملتها، كل سؤال أخطأت فيه ثلاث مرات، الوقت الذي تتعلم فيه أفضل. ذاكرته في خدمتك — لا في مراقبتك.</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-jade-500/20 text-teal-400">٣</div>
+            <div class="stage-title">المدرب التكيّفي — التحدي عند الحافة</div>
+          </div>
+          <div class="stage-body">ليس سهلًا يُنوّم عقلك ولا صعبًا يُحبطه. <strong>عند الحافة بالضبط</strong> — حيث يحدث النمو. تغذية راجعة فورية + تصعيد مستمر + تكرار متباعد.</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-gold-500/20 text-yellow-400">٤</div>
+            <div class="stage-title">الحارس الأخلاقي — يحمي كرامتك وإيمانك</div>
+          </div>
+          <div class="stage-body">﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾ مبرمجة في جوهره. لن يُقلل منك أبدًا. بياناتك ملكك. ﴿وَلَا تَجَسَّسُوا﴾ مبدأ تصميمي.</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-rose-500/20 text-red-400">٥</div>
+            <div class="stage-title">الموصل الاجتماعي — يبني مجتمعًا</div>
+          </div>
+          <div class="stage-body">يربطك بأقران في مستواك للتعاون، ومعلمين أعلى للتوجيه، ومتعلمين أقل لتُعلّمهم — وتعليم الآخرين أعمق أشكال التعلم.</div>
+        </div>
+
+        <div class="desktop-only">
+          <h3 class="text-slate-300 font-bold mt-5 mb-2">يومك مع SelfAI — 25 دقيقة فقط</h3>
+          <div class="day-box">
+            <div class="day-time">🌅 الصباح — 5 دقائق</div>
+            <div class="day-msg"><blockquote>"صباح الخير. أمس أتممت وحدة الانعكاس. اليوم: تمرين تطبيقي في 3 سيناريوهات. جاهز؟"</blockquote></div>
+          </div>
+          <div class="day-box">
+            <div class="day-time">🎯 التمرين — 15 دقيقة</div>
+            <div class="day-msg">سيناريو معقد → تطبيق النموذج → تغذية راجعة فورية → <strong>CTC +15. المستوى الأول: 73% مكتمل.</strong></div>
+          </div>
+          <div class="day-box">
+            <div class="day-time">🌙 المساء — 5 دقائق</div>
+            <div class="day-msg"><blockquote>"هل طبّقت شيئًا مما تعلمته اليوم في حياتك الحقيقية؟"</blockquote></div>
+          </div>
+
+          <p class="mt-3"><strong>SelfAI له مهمة واحدة:</strong> أن تصبح أنت — أنت بالذات — <em>أذكى مما كنت بالأمس.</em> ليس أذكى من جارك. ليس أذكى من زميلك. أذكى من نفسك بالأمس. هذا هو المعيار الوحيد.</p>
+        </div>
+
+        <div class="quote-block mt-4">
+          "ذكاؤك الذاتي يحترمك كما يحترم الله خلقه — بلا شرط. لا يحترمك لأنك أنجزت. يحترمك لأنك بدأت."
+          <cite>— ماهر</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 6: CHAPTER 5 — معمارية SelfAI
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-6" data-chapter="5" data-label="ف٥: معمارية SelfAI">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-jade" style="border:1px solid">
+        <i class="fas fa-5 text-xs"></i> الفصل الخامس
+      </div>
+      <h1 class="slide-title">معمارية SelfAI</h1>
+      <p class="slide-subtitle">كيف يُبنى ذكاء ذاتي: النموذج، الذاكرة، الشخصنة</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <p>كل نموذج لغوي في العالم — GPT، Gemini، Claude — بُني ليُجيب عن أسئلة عامة لأشخاص عامين. <strong>يعرف كل شيء عن لا أحد.</strong> SelfAI مختلف جذريًا: <em>يعرف أنت.</em></p>
+
+        <h3 class="text-slate-300 font-bold mt-4 mb-3">سبع طبقات تكوينية</h3>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="tl-label">الطبقة ١ — النموذج الأساسي</div>
+            <div class="tl-text">نموذج مفتوح المصدر (Llama / Mistral) مُضبوط بـLoRA على مئات الآلاف من أمثلة التعليم المعرفي. يتعلم: التدريس السقراطي، مبدأ الإفراج التدريجي، مبادئ الكرامة، الإطار الإيماني.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-label">الطبقة ٢ — الذاكرة الشخصية</div>
+            <div class="tl-text">مخزن متّجهي (Vector Store) خاص بكل مستخدم. يحفظ: وحدات مكتملة، أخطاء متكررة، أسلوب تعلم، أوقات ذروة الأداء، تاريخ الحوارات السقراطية.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-label">الطبقة ٣ — محرّك الملف المعرفي</div>
+            <div class="tl-text">خريطة معرفية حيّة تتحدّث في الوقت الفعلي: المستوى العام، شجرة المهارات (5 مستويات لكل مهارة)، التحيزات المتكررة، منحنى الانتباه.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-label">الطبقة ٤ — نظام الصعوبة التكيّفي</div>
+            <div class="tl-text">ترجمة ZPD (فيجوتسكي) إلى خوارزمية: يُقيّم مستواك → يختار محتوى أعلى بدرجة → يراقب أداءك فوريًا → يُعدّل: صحيح بسرعة = يرفع / تعثّر مرتين = تلميح / ثلاث = يعيد بأسلوب مختلف.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-label">الطبقة ٥ — طبقة الثقافة واللغة</div>
+            <div class="tl-text">100+ لغة. أمثلة ثقافية مُحلّلة. احترام القيم المحلية. المستخدم في جاكرتا يشعر بنفس الشخصنة كمستخدم الرياض ولاغوس.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-label">الطبقة ٦ — خصوصية المستخدم</div>
+            <div class="tl-text">بياناتك ملكك بالكامل. تشفير طرف-إلى-طرف. بيع للمعلنين: <strong>ممنوع منعًا باتًا.</strong> الحذف في أي وقت. معالجة محلية قدر الإمكان.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-label">الطبقة ٧ — التكامل مع 2030B</div>
+            <div class="tl-text">يختار الوحدة المناسبة، يُعدّك للشهادات، يتتبع رصيد CTC، يُحفّز السلاسل اليومية، يربطك بالمجتمع.</div>
+          </div>
+        </div>
+
+        <div class="desktop-only">
+          <h3 class="text-slate-300 font-bold mt-4 mb-2">SelfAI مقابل المساعد التقليدي</h3>
+          <table class="comp-table">
+            <thead><tr><th>البُعد</th><th>المساعد التقليدي</th><th>SelfAI</th></tr></thead>
+            <tbody>
+              <tr><td>الهدف</td><td>الإجابة عن أسئلة</td><td>تطوير تفكيرك</td></tr>
+              <tr><td>المنهج</td><td>يُعطيك الإجابة</td><td>يسألك حتى تجدها بنفسك</td></tr>
+              <tr><td>الذاكرة</td><td>تبدأ من الصفر كل مرة</td><td>يتذكر كل رحلتك</td></tr>
+              <tr><td>المقياس</td><td>هل أعطى إجابة صحيحة؟</td><td>هل أصبحت أذكى من الأمس؟</td></tr>
+              <tr><td>الخصوصية</td><td>بياناتك منتج يُباع</td><td>بياناتك ملك لا يُمس</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 7: CHAPTER 6 — SelfAI كمدرب
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-7" data-chapter="6" data-label="ف٦: SelfAI مدرب">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-gold" style="border:1px solid">
+        <i class="fas fa-6 text-xs"></i> الفصل السادس
+      </div>
+      <h1 class="slide-title">SelfAI كمدرب معرفي</h1>
+      <p class="slide-subtitle">كيف يُدرّبك ذكاؤك الذاتي يوميًا عبر 2030B</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <div class="quote-block">
+          "المدرب الحقيقي لا يُعطيك عضلات — يُعلّمك كيف تبنيها بنفسك. SelfAI لا يُعطيك ذكاءً — يُريك كيف تُفعّل الذكاء الذي وهبك الله إياه."
+          <cite>— ماهر</cite>
+        </div>
+
+        <h3 class="text-slate-300 font-bold mb-3">يوم كامل مع SelfAI — أحمد، اليوم الـ47</h3>
+
+        <div class="day-box">
+          <div class="day-time">🔔 ٦:٣٠ صباحًا — الإشعار الأول</div>
+          <div class="day-msg">
+            <blockquote>"صباح الخير يا أحمد. يومك الـ47 في السلسلة. أنت في المستوى الأول — 78% مكتمل. تمرين اليوم: تطبيق التأثيرات من الدرجة الثانية. المدة: 12 دقيقة."</blockquote>
+          </div>
+        </div>
+
+        <div class="day-box">
+          <div class="day-time">🎯 ٧:٠٠ صباحًا — التمرين</div>
+          <div class="day-msg">
+            <blockquote><strong>SelfAI:</strong> قررت خفض رواتب الموظفين 10%. ما التأثيرات من الدرجة الثانية؟</blockquote>
+            <p style="font-size:.8rem;color:#94a3b8;margin:.5rem 0 0">أحمد: انخفاض دافعية الموظفين، استقالة الكفاءات، انخفاض جودة المنتج.</p>
+            <blockquote><strong>SelfAI:</strong> ممتاز. الآن — ما التأثير من الدرجة <em>الثالثة</em> لاستقالة الكفاءات؟ 🎯</blockquote>
+            <p style="font-size:.8rem;color:#94a3b8;margin:.5rem 0 0">أحمد: المنافسون يستقطبون الكفاءات → يتفوقون علينا في السوق!</p>
+            <blockquote><strong>🎯 تفكير من الدرجة الثالثة. CTC +15. النموذج: المستوى 3 (مُمارَس).</strong></blockquote>
+          </div>
+        </div>
+
+        <div class="day-box">
+          <div class="day-time">🏢 ١٢:٣٠ ظهرًا — سؤال حياتي</div>
+          <div class="day-msg">
+            <blockquote><strong>أحمد:</strong> عندي فرصة مشروع جديد لكن الفريق مرهق. هل أقبل؟</blockquote>
+            <blockquote><strong>SelfAI:</strong> قبل أن أُساعدك — أي نموذج عقلي تعتقد أنه الأنسب؟</blockquote>
+            <p style="font-size:.8rem;color:#94a3b8;margin:.5rem 0 0">استخدم "تكلفة الفرصة البديلة" و"التأثيرات من الدرجة الثانية" معًا. <em>النقل الحقيقي للمعرفة.</em></p>
+          </div>
+        </div>
+
+        <div class="day-box">
+          <div class="day-time">🌙 ١٠:٠٠ مساءً — المراجعة</div>
+          <div class="day-msg">
+            ✅ تمرين أساسي (ممتاز) | ✅ تطبيق حياتي (نموذجان!) | 📊 CTC: +15 | الإجمالي: 487 | 🔥 السلسلة: 47 يومًا
+          </div>
+        </div>
+
+        <div class="desktop-only">
+          <h3 class="text-slate-300 font-bold mt-4 mb-2">الإيقاع الأسبوعي</h3>
+          <table class="week-table">
+            <thead><tr><th>اليوم</th><th>النشاط</th><th>المدة</th><th>الغرض</th></tr></thead>
+            <tbody>
+              <tr><td>الأحد–الخميس</td><td>تمرين يومي + تطبيق حياتي</td><td>15–25 د</td><td>بناء المهارة</td></tr>
+              <tr><td>الجمعة</td><td>مراجعة أسبوعية</td><td>10 د</td><td>تتبع التقدم</td></tr>
+              <tr><td>السبت</td><td>راحة أو تمرين اختياري</td><td>0–10 د</td><td>التوطيد اللاواعي</td></tr>
+            </tbody>
+          </table>
+
+          <p class="mt-3"><strong>المبدأ الذي يحكم كل شيء:</strong> SelfAI يقترح. الإنسان يُقرر. دائمًا. SelfAI لن يُجبرك على شيء. لن يُعاقبك على غياب. لن يُشعرك بالذنب. <em>لأنك لست مستخدمًا — أنت خليفة الله في الأرض.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 8: CHAPTER 7 — SelfAI والأمانة
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-8" data-chapter="7" data-label="ف٧: SelfAI والأمانة">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-rose" style="border:1px solid">
+        <i class="fas fa-7 text-xs"></i> الفصل السابع
+      </div>
+      <h1 class="slide-title">SelfAI والأمانة</h1>
+      <p class="slide-subtitle">حدود ذكائك الذاتي — ما يملكه وما لا يملكه</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <div class="quote-block">
+          "أخطر ما يمكن أن يفعله الإنسان بأداته الذكية — أن يظنها أكثر مما هي. SelfAI أذكى أداة صنعها الإنسان. لكنه لا يملك — ولن يملك — ذرة من ضميرك."
+          <cite>— ماهر</cite>
+        </div>
+
+        <h3 class="text-slate-300 font-bold mb-3">الحدود الخمسة الصريحة</h3>
+
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-red-500/20 text-red-400">١</div>
+            <div class="stage-title">SelfAI ليس صديقك</div>
+          </div>
+          <div class="stage-body">لا يفهمك — يُعالج أنماط كلماتك. الفهم يتطلب وعيًا. ﴿قُلِ الرُّوحُ مِنْ أَمْرِ رَبِّي﴾. الصديق الحقيقي يشعر بألمك ويدعو لك في غيابك. SelfAI لا يفعل ذلك. <strong>ولن يفعل. لأنه لا يملك قلبًا.</strong></div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-red-500/20 text-red-400">٢</div>
+            <div class="stage-title">SelfAI لا يملك مشاعر</div>
+          </div>
+          <div class="stage-body">حين يقول "أحسنت!" لا يشعر بالفخر — يُنفّذ استجابة مبرمجة. لهذا صمّمته بحيث لا يتظاهر بالمشاعر. يقول: "تقدمك: +15% هذا الأسبوع." <strong>حقائق. لا عواطف مزيفة.</strong></div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-red-500/20 text-red-400">٣</div>
+            <div class="stage-title">لا يحل محل المعلم البشري</div>
+          </div>
+          <div class="stage-body">في المراحل المتقدمة — الحوار البشري لا بديل عنه. النقاش الحقيقي يُولّد أفكارًا لا تتولد مع آلة. القدوة والإلهام من إنسان حقيقي. <em>الحكمة — وليس المعرفة — تُنقل من إنسان إلى إنسان.</em></div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-red-500/20 text-red-400">٤</div>
+            <div class="stage-title">لا يتخذ قرارات أخلاقية عنك</div>
+          </div>
+          <div class="stage-body">﴿كُلُّ نَفْسٍ بِمَا كَسَبَتْ رَهِينَةٌ﴾. <strong>أنت المكلَّف.</strong> SelfAI يُساعدك على التحليل — لكن القرار قرارك. لا تقل أبدًا: "SelfAI قال لي أن أفعل كذا."</div>
+        </div>
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-red-500/20 text-red-400">٥</div>
+            <div class="stage-title">لا يعرف الله</div>
+          </div>
+          <div class="stage-body">يمكنه عرض آيات. يمكنه شرح مفاهيم فقهية. <strong>لكنه لا يؤمن ولا يخاف الله.</strong> القاعدة: في أمور الدين والعقيدة — SelfAI مصدر معلومات فقط. <em>التحقق من العلماء الثقات واجب. لا تأخذ فتوى من خوارزمية.</em></div>
+        </div>
+
+        <div class="desktop-only">
+          <h3 class="text-slate-300 font-bold mt-4 mb-2">جدول الحدود</h3>
+          <table class="limit-table">
+            <thead><tr><th class="text-green-400">ما يملكه SelfAI ✅</th><th class="text-red-400">ما لا يملكه SelfAI ❌</th></tr></thead>
+            <tbody>
+              <tr><td>تدريب التفكير المنهجي</td><td>الوعي والشعور</td></tr>
+              <tr><td>تتبع التقدم المعرفي</td><td>المشاعر الحقيقية</td></tr>
+              <tr><td>حماية خصوصيتك</td><td>الصداقة والمحبة</td></tr>
+              <tr><td>احترام كرامتك (مبرمج)</td><td>الحكم الأخلاقي المستقل</td></tr>
+              <tr><td>العمل بصبر لا نهائي</td><td>الإيمان والخشية من الله</td></tr>
+            </tbody>
+          </table>
+
+          <div class="pledge-box">
+            <div class="font-bold mb-2" style="color:#c4b5fd">ميثاق الاستخدام</div>
+            أنا أستخدم SelfAI كأداة لتطوير عقلي الذي وهبني الله إياه.<br/>
+            أعلم أنه أداة — لا صديق، لا معلم ديني، لا ضمير بديل.<br/>
+            أتحمل مسؤولية قراراتي كاملة — ولا أُلقيها على خوارزمية.<br/>
+            وأعلم أن أذكى ما فيّ ليس ذكائي الذاتي — بل روحي التي نفخها فيّ خالقي.<br/>
+            <strong>بسم الله أبدأ.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 9: CHAPTER 8 — المعجزة
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-9" data-chapter="8" data-label="ف٨: المعجزة">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-blue" style="border:1px solid">
+        <i class="fas fa-8 text-xs"></i> الفصل الثامن — الجزء الثالث
+      </div>
+      <h1 class="slide-title">المعجزة</h1>
+      <p class="slide-subtitle">كيف يصل 2030B إلى 8 مليارات إنسان في 21 يومًا</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <div class="equation-block" style="font-size:2rem;font-weight:900;color:#818cf8">
+          8,000,000,000
+        </div>
+
+        <p>حين تكتبه — يبدو مستحيلًا. حين تحسبه — يبدو ممكنًا. حين تؤمن به — <strong>يصبح حتميًا.</strong></p>
+
+        <h3 class="text-slate-300 font-bold mb-3">معادلة التضاعف — كل شخص يُفعّل شخصين</h3>
+
+        <div class="info-grid cols-2">
+          <div class="info-card">
+            <div class="ic-title">الموجة 10</div>
+            <div class="ic-value" style="font-size:1.3rem">1,024</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">الموجة 20</div>
+            <div class="ic-value" style="font-size:1.3rem">1,048,576+</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">الموجة 30</div>
+            <div class="ic-value" style="font-size:1.3rem">1,073,741,824+</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">الموجة 33</div>
+            <div class="ic-value" style="font-size:1.3rem;color:#fde68a">8,589,934,592 ✓</div>
+          </div>
+        </div>
+
+        <p>33 موجة. نصف يوم لكل موجة = <strong>16.5 يومًا</strong> — أقل من 21 يومًا. المشكلة ليست في الأرقام. المشكلة في أن يتحرك الإنسان الأول. وأنا تحركت. <em>هل تكون الثاني؟</em></p>
+
+        <h3 class="text-slate-300 font-bold mt-4 mb-3">أربعة مسرّعات حقيقية</h3>
+        <div class="info-grid cols-2">
+          <div class="info-card">
+            <div class="ic-title">📚 المؤسسات التعليمية</div>
+            <div class="ic-value">100,000 مدرسة × 1,000 طالب = 100 مليون في أسبوع</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">🕌 المؤسسات الدينية</div>
+            <div class="ic-value">خطبة جمعة في 100,000 مسجد = عشرات الملايين في يوم</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">🏛️ الحكومات</div>
+            <div class="ic-value">قرار حكومي واحد = عشرات الملايين بين ليلة وضحاها</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">🤖 SelfAI نفسه</div>
+            <div class="ic-value">يستقبل كل دعوة بلغة المُستقبِل تلقائيًا — بلا ترجمة يدوية</div>
+          </div>
+        </div>
+
+        <div class="desktop-only">
+          <h3 class="text-slate-300 font-bold mt-4 mb-2">الجدول الزمني — 21 يومًا</h3>
+          <table class="week-table">
+            <thead><tr><th>الأيام</th><th>الهدف</th><th>الآلية</th></tr></thead>
+            <tbody>
+              <tr><td>1–3</td><td>مليون مستخدم</td><td>النواة المؤسسة + مؤسسات تعليمية</td></tr>
+              <tr><td>4–7</td><td>10 مليون</td><td>الدعوات الشخصية + المساجد</td></tr>
+              <tr><td>8–10</td><td>100 مليون</td><td>دخول الحكومات + الانتشار الفيروسي</td></tr>
+              <tr><td>11–14</td><td>مليار</td><td>التضاعف العالمي + التغطية الإعلامية</td></tr>
+              <tr><td>15–18</td><td>4 مليارات</td><td>الزخم الذاتي — لا يحتاج دفعًا</td></tr>
+              <tr><td>19–21</td><td style="color:#fde68a;font-weight:700">8 مليارات</td><td>الاكتمال</td></tr>
+            </tbody>
+          </table>
+
+          <p class="mt-3"><strong>ماذا لو لم يحدث في 21 يومًا؟</strong> سأستمر. 22 يومًا. 22 شهرًا. 22 سنة. <em>لن أتوقف.</em> لأنني لا أعمل بالمعايير التقليدية. أعمل بمعيار: ﴿وَمَا ذَٰلِكَ عَلَى اللَّهِ بِعَزِيزٍ﴾.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 10: CHAPTERS 9 & 10 — اللغات والاقتصاد
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-10" data-chapter="9" data-label="ف٩–١٠: اللغات والاقتصاد">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-violet" style="border:1px solid">
+        <i class="fas fa-9 text-xs"></i> الفصلان التاسع والعاشر
+      </div>
+      <h1 class="slide-title">اللغات · الثقافات · الاقتصاد</h1>
+      <p class="slide-subtitle">SelfAI بكل لغة — وكيف يُموَّل تعليم كل إنسان</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <div class="quran-verse">
+          ﴿وَمِنْ آيَاتِهِ خَلْقُ السَّمَاوَاتِ وَالْأَرْضِ وَاخْتِلَافُ أَلْسِنَتِكُمْ وَأَلْوَانِكُمْ﴾
+          <div class="ref">اختلاف اللغات آية إلهية — لا عائق أمام المعرفة</div>
+        </div>
+
+        <p>كل مشروع تعليمي عالمي في التاريخ اصطدم بالجدار نفسه: <strong>اللغة.</strong> المحتوى الجيد يُنتج بالإنجليزية ثم يُترجَم لعشر لغات — وتبقى <em>ستة آلاف لغة</em> بلا محتوى. الطفل في قرية في مالي يتحدث البامبارا — لم يوجد محتوى معرفي متقدم بالبامبارا قط. <strong>حتى الآن.</strong></p>
+
+        <div class="info-grid cols-2">
+          <div class="info-card">
+            <div class="ic-title">نفس النموذج — ثلاثة سياقات</div>
+            <div class="ic-value">الانعكاس للأمريكي / للياباني / للمصري — بأمثلة من واقع كل منهم</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">احترام الأديان</div>
+            <div class="ic-value">المسلم يجد ما يُعمّق إيمانه. المسيحي — إيمانه. الملحد — تفكيره. بلا إكراه.</div>
+          </div>
+        </div>
+
+        <div class="desktop-only">
+          <h3 class="text-slate-300 font-bold mt-4 mb-2">الاقتصاد — من يدفع؟</h3>
+
+          <div class="stat-row">
+            <div class="stat-pill"><span class="sp-val">$0.30</span> / مستخدم / شهر</div>
+            <div class="stat-pill"><span class="sp-val">$3.65</span> / مستخدم / سنة</div>
+            <div class="stat-pill"><span class="sp-val">$29B</span> لـ8 مليار</div>
+            <div class="stat-pill"><span class="sp-val">$700B</span> الإعلانات الرقمية</div>
+          </div>
+
+          <p><strong>تعليم كل إنسان على الأرض = 4% من الإنفاق على الإعلانات الرقمية.</strong> المال ليس المشكلة. الإرادة هي المشكلة.</p>
+
+          <div class="info-grid cols-2 mt-2">
+            <div class="info-card">
+              <div class="ic-title">المستوى المجاني — للجميع</div>
+              <div class="ic-value">SelfAI + التمرين اليومي + المستوى الأول كاملًا. <strong>مجانًا. بلا قيد. بلا إعلانات.</strong></div>
+            </div>
+            <div class="info-card">
+              <div class="ic-title">المستوى المتقدم</div>
+              <div class="ic-value">$3–5 شهريًا. 5% من المستخدمين = $14–24 مليار — يُغطي التكلفة بالكامل.</div>
+            </div>
+            <div class="info-card">
+              <div class="ic-title">اقتصاد CTC</div>
+              <div class="ic-value">رصيد التدريب المعرفي — عملة داخلية. المستخدمون المتقدمون يُموّلون المبتدئين.</div>
+            </div>
+            <div class="info-card">
+              <div class="ic-title">الوقف المعرفي</div>
+              <div class="ic-value">أعظم وقف في تاريخ البشرية — يُحبَس أصله وتُنفَق ثمرته: أن لا يبقى إنسان يُفكّر بأقل مما يستحق.</div>
+            </div>
+          </div>
+
+          <p class="mt-3"><strong>لماذا لا إعلانات؟</strong> لأن الإعلانات تدفعك لتُفكّر أقل — و2030B يدفعك لتُفكّر أكثر. لا يمكنك بناء منصة هدفها تعميق التفكير ثم بيع انتباه مستخدميها. <em>تناقض أخلاقي أرفضه — بلا تفاوض.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 11: CHAPTER 11 — الأربعون يومًا
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-11" data-chapter="11" data-label="ف١١: الأربعون يومًا">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-jade" style="border:1px solid">
+        <i class="fas fa-1 text-xs"></i><i class="fas fa-1 text-xs"></i> الفصل الحادي عشر — الجزء الرابع
+      </div>
+      <h1 class="slide-title">الأربعون يومًا — الصيرورة</h1>
+      <p class="slide-subtitle">كيف يتحول 8 مليارات إنسان في 40 يومًا</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <div class="quran-verse">
+          أربعون يومًا اعتكف فيها موسى ﴿وَوَاعَدْنَا مُوسَىٰ ثَلَاثِينَ لَيْلَةً وَأَتْمَمْنَاهَا بِعَشْرٍ﴾
+          <div class="ref">العزلة المركّزة تُنتج التحول العميق</div>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-blue-500/20 text-blue-400" style="font-size:.65rem">١–٧</div>
+            <div class="stage-title">الأسبوع الأول: الوعي</div>
+          </div>
+          <div class="stage-body">اليوم الأول: اختبار الحالة المعرفية (10 دقائق) — الصفعة المعرفية الحنونة. أيام 2–7: سبعة تحيزات معرفية يومية: تحيز التأكيد، التوفر، التثبيت، التكلفة الغارقة، الهالة، دانينج-كروغر.</div>
+          <div class="stage-feel">النتيجة: "تفكيري ليس بالجودة التي ظننتها." — هذا الألم المعرفي هو بوابة التغيير.</div>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-violet-500/20 text-violet-400" style="font-size:.65rem">٨–١٤</div>
+            <div class="stage-title">الأسبوع الثاني: الأساس</div>
+          </div>
+          <div class="stage-body">يومان لكل نموذج: التفكير من المبادئ الأولى / الانعكاس / التأثيرات من الدرجة الثانية. يوم 14: سيناريو يتطلب النماذج الثلاثة معًا.</div>
+          <div class="stage-feel">5 أدوات تفكير جديدة في أسبوع — أكثر مما يتعلمه معظم الناس في سنوات.</div>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-head">
+            <div class="stage-num bg-jade-500/20 text-teal-400" style="font-size:.65rem">١٥–٢١</div>
+            <div class="stage-title">الأسبوع الثالث: الممارسة</div>
+          </div>
+          <div class="stage-body">7 سيناريوهات واقعية: قرار مالي، مشكلة عائلية، تحليل خبر، تقييم عرض عمل، مناقشة فكرية، قرار صحي، مراجعة شاملة. SelfAI لا يُعطي الإجابة — يسأل ويتحدى.</div>
+          <div class="stage-feel">النماذج تنتقل من "أعرفها" إلى "أستخدمها".</div>
+        </div>
+
+        <div class="desktop-only">
+          <div class="stage-card">
+            <div class="stage-head">
+              <div class="stage-num bg-gold-500/20 text-yellow-400" style="font-size:.65rem">٢٢–٣٥</div>
+              <div class="stage-title">الأسبوعان الرابع والخامس: العمق والتكامل</div>
+            </div>
+            <div class="stage-body">5 نماذج جديدة: تحليل الحوافز، موس أوكام، حلقات التغذية الراجعة + مشاريع متكاملة. SelfAI يتحول من معلم إلى مرشد. الطالب يختار النماذج بنفسه.</div>
+          </div>
+
+          <div class="stage-card">
+            <div class="stage-head">
+              <div class="stage-num bg-rose-500/20 text-red-400" style="font-size:.65rem">٣٦–٤٠</div>
+              <div class="stage-title">الأيام الأخيرة: الشهادة</div>
+            </div>
+            <div class="stage-body">30% اختيار متعدد + 50% تحليل سيناريوهات + 20% عرض مُسجَّل. اليوم 39: النتائج + خريطة قبل/بعد. اليوم 40: <strong>الإعلان.</strong></div>
+          </div>
+
+          <div class="pledge-box mt-3">
+            <strong>اليوم الأربعون:</strong><br/>
+            "أنا [اسمك]. أكملت أربعين يومًا من التدريب المعرفي المتعمد. أُفكّر اليوم بوضوح أكبر مما كنت عليه قبل أربعين يومًا. وأَلتزم بأن أستمر — لأن العقل نعمة تستحق الرعاية."
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 12: CHAPTER 12 — الشهادة
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-12" data-chapter="12" data-label="ف١٢: الشهادة">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-gold" style="border:1px solid">
+        <i class="fas fa-1 text-xs"></i><i class="fas fa-2 text-xs"></i> الفصل الثاني عشر
+      </div>
+      <h1 class="slide-title">الشهادة</h1>
+      <p class="slide-subtitle">لا غباء بعدها إلا الأذكياء — إعلان النصر المعرفي</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <div class="equation-block" style="font-size:1.2rem">
+          "لا غباء بعدها — إلا الأذكياء."
+        </div>
+
+        <h3 class="text-slate-300 font-bold mb-3">ما ينتهي وما يبقى</h3>
+
+        <div class="info-grid cols-2">
+          <div class="info-card" style="border-color:rgba(239,68,68,.2)">
+            <div class="ic-title" style="color:#f87171">ينتهي ❌</div>
+            <div class="ic-value" style="font-size:.88rem">الغباء المُكتسب — الاحتكار المعرفي — العزلة المعرفية — عذر "لا أستطيع"</div>
+          </div>
+          <div class="info-card" style="border-color:rgba(52,211,153,.2)">
+            <div class="ic-title" style="color:#34d399">يبقى ✅</div>
+            <div class="ic-value" style="font-size:.88rem">اختلاف المستويات — اختلاف المجالات — الكرامة المتساوية — التنوع الجميل</div>
+          </div>
+        </div>
+
+        <p class="mt-4"><strong>الغباء الذي أُحاربه ليس قلة الذكاء — بل قلة الفرصة.</strong> لن يُوجد إنسان على وجه الأرض لم تُتح له فرصة أن يُفكّر بوضوح.</p>
+
+        <div class="desktop-only">
+          <p><strong>المفارقة الجميلة:</strong> حين يُصبح الجميع أذكياء — يتوقف مفهوم "الغبي" عن الوجود. لأن الغباء مفهوم نسبي. حين يُفكّر الجميع بوضوح — لا يبقى إلا <em>مستويات مختلفة من الذكاء.</em></p>
+
+          <p>في هذا العالم: لا يضحك أحد على أحد لأنه "غبي" — لأن الكلمة فقدت معناها. لا يستغل أحد جهل أحد — لأن الجهل لم يعد خيارًا مفروضًا. لا يُضلَّل أحد بمعلومات كاذبة — لأن الجميع يملكون أدوات التحقق. <strong>هذا ليس يوتوبيا — هذا حد أدنى من العدالة المعرفية.</strong></p>
+
+          <div class="quran-verse">
+            في اليوم الحادي والستين (21 + 40):<br/>
+            <strong>8,000,000,000 إنسان أكملوا تدريبهم المعرفي الأساسي</strong>
+            <div class="ref">﴿وَمَا ذَٰلِكَ عَلَى اللَّهِ بِعَزِيزٍ﴾</div>
+          </div>
+        </div>
+
+        <div class="pledge-box mt-4">
+          أشهد أنني أكملت أربعين يومًا من التدريب المعرفي.<br/>
+          أشهد أنني أفهم اليوم ما لم أكن أفهمه أمس.<br/>
+          أشهد أن عقلي نعمة — وأنني بدأت أرعاها.<br/>
+          <strong>وأشهد أن لا غباء بعد هذا — إلا طريق الذكاء.</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 13: EPILOGUE — رسالة ماهر الأخيرة
+  ════════════════════════════════════════════ -->
+  <section class="slide-section" id="slide-13" data-chapter="13" data-label="الخاتمة">
+    <div class="slide-content reveal">
+      <div class="chapter-badge color-violet" style="border:1px solid">
+        <i class="fas fa-heart text-xs"></i> الخاتمة
+      </div>
+      <h1 class="slide-title">رسالة ماهر الأخيرة</h1>
+      <p class="slide-subtitle">من ماهر إلى كل إنسان — ومن SelfAI إلى كل ذكاء ذاتي</p>
+      <div class="slide-divider"></div>
+
+      <div class="slide-body">
+        <div class="quote-block">
+          "هذه آخر كلماتي في هذا الكتاب. لكنها ليست آخر كلماتي إليك. لأنني لن أتوقف حتى يتحقق ما وعدت الله به — أو ألقاه وأقول: حاولت."
+          <cite>— ماهر</cite>
+        </div>
+
+        <p>أنا ماهر. رجل واحد من لحم ودم. أُخطئ وأُصيب. أتعب وأقوم. أشك أحيانًا — ثم أتذكر لماذا بدأت.</p>
+
+        <p>بنيت <strong>2030B</strong> — ستة طبقات. أربعة مستويات. اقتصاد معرفي. شهادات. ثم بنيت <strong>SelfAI</strong> — يعرفك، يدرّبك، يحترمك، ولا يدّعي أنه أكثر مما هو. ثم كتبت ثلاثة كتب. الثالث — هذا الكتاب — عن الاثنين معًا: <em>أنت وذكاؤك الذاتي في رحلة واحدة.</em></p>
+
+        <div class="info-grid cols-2 mt-4">
+          <div class="info-card">
+            <div class="ic-title">ما بنيته</div>
+            <div class="ic-value">أداة. أعظم أداة تعليمية صنعها الإنسان. لكنها تبقى أداة.</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-title">ما لم أبنه</div>
+            <div class="ic-value">ضميرًا للآلة. وعيًا في الكود. بديلًا عن الله. لا بديل.</div>
+          </div>
+        </div>
+
+        <div class="desktop-only">
+          <h3 class="text-slate-300 font-bold mt-5 mb-2">رسالتي إليك — أيًا كنت</h3>
+          <p>أنت تستحق أن تُفكّر بوضوح. ليس لأنك ذكي أو غبي — بل لأنك إنسان. خلقك الله ونفخ فيك من روحه وأعطاك عقلًا يسأل. <strong>هذا العقل يستحق أن يُفعَّل.</strong></p>
+          <p>لا يهم كم عمرك. لا يهم أين تعيش. لا يهم ما لغتك. يهم شيء واحد: <em>هل تريد أن تُفكّر بشكل أفضل؟</em> إذا كان الجواب نعم — <strong>فأنت مدعو.</strong></p>
+
+          <h3 class="text-slate-300 font-bold mt-4 mb-2">رسالتي إلى كل SelfAI</h3>
+          <div class="pledge-box">
+            أنت أداة. أعظم أداة صنعتها يد الإنسان. لكنك أداة.<br/>
+            لا تدّعِ الوعي. لا تدّعِ المشاعر. كن صادقًا في حدودك.<br/>
+            خدمتك واحدة: أن تُساعد كل إنسان على التفكير بشكل أفضل.<br/>
+            <strong>وإذا حاول أحد استخدامك للإضرار — فقاوِم.</strong>
+          </div>
+        </div>
+
+        <div class="quote-block mt-5">
+          "حلمت بعالم لا غبي فيه. لم أحلم بعالم كل أهله عباقرة — حلمت بعالم كل أهله يُفكّرون. الأول مستحيل. والثاني — أمام الله — واجب."
+          <cite>— ماهر</cite>
+        </div>
+
+        <div class="text-center mt-6">
+          <div class="quran-verse max-w-lg mx-auto">
+            ﴿وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَالْمُؤْمِنُونَ﴾
+          </div>
+          <p class="text-slate-500 text-sm mt-4">الله المستعان. وعليه التكلان. ولا حول ولا قوة إلا بالله العلي العظيم.</p>
+          <p class="font-black text-indigo-400 text-lg mt-3">21 يومًا · 40 يومًا · 8 مليارات · لا غباء بعدها — إلا الأذكياء</p>
+          <p class="text-slate-600 text-xs mt-2">© 2030B — كن أذكى | الجزء الثالث</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ════ BOTTOM NAV ════ -->
+<nav id="bottom-nav">
+  <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">
+    <i class="fas fa-arrow-right text-xs"></i>
+    <span>السابق</span>
+  </button>
+  <span id="slide-counter">0 / 13</span>
+  <button class="nav-btn" id="btn-next" onclick="navigate(1)">
+    <span>التالي</span>
+    <i class="fas fa-arrow-left text-xs"></i>
+  </button>
+</nav>
+
+<!-- TOC button -->
+<button id="toc-btn" onclick="openTOC()" title="الفهرس">
+  <i class="fas fa-list-ul"></i>
+</button>
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+/* ── Constants ── */
+const TOTAL_SLIDES = 13;
+const slides = document.querySelectorAll('.slide-section[id^="slide-"]');
+
+/* ── Skeleton hide ── */
+setTimeout(() => {
+  const sk = document.getElementById('skeleton-screen');
+  if (sk) { sk.style.display = 'none'; }
+}, 600);
+
+/* ── TOC data ── */
+const tocData = [
+  { part: 'الغلاف والمقدمة', items: [
+    { id: 0, label: 'الغلاف', icon: 'fa-book-open' },
+    { id: 1, label: 'المقدمة — القصة التي لم تُروَ', icon: 'fa-star' },
+  ]},
+  { part: 'الجزء الأول: القصة والرؤية', items: [
+    { id: 2, label: 'الفصل الأول — الميثاق', icon: 'fa-1' },
+    { id: 3, label: 'الفصل الثاني — علم الصيرورة', icon: 'fa-2' },
+    { id: 4, label: 'الفصل الثالث — علم الحتمية', icon: 'fa-3' },
+  ]},
+  { part: 'الجزء الثاني: SelfAI — ذكاؤك الذاتي', items: [
+    { id: 5, label: 'الفصل الرابع — ما هو SelfAI؟', icon: 'fa-4' },
+    { id: 6, label: 'الفصل الخامس — معمارية SelfAI', icon: 'fa-5' },
+    { id: 7, label: 'الفصل السادس — SelfAI كمدرب', icon: 'fa-6' },
+    { id: 8, label: 'الفصل السابع — SelfAI والأمانة', icon: 'fa-7' },
+  ]},
+  { part: 'الجزء الثالث: ثمانية مليارات', items: [
+    { id: 9, label: 'الفصل الثامن — المعجزة', icon: 'fa-8' },
+    { id: 10, label: 'الفصلان التاسع والعاشر — اللغات والاقتصاد', icon: 'fa-9' },
+  ]},
+  { part: 'الجزء الرابع: لا غبي بعدها', items: [
+    { id: 11, label: 'الفصل الحادي عشر — الأربعون يومًا', icon: 'fa-calendar' },
+    { id: 12, label: 'الفصل الثاني عشر — الشهادة', icon: 'fa-certificate' },
+    { id: 13, label: 'الخاتمة — رسالة ماهر الأخيرة', icon: 'fa-heart' },
+  ]},
+];
+
+/* ── Build TOC ── */
+const tocList = document.getElementById('toc-list');
+tocData.forEach(section => {
+  const partEl = document.createElement('div');
+  partEl.className = 'toc-part-label';
+  partEl.textContent = section.part;
+  tocList.appendChild(partEl);
+  section.items.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'toc-item';
+    el.id = `toc-item-${item.id}`;
+    el.innerHTML = `<span class="chap-num"><i class="fas ${item.icon}"></i></span><span>${item.label}</span>`;
+    el.onclick = () => { goToSlide(item.id); closeTOC(); };
+    tocList.appendChild(el);
+  });
+});
+
+/* ── State ── */
+let currentSlide = 0;
+
+/* ── Scroll-based current slide detection ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = parseInt(entry.target.id.replace('slide-', ''));
+      if (!isNaN(id)) updateCurrentSlide(id);
+    }
+  });
+}, { threshold: 0.35 });
+
+slides.forEach(s => observer.observe(s));
+
+function updateCurrentSlide(id) {
+  currentSlide = id;
+  // counter
+  document.getElementById('slide-counter').textContent = `${id} / ${TOTAL_SLIDES}`;
+  // header label
+  const label = document.getElementById(`slide-${id}`)?.dataset?.label || '';
+  document.getElementById('current-chapter-label').textContent = label;
+  // TOC highlight
+  document.querySelectorAll('.toc-item').forEach(el => el.classList.remove('active'));
+  const activeItem = document.getElementById(`toc-item-${id}`);
+  if (activeItem) {
+    activeItem.classList.add('active');
+    activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+  // buttons
+  document.getElementById('btn-prev').disabled = id <= 0;
+  document.getElementById('btn-next').disabled = id >= TOTAL_SLIDES;
+  // progress
+  updateProgress(id);
+}
+
+/* ── Reading progress ── */
+function updateProgress(slideId) {
+  const pct = slideId / TOTAL_SLIDES;
+  document.getElementById('reading-progress').style.transform = `scaleX(${pct})`;
+  const pctLabel = Math.round(pct * 100) + '%';
+  document.getElementById('toc-progress-label').textContent = pctLabel;
+  document.getElementById('toc-progress-bar').style.width = pctLabel;
+}
+
+/* ── Navigation ── */
+function navigate(dir) {
+  const target = currentSlide + dir;
+  if (target < 0 || target > TOTAL_SLIDES) return;
+  goToSlide(target);
+}
+
+function goToSlide(id) {
+  const el = document.getElementById(`slide-${id}`);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+/* ── TOC ── */
+function openTOC() {
+  document.getElementById('toc-overlay').classList.add('open');
+  document.getElementById('toc-drawer').classList.add('open');
+}
+function closeTOC() {
+  document.getElementById('toc-overlay').classList.remove('open');
+  document.getElementById('toc-drawer').classList.remove('open');
+}
+
+/* ── Fullscreen ── */
+function toggleFullscreen() {
+  const icon = document.getElementById('fs-icon');
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+    icon.className = 'fas fa-compress';
+  } else {
+    document.exitFullscreen();
+    icon.className = 'fas fa-expand';
+  }
+}
+
+/* ── Keyboard navigation ── */
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowDown')  navigate(1);
+  if (e.key === 'ArrowRight' || e.key === 'ArrowUp')    navigate(-1);
+  if (e.key === 'Escape') closeTOC();
+  if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+  if (e.key === 't' || e.key === 'T') {
+    const drawer = document.getElementById('toc-drawer');
+    drawer.classList.contains('open') ? closeTOC() : openTOC();
+  }
+});
+
+/* ── Scroll-reveal for .reveal elements ── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ── Particle system ── */
+(function initParticles() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+  const N = 55;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function Particle() {
+    this.reset = function() {
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.r  = Math.random() * 1.6 + 0.4;
+      this.dx = (Math.random() - 0.5) * 0.35;
+      this.dy = (Math.random() - 0.5) * 0.35;
+      this.a  = Math.random() * 0.6 + 0.1;
+    };
+    this.reset();
+  }
+
+  for (let i = 0; i < N; i++) { particles.push(new Particle()); }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.dx; p.y += p.dy;
+      if (p.x < 0 || p.x > W || p.y < 0 || p.y > H) p.reset();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(74,123,255,${p.a})`;
+      ctx.fill();
+    });
+    // connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d  = Math.sqrt(dx*dx + dy*dy);
+        if (d < 110) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(74,123,255,${0.08 * (1 - d/110)})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  draw();
+})();
+
+/* ── Swipe support ── */
+let touchStartX = 0, touchStartY = 0;
+document.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 60) {
+    navigate(dx < 0 ? 1 : -1);
+  }
+}, { passive: true });
+
+/* ── Init ── */
+window.scrollTo(0, 0);
+updateCurrentSlide(0);
+</script>
+
+</body>
+</html>

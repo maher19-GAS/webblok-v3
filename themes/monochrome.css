@@ -1,0 +1,48 @@
+/* ═══════════════════════════════════════════
+   THEME: Monochrome — Dark Mode
+   Pure Black · White Accent
+═══════════════════════════════════════════ */
+:root {
+  --bg-primary:    #080808;
+  --bg-secondary:  #121212;
+  --bg-card:       rgba(255,255,255,.05);
+  --bg-nav:        rgba(8,8,8,.97);
+  --border:        rgba(255,255,255,.15);
+  --border-card:   rgba(255,255,255,.08);
+  --text-primary:  #f8f8f8;
+  --text-secondary:#c8c8c8;
+  --text-muted:    #909090;
+  --accent:        #ffffff;
+  --accent-2:      #c8c8c8;
+  --accent-3:      #909090;
+  --accent-light:  #e8e8e8;
+  --accent-glow:   rgba(255,255,255,.12);
+  --gold:          #f5c518;
+  --jade:          #6ee7b7;
+  --rose:          #fca5a5;
+  --violet:        #c4b5fd;
+  --progress-bar:  linear-gradient(90deg,#ffffff,#c8c8c8,#909090);
+  --slide-bg:      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255,255,255,.04), transparent);
+  --slide-cur:     radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255,255,255,.10), transparent);
+  --btn-primary:   linear-gradient(135deg,#3a3a3a,#1a1a1a);
+  --scrollbar-thumb: rgba(255,255,255,.2);
+  --overlay:       rgba(0,0,0,.78);
+  --toast-bg:      rgba(12,12,12,.97);
+  --sel-menu-bg:   rgba(8,8,8,.98);
+  --loading-bg:    #080808;
+}
+[data-mode="light"] body{background:#f8f8f8!important;color:#080808!important}
+[data-mode="light"] #top-nav,[data-mode="light"] #bottom-nav{background:rgba(248,248,248,.97)!important;border-color:rgba(0,0,0,.15)!important}
+[data-mode="light"] .aside-panel{background:#ebebeb!important}
+[data-mode="light"] .ann-card,[data-mode="light"] .stat-card-p,[data-mode="light"] .s-card{background:#f8f8f8!important;border-color:rgba(0,0,0,.1)!important}
+[data-mode="light"] .s-body{color:#222222!important}
+[data-mode="light"] .s-body strong{color:#080808!important}
+[data-mode="light"] .scp-value,[data-mode="light"] .bc-cur{color:#080808!important}
+[data-mode="light"] .toc-item,[data-mode="light"] .hist-item{color:#333333!important}
+[data-mode="light"] .skeleton{background:linear-gradient(90deg,#e0e0e0 25%,#f0f0f0 50%,#e0e0e0 75%)!important;background-size:200% 100%!important}
+[data-mode="light"] #loading-overlay{background:#f8f8f8!important}
+[data-mode="light"] .lo-logo{color:#080808!important}
+[data-mode="light"] .toast{background:rgba(248,248,248,.97)!important;color:#080808!important;border-color:rgba(0,0,0,.12)!important}
+[data-mode="light"] #sel-menu{background:rgba(235,235,235,.98)!important}
+[data-mode="light"] .nav-icon-btn{background:rgba(0,0,0,.06)!important;color:#333!important;border-color:rgba(0,0,0,.12)!important}
+[data-mode="light"] .bnav-btn{background:rgba(0,0,0,.06)!important;color:#333!important}
