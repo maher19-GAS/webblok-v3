@@ -1,0 +1,11 @@
+{
+  "id": 70, "lang": "en", "key": "platform_foundation",
+  "title": "Platform Foundation", "subtitle": "Built on Open Source Principles",
+  "icon": "🏗️",
+  "chapter": "Platform", "volume": 2,
+  "tech_stack": ["React","Node.js","PostgreSQL","IPFS","Ethereum","AI/ML Models"],
+  "principles": ["Open Source","Transparent","Decentralized","Privacy-First","Community-Governed"],
+  "stats": {"github_stars": 12400, "contributors": 340, "commits": 8920, "uptime": "99.97%"},
+  "description": "Our platform is built transparently on battle-tested open source technologies, governed by the community.",
+  "closing_statement": "Code you can trust, systems you can verify."
+}

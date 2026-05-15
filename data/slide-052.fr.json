@@ -1,0 +1,17 @@
+{
+  "id": 52, "lang": "fr", "key": "vision_2030",
+  "title": "Vision 2030", "subtitle": "Un Monde Où la Pensée est la Monnaie",
+  "icon": "🔭",
+  "chapter": "Écosystème", "volume": 2,
+  "quote": "Nous croyons en l'épanouissement du plein potentiel de chaque esprit humain — et sa récompense.",
+  "milestones": [
+    {"year": 2025, "event": "Lancement Mondial", "status": "actif"},
+    {"year": 2026, "event": "10 Millions d'Utilisateurs", "status": "planifié"},
+    {"year": 2027, "event": "Cotation CTC en Bourse", "status": "planifié"},
+    {"year": 2028, "event": "Gouvernance Décentralisée", "status": "planifié"},
+    {"year": 2030, "event": "1 Milliard de Vies Impactées", "status": "vision"}
+  ],
+  "cta": "Rejoignez le Mouvement",
+  "description": "Notre feuille de route est construite sur des jalons qui se cumulent — chaque réalisation débloque le prochain bond du potentiel cognitif humain.",
+  "closing_statement": "L'avenir appartient aux penseurs."
+}

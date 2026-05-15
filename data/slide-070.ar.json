@@ -1,0 +1,11 @@
+{
+  "id": 70, "lang": "ar", "key": "platform_foundation",
+  "title": "أساس المنصة", "subtitle": "مبنية على مبادئ المصدر المفتوح",
+  "icon": "🏗️",
+  "chapter": "المنصة", "volume": 2,
+  "tech_stack": ["React","Node.js","PostgreSQL","IPFS","Ethereum","نماذج AI/ML"],
+  "principles": ["المصدر المفتوح","الشفافية","اللامركزية","الخصوصية أولاً","الحوكمة المجتمعية"],
+  "stats": {"github_stars": 12400, "contributors": 340, "commits": 8920, "uptime": "99.97%"},
+  "description": "منصتنا مبنية بشفافية على تقنيات مفتوحة المصدر مجربة، ويحكمها المجتمع.",
+  "closing_statement": "كود يمكنك الوثوق به، أنظمة يمكنك التحقق منها."
+}

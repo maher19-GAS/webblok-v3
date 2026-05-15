@@ -1,0 +1,10 @@
+{
+  "id": 101, "lang": "ar", "key": "nae_introduction",
+  "title": "تقديم NAE", "subtitle": "محرك الخوارزمية الطبيعية — ذكاء اصطناعي يفكر معك",
+  "icon": "🤖",
+  "chapter": "NAE", "volume": 3,
+  "stats": {"accuracy": 98.4, "response_time_ms": 120, "conversations": 2400000, "satisfaction": 96},
+  "capabilities": ["مساعدة واعية بالسياق","دعم متعدد اللغات","تدريب إدراكي","توصيات المشاريع","تعاون فوري"],
+  "description": "NAE هو طيارك الإدراكي الشخصي، مُدرب على قاعدة معرفة 2030B بالكامل ومُعاير على أسلوب تعلمك الفريد.",
+  "closing_statement": "الذكاء مضخّم، لا مستبدل."
+}

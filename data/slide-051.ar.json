@@ -1,0 +1,10 @@
+{
+  "id": 51, "lang": "ar", "key": "ecosystem_overview",
+  "title": "نظام 2030B البيئي", "subtitle": "شبكة حية من الذكاء",
+  "icon": "🌍",
+  "chapter": "النظام البيئي", "volume": 2,
+  "pillars": ["كن أذكى","مشاريع DVM","اقتصاد CTC","الحوكمة"],
+  "stats": {"users": 2400000, "projects": 18400, "ctc_circulation": 140000000000, "countries": 97},
+  "description": "نظام بيئي إدراكي متكامل تتعزز فيه التعلم والمساهمة والمكافأة والحوكمة في حلقة مستدامة ذاتياً.",
+  "closing_statement": "كل عقل ينضم يقوي الكل."
+}

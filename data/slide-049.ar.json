@@ -1,0 +1,16 @@
+{
+  "id": 49, "lang": "ar", "key": "consciousness_bridge",
+  "title": "جسر الوعي", "subtitle": "استخلص الأفكار من حالات النوم العميق",
+  "icon": "🌙",
+  "chapter": "الأنظمة المتقدمة", "volume": 1,
+  "stats": {"last_session": "منذ 8 ساعات", "insights_harvested": 7, "lucid_level": 3, "collective_dream_access": true},
+  "dream_patterns": [
+    {"name": "حل المشكلات الكمي", "intensity": "مرتفع", "quality": 94, "color": "#7E57C2"},
+    {"name": "التوليف الإبداعي", "intensity": "متوسط", "quality": 87, "color": "#26C6DA"},
+    {"name": "تكامل الذاكرة اللاواعية", "intensity": "منخفض", "quality": 78, "color": "#4FC3F7"}
+  ],
+  "nightmare_processor": "نشط",
+  "next_session": "الليلة الساعة 11 مساءً",
+  "description": "حوّل نومك إلى أصل إدراكي. يستخلص جسر الوعي رؤى قيّمة من دورات معالجتك اللاواعية.",
+  "closing_statement": "عقلك النائم لا يتوقف عن العمل من أجلك أبداً."
+}

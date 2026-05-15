@@ -1,0 +1,17 @@
+{
+  "id": 56, "lang": "en", "key": "cognitive_dimensions",
+  "title": "7 Cognitive Dimensions", "subtitle": "Measuring Intelligence Beyond IQ",
+  "icon": "🧩",
+  "chapter": "Ecosystem", "volume": 2,
+  "dimensions": [
+    {"num": 1, "name": "Analytical Thinking", "icon": "📊", "description": "Break down complex problems into logical components", "activities": ["Logic puzzles","Data analysis","System audits"]},
+    {"num": 2, "name": "Creative Intelligence", "icon": "🎨", "description": "Generate novel solutions and original ideas", "activities": ["Brainstorming","Concept art","Innovation sprints"]},
+    {"num": 3, "name": "Systems Thinking", "icon": "🔗", "description": "See interconnections and emergent patterns", "activities": ["Ecosystem mapping","Causal loops","Architecture review"]},
+    {"num": 4, "name": "Emotional Intelligence", "icon": "💙", "description": "Navigate emotions and social dynamics effectively", "activities": ["Team leadership","Conflict resolution","Empathy training"]},
+    {"num": 5, "name": "Pattern Recognition", "icon": "🔍", "description": "Identify hidden regularities in data and events", "activities": ["Trend spotting","Cipher challenges","Quantum patterns"]},
+    {"num": 6, "name": "Memory Architecture", "icon": "🗂️", "description": "Build robust mental frameworks for knowledge retention", "activities": ["Memory palace","Spaced repetition","Knowledge linking"]},
+    {"num": 7, "name": "Consciousness Expansion", "icon": "🌌", "description": "Expand awareness to meta-cognitive levels", "activities": ["Meditation","Lucid dreaming","Quantum reflection"]}
+  ],
+  "description": "2030B measures cognitive growth across all 7 dimensions, not just conventional IQ metrics.",
+  "closing_statement": "True intelligence is multidimensional."
+}

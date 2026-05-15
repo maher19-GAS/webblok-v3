@@ -1,0 +1,16 @@
+{
+  "id": 44, "lang": "ar", "key": "reality_explorer",
+  "title": "مستكشف الواقع", "subtitle": "تنقّل عبر أبعاد الوجود المتعددة",
+  "icon": "🌐",
+  "chapter": "الأنظمة المتقدمة", "volume": 1,
+  "dimensions": [
+    {"name": "المادي", "energy": 100, "status": "نشط", "color": "#4FC3F7"},
+    {"name": "الرقمي", "energy": 150, "status": "متاح", "color": "#7E57C2"},
+    {"name": "الحقل الكمي", "energy": 200, "status": "متاح", "color": "#26C6DA"},
+    {"name": "التيار الزمني", "energy": 350, "status": "مقفل", "color": "#FF7043"},
+    {"name": "الحقل الكوني", "energy": 9999, "status": "مقفل", "color": "#FFD54F"}
+  ],
+  "stats": {"accessible": 7, "current": "المادي", "safety": "مرتفع", "missions": 3},
+  "description": "استكشف الواقعيات المتعددة من المادية إلى الكمية. كل طبقة تقدم فرصاً فريدة لتعزيز الإدراك وكسب رموز CTC.",
+  "closing_statement": "الواقع ليس مفرداً — إنه طيف من الإمكانيات."
+}

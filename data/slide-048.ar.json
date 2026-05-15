@@ -1,0 +1,17 @@
+{
+  "id": 48, "lang": "ar", "key": "personal_energy_system",
+  "title": "نظام الطاقة الشخصية", "subtitle": "حسّن تدفق طاقتك الإدراكية",
+  "icon": "⚡",
+  "chapter": "الأنظمة المتقدمة", "volume": 1,
+  "stats": {"energy_level": 82, "flow_state": "نشط", "circadian_phase": "ذروة الأداء", "burnout_risk": "منخفض"},
+  "sources": [
+    {"name": "النشاط البدني", "percentage": 35, "color": "#4FC3F7"},
+    {"name": "الراحة الإدراكية", "percentage": 28, "color": "#69F0AE"},
+    {"name": "التغذية", "percentage": 22, "color": "#FFD54F"},
+    {"name": "بروتوكول التعزيز", "percentage": 15, "color": "#CE93D8"}
+  ],
+  "restoration": "دورة أوميغا-3",
+  "enhancement_consumption": 23,
+  "description": "راقب وحسّن طاقتك الإدراكية الشخصية. وازن بين المدخلات الجسدية والذهنية وبروتوكولات التعزيز لبلوغ ذروة الأداء.",
+  "closing_statement": "الطاقة هي أساس كل إنجاز عظيم."
+}

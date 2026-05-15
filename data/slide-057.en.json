@@ -1,0 +1,13 @@
+{
+  "id": 57, "lang": "en", "key": "challenge_system",
+  "title": "Challenge System", "subtitle": "Earn While You Think",
+  "icon": "🎯",
+  "chapter": "Ecosystem", "volume": 2,
+  "challenge_types": [
+    {"name": "Daily Spark", "duration": "5 min", "reward_ctc": 50, "frequency": "Every day", "icon": "⚡"},
+    {"name": "Weekly Deep Dive", "duration": "45 min", "reward_ctc": 500, "frequency": "Every week", "icon": "🔬"},
+    {"name": "Sprint Challenge", "duration": "2 hrs", "reward_ctc": 2000, "frequency": "Monthly", "icon": "🚀"}
+  ],
+  "description": "Challenges are calibrated to your cognitive profile and adapt dynamically based on your performance.",
+  "closing_statement": "Every thought can earn you value."
+}

@@ -1,0 +1,17 @@
+{
+  "id": 46, "lang": "en", "key": "temporal_navigation",
+  "title": "Temporal Navigation", "subtitle": "Navigate the Timeline of Human Progress",
+  "icon": "⏳",
+  "chapter": "Advanced Systems", "volume": 1,
+  "access_level": "Level 5",
+  "timeline": [
+    {"year": 2020, "event": "2030B Foundation", "status": "completed", "probability": 100},
+    {"year": 2025, "event": "Quantum Enhancement Launch", "status": "completed", "probability": 100},
+    {"year": 2026, "event": "Current Node", "status": "active", "probability": 100},
+    {"year": 2028, "event": "Mass Consciousness Sync", "status": "planned", "probability": 87},
+    {"year": 2030, "event": "Universal Archive", "status": "vision", "probability": 73}
+  ],
+  "stats": {"temporal_energy": 67, "paradox_risk": "Minimal", "access_level": 5},
+  "description": "Navigate the 2030B timeline and contribute to pivotal moments. Higher temporal energy unlocks access to future probability nodes.",
+  "closing_statement": "The future is a probability — make it certain."
+}

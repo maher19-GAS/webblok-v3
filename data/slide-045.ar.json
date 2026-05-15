@@ -1,0 +1,16 @@
+{
+  "id": 45, "lang": "ar", "key": "global_mind_network",
+  "title": "شبكة العقل العالمي", "subtitle": "تواصل مع 2.3 مليون عقل حول العالم",
+  "icon": "🧠",
+  "chapter": "الأنظمة المتقدمة", "volume": 1,
+  "stats": {"connected_minds": 2300000, "network_health": 97, "your_contribution": 94, "privacy": "قياسي"},
+  "thought_streams": [
+    {"name": "الاختراق الكمي", "participants": 45000, "priority": "مرتفع", "color": "#4FC3F7"},
+    {"name": "ابتكار أزمة المناخ", "participants": 89000, "priority": "حرج", "color": "#FF5252"},
+    {"name": "تطور الوعي", "participants": 12000, "priority": "متوسط", "color": "#69F0AE"}
+  ],
+  "features": ["مشاركة الأفكار الفورية", "حل المشكلات الجماعي", "تصميم يضع الخصوصية أولاً", "تقييم المساهمة"],
+  "amplification": false,
+  "description": "انضم إلى أكبر شبكة إدراكية في العالم. ساهم بأفكارك في التحديات العالمية واكسب رموز CTC مقابل الاختراقات الجماعية.",
+  "closing_statement": "حين تتواصل العقول، تتطور البشرية."
+}

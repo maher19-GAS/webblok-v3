@@ -1,0 +1,15 @@
+{
+  "id": 53, "lang": "fr", "key": "problem_statement",
+  "title": "Le Problème", "subtitle": "Le Potentiel Humain est Sous-Utilisé",
+  "icon": "⚠️",
+  "chapter": "Écosystème", "volume": 2,
+  "problems": [
+    {"name": "Inadéquation des Talents", "stat": "78%", "icon": "🔀", "color": "#FF5252"},
+    {"name": "Savoir Verrouillé", "stat": "90 Md$", "icon": "🔒", "color": "#FF7043"},
+    {"name": "Récompenses Inéquitables", "stat": "3%", "icon": "⚖️", "color": "#FFA726"},
+    {"name": "Accès Brisé", "stat": "2,4 Md personnes", "icon": "🚫", "color": "#EF5350"}
+  ],
+  "insight": "L'économie cognitive vaut 25 000 milliards $ mais 97% est capturé par les intermédiaires.",
+  "description": "Les systèmes traditionnels échouent à associer les talents aux opportunités, récompenser la création de connaissances ou fournir un accès équitable.",
+  "closing_statement": "Nous refusons de laisser le potentiel se gaspiller."
+}

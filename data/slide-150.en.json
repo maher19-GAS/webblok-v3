@@ -1,0 +1,13 @@
+{
+  "id": 150, "lang": "en", "key": "call_to_action",
+  "title": "Join the Cognitive Revolution", "subtitle": "The Future of Thinking Starts With You",
+  "icon": "🚀",
+  "chapter": "Vision", "volume": 3,
+  "stats": {"community_size": 2400000, "active_projects": 18400, "countries": 97, "ctc_distributed": "140B"},
+  "next_steps": ["Create your account","Complete cognitive assessment","Join your first project","Start earning CTC","Shape the future"],
+  "quote": "In 2030, thinking will be the most valuable currency. Start building your cognitive wealth today.",
+  "cta_primary": "Get Started Now",
+  "cta_secondary": "Explore the Platform",
+  "description": "2030B is not just a platform — it's a movement. Join millions of thinkers worldwide building the cognitive economy of tomorrow.",
+  "closing_statement": "Your mind is your wealth. Unlock it."
+}

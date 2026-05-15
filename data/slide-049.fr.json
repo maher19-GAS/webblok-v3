@@ -1,0 +1,16 @@
+{
+  "id": 49, "lang": "fr", "key": "consciousness_bridge",
+  "title": "Pont de Conscience", "subtitle": "Recueillez des Insights des États de Sommeil Profond",
+  "icon": "🌙",
+  "chapter": "Systèmes Avancés", "volume": 1,
+  "stats": {"last_session": "Il y a 8 h", "insights_harvested": 7, "lucid_level": 3, "collective_dream_access": true},
+  "dream_patterns": [
+    {"name": "Résolution Quantique de Problèmes", "intensity": "Élevée", "quality": 94, "color": "#7E57C2"},
+    {"name": "Synthèse Créative", "intensity": "Moyenne", "quality": 87, "color": "#26C6DA"},
+    {"name": "Intégration Mémorielle Subconsciente", "intensity": "Faible", "quality": 78, "color": "#4FC3F7"}
+  ],
+  "nightmare_processor": "Actif",
+  "next_session": "Ce soir 23h",
+  "description": "Transformez votre sommeil en actif cognitif. Le Pont de Conscience extrait des insights précieux de vos cycles de traitement subconscient.",
+  "closing_statement": "Votre esprit endormi ne cesse jamais de travailler pour vous."
+}

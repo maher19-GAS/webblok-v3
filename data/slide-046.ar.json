@@ -1,0 +1,17 @@
+{
+  "id": 46, "lang": "ar", "key": "temporal_navigation",
+  "title": "الملاحة الزمنية", "subtitle": "تنقّل في جدول زمن تقدم البشرية",
+  "icon": "⏳",
+  "chapter": "الأنظمة المتقدمة", "volume": 1,
+  "access_level": "المستوى 5",
+  "timeline": [
+    {"year": 2020, "event": "تأسيس 2030B", "status": "مكتمل", "probability": 100},
+    {"year": 2025, "event": "إطلاق التعزيز الكمي", "status": "مكتمل", "probability": 100},
+    {"year": 2026, "event": "العقدة الحالية", "status": "نشط", "probability": 100},
+    {"year": 2028, "event": "مزامنة الوعي الجماعي", "status": "مخطط", "probability": 87},
+    {"year": 2030, "event": "الأرشيف الكوني", "status": "رؤية", "probability": 73}
+  ],
+  "stats": {"temporal_energy": 67, "paradox_risk": "ضئيل", "access_level": 5},
+  "description": "تنقّل في الجدول الزمني لـ 2030B وساهم في اللحظات المحورية. يفتح الطاقة الزمنية المرتفعة الوصول إلى عقد الاحتمالات المستقبلية.",
+  "closing_statement": "المستقبل احتمال — اجعله يقيناً."
+}

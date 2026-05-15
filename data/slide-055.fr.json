@@ -1,0 +1,15 @@
+{
+  "id": 55, "lang": "fr", "key": "be_smarter_program",
+  "title": "Programme Be Smarter", "subtitle": "Amélioration Cognitive Structurée pour Tous",
+  "icon": "🎓",
+  "chapter": "Écosystème", "volume": 2,
+  "tiers": [
+    {"level": 1, "name": "Explorateur", "ctc_unlock": 0, "color": "#78909C", "features": ["Défis de base","Quêtes quotidiennes","Accès communautaire"]},
+    {"level": 2, "name": "Penseur", "ctc_unlock": 1000, "color": "#4FC3F7", "features": ["Modules avancés","Collaboration entre pairs","Accès projets"]},
+    {"level": 3, "name": "Architecte", "ctc_unlock": 5000, "color": "#69F0AE", "features": ["Projets de conception systèmes","Mentorat","Matching prioritaire"]},
+    {"level": 4, "name": "Visionnaire", "ctc_unlock": 20000, "color": "#FFD54F", "features": ["Vote gouvernance","Laboratoire innovation","Accès mission cosmique"]}
+  ],
+  "progression_note": "La progression est basée sur les compétences, pas le temps — méritez votre montée.",
+  "description": "Un programme structuré qui vous emmène d'explorateur cognitif à architecte visionnaire à travers des jalons mesurables.",
+  "closing_statement": "Votre intelligence est votre passeport."
+}

@@ -1,0 +1,17 @@
+{
+  "id": 52, "lang": "en", "key": "vision_2030",
+  "title": "Vision 2030", "subtitle": "A World Where Thinking is the Currency",
+  "icon": "🔭",
+  "chapter": "Ecosystem", "volume": 2,
+  "quote": "We believe in unlocking the full potential of every human mind — and rewarding it.",
+  "milestones": [
+    {"year": 2025, "event": "Global Launch", "status": "active"},
+    {"year": 2026, "event": "10 Million Users", "status": "planned"},
+    {"year": 2027, "event": "CTC Exchange Listing", "status": "planned"},
+    {"year": 2028, "event": "Decentralized Governance", "status": "planned"},
+    {"year": 2030, "event": "1 Billion Lives Impacted", "status": "vision"}
+  ],
+  "cta": "Join the Movement",
+  "description": "Our roadmap is built on milestones that compound — each achievement unlocks the next leap in human cognitive potential.",
+  "closing_statement": "The future belongs to thinkers."
+}

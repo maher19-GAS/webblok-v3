@@ -1,0 +1,10 @@
+{
+  "id": 51, "lang": "en", "key": "ecosystem_overview",
+  "title": "The 2030B Ecosystem", "subtitle": "A Living Network of Intelligence",
+  "icon": "🌍",
+  "chapter": "Ecosystem", "volume": 2,
+  "pillars": ["Be Smarter","DVM Projects","CTC Economy","Governance"],
+  "stats": {"users": 2400000, "projects": 18400, "ctc_circulation": 140000000000, "countries": 97},
+  "description": "A fully integrated cognitive ecosystem where learning, contribution, reward, and governance reinforce each other in a self-sustaining loop.",
+  "closing_statement": "Every mind that joins strengthens the whole."
+}

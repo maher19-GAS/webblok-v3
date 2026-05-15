@@ -1,0 +1,15 @@
+{
+  "id": 53, "lang": "en", "key": "problem_statement",
+  "title": "The Problem", "subtitle": "Human Potential is Underutilized",
+  "icon": "⚠️",
+  "chapter": "Ecosystem", "volume": 2,
+  "problems": [
+    {"name": "Talent Mismatch", "stat": "78%", "icon": "🔀", "color": "#FF5252"},
+    {"name": "Locked Knowledge", "stat": "$90B", "icon": "🔒", "color": "#FF7043"},
+    {"name": "Unfair Rewards", "stat": "3%", "icon": "⚖️", "color": "#FFA726"},
+    {"name": "Broken Access", "stat": "2.4B people", "icon": "🚫", "color": "#EF5350"}
+  ],
+  "insight": "The cognitive economy is worth $25 trillion but 97% is captured by intermediaries.",
+  "description": "Traditional systems fail to match talent with opportunity, reward knowledge creation, or provide equitable access to cognitive development.",
+  "closing_statement": "We refuse to let potential go to waste."
+}

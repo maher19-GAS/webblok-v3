@@ -1,0 +1,15 @@
+{
+  "id": 54, "lang": "en", "key": "solution_architecture",
+  "title": "The Solution", "subtitle": "A Self-Sustaining Intelligence Engine",
+  "icon": "⚙️",
+  "chapter": "Ecosystem", "volume": 2,
+  "layers": [
+    {"name": "Cognitive Layer", "description": "Learning, challenges, cognitive enhancement programs", "color": "#4FC3F7"},
+    {"name": "Contribution Layer", "description": "DVM projects, peer review, knowledge creation", "color": "#69F0AE"},
+    {"name": "Economy Layer", "description": "CTC token rewards, staking, marketplace", "color": "#FFD54F"},
+    {"name": "Governance Layer", "description": "DAO voting, proposals, community decisions", "color": "#CE93D8"}
+  ],
+  "outcome": "Each layer feeds the next — learning fuels projects, projects earn CTC, CTC enables governance.",
+  "description": "The 2030B solution eliminates intermediaries by creating direct value loops between thinking, contributing, earning, and governing.",
+  "closing_statement": "Intelligence, rewarded. Contribution, recognized."
+}

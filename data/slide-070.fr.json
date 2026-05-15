@@ -1,0 +1,11 @@
+{
+  "id": 70, "lang": "fr", "key": "platform_foundation",
+  "title": "Fondation de la Plateforme", "subtitle": "Construite sur des Principes Open Source",
+  "icon": "🏗️",
+  "chapter": "Plateforme", "volume": 2,
+  "tech_stack": ["React","Node.js","PostgreSQL","IPFS","Ethereum","Modèles IA/ML"],
+  "principles": ["Open Source","Transparent","Décentralisé","Vie Privée d'Abord","Gouvernance Communautaire"],
+  "stats": {"github_stars": 12400, "contributors": 340, "commits": 8920, "uptime": "99.97%"},
+  "description": "Notre plateforme est construite de manière transparente sur des technologies open source éprouvées, gouvernée par la communauté.",
+  "closing_statement": "Du code en qui vous pouvez avoir confiance, des systèmes vérifiables."
+}

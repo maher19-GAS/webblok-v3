@@ -1,0 +1,15 @@
+{
+  "id": 55, "lang": "en", "key": "be_smarter_program",
+  "title": "Be Smarter Program", "subtitle": "Structured Cognitive Enhancement for Everyone",
+  "icon": "🎓",
+  "chapter": "Ecosystem", "volume": 2,
+  "tiers": [
+    {"level": 1, "name": "Explorer", "ctc_unlock": 0, "color": "#78909C", "features": ["Basic challenges","Daily quests","Community access"]},
+    {"level": 2, "name": "Thinker", "ctc_unlock": 1000, "color": "#4FC3F7", "features": ["Advanced modules","Peer collaboration","Project access"]},
+    {"level": 3, "name": "Architect", "ctc_unlock": 5000, "color": "#69F0AE", "features": ["System design projects","Mentorship","Priority matching"]},
+    {"level": 4, "name": "Visionary", "ctc_unlock": 20000, "color": "#FFD54F", "features": ["Governance voting","Innovation lab","Cosmic mission access"]}
+  ],
+  "progression_note": "Advancement is skill-based, not time-based — earn your way up.",
+  "description": "A structured program that takes you from cognitive explorer to visionary architect through measurable milestones.",
+  "closing_statement": "Your intelligence is your passport."
+}

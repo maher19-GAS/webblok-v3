@@ -1,0 +1,13 @@
+{
+  "id": 57, "lang": "ar", "key": "challenge_system",
+  "title": "نظام التحديات", "subtitle": "اكسب بينما تفكر",
+  "icon": "🎯",
+  "chapter": "النظام البيئي", "volume": 2,
+  "challenge_types": [
+    {"name": "شرارة يومية", "duration": "5 دقائق", "reward_ctc": 50, "frequency": "كل يوم", "icon": "⚡"},
+    {"name": "غوص أسبوعي عميق", "duration": "45 دقيقة", "reward_ctc": 500, "frequency": "كل أسبوع", "icon": "🔬"},
+    {"name": "تحدي السباق", "duration": "ساعتان", "reward_ctc": 2000, "frequency": "شهرياً", "icon": "🚀"}
+  ],
+  "description": "تُعاير التحديات حسب ملفك الإدراكي وتتكيف ديناميكياً بناءً على أدائك.",
+  "closing_statement": "كل فكرة يمكن أن تكسبك قيمة."
+}

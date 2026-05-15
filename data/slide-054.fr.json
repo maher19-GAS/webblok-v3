@@ -1,0 +1,15 @@
+{
+  "id": 54, "lang": "fr", "key": "solution_architecture",
+  "title": "La Solution", "subtitle": "Un Moteur d'Intelligence Auto-Suffisant",
+  "icon": "⚙️",
+  "chapter": "Écosystème", "volume": 2,
+  "layers": [
+    {"name": "Couche Cognitive", "description": "Apprentissage, défis, programmes d'amélioration cognitive", "color": "#4FC3F7"},
+    {"name": "Couche Contribution", "description": "Projets DVM, revue par les pairs, création de connaissances", "color": "#69F0AE"},
+    {"name": "Couche Économie", "description": "Récompenses token CTC, staking, marketplace", "color": "#FFD54F"},
+    {"name": "Couche Gouvernance", "description": "Vote DAO, propositions, décisions communautaires", "color": "#CE93D8"}
+  ],
+  "outcome": "Chaque couche alimente la suivante — l'apprentissage alimente les projets, les projets gagnent du CTC, le CTC active la gouvernance.",
+  "description": "La solution 2030B élimine les intermédiaires en créant des boucles de valeur directes entre penser, contribuer, gagner et gouverner.",
+  "closing_statement": "Intelligence récompensée. Contribution reconnue."
+}

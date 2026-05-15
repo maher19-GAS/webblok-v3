@@ -1,0 +1,17 @@
+{
+  "id": 46, "lang": "fr", "key": "temporal_navigation",
+  "title": "Navigation Temporelle", "subtitle": "Naviguez la Ligne du Temps du Progrès Humain",
+  "icon": "⏳",
+  "chapter": "Systèmes Avancés", "volume": 1,
+  "access_level": "Niveau 5",
+  "timeline": [
+    {"year": 2020, "event": "Fondation 2030B", "status": "complété", "probability": 100},
+    {"year": 2025, "event": "Lancement Amélioration Quantique", "status": "complété", "probability": 100},
+    {"year": 2026, "event": "Nœud Actuel", "status": "actif", "probability": 100},
+    {"year": 2028, "event": "Sync Conscience de Masse", "status": "planifié", "probability": 87},
+    {"year": 2030, "event": "Archive Universelle", "status": "vision", "probability": 73}
+  ],
+  "stats": {"temporal_energy": 67, "paradox_risk": "Minimal", "access_level": 5},
+  "description": "Naviguez la chronologie 2030B et contribuez aux moments pivots. Une énergie temporelle plus élevée déverrouille des nœuds de probabilité futurs.",
+  "closing_statement": "L'avenir est une probabilité — rendez-le certain."
+}

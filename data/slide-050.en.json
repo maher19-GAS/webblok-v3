@@ -1,0 +1,22 @@
+{
+  "id": 50, "lang": "en", "key": "cosmic_mission",
+  "title": "Your Cosmic Mission", "subtitle": "Align Your Purpose with Universal Progress",
+  "icon": "🌌",
+  "chapter": "Advanced Systems", "volume": 1,
+  "stats": {"purpose_alignment": 94, "meaning_score": 9240, "role": "Knowledge Architect"},
+  "dimensions": [
+    {"name": "Personal Growth", "value": 97, "color": "#4FC3F7"},
+    {"name": "Collective Impact", "value": 89, "color": "#69F0AE"},
+    {"name": "Universal Contribution", "value": 94, "color": "#FFD54F"},
+    {"name": "Temporal Legacy", "value": 91, "color": "#CE93D8"}
+  ],
+  "milestones": [
+    {"name": "Personal Purpose Clarity", "status": "completed"},
+    {"name": "Community Impact Leader", "status": "completed"},
+    {"name": "Global Change Agent", "status": "in_progress"},
+    {"name": "Universal Consciousness Contributor", "status": "pending"}
+  ],
+  "transcendence_pathway": "Knowledge Architect → Cosmic Intelligence → Universal Consciousness",
+  "description": "Discover your unique role in the grand tapestry of human evolution. Every contribution you make echoes through time.",
+  "closing_statement": "You are not just a user — you are a builder of the future."
+}

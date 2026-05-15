@@ -1,0 +1,10 @@
+{
+  "id": 51, "lang": "fr", "key": "ecosystem_overview",
+  "title": "L'Écosystème 2030B", "subtitle": "Un Réseau Vivant d'Intelligence",
+  "icon": "🌍",
+  "chapter": "Écosystème", "volume": 2,
+  "pillars": ["Be Smarter","Projets DVM","Économie CTC","Gouvernance"],
+  "stats": {"users": 2400000, "projects": 18400, "ctc_circulation": 140000000000, "countries": 97},
+  "description": "Un écosystème cognitif entièrement intégré où l'apprentissage, la contribution, la récompense et la gouvernance se renforcent mutuellement.",
+  "closing_statement": "Chaque esprit qui rejoint renforce l'ensemble."
+}

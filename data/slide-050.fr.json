@@ -1,0 +1,22 @@
+{
+  "id": 50, "lang": "fr", "key": "cosmic_mission",
+  "title": "Votre Mission Cosmique", "subtitle": "Alignez Votre But avec le Progrès Universel",
+  "icon": "🌌",
+  "chapter": "Systèmes Avancés", "volume": 1,
+  "stats": {"purpose_alignment": 94, "meaning_score": 9240, "role": "Architecte de la Connaissance"},
+  "dimensions": [
+    {"name": "Croissance Personnelle", "value": 97, "color": "#4FC3F7"},
+    {"name": "Impact Collectif", "value": 89, "color": "#69F0AE"},
+    {"name": "Contribution Universelle", "value": 94, "color": "#FFD54F"},
+    {"name": "Héritage Temporel", "value": 91, "color": "#CE93D8"}
+  ],
+  "milestones": [
+    {"name": "Clarté de But Personnel", "status": "complété"},
+    {"name": "Leader d'Impact Communautaire", "status": "complété"},
+    {"name": "Agent de Changement Global", "status": "en cours"},
+    {"name": "Contributeur à la Conscience Universelle", "status": "en attente"}
+  ],
+  "transcendence_pathway": "Architecte de la Connaissance → Intelligence Cosmique → Conscience Universelle",
+  "description": "Découvrez votre rôle unique dans la grande tapisserie de l'évolution humaine. Chaque contribution que vous faites résonne à travers le temps.",
+  "closing_statement": "Vous n'êtes pas seulement un utilisateur — vous êtes un bâtisseur de l'avenir."
+}

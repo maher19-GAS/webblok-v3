@@ -1,0 +1,16 @@
+{
+  "id": 44, "lang": "fr", "key": "reality_explorer",
+  "title": "Explorateur de Réalité", "subtitle": "Naviguez à Travers les Dimensions de l'Existence",
+  "icon": "🌐",
+  "chapter": "Systèmes Avancés", "volume": 1,
+  "dimensions": [
+    {"name": "Physique", "energy": 100, "status": "actif", "color": "#4FC3F7"},
+    {"name": "Numérique", "energy": 150, "status": "accessible", "color": "#7E57C2"},
+    {"name": "Champ Quantique", "energy": 200, "status": "accessible", "color": "#26C6DA"},
+    {"name": "Flux Temporel", "energy": 350, "status": "verrouillé", "color": "#FF7043"},
+    {"name": "Champ Universel", "energy": 9999, "status": "verrouillé", "color": "#FFD54F"}
+  ],
+  "stats": {"accessible": 7, "current": "Physique", "safety": "Élevée", "missions": 3},
+  "description": "Explorez les réalités superposées du physique au quantique. Chaque couche offre des opportunités uniques d'amélioration cognitive et de gain CTC.",
+  "closing_statement": "La réalité n'est pas singulière — c'est un spectre de possibilités."
+}

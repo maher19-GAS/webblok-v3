@@ -1,0 +1,16 @@
+{
+  "id": 44, "lang": "en", "key": "reality_explorer",
+  "title": "Reality Explorer", "subtitle": "Navigate Multiple Dimensions of Existence",
+  "icon": "🌐",
+  "chapter": "Advanced Systems", "volume": 1,
+  "dimensions": [
+    {"name": "Physical", "energy": 100, "status": "active", "color": "#4FC3F7"},
+    {"name": "Digital", "energy": 150, "status": "accessible", "color": "#7E57C2"},
+    {"name": "Quantum Field", "energy": 200, "status": "accessible", "color": "#26C6DA"},
+    {"name": "Temporal Stream", "energy": 350, "status": "locked", "color": "#FF7043"},
+    {"name": "Universal Field", "energy": 9999, "status": "locked", "color": "#FFD54F"}
+  ],
+  "stats": {"accessible": 7, "current": "Physical", "safety": "High", "missions": 3},
+  "description": "Explore layered realities from physical to quantum dimensions. Each layer offers unique cognitive enhancement opportunities and CTC earning potential.",
+  "closing_statement": "Reality is not singular — it is a spectrum of possibility."
+}

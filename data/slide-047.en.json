@@ -1,0 +1,16 @@
+{
+  "id": 47, "lang": "en", "key": "universal_translator",
+  "title": "Universal Translator Hub", "subtitle": "Break Language Barriers Across 500 Languages",
+  "icon": "🗣️",
+  "chapter": "Advanced Systems", "volume": 1,
+  "stats": {"languages": 500, "active_translations": 3, "accuracy": 99.7, "neural_interface": true},
+  "languages": ["English","Arabic","Mandarin","Spanish","French","Hindi","Swahili","Japanese","Portuguese","Russian"],
+  "features": [
+    {"name": "Real-time Translation", "status": "Active"},
+    {"name": "Concept-Level Transfer", "status": "Active"},
+    {"name": "Cultural Context", "status": "Active"},
+    {"name": "Neural Direct Transfer", "status": "Beta"}
+  ],
+  "description": "Connect with contributors globally without language barriers. 99.7% accuracy with cultural nuance preservation across 500+ languages.",
+  "closing_statement": "Language is a bridge — we make it seamless."
+}

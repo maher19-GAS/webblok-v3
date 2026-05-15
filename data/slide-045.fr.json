@@ -1,0 +1,16 @@
+{
+  "id": 45, "lang": "fr", "key": "global_mind_network",
+  "title": "Réseau Mental Mondial", "subtitle": "Connectez-vous à 2,3 Millions d'Esprits",
+  "icon": "🧠",
+  "chapter": "Systèmes Avancés", "volume": 1,
+  "stats": {"connected_minds": 2300000, "network_health": 97, "your_contribution": 94, "privacy": "Standard"},
+  "thought_streams": [
+    {"name": "Percée Quantique", "participants": 45000, "priority": "Élevée", "color": "#4FC3F7"},
+    {"name": "Innovation Climatique", "participants": 89000, "priority": "Critique", "color": "#FF5252"},
+    {"name": "Évolution de la Conscience", "participants": 12000, "priority": "Moyenne", "color": "#69F0AE"}
+  ],
+  "features": ["Partage de pensées en temps réel", "Résolution collective", "Conception axée vie privée", "Score de contribution"],
+  "amplification": false,
+  "description": "Rejoignez le plus grand réseau cognitif mondial. Contribuez votre réflexion aux défis mondiaux et gagnez des CTC.",
+  "closing_statement": "Quand les esprits se connectent, l'humanité évolue."
+}

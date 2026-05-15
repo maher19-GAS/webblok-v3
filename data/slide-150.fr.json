@@ -1,0 +1,13 @@
+{
+  "id": 150, "lang": "fr", "key": "call_to_action",
+  "title": "Rejoignez la Révolution Cognitive", "subtitle": "L'Avenir de la Pensée Commence Avec Vous",
+  "icon": "🚀",
+  "chapter": "Vision", "volume": 3,
+  "stats": {"community_size": 2400000, "active_projects": 18400, "countries": 97, "ctc_distributed": "140 Md"},
+  "next_steps": ["Créez votre compte","Complétez l'évaluation cognitive","Rejoignez votre premier projet","Commencez à gagner des CTC","Façonnez l'avenir"],
+  "quote": "En 2030, penser sera la monnaie la plus précieuse. Commencez à construire votre richesse cognitive aujourd'hui.",
+  "cta_primary": "Commencer Maintenant",
+  "cta_secondary": "Explorer la Plateforme",
+  "description": "2030B n'est pas qu'une plateforme — c'est un mouvement. Rejoignez des millions de penseurs dans le monde qui construisent l'économie cognitive de demain.",
+  "closing_statement": "Votre esprit est votre richesse. Déverrouillez-le."
+}

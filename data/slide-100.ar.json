@@ -1,0 +1,12 @@
+{
+  "id": 100, "lang": "ar", "key": "platform_summary",
+  "title": "ملخص المنصة", "subtitle": "جمع كل شيء معاً",
+  "icon": "📦",
+  "chapter": "المنصة", "volume": 2,
+  "key_features": ["التعزيز الإدراكي","سوق المشاريع","اقتصاد CTC","حوكمة DAO","المساعد AI","الشبكة العالمية"],
+  "stats": {"total_modules": 47, "api_endpoints": 230, "supported_languages": 12, "data_centers": 8},
+  "roadmap_status": "المرحلة 2 من 4 مكتملة",
+  "next_milestone": "إطلاق الحوكمة اللامركزية Q3 2026",
+  "description": "تدمج منصة 2030B التدريب الإدراكي والعمل على المشاريع الحقيقية واقتصاد الرموز والحوكمة الديمقراطية في نظام بيئي واحد سلس.",
+  "closing_statement": "هذه مجرد البداية."
+}

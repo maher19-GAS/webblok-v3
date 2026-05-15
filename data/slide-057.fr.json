@@ -1,0 +1,13 @@
+{
+  "id": 57, "lang": "fr", "key": "challenge_system",
+  "title": "Système de Défis", "subtitle": "Gagnez en Pensant",
+  "icon": "🎯",
+  "chapter": "Écosystème", "volume": 2,
+  "challenge_types": [
+    {"name": "Étincelle Quotidienne", "duration": "5 min", "reward_ctc": 50, "frequency": "Chaque jour", "icon": "⚡"},
+    {"name": "Plongée Hebdomadaire", "duration": "45 min", "reward_ctc": 500, "frequency": "Chaque semaine", "icon": "🔬"},
+    {"name": "Défi Sprint", "duration": "2 h", "reward_ctc": 2000, "frequency": "Mensuel", "icon": "🚀"}
+  ],
+  "description": "Les défis sont calibrés sur votre profil cognitif et s'adaptent dynamiquement selon votre performance.",
+  "closing_statement": "Chaque pensée peut vous rapporter de la valeur."
+}

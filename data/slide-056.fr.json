@@ -1,0 +1,17 @@
+{
+  "id": 56, "lang": "fr", "key": "cognitive_dimensions",
+  "title": "7 Dimensions Cognitives", "subtitle": "Mesurer l'Intelligence Au-Delà du QI",
+  "icon": "🧩",
+  "chapter": "Écosystème", "volume": 2,
+  "dimensions": [
+    {"num": 1, "name": "Pensée Analytique", "icon": "📊", "description": "Décomposer les problèmes complexes en composants logiques", "activities": ["Puzzles logiques","Analyse de données","Audits systèmes"]},
+    {"num": 2, "name": "Intelligence Créative", "icon": "🎨", "description": "Générer des solutions nouvelles et des idées originales", "activities": ["Brainstorming","Art conceptuel","Sprints d'innovation"]},
+    {"num": 3, "name": "Pensée Systémique", "icon": "🔗", "description": "Voir les interconnexions et les motifs émergents", "activities": ["Cartographie écosystème","Boucles causales","Revue architecture"]},
+    {"num": 4, "name": "Intelligence Émotionnelle", "icon": "💙", "description": "Naviguer émotions et dynamiques sociales efficacement", "activities": ["Leadership d'équipe","Résolution conflits","Formation empathie"]},
+    {"num": 5, "name": "Reconnaissance de Motifs", "icon": "🔍", "description": "Identifier les régularités cachées dans données et événements", "activities": ["Repérage tendances","Défis chiffrement","Motifs quantiques"]},
+    {"num": 6, "name": "Architecture Mémorielle", "icon": "🗂️", "description": "Construire des cadres mentaux robustes pour rétention connaissances", "activities": ["Palais de mémoire","Répétition espacée","Liaison connaissances"]},
+    {"num": 7, "name": "Expansion de Conscience", "icon": "🌌", "description": "Élargir la conscience vers niveaux méta-cognitifs", "activities": ["Méditation","Rêves lucides","Réflexion quantique"]}
+  ],
+  "description": "2030B mesure la croissance cognitive sur les 7 dimensions, pas seulement les métriques QI conventionnelles.",
+  "closing_statement": "La vraie intelligence est multidimensionnelle."
+}
