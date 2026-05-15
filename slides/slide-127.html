@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 127 – CGDP Methodology</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:14px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(20px,4vw,38px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .method-steps{display:flex;flex-direction:column;gap:8px;width:100%;max-width:680px}
+  .step{display:flex;gap:14px;align-items:flex-start;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+  .step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g2));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#000;flex-shrink:0}
+  .step-info{flex:1}
+  .step-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .step-desc{font-size:10px;color:var(--muted);line-height:1.4}
+  .step-tech{font-size:9px;font-weight:700;color:var(--g1);margin-top:4px}
+  .data-sources{background:rgba(67,233,123,.04);border:1px solid rgba(67,233,123,.15);border-radius:12px;padding:12px 16px;width:100%;max-width:680px}
+  .ds-title{font-size:11px;font-weight:700;color:var(--g1);margin-bottom:8px}
+  .ds-list{display:flex;flex-wrap:wrap;gap:6px}
+  .ds-chip{font-size:10px;padding:3px 10px;border-radius:20px;background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.2);color:var(--g1);font-weight:600}
+  .validators{display:flex;gap:8px;width:100%;max-width:680px}
+  .val{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .val-icon{font-size:18px;margin-bottom:3px}
+  .val-name{font-size:10px;font-weight:700;color:var(--text)}
+  .val-role{font-size:9px;color:var(--muted);margin-top:1px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 127 · CGDP</div>
+<h1>CGDP Methodology</h1>
+<div class="method-steps">
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-info">
+      <div class="step-title">Data Collection Layer</div>
+      <div class="step-desc">Anonymized aggregation of learning activity across all 2030B users within a region — opt-in consent model</div>
+      <div class="step-tech">Tech: ZK-aggregation · Differential privacy · Federated learning</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-info">
+      <div class="step-title">Cognitive Signal Processing</div>
+      <div class="step-desc">NAE signals normalized across user cohorts to generate population-level cognitive trend vectors</div>
+      <div class="step-tech">Tech: Federated ML models · On-chain verifiable computation</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-info">
+      <div class="step-title">CGDP Score Computation</div>
+      <div class="step-desc">Weighted blend of 5 pillars — computed monthly, published on-chain as immutable record</div>
+      <div class="step-tech">Tech: Smart contract oracle · Chainlink data feed integration</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-info">
+      <div class="step-title">Independent Validation</div>
+      <div class="step-desc">Academic institutions and government partners validate methodology annually</div>
+      <div class="step-tech">Partners: MIT Media Lab · Oxford Internet Institute · UNESCO</div>
+    </div>
+  </div>
+</div>
+<div class="data-sources">
+  <div class="ds-title">📊 Data Sources Integrated</div>
+  <div class="ds-list">
+    <span class="ds-chip">2030B Learning Activity</span>
+    <span class="ds-chip">DVM Project Outputs</span>
+    <span class="ds-chip">Certification Rates</span>
+    <span class="ds-chip">CTC Economic Activity</span>
+    <span class="ds-chip">Collaboration Density</span>
+    <span class="ds-chip">Spatial Learning Metrics</span>
+    <span class="ds-chip">Cross-Border Knowledge Flow</span>
+  </div>
+</div>
+</body>
+</html>

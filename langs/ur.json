@@ -1,0 +1,23 @@
+{
+  "code": "ur",
+  "dir": "rtl",
+  "name": "اردو",
+  "nativeName": "اردو",
+  "flag": "🇵🇰",
+  "nav": { "brand": "2030B", "brandSub": "— ذہین بنیں", "toc": "مواد", "stats": "اعداد و شمار", "history": "تاریخ", "notes": "نوٹس", "bookmarks": "بک مارکس", "comments": "تبصرے", "share": "شیئر", "language": "زبان", "theme": "تھیم" },
+  "bottomNav": { "prev": "پچھلا", "next": "اگلا" },
+  "aside": { "toc": "فہرست مضامین", "stats": "مطالعہ کے اعداد و شمار", "history": "سرگرمی کا لاگ", "notes": "میرے نوٹس", "bookmarks": "میرے بک مارکس", "comments": "تبصرے", "share": "شیئر", "language": "زبان منتخب کریں", "theme": "تھیم منتخب کریں", "close": "بند کریں" },
+  "stats": { "slidesRead": "پڑھے گئے سلائیڈ", "readingTime": "تخمینہ مطالعہ وقت", "wpm": "200 الفاظ/منٹ", "longestSession": "سب سے طویل سیشن", "sessions": "سیشن", "scrollTimeline": "پوزیشن ٹائم لائن", "noPositionData": "ابھی کوئی پوزیشن ڈیٹا نہیں", "clearStats": "تمام اعداد و شمار صاف کریں", "localStorageSize": "لوکل اسٹوریج سائز", "saveToServer": "سرور پر محفوظ کریں", "active": "فعال" },
+  "history": { "empty": "ابھی کوئی سرگرمی نہیں" },
+  "annotations": { "note": "نوٹ", "bookmark": "بک مارک", "comment": "تبصرہ", "share": "شیئر", "noteEmpty": "ابھی کوئی نوٹ نہیں۔", "bookmarkEmpty": "ابھی کوئی بک مارک نہیں۔", "commentEmpty": "ابھی کوئی تبصرہ نہیں۔", "shareEmpty": "ابھی کوئی شیئر کردہ متن نہیں", "hint": "شروع کرنے کے لیے کتاب میں متن منتخب کریں", "addReply": "جواب شامل کریں…", "send": "بھیجیں", "save": "محفوظ کریں", "delete": "حذف کریں", "slide": "سلائیڈ", "sharedTexts": "شیئر کردہ متون", "shareBook": "پوری کتاب شیئر کریں" },
+  "selMenu": { "note": "نوٹ", "bookmark": "بک مارک", "comment": "تبصرہ", "share": "شیئر" },
+  "dialogs": { "addNote": "اپنا نوٹ شامل کریں", "addComment": "اپنا تبصرہ شامل کریں", "notePlaceholder": "یہاں اپنا نوٹ لکھیں…", "commentPlaceholder": "یہاں اپنا تبصرہ لکھیں…", "confirm": "تصدیق کریں", "cancel": "منسوخ کریں", "deleteTitle": "حذف کی تصدیق کریں", "deleteText": "کیا آپ واقعی اس تشریح کو حذف کرنا چاہتے ہیں؟", "clearStatsTitle": "اعداد و شمار صاف کریں", "clearStatsText": "تمام مطالعہ ڈیٹا صاف ہو جائے گا۔ جاری رکھیں؟", "saveToServerTitle": "سرور پر محفوظ کریں", "saveToServerText": "آپ کا ڈیٹا جلد 2030b.com/webbook پر اپ لوڈ ہوگا۔", "noteSaved": "💾 نوٹ محفوظ ہو گیا", "linkCopied": "🔗 لنک کاپی ہو گیا", "segmentCopied": "📋 سیگمنٹ لنک کاپی ہو گیا", "statsClearDone": "🗑️ اعداد و شمار صاف ہو گئے", "highlightGone": "⚠️ منتخب متن اب موجود نہیں" },
+  "toast": { "resumeFrom": "جاری رکھیں:", "resume": "جاری رکھیں", "slideOf": "/" },
+  "loading": { "preparing": "تیاری ہو رہی ہے…", "checkingCache": "کیش چیک ہو رہا ہے…", "loading": "لوڈ:", "processing": "پروسیسنگ:", "building": "تعمیر", "slides": "سلائیڈز…", "initUI": "انٹرفیس شروع ہو رہا ہے…", "ready": "تیار!", "notFound": "کتاب کی فائلیں نہیں ملیں" },
+  "slideTypes": { "cover": "سرورق", "chapter": "باب", "quote": "اقتباس", "science": "سائنس", "equation": "مساوات", "table": "جدول", "list": "فہرست", "prose": "نثر", "cta": "عمل" },
+  "slideHints": { "scroll": "نیچے سکرول کریں یا نیویگیشن بٹن استعمال کریں", "prevSlide": "پچھلی سلائیڈ", "nextSlide": "اگلی سلائیڈ", "ctaButton": "2030B.com پر شروع کریں", "ctaBack": "اوپر واپس" },
+  "share": { "whatsapp": "واٹس ایپ", "telegram": "ٹیلیگرام", "copyLink": "لنک کاپی کریں", "twitter": "ٹویٹر / X", "facebook": "فیس بک", "linkedin": "لنکڈ ان", "email": "ای میل", "sms": "SMS", "reddit": "ریڈٹ", "pocket": "Pocket" },
+  "themes": { "title": "تھیم منتخب کریں", "dark": "تاریک", "light": "روشن", "cosmos": "کائنات", "emerald": "زمرد", "rose": "گلابی", "amber": "عنبر", "violet": "بنفشی", "slate": "سلیٹی", "ocean": "سمندر", "forest": "جنگل", "crimson": "سرخ" },
+  "toc": { "slides": "سلائیڈ" },
+  "edgeHints": { "prev": "پچھلی سلائیڈ", "next": "اگلی سلائیڈ" }
+}

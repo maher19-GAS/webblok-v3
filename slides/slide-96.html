@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Investment Thesis</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:10px"><div class="skeleton skeleton-title" style="width:60%"></div>${[1,2,3,4].map(()=>`<div class="skeleton skeleton-card" style="height:72px;border-radius:11px"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide96(data,lang){
+  const colors=['#63B3ED','#9F7AEA','#68D391','#F6AD55'];
+  return `
+    ${buildSlideHeader(data,'📈')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px">
+      ${data.highlights.map((h,i)=>`
+        <div class="glass-card fade-in" style="padding:13px 14px;animation-delay:${i*70}ms;border-left:3px solid ${colors[i%colors.length]}">
+          <div style="font-size:12px;font-weight:700;color:${colors[i%colors.length]};margin-bottom:4px">${h.point}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.5">${h.detail}</div>
+        </div>`).join('')}
+      <!-- Investment Details -->
+      <div class="glass-card fade-in" style="padding:12px 14px;background:linear-gradient(135deg,rgba(99,179,237,0.06),rgba(159,122,234,0.06))">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:4px">Target Valuation 2030</div>
+            <div style="font-size:16px;font-weight:900;color:#68D391">${data.target_valuation_2030}</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:4px">Current Round</div>
+            <div style="font-size:12px;font-weight:700;color:#63B3ED">${data.current_round}</div>
+          </div>
+          <div style="grid-column:1/-1">
+            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:3px">Lead Investor</div>
+            <div style="font-size:12px;font-weight:600;color:#F6AD55">💎 ${data.lead_investor}</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+initSlide(96,renderSlide96,{jsonFile:'../en2.json',slideIndex:45});
+</script></body></html>

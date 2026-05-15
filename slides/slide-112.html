@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 112 – Memory Palace System</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .palace-layout{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:680px}
+  .room{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center;position:relative;transition:all .2s}
+  .room.active{border-color:rgba(108,99,255,.45);background:rgba(108,99,255,.08)}
+  .room-icon{font-size:24px;margin-bottom:4px}
+  .room-name{font-size:11px;font-weight:700;color:var(--text)}
+  .room-items{font-size:9px;color:var(--muted);margin-top:2px}
+  .room-badge{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--g1)}
+  .how-it-works{background:rgba(108,99,255,.06);border:1px solid rgba(108,99,255,.2);border-radius:14px;padding:14px 16px;width:100%;max-width:680px}
+  .how-title{font-size:12px;font-weight:700;color:#a09eff;margin-bottom:10px}
+  .steps{display:flex;gap:12px}
+  .step{flex:1;text-align:center}
+  .step-num{width:28px;height:28px;border-radius:50%;background:rgba(108,99,255,.2);border:1px solid rgba(108,99,255,.3);color:#a09eff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
+  .step-text{font-size:10px;color:var(--muted);line-height:1.3}
+  .science{display:flex;gap:10px;width:100%;max-width:680px}
+  .sci-stat{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .sci-val{font-size:18px;font-weight:900;color:#a09eff}
+  .sci-label{font-size:9px;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 112 · SPATIAL LEARNING</div>
+<h1>Memory Palace System</h1>
+<div class="palace-layout">
+  <div class="room active"><div class="room-badge"></div><div class="room-icon">🚪</div><div class="room-name">Entrance Hall</div><div class="room-items">12 items</div></div>
+  <div class="room"><div class="room-icon">📚</div><div class="room-name">Knowledge Library</div><div class="room-items">28 items</div></div>
+  <div class="room"><div class="room-icon">⚗️</div><div class="room-name">Lab of Ideas</div><div class="room-items">8 items</div></div>
+  <div class="room"><div class="room-icon">🗺️</div><div class="room-name">Strategy Room</div><div class="room-items">15 items</div></div>
+  <div class="room"><div class="room-icon">🎨</div><div class="room-name">Creative Studio</div><div class="room-items">6 items</div></div>
+  <div class="room"><div class="room-icon">🌿</div><div class="room-name">Concept Garden</div><div class="room-items">22 items</div></div>
+  <div class="room"><div class="room-icon">⚡</div><div class="room-name">Power Station</div><div class="room-items">10 items</div></div>
+  <div class="room"><div class="room-icon">🔭</div><div class="room-name">Observatory</div><div class="room-items">5 items</div></div>
+</div>
+<div class="how-it-works">
+  <div class="how-title">🏛️ How Memory Palaces Work in 2030B</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Design your palace architecture with custom rooms</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Place knowledge items as 3D objects in specific locations</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Walk through spatially to trigger memory recall</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">NAE schedules review walks based on forgetting curve</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text">Earn CTC for each successful spatial recall session</div></div>
+  </div>
+</div>
+<div class="science">
+  <div class="sci-stat"><div class="sci-val">+40%</div><div class="sci-label">Recall vs Linear Notes</div></div>
+  <div class="sci-stat"><div class="sci-val">2,400+</div><div class="sci-label">Years of Proven Use</div></div>
+  <div class="sci-stat"><div class="sci-val">∞</div><div class="sci-label">Palace Capacity</div></div>
+  <div class="sci-stat"><div class="sci-val">WebXR</div><div class="sci-label">No Headset Needed</div></div>
+</div>
+</body>
+</html>

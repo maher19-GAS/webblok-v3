@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – FAQ</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:8px"><div class="skeleton skeleton-title" style="width:55%"></div>${[1,2,3,4,5].map(()=>`<div class="skeleton skeleton-card" style="height:60px;border-radius:10px"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide98(data,lang){
+  return `
+    ${buildSlideHeader(data,'❓')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:8px">
+      ${data.faqs.map((f,i)=>`
+        <div class="faq-item fade-in" style="animation-delay:${i*70}ms;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden">
+          <button onclick="toggleFaq(this)" style="width:100%;padding:12px 14px;background:none;border:none;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;cursor:pointer;text-align:left">
+            <span style="font-size:12px;font-weight:600;color:#fff;flex:1;line-height:1.4">${f.q}</span>
+            <span style="color:rgba(255,255,255,0.4);font-size:16px;transition:transform 0.3s;flex-shrink:0;margin-top:1px">+</span>
+          </button>
+          <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.35s ease">
+            <div style="padding:0 14px 12px;font-size:11px;color:rgba(255,255,255,0.6);line-height:1.6;border-top:1px solid rgba(255,255,255,0.05)">${f.a}</div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <script>
+    function toggleFaq(btn){
+      const answer=btn.nextElementSibling;
+      const icon=btn.querySelector('span:last-child');
+      const isOpen=answer.style.maxHeight&&answer.style.maxHeight!=='0px';
+      document.querySelectorAll('.faq-answer').forEach(a=>a.style.maxHeight='0');
+      document.querySelectorAll('.faq-item button span:last-child').forEach(s=>{s.textContent='+';s.style.transform='rotate(0deg)';});
+      if(!isOpen){answer.style.maxHeight=answer.scrollHeight+'px';icon.textContent='×';icon.style.transform='rotate(0deg)';}
+    }
+    <\/script>`;
+}
+initSlide(98,renderSlide98,{jsonFile:'../en2.json',slideIndex:47});
+</script></body></html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Cognitive Economy Theory</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:10px"><div class="skeleton skeleton-title" style="width:60%"></div><div class="skeleton skeleton-card" style="height:80px;border-radius:12px"></div>${[1,2,3,4].map(()=>`<div class="skeleton skeleton-text" style="width:100%"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide95(data,lang){
+  return `
+    ${buildSlideHeader(data,'💡')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:12px">
+      <div class="glass-card fade-in" style="padding:14px;border-left:3px solid #9F7AEA">
+        <div style="font-size:11px;color:rgba(255,255,255,0.65);line-height:1.7;font-style:italic">"${data.thesis}"</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${data.principles.map((p,i)=>`
+          <div class="fade-in" style="animation-delay:${i*70}ms;display:flex;gap:10px;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:11px">
+            <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#63B3ED,#9F7AEA);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0">${i+1}</div>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">${p.name}</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);line-height:1.4">${p.desc}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="glass-card fade-in" style="padding:12px;text-align:center;background:linear-gradient(135deg,rgba(99,179,237,0.08),rgba(159,122,234,0.08))">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.4);margin-bottom:4px">Estimated Market Size</div>
+        <div style="font-size:22px;font-weight:900;color:#63B3ED">${data.estimated_market}</div>
+      </div>
+    </div>`;
+}
+initSlide(95,renderSlide95,{jsonFile:'../en2.json',slideIndex:44});
+</script></body></html>

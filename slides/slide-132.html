@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 132 – UBCTC Pilot</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .pilot-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;max-width:680px}
+  .ps{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .ps-val{font-size:22px;font-weight:900;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .ps-label{font-size:9px;color:var(--muted);margin-top:1px}
+  .cohorts{display:flex;flex-direction:column;gap:8px;width:100%;max-width:680px}
+  .cohort{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;gap:14px;align-items:center}
+  .cohort.active{border-color:rgba(67,233,123,.3);background:rgba(67,233,123,.04)}
+  .cohort-flag{font-size:24px;flex-shrink:0}
+  .cohort-info{flex:1}
+  .cohort-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .cohort-detail{font-size:10px;color:var(--muted)}
+  .cohort-bar{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-top:6px}
+  .cohort-fill{height:100%;background:linear-gradient(90deg,var(--g1),var(--g2));border-radius:3px}
+  .cohort-pct{font-size:10px;font-weight:700;color:var(--g1)}
+  .learnings{background:rgba(67,233,123,.05);border:1px solid rgba(67,233,123,.15);border-radius:12px;padding:12px 16px;width:100%;max-width:680px}
+  .l-title{font-size:11px;font-weight:700;color:var(--g1);margin-bottom:8px}
+  .l-items{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}
+  .l-item{font-size:10px;color:var(--muted);display:flex;gap:5px}
+  .l-item::before{content:'✓';color:var(--g1);font-weight:700;flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 132 · UBCTC</div>
+<h1>UBCTC Pilot Results</h1>
+<div class="pilot-stats">
+  <div class="ps"><div class="ps-val">12,400</div><div class="ps-label">Pilot Recipients</div></div>
+  <div class="ps"><div class="ps-val">800</div><div class="ps-label">CTC/month avg</div></div>
+  <div class="ps"><div class="ps-val">+24%</div><div class="ps-label">Learning Rate Increase</div></div>
+  <div class="ps"><div class="ps-val">91%</div><div class="ps-label">Continued Learning</div></div>
+</div>
+<div class="cohorts">
+  <div class="cohort active">
+    <div class="cohort-flag">🇳🇬</div>
+    <div class="cohort-info">
+      <div class="cohort-name">Nigeria Cohort — 5,200 recipients</div>
+      <div class="cohort-detail">6-month pilot · Avg income: $12 USD equiv / month · 94% engagement rate</div>
+      <div class="cohort-bar"><div class="cohort-fill" style="width:94%"></div></div>
+    </div>
+    <div class="cohort-pct">94%</div>
+  </div>
+  <div class="cohort active">
+    <div class="cohort-flag">🇧🇩</div>
+    <div class="cohort-info">
+      <div class="cohort-name">Bangladesh Cohort — 4,800 recipients</div>
+      <div class="cohort-detail">4-month pilot · Avg income: $9.6 USD equiv / month · 88% engagement</div>
+      <div class="cohort-bar"><div class="cohort-fill" style="width:88%"></div></div>
+    </div>
+    <div class="cohort-pct">88%</div>
+  </div>
+  <div class="cohort">
+    <div class="cohort-flag">🇵🇭</div>
+    <div class="cohort-info">
+      <div class="cohort-name">Philippines Cohort — 2,400 recipients</div>
+      <div class="cohort-detail">3-month pilot · Avg income: $11.2 USD equiv / month · 91% engagement</div>
+      <div class="cohort-bar"><div class="cohort-fill" style="width:91%"></div></div>
+    </div>
+    <div class="cohort-pct">91%</div>
+  </div>
+</div>
+<div class="learnings">
+  <div class="l-title">🔬 Key Learnings from Pilots</div>
+  <div class="l-items">
+    <div class="l-item">UBCTC increases total platform engagement by average 24%</div>
+    <div class="l-item">Recipients spend 3× more time on premium learning content</div>
+    <div class="l-item">91% of recipients continue learning beyond minimum requirement</div>
+    <div class="l-item">Cognitive income supplements family income in low-HDI regions</div>
+    <div class="l-item">Network effects amplified — recipients recruit avg 2.3 new users</div>
+    <div class="l-item">Fraud rate &lt;0.2% due to ZK identity + biometric proxy verification</div>
+  </div>
+</div>
+</body>
+</html>

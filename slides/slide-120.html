@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 120 – DeFi Integration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#f093fb;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .defi-products{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%;max-width:660px}
+  .product{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:flex-start}
+  .product:hover{border-color:rgba(240,147,251,.25)}
+  .product-icon{font-size:26px;flex-shrink:0}
+  .product-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px}
+  .product-desc{font-size:10px;color:var(--muted);line-height:1.4;margin-bottom:6px}
+  .product-apy{font-size:12px;font-weight:700;color:var(--g1)}
+  .product-apy span{font-size:9px;color:var(--muted);font-weight:400}
+  .yield-calc{background:rgba(67,233,123,.06);border:1px solid rgba(67,233,123,.2);border-radius:14px;padding:14px 16px;width:100%;max-width:660px}
+  .yc-title{font-size:11px;font-weight:700;color:var(--g1);margin-bottom:10px}
+  .yc-tiers{display:flex;gap:8px}
+  .yc-tier{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .yc-name{font-size:10px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .yc-range{font-size:9px;color:var(--muted);margin-bottom:4px}
+  .yc-yield{font-size:12px;font-weight:900;color:var(--g1)}
+  .disclaimer{width:100%;max-width:660px;font-size:9px;color:rgba(255,255,255,.2);text-align:center}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 120 · CROSS-CHAIN</div>
+<h1>DeFi Integration</h1>
+<div class="defi-products">
+  <div class="product">
+    <div class="product-icon">🏦</div>
+    <div>
+      <div class="product-name">CTC Staking Pools</div>
+      <div class="product-desc">Stake your CTC to secure the network and earn passive yield. Lock periods: 30/90/180/365 days.</div>
+      <div class="product-apy">8–18% APY <span>based on lock period</span></div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="product-icon">💧</div>
+    <div>
+      <div class="product-name">Liquidity Mining</div>
+      <div class="product-desc">Provide CTC/ETH or CTC/USDC liquidity on DEXes — earn trading fees plus LM rewards.</div>
+      <div class="product-apy">12–35% APR <span>variable by pool</span></div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="product-icon">🧠</div>
+    <div>
+      <div class="product-name">Cognitive Yield Bonds</div>
+      <div class="product-desc">Bonds backed by verified cognitive growth metrics — your learning generates real yield.</div>
+      <div class="product-apy">5–25% Cognitive APY <span>growth-linked</span></div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="product-icon">🔐</div>
+    <div>
+      <div class="product-name">DVM Project Lending</div>
+      <div class="product-desc">Lend CTC to vetted DVM projects — earn lending fees with smart-contract collateral.</div>
+      <div class="product-apy">6–15% Lending APY <span>risk-adjusted</span></div>
+    </div>
+  </div>
+</div>
+<div class="yield-calc">
+  <div class="yc-title">📊 Cognitive Yield Tiers</div>
+  <div class="yc-tiers">
+    <div class="yc-tier"><div class="yc-name">Emerging</div><div class="yc-range">1–10% growth</div><div class="yc-yield">150–500 CTC/mo</div></div>
+    <div class="yc-tier"><div class="yc-name">Developing</div><div class="yc-range">11–25% growth</div><div class="yc-yield">500–2K CTC/mo</div></div>
+    <div class="yc-tier"><div class="yc-name">Advanced</div><div class="yc-range">26–50% growth</div><div class="yc-yield">2K–7.5K CTC/mo</div></div>
+    <div class="yc-tier"><div class="yc-name">Elite</div><div class="yc-range">51–100% growth</div><div class="yc-yield">7.5K–25K CTC/mo</div></div>
+  </div>
+</div>
+<div class="disclaimer">* Yields are estimated ranges. Not financial advice. All DeFi involves risk.</div>
+</body>
+</html>

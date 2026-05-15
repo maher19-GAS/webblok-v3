@@ -1,0 +1,178 @@
+{
+  "code": "fr",
+  "dir": "ltr",
+  "name": "Français",
+  "nativeName": "Français",
+  "flag": "🇫🇷",
+
+  "nav": {
+    "brand": "2030B",
+    "brandSub": "— Soyez Plus Intelligent",
+    "toc": "Sommaire",
+    "stats": "Statistiques",
+    "history": "Historique",
+    "notes": "Notes",
+    "bookmarks": "Favoris",
+    "comments": "Commentaires",
+    "share": "Partager",
+    "language": "Langue",
+    "theme": "Thème"
+  },
+
+  "bottomNav": {
+    "prev": "Précédent",
+    "next": "Suivant"
+  },
+
+  "aside": {
+    "toc": "Table des Matières",
+    "stats": "Statistiques de Lecture",
+    "history": "Journal d'Activité",
+    "notes": "Mes Notes",
+    "bookmarks": "Mes Favoris",
+    "comments": "Commentaires",
+    "share": "Partage",
+    "language": "Choisir la Langue",
+    "theme": "Choisir le Thème",
+    "close": "Fermer"
+  },
+
+  "stats": {
+    "slidesRead": "Diapositives Lues",
+    "readingTime": "Temps de Lecture Estimé",
+    "wpm": "200 mots/min",
+    "longestSession": "Session la Plus Longue",
+    "sessions": "session(s)",
+    "scrollTimeline": "Chronologie de Position",
+    "noPositionData": "Pas encore de données de position",
+    "clearStats": "Effacer Toutes les Statistiques",
+    "localStorageSize": "Taille du Stockage Local",
+    "saveToServer": "Sauvegarder sur le Serveur",
+    "active": "actif"
+  },
+
+  "history": {
+    "empty": "Aucune activité pour l'instant"
+  },
+
+  "annotations": {
+    "note": "Note",
+    "bookmark": "Favori",
+    "comment": "Commentaire",
+    "share": "Partage",
+    "noteEmpty": "Pas encore de notes.",
+    "bookmarkEmpty": "Pas encore de favoris.",
+    "commentEmpty": "Pas encore de commentaires.",
+    "shareEmpty": "Pas encore de textes partagés",
+    "hint": "Sélectionnez du texte dans le livre pour commencer",
+    "addReply": "Ajouter une réponse…",
+    "send": "Envoyer",
+    "save": "Sauvegarder",
+    "delete": "Supprimer",
+    "slide": "Diapositive",
+    "sharedTexts": "Textes Partagés",
+    "shareBook": "Partager le livre entier"
+  },
+
+  "selMenu": {
+    "note": "Note",
+    "bookmark": "Favori",
+    "comment": "Commentaire",
+    "share": "Partager"
+  },
+
+  "dialogs": {
+    "addNote": "Ajoutez votre note",
+    "addComment": "Ajoutez votre commentaire",
+    "notePlaceholder": "Écrivez votre note ici…",
+    "commentPlaceholder": "Écrivez votre commentaire ici…",
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
+    "deleteTitle": "Confirmer la Suppression",
+    "deleteText": "Êtes-vous sûr de vouloir supprimer cette annotation?",
+    "clearStatsTitle": "Effacer les Statistiques",
+    "clearStatsText": "Toutes les données de lecture seront effacées. Continuer?",
+    "saveToServerTitle": "Sauvegarder sur le Serveur",
+    "saveToServerText": "Vos données seront envoyées à 2030b.com/webbook bientôt.",
+    "noteSaved": "💾 Note sauvegardée",
+    "linkCopied": "🔗 Lien copié",
+    "segmentCopied": "📋 Lien du segment copié",
+    "statsClearDone": "🗑️ Statistiques effacées",
+    "highlightGone": "⚠️ Le texte sélectionné n'existe plus"
+  },
+
+  "toast": {
+    "resumeFrom": "Reprendre depuis:",
+    "resume": "Reprendre",
+    "slideOf": "/"
+  },
+
+  "loading": {
+    "preparing": "Préparation…",
+    "checkingCache": "Vérification du cache…",
+    "loading": "Chargement:",
+    "processing": "Traitement:",
+    "building": "Construction de",
+    "slides": "diapositives…",
+    "initUI": "Initialisation de l'interface…",
+    "ready": "Prêt!",
+    "notFound": "Fichiers du livre introuvables"
+  },
+
+  "slideTypes": {
+    "cover": "Couverture",
+    "chapter": "Chapitre",
+    "quote": "Citation",
+    "science": "Science",
+    "equation": "Équation",
+    "table": "Tableau",
+    "list": "Liste",
+    "prose": "Prose",
+    "cta": "Action"
+  },
+
+  "slideHints": {
+    "scroll": "Faites défiler vers le bas ou utilisez les boutons de navigation",
+    "prevSlide": "Diapositive précédente",
+    "nextSlide": "Diapositive suivante",
+    "ctaButton": "Commencer sur 2030B.com",
+    "ctaBack": "Retour en haut"
+  },
+
+  "share": {
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "copyLink": "Copier le Lien",
+    "twitter": "Twitter / X",
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn",
+    "email": "E-mail",
+    "sms": "SMS",
+    "reddit": "Reddit",
+    "pocket": "Pocket"
+  },
+
+  "themes": {
+    "title": "Choisir un Thème",
+    "dark": "Sombre",
+    "light": "Clair",
+    "cosmos": "Cosmos",
+    "emerald": "Émeraude",
+    "rose": "Rose",
+    "amber": "Ambre",
+    "violet": "Violet",
+    "slate": "Ardoise",
+    "ocean": "Océan",
+    "forest": "Forêt",
+    "crimson": "Cramoisi"
+  },
+
+  "toc": {
+    "slides": "diapositives"
+  },
+
+  "edgeHints": {
+    "prev": "Diapositive précédente",
+    "next": "Diapositive suivante"
+  }
+}

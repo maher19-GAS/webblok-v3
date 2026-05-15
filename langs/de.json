@@ -1,0 +1,23 @@
+{
+  "code": "de",
+  "dir": "ltr",
+  "name": "Deutsch",
+  "nativeName": "Deutsch",
+  "flag": "🇩🇪",
+  "nav": { "brand": "2030B", "brandSub": "— Werde Klüger", "toc": "Inhalt", "stats": "Statistik", "history": "Verlauf", "notes": "Notizen", "bookmarks": "Lesezeichen", "comments": "Kommentare", "share": "Teilen", "language": "Sprache", "theme": "Design" },
+  "bottomNav": { "prev": "Zurück", "next": "Weiter" },
+  "aside": { "toc": "Inhaltsverzeichnis", "stats": "Lesestatistik", "history": "Aktivitätsprotokoll", "notes": "Meine Notizen", "bookmarks": "Meine Lesezeichen", "comments": "Kommentare", "share": "Teilen", "language": "Sprache wählen", "theme": "Design wählen", "close": "Schließen" },
+  "stats": { "slidesRead": "Gelesene Folien", "readingTime": "Geschätzte Lesezeit", "wpm": "200 Wörter/Min", "longestSession": "Längste Sitzung", "sessions": "Sitzung(en)", "scrollTimeline": "Positions-Zeitlinie", "noPositionData": "Noch keine Positionsdaten", "clearStats": "Alle Statistiken löschen", "localStorageSize": "Lokale Speichergröße", "saveToServer": "Auf Server speichern", "active": "aktiv" },
+  "history": { "empty": "Noch keine Aktivität" },
+  "annotations": { "note": "Notiz", "bookmark": "Lesezeichen", "comment": "Kommentar", "share": "Teilen", "noteEmpty": "Noch keine Notizen.", "bookmarkEmpty": "Noch keine Lesezeichen.", "commentEmpty": "Noch keine Kommentare.", "shareEmpty": "Noch keine geteilten Texte", "hint": "Text im Buch auswählen, um zu beginnen", "addReply": "Antwort hinzufügen…", "send": "Senden", "save": "Speichern", "delete": "Löschen", "slide": "Folie", "sharedTexts": "Geteilte Texte", "shareBook": "Ganzes Buch teilen" },
+  "selMenu": { "note": "Notiz", "bookmark": "Lesezeichen", "comment": "Kommentar", "share": "Teilen" },
+  "dialogs": { "addNote": "Notiz hinzufügen", "addComment": "Kommentar hinzufügen", "notePlaceholder": "Notiz hier eingeben…", "commentPlaceholder": "Kommentar hier eingeben…", "confirm": "Bestätigen", "cancel": "Abbrechen", "deleteTitle": "Löschen bestätigen", "deleteText": "Möchten Sie diese Anmerkung wirklich löschen?", "clearStatsTitle": "Statistiken löschen", "clearStatsText": "Alle Lesedaten werden gelöscht. Fortfahren?", "saveToServerTitle": "Auf Server speichern", "saveToServerText": "Ihre Daten werden bald zu 2030b.com/webbook hochgeladen.", "noteSaved": "💾 Notiz gespeichert", "linkCopied": "🔗 Link kopiert", "segmentCopied": "📋 Segment-Link kopiert", "statsClearDone": "🗑️ Statistiken gelöscht", "highlightGone": "⚠️ Der ausgewählte Text existiert nicht mehr" },
+  "toast": { "resumeFrom": "Weiter ab:", "resume": "Weiter", "slideOf": "/" },
+  "loading": { "preparing": "Vorbereitung…", "checkingCache": "Cache prüfen…", "loading": "Laden:", "processing": "Verarbeitung:", "building": "Aufbau", "slides": "Folien…", "initUI": "UI initialisieren…", "ready": "Bereit!", "notFound": "Buchdateien nicht gefunden" },
+  "slideTypes": { "cover": "Titelseite", "chapter": "Kapitel", "quote": "Zitat", "science": "Wissenschaft", "equation": "Gleichung", "table": "Tabelle", "list": "Liste", "prose": "Prosa", "cta": "Aktion" },
+  "slideHints": { "scroll": "Nach unten scrollen oder Navigationstasten verwenden", "prevSlide": "Vorherige Folie", "nextSlide": "Nächste Folie", "ctaButton": "Start auf 2030B.com", "ctaBack": "Zurück nach oben" },
+  "share": { "whatsapp": "WhatsApp", "telegram": "Telegram", "copyLink": "Link kopieren", "twitter": "Twitter / X", "facebook": "Facebook", "linkedin": "LinkedIn", "email": "E-Mail", "sms": "SMS", "reddit": "Reddit", "pocket": "Pocket" },
+  "themes": { "title": "Design wählen", "dark": "Dunkel", "light": "Hell", "cosmos": "Kosmos", "emerald": "Smaragd", "rose": "Rose", "amber": "Bernstein", "violet": "Violett", "slate": "Schiefer", "ocean": "Ozean", "forest": "Wald", "crimson": "Karmesin" },
+  "toc": { "slides": "Folien" },
+  "edgeHints": { "prev": "Vorherige Folie", "next": "Nächste Folie" }
+}

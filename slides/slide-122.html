@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 122 – Tokenomics V3</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#f093fb;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:14px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(20px,4vw,38px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .supply-bar{width:100%;max-width:680px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px}
+  .sb-title{font-size:11px;font-weight:700;color:var(--text);margin-bottom:10px}
+  .sb-bar{height:28px;border-radius:8px;overflow:hidden;display:flex;margin-bottom:10px}
+  .sb-seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:rgba(0,0,0,.7);transition:opacity .2s}
+  .sb-legend{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .sb-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)}
+  .sb-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .alloc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:680px}
+  .alloc{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .alloc-pct{font-size:22px;font-weight:900}
+  .alloc-name{font-size:10px;color:var(--muted);margin-top:2px}
+  .alloc-amount{font-size:9px;font-weight:700;margin-top:2px}
+  .mechanics{display:flex;gap:8px;width:100%;max-width:680px}
+  .mec{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .mec-icon{font-size:18px;margin-bottom:3px}
+  .mec-name{font-size:10px;font-weight:700;color:var(--text)}
+  .mec-desc{font-size:9px;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 122 · CROSS-CHAIN</div>
+<h1>Tokenomics V3</h1>
+<div class="supply-bar">
+  <div class="sb-title">Total Supply: 1 Trillion CTC</div>
+  <div class="sb-bar">
+    <div class="sb-seg" style="width:35%;background:#43e97b">35%</div>
+    <div class="sb-seg" style="width:20%;background:#38f9d7">20%</div>
+    <div class="sb-seg" style="width:15%;background:#f093fb">15%</div>
+    <div class="sb-seg" style="width:12%;background:#f6c90e">12%</div>
+    <div class="sb-seg" style="width:10%;background:#6c63ff">10%</div>
+    <div class="sb-seg" style="width:8%;background:#63b3ed">8%</div>
+  </div>
+  <div class="sb-legend">
+    <div class="sb-item"><div class="sb-dot" style="background:#43e97b"></div>Learning Rewards 35%</div>
+    <div class="sb-item"><div class="sb-dot" style="background:#38f9d7"></div>Ecosystem Fund 20%</div>
+    <div class="sb-item"><div class="sb-dot" style="background:#f093fb"></div>Team & Advisors 15%</div>
+    <div class="sb-item"><div class="sb-dot" style="background:#f6c90e"></div>Investors 12%</div>
+    <div class="sb-item"><div class="sb-dot" style="background:#6c63ff"></div>Treasury 10%</div>
+    <div class="sb-item"><div class="sb-dot" style="background:#63b3ed"></div>UBCTC Reserve 8%</div>
+  </div>
+</div>
+<div class="alloc-grid">
+  <div class="alloc"><div class="alloc-pct" style="color:#43e97b">350B</div><div class="alloc-name">Learning Rewards</div><div class="alloc-amount" style="color:#43e97b">Earned by users</div></div>
+  <div class="alloc"><div class="alloc-pct" style="color:#38f9d7">200B</div><div class="alloc-name">Ecosystem Fund</div><div class="alloc-amount" style="color:#38f9d7">DAO governed</div></div>
+  <div class="alloc"><div class="alloc-pct" style="color:#f093fb">150B</div><div class="alloc-name">Team + Advisors</div><div class="alloc-amount" style="color:#f093fb">4yr vest / 1yr cliff</div></div>
+  <div class="alloc"><div class="alloc-pct" style="color:#f6c90e">120B</div><div class="alloc-name">Investors</div><div class="alloc-amount" style="color:#f6c90e">2yr vest / 6mo cliff</div></div>
+  <div class="alloc"><div class="alloc-pct" style="color:#6c63ff">100B</div><div class="alloc-name">Treasury</div><div class="alloc-amount" style="color:#6c63ff">Governance voted</div></div>
+  <div class="alloc"><div class="alloc-pct" style="color:#63b3ed">80B</div><div class="alloc-name">UBCTC Reserve</div><div class="alloc-amount" style="color:#63b3ed">Basic income fund</div></div>
+  <div class="alloc"><div class="alloc-pct" style="color:var(--muted)">140B</div><div class="alloc-name">In Circulation</div><div class="alloc-amount" style="color:var(--muted)">Current (14%)</div></div>
+  <div class="alloc"><div class="alloc-pct" style="color:#ff6b6b">1B/mo</div><div class="alloc-name">Burn Rate</div><div class="alloc-amount" style="color:#ff6b6b">Deflationary</div></div>
+</div>
+<div class="mechanics">
+  <div class="mec"><div class="mec-icon">🔥</div><div class="mec-name">Burn</div><div class="mec-desc">1% of all fees burned monthly</div></div>
+  <div class="mec"><div class="mec-icon">🔒</div><div class="mec-name">Stake Lock</div><div class="mec-desc">Staking reduces liquid supply</div></div>
+  <div class="mec"><div class="mec-icon">📈</div><div class="mec-name">Demand Sink</div><div class="mec-desc">DVM projects consume CTC</div></div>
+  <div class="mec"><div class="mec-icon">⚖️</div><div class="mec-name">Velocity Cap</div><div class="mec-desc">Anti-dump smart throttle</div></div>
+</div>
+</body>
+</html>

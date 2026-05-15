@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 102 – NAE Intro</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 24px;gap:20px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(26px,5.5vw,52px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .tagline{font-size:clamp(13px,2vw,17px);color:var(--muted);text-align:center;max-width:540px;line-height:1.6}
+  .nae-diagram{display:grid;grid-template-columns:1fr 80px 1fr;align-items:center;gap:16px;width:100%;max-width:660px}
+  .nae-box{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px 12px;text-align:center}
+  .nae-box-title{font-size:12px;font-weight:700;color:var(--g1);margin-bottom:8px}
+  .nae-box-items{display:flex;flex-direction:column;gap:4px}
+  .nae-item{font-size:11px;color:var(--muted);padding:4px 8px;background:rgba(255,255,255,.03);border-radius:6px}
+  .arrow-col{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:24px;color:var(--g1);opacity:.6}
+  .nae-center{background:linear-gradient(135deg,rgba(67,233,123,.15),rgba(56,249,215,.08));border:1px solid rgba(67,233,123,.35);border-radius:50%;width:80px;height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .nae-center-icon{font-size:28px}
+  .nae-center-label{font-size:9px;font-weight:700;color:var(--g1);letter-spacing:1px;margin-top:2px}
+  .stats-row{display:flex;gap:16px;width:100%;max-width:660px}
+  .stat{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+  .stat-val{font-size:22px;font-weight:900;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .stat-label{font-size:10px;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 102 · NAE INTRODUCTION</div>
+<h1>Neuro-Adaptive Engine</h1>
+<p class="tagline">The world's first real-time cognitive load adaptation system — personalizing your learning to your brain state, not your schedule.</p>
+<div class="nae-diagram">
+  <div class="nae-box">
+    <div class="nae-box-title">📡 Inputs</div>
+    <div class="nae-box-items">
+      <div class="nae-item">Response Latency</div>
+      <div class="nae-item">Error Rate</div>
+      <div class="nae-item">Session Rhythm</div>
+      <div class="nae-item">Completion Gaps</div>
+    </div>
+  </div>
+  <div class="arrow-col">
+    <span>→</span>
+    <div class="nae-center">
+      <div class="nae-center-icon">🧬</div>
+      <div class="nae-center-label">NAE</div>
+    </div>
+    <span>→</span>
+  </div>
+  <div class="nae-box">
+    <div class="nae-box-title">⚙️ Outputs</div>
+    <div class="nae-box-items">
+      <div class="nae-item">Content Difficulty</div>
+      <div class="nae-item">Session Length</div>
+      <div class="nae-item">Learning Mode</div>
+      <div class="nae-item">CTC Multiplier</div>
+    </div>
+  </div>
+</div>
+<div class="stats-row">
+  <div class="stat"><div class="stat-val">7</div><div class="stat-label">Adaptive Dimensions</div></div>
+  <div class="stat"><div class="stat-val">340ms</div><div class="stat-label">Avg Adaptation Latency</div></div>
+  <div class="stat"><div class="stat-val">+34%</div><div class="stat-label">Retention Improvement</div></div>
+  <div class="stat"><div class="stat-val">∞</div><div class="stat-label">Personalization Paths</div></div>
+</div>
+</body>
+</html>

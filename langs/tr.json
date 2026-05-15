@@ -1,0 +1,23 @@
+{
+  "code": "tr",
+  "dir": "ltr",
+  "name": "Türkçe",
+  "nativeName": "Türkçe",
+  "flag": "🇹🇷",
+  "nav": { "brand": "2030B", "brandSub": "— Daha Akıllı Ol", "toc": "İçerik", "stats": "İstatistik", "history": "Geçmiş", "notes": "Notlar", "bookmarks": "Yer İmleri", "comments": "Yorumlar", "share": "Paylaş", "language": "Dil", "theme": "Tema" },
+  "bottomNav": { "prev": "Önceki", "next": "Sonraki" },
+  "aside": { "toc": "İçindekiler", "stats": "Okuma İstatistikleri", "history": "Etkinlik Günlüğü", "notes": "Notlarım", "bookmarks": "Yer İmlerim", "comments": "Yorumlar", "share": "Paylaş", "language": "Dil Seç", "theme": "Tema Seç", "close": "Kapat" },
+  "stats": { "slidesRead": "Okunan Slaytlar", "readingTime": "Tahmini Okuma Süresi", "wpm": "200 kelime/dak", "longestSession": "En Uzun Oturum", "sessions": "oturum", "scrollTimeline": "Pozisyon Zaman Çizelgesi", "noPositionData": "Henüz pozisyon verisi yok", "clearStats": "Tüm İstatistikleri Temizle", "localStorageSize": "Yerel Depolama Boyutu", "saveToServer": "Sunucuya Kaydet", "active": "aktif" },
+  "history": { "empty": "Henüz etkinlik yok" },
+  "annotations": { "note": "Not", "bookmark": "Yer İmi", "comment": "Yorum", "share": "Paylaş", "noteEmpty": "Henüz not yok.", "bookmarkEmpty": "Henüz yer imi yok.", "commentEmpty": "Henüz yorum yok.", "shareEmpty": "Henüz paylaşılan metin yok", "hint": "Başlamak için kitaptaki metni seçin", "addReply": "Yanıt ekle…", "send": "Gönder", "save": "Kaydet", "delete": "Sil", "slide": "Slayt", "sharedTexts": "Paylaşılan Metinler", "shareBook": "Kitabın tamamını paylaş" },
+  "selMenu": { "note": "Not", "bookmark": "Yer İmi", "comment": "Yorum", "share": "Paylaş" },
+  "dialogs": { "addNote": "Notunuzu ekleyin", "addComment": "Yorumunuzu ekleyin", "notePlaceholder": "Notunuzu buraya yazın…", "commentPlaceholder": "Yorumunuzu buraya yazın…", "confirm": "Onayla", "cancel": "İptal", "deleteTitle": "Silmeyi Onayla", "deleteText": "Bu notu silmek istediğinizden emin misiniz?", "clearStatsTitle": "İstatistikleri Temizle", "clearStatsText": "Tüm okuma verileri silinecek. Devam?", "saveToServerTitle": "Sunucuya Kaydet", "saveToServerText": "Verileriniz yakında 2030b.com/webbook adresine yüklenecek.", "noteSaved": "💾 Not kaydedildi", "linkCopied": "🔗 Bağlantı kopyalandı", "segmentCopied": "📋 Segment bağlantısı kopyalandı", "statsClearDone": "🗑️ İstatistikler temizlendi", "highlightGone": "⚠️ Seçilen metin artık mevcut değil" },
+  "toast": { "resumeFrom": "Devam:", "resume": "Devam Et", "slideOf": "/" },
+  "loading": { "preparing": "Hazırlanıyor…", "checkingCache": "Önbellek kontrol ediliyor…", "loading": "Yükleniyor:", "processing": "İşleniyor:", "building": "Oluşturuluyor", "slides": "slayt…", "initUI": "Arayüz başlatılıyor…", "ready": "Hazır!", "notFound": "Kitap dosyaları bulunamadı" },
+  "slideTypes": { "cover": "Kapak", "chapter": "Bölüm", "quote": "Alıntı", "science": "Bilim", "equation": "Denklem", "table": "Tablo", "list": "Liste", "prose": "Nesir", "cta": "Eylem" },
+  "slideHints": { "scroll": "Aşağı kaydırın veya navigasyon düğmelerini kullanın", "prevSlide": "Önceki slayt", "nextSlide": "Sonraki slayt", "ctaButton": "2030B.com'da Başla", "ctaBack": "Başa dön" },
+  "share": { "whatsapp": "WhatsApp", "telegram": "Telegram", "copyLink": "Bağlantıyı Kopyala", "twitter": "Twitter / X", "facebook": "Facebook", "linkedin": "LinkedIn", "email": "E-posta", "sms": "SMS", "reddit": "Reddit", "pocket": "Pocket" },
+  "themes": { "title": "Tema Seç", "dark": "Koyu", "light": "Açık", "cosmos": "Kozmos", "emerald": "Zümrüt", "rose": "Gül", "amber": "Amber", "violet": "Mor", "slate": "Kurşuni", "ocean": "Okyanus", "forest": "Orman", "crimson": "Kırmızı" },
+  "toc": { "slides": "slayt" },
+  "edgeHints": { "prev": "Önceki slayt", "next": "Sonraki slayt" }
+}

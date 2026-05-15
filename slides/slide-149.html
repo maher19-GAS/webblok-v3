@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 149 – Join the Movement</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(24px,5vw,48px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .subtitle{font-size:13px;color:var(--muted);text-align:center;max-width:560px;line-height:1.6}
+  .paths{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%;max-width:680px}
+  .path{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:all .25s;cursor:pointer}
+  .path:hover{border-color:rgba(67,233,123,.35);transform:translateY(-2px);background:rgba(67,233,123,.04)}
+  .path-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+  .path-body{}
+  .path-role{font-size:11px;font-weight:700;color:var(--g1);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+  .path-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .path-desc{font-size:10px;color:var(--muted);line-height:1.5}
+  .path-badge{display:inline-block;margin-top:6px;background:rgba(67,233,123,.12);border:1px solid rgba(67,233,123,.2);border-radius:99px;padding:2px 8px;font-size:9px;font-weight:700;color:var(--g1)}
+  .cta-row{display:flex;gap:12px;align-items:center}
+  .cta-btn{padding:12px 28px;border-radius:99px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .25s}
+  .cta-primary{background:linear-gradient(135deg,var(--g1),var(--g2));color:#080c18}
+  .cta-primary:hover{transform:scale(1.04);box-shadow:0 0 24px rgba(67,233,123,.4)}
+  .cta-secondary{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--text)}
+  .cta-secondary:hover{border-color:rgba(67,233,123,.4);color:var(--g1)}
+  .social{display:flex;gap:10px;align-items:center}
+  .soc{width:36px;height:36px;border-radius:10px;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:border-color .2s}
+  .soc:hover{border-color:rgba(67,233,123,.4)}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 149 · VISION</div>
+<h1>Join the Movement</h1>
+<p class="subtitle">Whether you're a learner, builder, investor, or institution — there's a path for you in the cognitive revolution.</p>
+<div class="paths">
+  <div class="path">
+    <div class="path-icon">🧠</div>
+    <div class="path-body">
+      <div class="path-role">Learner</div>
+      <div class="path-title">Start Your Cognitive Journey</div>
+      <div class="path-desc">Access 150+ structured slides, NAE personalization, CTC rewards, and a global community of growth-minded learners.</div>
+      <span class="path-badge">Free Tier Available</span>
+    </div>
+  </div>
+  <div class="path">
+    <div class="path-icon">🏗️</div>
+    <div class="path-body">
+      <div class="path-role">Builder</div>
+      <div class="path-title">Build on the Protocol</div>
+      <div class="path-desc">Use open-source SDKs, the Talent API, and CTC smart contracts to build cognitive applications on the 2030B stack.</div>
+      <span class="path-badge">SDK on GitHub</span>
+    </div>
+  </div>
+  <div class="path">
+    <div class="path-icon">💎</div>
+    <div class="path-body">
+      <div class="path-role">Investor</div>
+      <div class="path-title">Stake in Cognitive Growth</div>
+      <div class="path-desc">Stake CTC tokens, earn cognitive yield, participate in governance, and grow with the platform's expanding value.</div>
+      <span class="path-badge">APY up to 18.4%</span>
+    </div>
+  </div>
+  <div class="path">
+    <div class="path-icon">🏛️</div>
+    <div class="path-body">
+      <div class="path-role">Institution</div>
+      <div class="path-title">Enterprise & Gov Partnership</div>
+      <div class="path-desc">Integrate 2030B into universities, corporations, and government workforce programs with dedicated enterprise support.</div>
+      <span class="path-badge">Partner Program Open</span>
+    </div>
+  </div>
+</div>
+<div class="cta-row">
+  <button class="cta-btn cta-primary">Get Started Free</button>
+  <button class="cta-btn cta-secondary">Read the Whitepaper</button>
+  <div class="social">
+    <div class="soc">𝕏</div>
+    <div class="soc">💬</div>
+    <div class="soc">📧</div>
+    <div class="soc">🐙</div>
+  </div>
+</div>
+</body>
+</html>

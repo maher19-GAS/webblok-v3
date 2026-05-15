@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 126 – CGDP Index</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .subtitle{font-size:clamp(12px,1.8vw,14px);color:var(--muted);text-align:center;max-width:520px}
+  .cgdp-hero{background:linear-gradient(135deg,rgba(67,233,123,.1),rgba(56,249,215,.06));border:1px solid rgba(67,233,123,.25);border-radius:18px;padding:18px 22px;width:100%;max-width:660px;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
+  .cgdp-left{display:flex;flex-direction:column;gap:4px}
+  .cgdp-label{font-size:11px;font-weight:700;color:var(--muted)}
+  .cgdp-score{font-size:52px;font-weight:900;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+  .cgdp-unit{font-size:13px;color:var(--muted)}
+  .cgdp-change{font-size:14px;font-weight:700;color:var(--g1)}
+  .cgdp-right{display:flex;flex-direction:column;gap:8px}
+  .component{display:flex;align-items:center;gap:8px}
+  .comp-label{font-size:10px;color:var(--muted);width:100px;flex-shrink:0}
+  .comp-bar{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+  .comp-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .comp-val{font-size:10px;font-weight:700;color:var(--g1);width:24px;text-align:right}
+  .pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;width:100%;max-width:660px}
+  .pillar{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .pillar-icon{font-size:18px;margin-bottom:3px}
+  .pillar-name{font-size:9px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .pillar-weight{font-size:9px;color:var(--g1)}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 126 · CGDP</div>
+<h1>Cognitive GDP Index</h1>
+<p class="subtitle">The world's first national cognitive output metric — measuring the collective intelligence capacity of countries, cities, and regions.</p>
+<div class="cgdp-hero">
+  <div class="cgdp-left">
+    <div class="cgdp-label">2030B Global CGDP Score</div>
+    <div class="cgdp-score">74.2</div>
+    <div class="cgdp-unit">/ 100 Cognitive Units</div>
+    <div class="cgdp-change">↑ +6.8 vs 2024 baseline</div>
+  </div>
+  <div class="cgdp-right">
+    <div class="component"><div class="comp-label">Learning Rate</div><div class="comp-bar"><div class="comp-fill" style="width:82%"></div></div><div class="comp-val">82</div></div>
+    <div class="component"><div class="comp-label">Skill Velocity</div><div class="comp-bar"><div class="comp-fill" style="width:71%"></div></div><div class="comp-val">71</div></div>
+    <div class="component"><div class="comp-label">Knowledge Flow</div><div class="comp-bar"><div class="comp-fill" style="width:68%"></div></div><div class="comp-val">68</div></div>
+    <div class="component"><div class="comp-label">Innovation Index</div><div class="comp-bar"><div class="comp-fill" style="width:76%"></div></div><div class="comp-val">76</div></div>
+    <div class="component"><div class="comp-label">Cognitive Equity</div><div class="comp-bar"><div class="comp-fill" style="width:74%"></div></div><div class="comp-val">74</div></div>
+  </div>
+</div>
+<div class="pillars">
+  <div class="pillar"><div class="pillar-icon">📚</div><div class="pillar-name">Learning Rate</div><div class="pillar-weight">20%</div></div>
+  <div class="pillar"><div class="pillar-icon">⚡</div><div class="pillar-name">Skill Velocity</div><div class="pillar-weight">20%</div></div>
+  <div class="pillar"><div class="pillar-icon">🌊</div><div class="pillar-name">Knowledge Flow</div><div class="pillar-weight">20%</div></div>
+  <div class="pillar"><div class="pillar-icon">💡</div><div class="pillar-name">Innovation</div><div class="pillar-weight">20%</div></div>
+  <div class="pillar"><div class="pillar-icon">⚖️</div><div class="pillar-name">Cognitive Equity</div><div class="pillar-weight">20%</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 144 – Developer Ecosystem</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45);--mono:'JetBrains Mono',monospace}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:14px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(20px,4vw,38px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .sdk-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:720px}
+  .sdk{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .sdk-icon{font-size:22px;margin-bottom:4px}
+  .sdk-name{font-size:10px;font-weight:700;color:var(--text)}
+  .sdk-status{font-size:9px;margin-top:2px}
+  .live{color:var(--g1)} .beta{color:#f6c90e} .soon{color:var(--muted)}
+  .code-sample{background:#0a0f1e;border:1px solid rgba(67,233,123,.2);border-radius:12px;padding:14px 16px;width:100%;max-width:720px;font-family:var(--mono);font-size:11px;line-height:1.7}
+  .c-import{color:#a09eff} .c-class{color:#f6c90e} .c-method{color:#43e97b} .c-param{color:#38f9d7} .c-comment{color:rgba(255,255,255,.3)}
+  .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:720px}
+  .tool{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;display:flex;gap:8px;align-items:center}
+  .tool-icon{font-size:18px;flex-shrink:0}
+  .tool-name{font-size:11px;font-weight:700;color:var(--text)}
+  .tool-desc{font-size:9px;color:var(--muted);margin-top:1px}
+  .grants{background:rgba(108,99,255,.06);border:1px solid rgba(108,99,255,.2);border-radius:10px;padding:10px 14px;width:100%;max-width:720px;display:flex;gap:12px;align-items:center}
+  .grants-icon{font-size:22px}
+  .grants-text{font-size:11px;color:var(--muted)}
+  .grants-text strong{color:#a09eff}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 144 · ENTERPRISE</div>
+<h1>Developer Ecosystem</h1>
+<div class="sdk-cards">
+  <div class="sdk"><div class="sdk-icon">🟡</div><div class="sdk-name">JavaScript SDK</div><div class="sdk-status live">● Live v3.0</div></div>
+  <div class="sdk"><div class="sdk-icon">🐍</div><div class="sdk-name">Python SDK</div><div class="sdk-status live">● Live v2.4</div></div>
+  <div class="sdk"><div class="sdk-icon">☕</div><div class="sdk-name">Java SDK</div><div class="sdk-status beta">◎ Beta</div></div>
+  <div class="sdk"><div class="sdk-icon">🦀</div><div class="sdk-name">Rust SDK</div><div class="sdk-status beta">◎ Beta</div></div>
+  <div class="sdk"><div class="sdk-icon">📱</div><div class="sdk-name">iOS Swift</div><div class="sdk-status live">● Live</div></div>
+  <div class="sdk"><div class="sdk-icon">🤖</div><div class="sdk-name">Android Kotlin</div><div class="sdk-status live">● Live</div></div>
+  <div class="sdk"><div class="sdk-icon">🔷</div><div class="sdk-name">Solidity</div><div class="sdk-status live">● Live</div></div>
+  <div class="sdk"><div class="sdk-icon">🌐</div><div class="sdk-name">REST API</div><div class="sdk-status live">● Live v3</div></div>
+</div>
+<div class="code-sample">
+<span class="c-import">import</span> { SessionEngine, SlideEngine } <span class="c-import">from</span> <span class="c-param">'@2030b/core'</span>;<br>
+<br>
+<span class="c-comment">// Initialize session with NAE integration</span><br>
+<span class="c-class">SessionEngine</span>.<span class="c-method">init</span>({ user: <span class="c-param">'zkid_0x4f2a'</span>, nae: { active: <span class="c-param">true</span> } });<br>
+<span class="c-class">SessionEngine</span>.<span class="c-method">on</span>(<span class="c-param">'naeUpdate'</span>, ({ nae }) =&gt; {<br>
+&nbsp;&nbsp;console.log(<span class="c-param">`Load: ${nae.load_level} | Flow: ${nae.flow_state}`</span>);<br>
+&nbsp;&nbsp;<span class="c-class">SlideEngine</span>.<span class="c-method">setLang</span>(nae.flow_state ? <span class="c-param">'ar'</span> : <span class="c-param">'en'</span>);<br>
+});
+</div>
+<div class="tools">
+  <div class="tool"><div class="tool-icon">📚</div><div><div class="tool-name">Developer Docs</div><div class="tool-desc">docs.2030b.io — full API reference</div></div></div>
+  <div class="tool"><div class="tool-icon">🧪</div><div><div class="tool-name">Sandbox Environment</div><div class="tool-desc">sandbox.2030b.io — test without real CTC</div></div></div>
+  <div class="tool"><div class="tool-icon">🔌</div><div><div class="tool-name">Plugin Marketplace</div><div class="tool-desc">600+ community-built integrations</div></div></div>
+  <div class="tool"><div class="tool-icon">💬</div><div><div class="tool-name">Discord Dev Hub</div><div class="tool-desc">24K active developers · 24/7 support</div></div></div>
+  <div class="tool"><div class="tool-icon">🐙</div><div><div class="tool-name">GitHub Open Source</div><div class="tool-desc">80+ repos · 4,200 stars</div></div></div>
+  <div class="tool"><div class="tool-icon">🏆</div><div><div class="tool-name">Hackathons</div><div class="tool-desc">Quarterly events · $100K CTC prizes</div></div></div>
+</div>
+<div class="grants">
+  <div class="grants-icon">💰</div>
+  <div class="grants-text"><strong>Developer Grants Program:</strong> 5M CTC allocated per quarter for builders creating integrations, SDKs, and cognitive tools on the 2030B platform.</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 150 – Closing Vision V3</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:20px;position:relative}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  canvas#stars{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  .vol-badge{background:linear-gradient(135deg,rgba(67,233,123,.15),rgba(108,99,255,.1));border:1px solid rgba(67,233,123,.3);border-radius:99px;padding:5px 16px;font-size:11px;font-weight:700;color:var(--g1);letter-spacing:2px;text-transform:uppercase}
+  h1{font-size:clamp(28px,6vw,64px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 40%,var(--g3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.15}
+  .tagline{font-size:clamp(13px,2.2vw,18px);color:rgba(255,255,255,.7);text-align:center;max-width:600px;line-height:1.7;font-weight:300}
+  .achievements{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:700px}
+  .ach{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:10px 16px;text-align:center;min-width:100px;position:relative;overflow:hidden}
+  .ach::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .ach-val{font-size:20px;font-weight:900;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .ach-label{font-size:9px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:1px}
+  .seal{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(67,233,123,.15),rgba(108,99,255,.1));border:2px solid rgba(67,233,123,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+  .seal::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px dashed rgba(67,233,123,.2);animation:rotateSeal 12s linear infinite}
+  @keyframes rotateSeal{to{transform:rotate(360deg)}}
+  .seal-icon{font-size:30px}
+  .seal-text{font-size:7px;color:var(--g1);font-weight:700;letter-spacing:1px;margin-top:2px;text-transform:uppercase}
+  .closing-row{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:center}
+  .closing-msg{font-size:11px;color:var(--muted);text-align:center;max-width:480px;line-height:1.7;border-top:1px solid var(--border);padding-top:14px}
+  .closing-msg strong{color:var(--g1)}
+  .nav-hint{font-size:10px;color:rgba(255,255,255,.25);text-align:center;letter-spacing:1px}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="content">
+  <div class="slide-num">SLIDE 150 · CLOSING VISION</div>
+  <div class="vol-badge">🎓 Volume 3 Complete</div>
+  <h1>Be Smarter.<br>Build the Future.</h1>
+  <p class="tagline">150 slides. 3 volumes. One mission: unlock the full cognitive potential of every human on Earth. The journey doesn't end here — it begins.</p>
+  <div class="achievements">
+    <div class="ach"><div class="ach-val">150</div><div class="ach-label">Slides Mastered</div></div>
+    <div class="ach"><div class="ach-val">3</div><div class="ach-label">Volumes Complete</div></div>
+    <div class="ach"><div class="ach-val">12</div><div class="ach-label">Chapters Explored</div></div>
+    <div class="ach"><div class="ach-val">400M+</div><div class="ach-label">Global Learners</div></div>
+    <div class="ach"><div class="ach-val">7</div><div class="ach-label">Cognitive Dimensions</div></div>
+  </div>
+  <div class="closing-row">
+    <div class="seal">
+      <div class="seal-icon">🏆</div>
+      <div class="seal-text">Vol 3 Done</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <p class="closing-msg">You have completed <strong>2030B – Be Smarter Volume 3</strong>. Your cognitive journey has taken you through Neuro-Adaptive Engineering, Spatial Intelligence, the Cross-Chain Economy, CGDP, UBCTC, Enterprise Layer, and the Closing Vision. <strong>The next chapter is yours to write.</strong></p>
+    </div>
+  </div>
+  <div class="nav-hint">← PREV SLIDE · END OF VOLUME 3 · RESTART FROM SLIDE 101 →</div>
+</div>
+<script>
+  const c=document.getElementById('stars'),ctx=c.getContext('2d');
+  function resize(){c.width=innerWidth;c.height=innerHeight}
+  resize();window.addEventListener('resize',resize);
+  const stars=Array.from({length:120},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.5+0.3,a:Math.random(),speed:Math.random()*0.004+0.001}));
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    stars.forEach(s=>{
+      s.a+=s.speed;if(s.a>1)s.a=0;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(67,233,123,${Math.sin(s.a*Math.PI)*0.7+0.1})`;ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+</body>
+</html>

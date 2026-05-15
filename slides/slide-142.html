@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 142 – Financial Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--gold:#f6c90e;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:14px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);opacity:.9}
+  h1{font-size:clamp(20px,4vw,38px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--gold),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .financials{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;max-width:720px}
+  .fin{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .fin-val{font-size:20px;font-weight:900}
+  .fin-label{font-size:9px;color:var(--muted);margin-top:1px}
+  .fin-delta{font-size:9px;font-weight:700;margin-top:2px}
+  .green{color:var(--g1)} .gold{color:var(--gold)} .muted{color:var(--muted)}
+  .revenue-chart{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;width:100%;max-width:720px}
+  .chart-title{font-size:11px;font-weight:700;color:var(--text);margin-bottom:10px}
+  .chart-bars{display:flex;gap:8px;align-items:flex-end;height:80px}
+  .chart-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .chart-bar{width:100%;border-radius:4px 4px 0 0;background:linear-gradient(0deg,var(--g1),var(--g2));min-height:4px;transition:height .3s}
+  .chart-label{font-size:9px;color:var(--muted)}
+  .chart-val{font-size:8px;font-weight:700;color:var(--g1)}
+  .streams{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:720px}
+  .stream{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .stream-pct{font-size:20px;font-weight:900;color:var(--gold)}
+  .stream-name{font-size:10px;color:var(--muted);margin-top:2px}
+  .stream-amount{font-size:10px;font-weight:700;color:var(--g1)}
+  .disclaimer{font-size:9px;color:rgba(255,255,255,.2);text-align:center}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 142 · ENTERPRISE</div>
+<h1>Financial Overview</h1>
+<div class="financials">
+  <div class="fin"><div class="fin-val green">$24.6M</div><div class="fin-label">ARR 2025 YTD</div><div class="fin-delta green">↑ +340% YoY</div></div>
+  <div class="fin"><div class="fin-val gold">$8.2M</div><div class="fin-label">Monthly Recurring</div><div class="fin-delta green">↑ +28% MoM</div></div>
+  <div class="fin"><div class="fin-val green">78%</div><div class="fin-label">Gross Margin</div><div class="fin-delta green">↑ +4pp</div></div>
+  <div class="fin"><div class="fin-val gold">$45M</div><div class="fin-label">Series B Target</div><div class="fin-delta muted">Q3 2025</div></div>
+  <div class="fin"><div class="fin-val green">14mo</div><div class="fin-label">Runway</div><div class="fin-delta muted">Pre Series B</div></div>
+  <div class="fin"><div class="fin-val gold">$4.10</div><div class="fin-label">CAC</div><div class="fin-delta green">↓ -62% YoY</div></div>
+  <div class="fin"><div class="fin-val green">$41</div><div class="fin-label">LTV (CTC + Subs)</div><div class="fin-delta green">LTV:CAC 10:1</div></div>
+  <div class="fin"><div class="fin-val gold">$180M</div><div class="fin-label">Post-B Valuation Est.</div><div class="fin-delta muted">Target</div></div>
+</div>
+<div class="revenue-chart">
+  <div class="chart-title">📈 Monthly Revenue Trend (ARR basis)</div>
+  <div class="chart-bars">
+    <div class="chart-col"><div class="chart-val">$0.8M</div><div class="chart-bar" style="height:12px"></div><div class="chart-label">Jan</div></div>
+    <div class="chart-col"><div class="chart-val">$1.1M</div><div class="chart-bar" style="height:18px"></div><div class="chart-label">Feb</div></div>
+    <div class="chart-col"><div class="chart-val">$1.4M</div><div class="chart-bar" style="height:24px"></div><div class="chart-label">Mar</div></div>
+    <div class="chart-col"><div class="chart-val">$2.0M</div><div class="chart-bar" style="height:34px"></div><div class="chart-label">Apr</div></div>
+    <div class="chart-col"><div class="chart-val">$2.6M</div><div class="chart-bar" style="height:44px"></div><div class="chart-label">May</div></div>
+    <div class="chart-col"><div class="chart-val">$3.2M</div><div class="chart-bar" style="height:54px"></div><div class="chart-label">Jun</div></div>
+    <div class="chart-col"><div class="chart-val">$4.0M</div><div class="chart-bar" style="height:66px"></div><div class="chart-label">Jul</div></div>
+    <div class="chart-col"><div class="chart-val">$5.2M</div><div class="chart-bar" style="height:80px;background:linear-gradient(0deg,var(--gold),var(--g1))"></div><div class="chart-label">Aug</div></div>
+  </div>
+</div>
+<div class="streams">
+  <div class="stream"><div class="stream-pct">45%</div><div class="stream-name">Subscription Revenue</div><div class="stream-amount">$11.1M ARR</div></div>
+  <div class="stream"><div class="stream-pct">32%</div><div class="stream-name">Enterprise Contracts</div><div class="stream-amount">$7.9M ARR</div></div>
+  <div class="stream"><div class="stream-pct">23%</div><div class="stream-name">CTC Transaction Fees</div><div class="stream-amount">$5.7M ARR</div></div>
+</div>
+<div class="disclaimer">* All figures are projected/illustrative. Not for investment purposes.</div>
+</body>
+</html>

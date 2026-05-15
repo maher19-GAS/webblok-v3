@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 135 – University Partnerships</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .unis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:680px}
+  .uni{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .uni.active{border-color:rgba(108,99,255,.35);background:rgba(108,99,255,.05)}
+  .uni-flag{font-size:22px;margin-bottom:4px}
+  .uni-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .uni-country{font-size:9px;color:var(--muted)}
+  .uni-type{font-size:10px;font-weight:700;margin-top:4px}
+  .live-tag{color:var(--g1)} .pilot-tag{color:#f6c90e} .upcoming-tag{color:var(--muted)}
+  .program-types{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%;max-width:680px}
+  .prog{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+  .prog-icon{font-size:22px;flex-shrink:0}
+  .prog-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .prog-desc{font-size:10px;color:var(--muted);line-height:1.4}
+  .stats-row{display:flex;gap:10px;width:100%;max-width:680px}
+  .s{flex:1;background:rgba(108,99,255,.06);border:1px solid rgba(108,99,255,.18);border-radius:10px;padding:10px;text-align:center}
+  .s-val{font-size:18px;font-weight:900;color:#a09eff}
+  .s-label{font-size:9px;color:var(--muted);margin-top:1px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 135 · ENTERPRISE</div>
+<h1>University Partnerships</h1>
+<div class="unis">
+  <div class="uni active"><div class="uni-flag">🇺🇸</div><div class="uni-name">MIT Media Lab</div><div class="uni-country">USA</div><div class="uni-type live-tag">● Research Partner</div></div>
+  <div class="uni active"><div class="uni-flag">🇬🇧</div><div class="uni-name">Oxford Internet Inst.</div><div class="uni-country">UK</div><div class="uni-type live-tag">● Research Partner</div></div>
+  <div class="uni active"><div class="uni-flag">🇸🇬</div><div class="uni-name">NUS Singapore</div><div class="uni-country">Singapore</div><div class="uni-type live-tag">● Integration Live</div></div>
+  <div class="uni"><div class="uni-flag">🇦🇪</div><div class="uni-name">NYU Abu Dhabi</div><div class="uni-country">UAE</div><div class="uni-type pilot-tag">◎ Pilot 2025</div></div>
+  <div class="uni"><div class="uni-flag">🇸🇦</div><div class="uni-name">KAUST</div><div class="uni-country">Saudi Arabia</div><div class="uni-type pilot-tag">◎ Pilot 2025</div></div>
+  <div class="uni"><div class="uni-flag">🇧🇷</div><div class="uni-name">USP São Paulo</div><div class="uni-country">Brazil</div><div class="uni-type upcoming-tag">◎ 2026</div></div>
+</div>
+<div class="program-types">
+  <div class="prog"><div class="prog-icon">🎓</div><div><div class="prog-name">Credit Recognition</div><div class="prog-desc">CTC certifications recognized as university credits — bridging formal and informal learning</div></div></div>
+  <div class="prog"><div class="prog-icon">🔬</div><div><div class="prog-name">Research Collaboration</div><div class="prog-desc">Joint cognitive science research using anonymized 2030B data under IRB protocols</div></div></div>
+  <div class="prog"><div class="prog-icon">👥</div><div><div class="prog-name">Student Programs</div><div class="prog-desc">2030B free tier for enrolled students + academic CTC grants for high performers</div></div></div>
+  <div class="prog"><div class="prog-icon">📚</div><div><div class="prog-name">Curriculum Co-Creation</div><div class="prog-desc">Faculty create DVM projects — earn CTC royalties, students get verified coursework</div></div></div>
+</div>
+<div class="stats-row">
+  <div class="s"><div class="s-val">240+</div><div class="s-label">Partner Universities</div></div>
+  <div class="s"><div class="s-val">1.2M</div><div class="s-label">Student Users</div></div>
+  <div class="s"><div class="s-val">8,400</div><div class="s-label">Academic DVM Projects</div></div>
+</div>
+</body>
+</html>

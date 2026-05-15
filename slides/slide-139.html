@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 139 – Cognitive Insurance</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .subtitle{font-size:clamp(12px,1.8vw,14px);color:var(--muted);text-align:center;max-width:520px}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:680px}
+  .plan{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center}
+  .plan.recommended{border-color:rgba(67,233,123,.4);background:rgba(67,233,123,.06)}
+  .plan-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .plan-price{font-size:20px;font-weight:900;color:var(--g1);margin-bottom:8px}
+  .plan-price-unit{font-size:10px;color:var(--muted);font-weight:400}
+  .plan-features{display:flex;flex-direction:column;gap:4px;text-align:left}
+  .pf{font-size:10px;color:var(--muted);display:flex;gap:5px}
+  .pf::before{content:'✓';color:var(--g1);font-weight:700;flex-shrink:0}
+  .plan-badge{display:inline-block;margin-bottom:6px;font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;background:rgba(67,233,123,.15);color:var(--g1)}
+  .coverage-types{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%;max-width:680px}
+  .ct{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;gap:8px;align-items:center}
+  .ct-icon{font-size:18px;flex-shrink:0}
+  .ct-name{font-size:11px;font-weight:700;color:var(--text)}
+  .ct-desc{font-size:9px;color:var(--muted);margin-top:1px}
+  .pioneer{background:rgba(67,233,123,.04);border:1px solid rgba(67,233,123,.12);border-radius:10px;padding:10px 14px;width:100%;max-width:680px;font-size:10px;color:var(--muted);text-align:center}
+  .pioneer strong{color:var(--g1)}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 139 · ENTERPRISE</div>
+<h1>Cognitive Insurance</h1>
+<p class="subtitle">The world's first cognitive income protection product — if your mental performance drops, 2030B has you covered.</p>
+<div class="plans">
+  <div class="plan">
+    <div class="plan-name">Basic Guard</div>
+    <div class="plan-price">120 CTC<span class="plan-price-unit">/month</span></div>
+    <div class="plan-features">
+      <div class="pf">CQ drop protection up to -5pts</div>
+      <div class="pf">1-month income replacement</div>
+      <div class="pf">Recovery coaching (2 sessions)</div>
+    </div>
+  </div>
+  <div class="plan recommended">
+    <div class="plan-badge">Most Popular</div>
+    <div class="plan-name">Pro Shield</div>
+    <div class="plan-price">380 CTC<span class="plan-price-unit">/month</span></div>
+    <div class="plan-features">
+      <div class="pf">CQ drop protection up to -15pts</div>
+      <div class="pf">3-month income replacement</div>
+      <div class="pf">CORA recovery program (unlimited)</div>
+      <div class="pf">Spatial learning recovery rooms</div>
+    </div>
+  </div>
+  <div class="plan">
+    <div class="plan-name">Elite Vault</div>
+    <div class="plan-price">900 CTC<span class="plan-price-unit">/month</span></div>
+    <div class="plan-features">
+      <div class="pf">Full CQ insurance (any drop)</div>
+      <div class="pf">6-month income replacement</div>
+      <div class="pf">Dedicated cognitive coach</div>
+      <div class="pf">Priority NAE recalibration</div>
+    </div>
+  </div>
+</div>
+<div class="coverage-types">
+  <div class="ct"><div class="ct-icon">🧠</div><div><div class="ct-name">Burnout Protection</div><div class="ct-desc">Coverage triggers if sustained cognitive overload causes performance decline</div></div></div>
+  <div class="ct"><div class="ct-icon">🤒</div><div><div class="ct-name">Health Recovery</div><div class="ct-desc">Illness or injury affecting cognitive capacity — automatic payout + recovery plan</div></div></div>
+  <div class="ct"><div class="ct-icon">⚡</div><div><div class="ct-name">Skill Obsolescence</div><div class="ct-desc">If your domain becomes automated, receive retraining CTC + income bridge</div></div></div>
+  <div class="ct"><div class="ct-icon">🌍</div><div><div class="ct-name">Life Disruption</div><div class="ct-desc">Major life events reduce learning — insurance keeps your cognitive income stable</div></div></div>
+</div>
+<div class="pioneer"><strong>Pioneer Product:</strong> No competitor offers cognitive income insurance. 2030B creates an entirely new insurance category — backed by the CTC treasury and actuarial models from 24 months of platform data.</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 121 – Exchange Listing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#f093fb;--gold:#f6c90e;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);opacity:.9}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--gold),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .subtitle{font-size:clamp(12px,1.8vw,14px);color:var(--muted);text-align:center;max-width:500px}
+  .ticker{background:rgba(246,201,14,.06);border:1px solid rgba(246,201,14,.25);border-radius:16px;padding:16px 24px;text-align:center;width:100%;max-width:400px}
+  .ticker-symbol{font-size:32px;font-weight:900;color:var(--gold);letter-spacing:3px}
+  .ticker-price{font-size:18px;font-weight:700;color:var(--g1);margin-top:4px}
+  .ticker-change{font-size:13px;color:var(--g2)}
+  .exchanges{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:680px}
+  .ex{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .ex.tier1{border-color:rgba(246,201,14,.25)}
+  .ex-icon{font-size:22px;margin-bottom:4px}
+  .ex-name{font-size:11px;font-weight:700;color:var(--text)}
+  .ex-status{font-size:9px;margin-top:3px}
+  .live{color:var(--g1)} .q2{color:var(--gold)} .q3{color:var(--muted)}
+  .ex-vol{font-size:9px;color:var(--muted);margin-top:2px}
+  .milestones{display:flex;gap:10px;width:100%;max-width:680px}
+  .ms{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .ms-val{font-size:16px;font-weight:900;color:var(--gold)}
+  .ms-label{font-size:9px;color:var(--muted);margin-top:1px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 121 · CROSS-CHAIN</div>
+<h1>Exchange Listing 2026</h1>
+<p class="subtitle">CTC's centralized and decentralized exchange strategy — building deep liquidity to serve 2.4M+ users globally.</p>
+<div class="ticker">
+  <div class="ticker-symbol">CTC / USD</div>
+  <div class="ticker-price">Target Listing Price: $0.85</div>
+  <div class="ticker-change">140B Circulating Supply · $119B Target Market Cap</div>
+</div>
+<div class="exchanges">
+  <div class="ex tier1"><div class="ex-icon">⭐</div><div class="ex-name">Tier 1 CEX (Target)</div><div class="ex-status q2">● Q2 2026 Target</div><div class="ex-vol">Binance / Coinbase class</div></div>
+  <div class="ex tier1"><div class="ex-icon">🔷</div><div class="ex-name">Uniswap V4</div><div class="ex-status live">● Live Q2 2025</div><div class="ex-vol">DEX primary pair</div></div>
+  <div class="ex"><div class="ex-icon">🟣</div><div class="ex-name">QuickSwap</div><div class="ex-status live">● Live Q2 2025</div><div class="ex-vol">Polygon DEX</div></div>
+  <div class="ex"><div class="ex-icon">⚡</div><div class="ex-name">Raydium</div><div class="ex-status q3">◎ Q3 2025</div><div class="ex-vol">Solana DEX</div></div>
+  <div class="ex"><div class="ex-icon">🌊</div><div class="ex-name">Camelot</div><div class="ex-status q3">◎ Q3 2025</div><div class="ex-vol">Arbitrum DEX</div></div>
+  <div class="ex"><div class="ex-icon">🏛️</div><div class="ex-name">Mid-Tier CEX</div><div class="ex-status q3">◎ Q4 2025</div><div class="ex-vol">Gate / KuCoin class</div></div>
+</div>
+<div class="milestones">
+  <div class="ms"><div class="ms-val">$50M</div><div class="ms-label">Liquidity Target</div></div>
+  <div class="ms"><div class="ms-val">140B</div><div class="ms-label">Circulating CTC</div></div>
+  <div class="ms"><div class="ms-val">8+</div><div class="ms-label">Trading Pairs</div></div>
+  <div class="ms"><div class="ms-val">Q2 '26</div><div class="ms-label">Tier-1 Target</div></div>
+</div>
+</body>
+</html>

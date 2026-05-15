@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 141 – Team Expansion</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;max-width:680px}
+  .member{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .member-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin:0 auto 6px;border:2px solid}
+  .member-name{font-size:11px;font-weight:700;color:var(--text)}
+  .member-role{font-size:9px;color:var(--muted);margin-top:1px}
+  .member-prior{font-size:9px;font-weight:600;margin-top:4px;padding:1px 6px;border-radius:8px;display:inline-block}
+  .departments{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:680px}
+  .dept{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .dept-icon{font-size:20px;margin-bottom:4px}
+  .dept-name{font-size:10px;font-weight:700;color:var(--text)}
+  .dept-count{font-size:14px;font-weight:900;color:var(--g1);margin-top:2px}
+  .dept-target{font-size:9px;color:var(--muted)}
+  .hiring{background:rgba(67,233,123,.05);border:1px solid rgba(67,233,123,.15);border-radius:10px;padding:10px 14px;width:100%;max-width:680px;display:flex;gap:12px;align-items:center}
+  .hiring-icon{font-size:22px}
+  .hiring-text{font-size:11px;color:var(--muted);flex:1}
+  .hiring-text strong{color:var(--g1)}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 141 · ENTERPRISE</div>
+<h1>Team Expansion</h1>
+<div class="team-grid">
+  <div class="member">
+    <div class="member-avatar" style="background:rgba(108,99,255,.2);border-color:rgba(108,99,255,.4);color:#a09eff">AK</div>
+    <div class="member-name">Ahmad K.</div>
+    <div class="member-role">CEO &amp; Co-Founder</div>
+    <div class="member-prior" style="background:rgba(67,233,123,.1);color:var(--g1)">ex-DeepMind</div>
+  </div>
+  <div class="member">
+    <div class="member-avatar" style="background:rgba(67,233,123,.15);border-color:rgba(67,233,123,.35);color:var(--g1)">SK</div>
+    <div class="member-name">Sophia K.</div>
+    <div class="member-role">CTO &amp; Co-Founder</div>
+    <div class="member-prior" style="background:rgba(56,249,215,.1);color:var(--g2)">ex-Ethereum</div>
+  </div>
+  <div class="member">
+    <div class="member-avatar" style="background:rgba(246,201,14,.12);border-color:rgba(246,201,14,.3);color:#f6c90e">RN</div>
+    <div class="member-name">Riya N.</div>
+    <div class="member-role">Chief Science Officer</div>
+    <div class="member-prior" style="background:rgba(246,201,14,.1);color:#f6c90e">ex-MIT</div>
+  </div>
+  <div class="member">
+    <div class="member-avatar" style="background:rgba(240,147,251,.12);border-color:rgba(240,147,251,.3);color:#f093fb">OM</div>
+    <div class="member-name">Omar M.</div>
+    <div class="member-role">Chief Growth Officer</div>
+    <div class="member-prior" style="background:rgba(240,147,251,.1);color:#f093fb">ex-Coursera</div>
+  </div>
+</div>
+<div class="departments">
+  <div class="dept"><div class="dept-icon">⚙️</div><div class="dept-name">Engineering</div><div class="dept-count">84</div><div class="dept-target">→ 160</div></div>
+  <div class="dept"><div class="dept-icon">🔬</div><div class="dept-name">Cognitive Sci.</div><div class="dept-count">28</div><div class="dept-target">→ 60</div></div>
+  <div class="dept"><div class="dept-icon">🌍</div><div class="dept-name">Growth &amp; GTM</div><div class="dept-count">42</div><div class="dept-target">→ 80</div></div>
+  <div class="dept"><div class="dept-icon">🎨</div><div class="dept-name">Design &amp; UX</div><div class="dept-count">24</div><div class="dept-target">→ 45</div></div>
+  <div class="dept"><div class="dept-icon">⛓️</div><div class="dept-name">Blockchain</div><div class="dept-count">18</div><div class="dept-target">→ 36</div></div>
+  <div class="dept"><div class="dept-icon">🏢</div><div class="dept-name">Enterprise Sales</div><div class="dept-count">15</div><div class="dept-target">→ 40</div></div>
+  <div class="dept"><div class="dept-icon">📊</div><div class="dept-name">Data &amp; AI</div><div class="dept-count">22</div><div class="dept-target">→ 55</div></div>
+  <div class="dept"><div class="dept-icon">⚖️</div><div class="dept-name">Legal &amp; Policy</div><div class="dept-count">8</div><div class="dept-target">→ 18</div></div>
+</div>
+<div class="hiring">
+  <div class="hiring-icon">🚀</div>
+  <div class="hiring-text"><strong>Series B Hiring Plan:</strong> 241 current team → 494 by end 2025. 97 open roles now. Remote-first with hubs in Dubai, Singapore, London, and Lagos.</div>
+</div>
+</body>
+</html>

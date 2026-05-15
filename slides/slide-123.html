@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 123 – Cognitive Yield</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(22px,4.5vw,44px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .subtitle{font-size:clamp(12px,1.8vw,14px);color:var(--muted);text-align:center;max-width:520px}
+  .concept{background:rgba(67,233,123,.06);border:1px solid rgba(67,233,123,.2);border-radius:16px;padding:16px 20px;width:100%;max-width:660px}
+  .concept-title{font-size:13px;font-weight:700;color:var(--g1);margin-bottom:8px}
+  .concept-text{font-size:11px;color:var(--muted);line-height:1.6}
+  .formula{font-size:13px;font-weight:700;color:var(--text);text-align:center;margin:8px 0;padding:8px;background:rgba(255,255,255,.03);border-radius:8px;font-family:'JetBrains Mono',monospace}
+  .tiers-visual{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;max-width:660px}
+  .tier{border-radius:14px;border:1px solid;padding:14px;text-align:center}
+  .t1{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.1)}
+  .t2{background:rgba(56,249,215,.05);border-color:rgba(56,249,215,.2)}
+  .t3{background:rgba(67,233,123,.07);border-color:rgba(67,233,123,.25)}
+  .t4{background:linear-gradient(135deg,rgba(246,201,14,.08),rgba(67,233,123,.05));border-color:rgba(246,201,14,.3)}
+  .tier-icon{font-size:24px;margin-bottom:4px}
+  .tier-name{font-size:11px;font-weight:700;margin-bottom:3px}
+  .t1 .tier-name{color:var(--muted)} .t2 .tier-name{color:var(--g2)} .t3 .tier-name{color:var(--g1)} .t4 .tier-name{color:#f6c90e}
+  .tier-range{font-size:9px;color:var(--muted)}
+  .tier-yield{font-size:12px;font-weight:900;margin-top:6px}
+  .t1 .tier-yield{color:var(--muted)} .t2 .tier-yield{color:var(--g2)} .t3 .tier-yield{color:var(--g1)} .t4 .tier-yield{color:#f6c90e}
+  .calc-row{display:flex;gap:8px;width:100%;max-width:660px}
+  .calc{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .calc-label{font-size:9px;color:var(--muted);margin-bottom:4px}
+  .calc-val{font-size:14px;font-weight:900;color:var(--g1)}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 123 · CROSS-CHAIN</div>
+<h1>Cognitive Yield</h1>
+<p class="subtitle">Your mental growth generates real financial yield. 2030B turns cognitive improvement into verifiable economic value.</p>
+<div class="concept">
+  <div class="concept-title">💡 The Cognitive Yield Hypothesis</div>
+  <div class="concept-text">Every 1% improvement in your Cognitive Quotient (CQ) score translates directly into measurable CTC yield. This creates an unprecedented incentive structure — the smarter you become, the more you earn.</div>
+  <div class="formula">CTC_Yield = BaseTier × (CQ_Growth% / 100) × FlowMultiplier × StreakBonus</div>
+</div>
+<div class="tiers-visual">
+  <div class="tier t1">
+    <div class="tier-icon">🌱</div>
+    <div class="tier-name">Emerging</div>
+    <div class="tier-range">1–10% CQ growth</div>
+    <div class="tier-yield">150–500<br><span style="font-size:9px;font-weight:400;color:var(--muted)">CTC/month</span></div>
+  </div>
+  <div class="tier t2">
+    <div class="tier-icon">📈</div>
+    <div class="tier-name">Developing</div>
+    <div class="tier-range">11–25% growth</div>
+    <div class="tier-yield">500–2K<br><span style="font-size:9px;font-weight:400;color:var(--muted)">CTC/month</span></div>
+  </div>
+  <div class="tier t3">
+    <div class="tier-icon">⚡</div>
+    <div class="tier-name">Advanced</div>
+    <div class="tier-range">26–50% growth</div>
+    <div class="tier-yield">2K–7.5K<br><span style="font-size:9px;font-weight:400;color:var(--muted)">CTC/month</span></div>
+  </div>
+  <div class="tier t4">
+    <div class="tier-icon">👑</div>
+    <div class="tier-name">Elite</div>
+    <div class="tier-range">51–100% growth</div>
+    <div class="tier-yield">7.5K–25K<br><span style="font-size:9px;font-weight:400;color:var(--muted)">CTC/month</span></div>
+  </div>
+</div>
+<div class="calc-row">
+  <div class="calc"><div class="calc-label">Your CQ Growth</div><div class="calc-val">+18%</div></div>
+  <div class="calc"><div class="calc-label">Your Tier</div><div class="calc-val">Developing</div></div>
+  <div class="calc"><div class="calc-label">Flow Multiplier</div><div class="calc-val">2.1×</div></div>
+  <div class="calc"><div class="calc-label">Est. Monthly Yield</div><div class="calc-val">~2,100 CTC</div></div>
+</div>
+</body>
+</html>

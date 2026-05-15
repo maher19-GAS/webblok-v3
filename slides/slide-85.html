@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Resource Allocation</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:10px"><div class="skeleton skeleton-title" style="width:55%"></div><div class="skeleton skeleton-card" style="height:70px;border-radius:12px"></div>${[1,2,3,4,5].map(()=>`<div class="skeleton skeleton-text" style="width:100%"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide85(data,lang){
+  const colors=['#63B3ED','#F6AD55','#9F7AEA','#68D391','#FC8181'];
+  return `
+    ${buildSlideHeader(data,'📋')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:12px">
+      <div class="glass-card fade-in" style="padding:12px;display:flex;justify-content:space-around;text-align:center">
+        <div><div style="font-size:18px;font-weight:900;color:#63B3ED">${data.budget_total}</div><div style="font-size:9px;color:rgba(255,255,255,0.35)">Total Budget</div></div>
+        <div><div style="font-size:18px;font-weight:900;color:#68D391">+${data.surplus}</div><div style="font-size:9px;color:rgba(255,255,255,0.35)">Surplus</div></div>
+        <div><div style="font-size:13px;font-weight:700;color:#F6AD55">${data.current_quarter}</div><div style="font-size:9px;color:rgba(255,255,255,0.35)">Quarter</div></div>
+      </div>
+      ${data.allocations.map((a,i)=>`
+        <div class="fade-in" style="animation-delay:${i*60}ms">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:rgba(255,255,255,0.65)">${a.category}</span>
+            <span style="font-size:11px;font-weight:700;color:${colors[i%colors.length]}">${a.pct}%</span>
+          </div>
+          <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;position:relative">
+            <div style="height:100%;width:${a.pct}%;background:${colors[i%colors.length]};border-radius:3px;transition:width .9s ease ${i*70}ms;position:relative">
+              <div style="position:absolute;right:0;top:0;height:100%;width:${Math.round(a.spent/a.allocated*100)}%;background:rgba(0,0,0,0.3)"></div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-top:2px">${(a.spent/1000000).toFixed(1)}M / ${(a.allocated/1000000).toFixed(1)}M CTC spent</div>
+        </div>`).join('')}
+      <div class="glass-card fade-in" style="padding:9px 14px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:11px;color:rgba(255,255,255,0.45)">Next Vote</span>
+        <span style="font-size:12px;font-weight:700;color:#F6AD55">${data.next_allocation_vote}</span>
+      </div>
+    </div>`;
+}
+initSlide(85,renderSlide85,{jsonFile:'../en2.json',slideIndex:34});
+</script></body></html>

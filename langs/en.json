@@ -1,0 +1,178 @@
+{
+  "code": "en",
+  "dir": "ltr",
+  "name": "English",
+  "nativeName": "English",
+  "flag": "🇬🇧",
+
+  "nav": {
+    "brand": "2030B",
+    "brandSub": "— Be Smarter",
+    "toc": "Contents",
+    "stats": "Stats",
+    "history": "History",
+    "notes": "Notes",
+    "bookmarks": "Bookmarks",
+    "comments": "Comments",
+    "share": "Share",
+    "language": "Language",
+    "theme": "Theme"
+  },
+
+  "bottomNav": {
+    "prev": "Previous",
+    "next": "Next"
+  },
+
+  "aside": {
+    "toc": "Table of Contents",
+    "stats": "Reading Statistics",
+    "history": "Activity Log",
+    "notes": "My Notes",
+    "bookmarks": "My Bookmarks",
+    "comments": "Comments",
+    "share": "Share",
+    "language": "Choose Language",
+    "theme": "Choose Theme",
+    "close": "Close"
+  },
+
+  "stats": {
+    "slidesRead": "Slides Read",
+    "readingTime": "Estimated Reading Time",
+    "wpm": "200 wpm",
+    "longestSession": "Longest Session",
+    "sessions": "session(s)",
+    "scrollTimeline": "Focus Position Timeline",
+    "noPositionData": "No position data yet",
+    "clearStats": "Clear All Statistics",
+    "localStorageSize": "Local Storage Size",
+    "saveToServer": "Save to Server (2030b.com)",
+    "active": "active"
+  },
+
+  "history": {
+    "empty": "No activity yet"
+  },
+
+  "annotations": {
+    "note": "Note",
+    "bookmark": "Bookmark",
+    "comment": "Comment",
+    "share": "Share",
+    "noteEmpty": "No notes yet.",
+    "bookmarkEmpty": "No bookmarks yet.",
+    "commentEmpty": "No comments yet.",
+    "shareEmpty": "No shared texts yet",
+    "hint": "Select text in the book to start",
+    "addReply": "Add a reply…",
+    "send": "Send",
+    "save": "Save",
+    "delete": "Delete",
+    "slide": "Slide",
+    "sharedTexts": "Shared Texts",
+    "shareBook": "Share the entire book"
+  },
+
+  "selMenu": {
+    "note": "Note",
+    "bookmark": "Bookmark",
+    "comment": "Comment",
+    "share": "Share"
+  },
+
+  "dialogs": {
+    "addNote": "Add your note",
+    "addComment": "Add your comment",
+    "notePlaceholder": "Write your note here…",
+    "commentPlaceholder": "Write your comment here…",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "deleteTitle": "Confirm Delete",
+    "deleteText": "Are you sure you want to delete this annotation?",
+    "clearStatsTitle": "Clear Statistics",
+    "clearStatsText": "All reading data and positions will be cleared. Continue?",
+    "saveToServerTitle": "Save to Server",
+    "saveToServerText": "Your data will be uploaded to 2030b.com/webbook soon. This feature is under development.",
+    "noteSaved": "💾 Note saved",
+    "linkCopied": "🔗 Link copied",
+    "segmentCopied": "📋 Segment link copied",
+    "statsClearDone": "🗑️ Statistics cleared",
+    "highlightGone": "⚠️ The selected text no longer exists"
+  },
+
+  "toast": {
+    "resumeFrom": "Resume from:",
+    "resume": "Resume",
+    "slideOf": "/"
+  },
+
+  "loading": {
+    "preparing": "Preparing…",
+    "checkingCache": "Checking cache…",
+    "loading": "Loading:",
+    "processing": "Processing:",
+    "building": "Building",
+    "slides": "slides…",
+    "initUI": "Initializing UI…",
+    "ready": "Ready!",
+    "notFound": "Book files not found"
+  },
+
+  "slideTypes": {
+    "cover": "Cover",
+    "chapter": "Chapter",
+    "quote": "Quote",
+    "science": "Science",
+    "equation": "Equation",
+    "table": "Table",
+    "list": "List",
+    "prose": "Prose",
+    "cta": "Action"
+  },
+
+  "slideHints": {
+    "scroll": "Scroll down or use navigation buttons",
+    "prevSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "ctaButton": "Start at 2030B.com",
+    "ctaBack": "Back to top"
+  },
+
+  "share": {
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "copyLink": "Copy Link",
+    "twitter": "Twitter / X",
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "sms": "SMS",
+    "reddit": "Reddit",
+    "pocket": "Pocket"
+  },
+
+  "themes": {
+    "title": "Choose a Theme",
+    "dark": "Dark",
+    "light": "Light",
+    "cosmos": "Cosmos",
+    "emerald": "Emerald",
+    "rose": "Rose",
+    "amber": "Amber",
+    "violet": "Violet",
+    "slate": "Slate",
+    "ocean": "Ocean",
+    "forest": "Forest",
+    "crimson": "Crimson"
+  },
+
+  "toc": {
+    "slides": "slides"
+  },
+
+  "edgeHints": {
+    "prev": "Previous slide",
+    "next": "Next slide"
+  }
+}

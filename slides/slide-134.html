@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 134 – Talent API</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45);--mono:'JetBrains Mono',monospace}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .code-block{background:#0a0f1e;border:1px solid rgba(108,99,255,.25);border-radius:14px;padding:16px 18px;width:100%;max-width:680px;font-family:var(--mono);font-size:11px;line-height:1.7;overflow-x:auto}
+  .c-comment{color:rgba(255,255,255,.3)}
+  .c-method{color:#a09eff}
+  .c-key{color:#43e97b}
+  .c-val{color:#38f9d7}
+  .c-string{color:#f6c90e}
+  .endpoints{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%;max-width:680px}
+  .ep{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;gap:8px;align-items:center}
+  .ep-method{font-size:9px;font-weight:700;padding:2px 7px;border-radius:6px;flex-shrink:0;font-family:var(--mono)}
+  .get{background:rgba(67,233,123,.15);color:var(--g1)}
+  .post{background:rgba(108,99,255,.15);color:#a09eff}
+  .ep-path{font-size:10px;font-family:var(--mono);color:var(--text);flex:1}
+  .ep-desc{font-size:9px;color:var(--muted)}
+  .pricing{display:flex;gap:8px;width:100%;max-width:680px}
+  .tier{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .tier-name{font-size:11px;font-weight:700;color:var(--text)}
+  .tier-calls{font-size:9px;color:var(--muted);margin-top:2px}
+  .tier-price{font-size:14px;font-weight:900;color:var(--g1);margin-top:4px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 134 · ENTERPRISE</div>
+<h1>Talent Intelligence API</h1>
+<div class="code-block">
+<span class="c-comment">// GET /v3/talent/profile/{user_id}</span><br>
+<span class="c-comment">// Returns verified cognitive profile — ZK-proof included</span><br>
+{<br>
+&nbsp;&nbsp;<span class="c-key">"user_id"</span>: <span class="c-string">"zkid_0x4f2a...9e1c"</span>,<br>
+&nbsp;&nbsp;<span class="c-key">"cq_score"</span>: <span class="c-val">67</span>,<br>
+&nbsp;&nbsp;<span class="c-key">"tier"</span>: <span class="c-string">"Architect"</span>,<br>
+&nbsp;&nbsp;<span class="c-key">"dimensions"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-key">"analytical"</span>: <span class="c-val">85</span>, <span class="c-key">"creative"</span>: <span class="c-val">61</span>, <span class="c-key">"systems"</span>: <span class="c-val">68</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-key">"emotional"</span>: <span class="c-val">58</span>, <span class="c-key">"pattern"</span>: <span class="c-val">79</span>, <span class="c-key">"memory"</span>: <span class="c-val">72</span><br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;<span class="c-key">"certifications"</span>: [<span class="c-string">"Spatial Architect"</span>, <span class="c-string">"Systems Thinker L3"</span>],<br>
+&nbsp;&nbsp;<span class="c-key">"zk_proof"</span>: <span class="c-string">"π_0x9c3a...f14d"</span>, <span class="c-comment">// verifiable without exposing raw data</span><br>
+&nbsp;&nbsp;<span class="c-key">"verified_at"</span>: <span class="c-string">"2025-03-22T09:14:00Z"</span><br>
+}
+</div>
+<div class="endpoints">
+  <div class="ep"><span class="ep-method get">GET</span><div><div class="ep-path">/v3/talent/profile/{id}</div><div class="ep-desc">Full cognitive profile with ZK proof</div></div></div>
+  <div class="ep"><span class="ep-method get">GET</span><div><div class="ep-path">/v3/talent/match</div><div class="ep-desc">Match candidates to job requirements</div></div></div>
+  <div class="ep"><span class="ep-method post">POST</span><div><div class="ep-path">/v3/talent/batch</div><div class="ep-desc">Bulk profile assessment for teams</div></div></div>
+  <div class="ep"><span class="ep-method get">GET</span><div><div class="ep-path">/v3/talent/cgdp/team</div><div class="ep-desc">Team-level CGDP score calculation</div></div></div>
+  <div class="ep"><span class="ep-method get">GET</span><div><div class="ep-path">/v3/talent/growth/{id}</div><div class="ep-desc">Historical cognitive growth trajectory</div></div></div>
+  <div class="ep"><span class="ep-method post">POST</span><div><div class="ep-path">/v3/talent/verify</div><div class="ep-desc">Verify ZK credential on-chain</div></div></div>
+</div>
+<div class="pricing">
+  <div class="tier"><div class="tier-name">Starter</div><div class="tier-calls">10K calls/month</div><div class="tier-price">Free</div></div>
+  <div class="tier"><div class="tier-name">Growth</div><div class="tier-calls">100K calls/month</div><div class="tier-price">$199/mo</div></div>
+  <div class="tier"><div class="tier-name">Enterprise</div><div class="tier-calls">Unlimited</div><div class="tier-price">Custom</div></div>
+</div>
+</body>
+</html>

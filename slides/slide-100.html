@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – The Future is Cognitive</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:12px;align-items:center"><div class="skeleton skeleton-title" style="width:70%"></div><div class="skeleton skeleton-card" style="height:120px;border-radius:16px;width:100%"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%">${[1,2,3,4].map(()=>`<div class="skeleton skeleton-card" style="height:64px;border-radius:10px"></div>`).join('')}</div></div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide100(data,lang){
+  const statColors=['#63B3ED','#9F7AEA','#68D391','#F6AD55'];
+  return `
+    <!-- Epic Final Slide -->
+    <div style="padding:20px 16px;display:flex;flex-direction:column;gap:14px;text-align:center">
+      <!-- Brand Icon -->
+      <div style="display:flex;justify-content:center;margin-bottom:4px">
+        <div style="width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#63B3ED,#9F7AEA);display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 48px rgba(99,179,237,0.25)">🧠</div>
+      </div>
+      <!-- Header -->
+      <div class="fade-in">
+        <div style="font-size:22px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:6px">${data.header}</div>
+        <div style="font-size:13px;background:linear-gradient(135deg,#63B3ED,#9F7AEA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">${data.subtitle}</div>
+      </div>
+      <!-- Closing Statement -->
+      <div class="glass-card fade-in" style="padding:16px;text-align:left;animation-delay:0.1s;border-left:3px solid #9F7AEA">
+        <div style="font-size:11.5px;color:rgba(255,255,255,0.65);line-height:1.8;font-style:italic">"${data.closing_statement}"</div>
+      </div>
+      <!-- Final Stats -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        ${data.final_stats.map((s,i)=>`
+          <div class="glass-card fade-in" style="padding:14px;animation-delay:${0.15+i*0.06}s;border-top:2px solid ${statColors[i%statColors.length]}">
+            <div style="font-size:20px;font-weight:900;color:${statColors[i%statColors.length]}">${s.number}</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.45);margin-top:3px">${s.label}</div>
+          </div>`).join('')}
+      </div>
+      <!-- Final CTA -->
+      <button class="fade-in" style="animation-delay:0.42s;padding:14px;border-radius:14px;border:none;background:linear-gradient(135deg,#63B3ED,#9F7AEA);color:#fff;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:.02em;box-shadow:0 4px 20px rgba(99,179,237,0.2)">
+        ${data.final_cta} →
+      </button>
+    </div>`;
+}
+initSlide(100,renderSlide100,{jsonFile:'../en2.json',slideIndex:49});
+</script></body></html>

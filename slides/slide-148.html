@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 148 – Global Impact Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:14px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .subtitle{font-size:13px;color:var(--muted);text-align:center}
+  .impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:700px}
+  .impact-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;position:relative;overflow:hidden;transition:border-color .25s}
+  .impact-card:hover{border-color:rgba(67,233,123,.35)}
+  .impact-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g1),var(--g2));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+  .impact-card:hover::after{transform:scaleX(1)}
+  .ic-icon{font-size:32px;margin-bottom:8px}
+  .ic-region{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--g2);margin-bottom:4px;text-transform:uppercase}
+  .ic-val{font-size:24px;font-weight:900;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .ic-label{font-size:9px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .ic-bar{height:3px;background:rgba(255,255,255,.07);border-radius:99px;margin-top:8px;overflow:hidden}
+  .ic-fill{height:100%;background:linear-gradient(90deg,var(--g1),var(--g2));border-radius:99px;transition:width .6s ease}
+  .totals{display:flex;gap:10px;width:100%;max-width:700px}
+  .tot{flex:1;background:linear-gradient(135deg,rgba(67,233,123,.08),rgba(56,249,215,.04));border:1px solid rgba(67,233,123,.2);border-radius:12px;padding:12px;text-align:center}
+  .tot-val{font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .tot-label{font-size:10px;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 148 · VISION</div>
+<h1>Global Impact Dashboard</h1>
+<p class="subtitle">Cognitive growth metrics across six world regions — live 2026 snapshot</p>
+<div class="impact-grid">
+  <div class="impact-card">
+    <div class="ic-icon">🌙</div>
+    <div class="ic-region">MENA</div>
+    <div class="ic-val">42M</div>
+    <div class="ic-label">Active learners across 22 countries</div>
+    <div class="ic-bar"><div class="ic-fill" style="width:84%"></div></div>
+  </div>
+  <div class="impact-card">
+    <div class="ic-icon">🌍</div>
+    <div class="ic-region">Africa</div>
+    <div class="ic-val">67M</div>
+    <div class="ic-label">Mobile-first access, 38 nations</div>
+    <div class="ic-bar"><div class="ic-fill" style="width:72%"></div></div>
+  </div>
+  <div class="impact-card">
+    <div class="ic-icon">🌏</div>
+    <div class="ic-region">Asia-Pacific</div>
+    <div class="ic-val">130M</div>
+    <div class="ic-label">Largest cognitive growth market</div>
+    <div class="ic-bar"><div class="ic-fill" style="width:91%"></div></div>
+  </div>
+  <div class="impact-card">
+    <div class="ic-icon">🌎</div>
+    <div class="ic-region">Americas</div>
+    <div class="ic-val">88M</div>
+    <div class="ic-label">Enterprise + institutional partnerships</div>
+    <div class="ic-bar"><div class="ic-fill" style="width:78%"></div></div>
+  </div>
+  <div class="impact-card">
+    <div class="ic-icon">🏛️</div>
+    <div class="ic-region">Europe</div>
+    <div class="ic-val">54M</div>
+    <div class="ic-label">GDPR-compliant, university network</div>
+    <div class="ic-bar"><div class="ic-fill" style="width:65%"></div></div>
+  </div>
+  <div class="impact-card">
+    <div class="ic-icon">🏔️</div>
+    <div class="ic-region">Central Asia</div>
+    <div class="ic-val">19M</div>
+    <div class="ic-label">Emerging growth corridor</div>
+    <div class="ic-bar"><div class="ic-fill" style="width:48%"></div></div>
+  </div>
+</div>
+<div class="totals">
+  <div class="tot"><div class="tot-val">400M</div><div class="tot-label">Total Active Users 2026</div></div>
+  <div class="tot"><div class="tot-val">$4.8T</div><div class="tot-label">Cognitive Value Generated</div></div>
+  <div class="tot"><div class="tot-val">+34%</div><div class="tot-label">Year-over-Year Growth</div></div>
+  <div class="tot"><div class="tot-val">148</div><div class="tot-label">Countries Reached</div></div>
+</div>
+</body>
+</html>

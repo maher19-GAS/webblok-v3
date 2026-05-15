@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 106 – Personalized Curriculum</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .path-visual{display:flex;align-items:center;gap:0;width:100%;max-width:680px;overflow-x:auto;padding:8px 0}
+  .path-node{flex-shrink:0;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 10px;text-align:center;min-width:100px;position:relative}
+  .path-node.active{border-color:rgba(67,233,123,.4);background:rgba(67,233,123,.08)}
+  .path-node.completed{border-color:rgba(56,249,215,.3);background:rgba(56,249,215,.06)}
+  .path-icon{font-size:22px;margin-bottom:4px}
+  .path-label{font-size:10px;font-weight:600;color:var(--text)}
+  .path-sub{font-size:9px;color:var(--muted);margin-top:2px}
+  .path-connector{flex-shrink:0;width:24px;height:2px;background:linear-gradient(90deg,var(--g2),var(--g1));opacity:.4;align-self:center}
+  .features{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%;max-width:680px}
+  .feature{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+  .feature-icon{font-size:20px;flex-shrink:0}
+  .feature-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .feature-desc{font-size:10px;color:var(--muted);line-height:1.4}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 106 · NAE</div>
+<h1>Personalized Curriculum</h1>
+<div class="path-visual">
+  <div class="path-node completed"><div class="path-icon">✅</div><div class="path-label">Assessment</div><div class="path-sub">Baseline</div></div>
+  <div class="path-connector"></div>
+  <div class="path-node completed"><div class="path-icon">🎯</div><div class="path-label">Goal Map</div><div class="path-sub">AI-generated</div></div>
+  <div class="path-connector"></div>
+  <div class="path-node active"><div class="path-icon">🌊</div><div class="path-label">Adaptive Path</div><div class="path-sub">In Progress</div></div>
+  <div class="path-connector"></div>
+  <div class="path-node"><div class="path-icon">📈</div><div class="path-label">Skills Unlock</div><div class="path-sub">Dynamic</div></div>
+  <div class="path-connector"></div>
+  <div class="path-node"><div class="path-icon">🏆</div><div class="path-label">Mastery</div><div class="path-sub">Certified</div></div>
+</div>
+<div class="features">
+  <div class="feature">
+    <div class="feature-icon">🤖</div>
+    <div>
+      <div class="feature-name">CORA AI Curation</div>
+      <div class="feature-desc">AI engine selects content from 18,400+ DVM projects matched to your cognitive profile</div>
+    </div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">🔄</div>
+    <div>
+      <div class="feature-name">Real-Time Reordering</div>
+      <div class="feature-desc">Curriculum adapts every session based on NAE signals — no static syllabus</div>
+    </div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">⏱️</div>
+    <div>
+      <div class="feature-name">Micro-Session Scheduling</div>
+      <div class="feature-desc">Optimal session windows detected based on your peak cognitive performance times</div>
+    </div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">💰</div>
+    <div>
+      <div class="feature-name">CTC-Weighted Progress</div>
+      <div class="feature-desc">Harder adaptive challenges yield higher CTC rewards — skill drives income</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

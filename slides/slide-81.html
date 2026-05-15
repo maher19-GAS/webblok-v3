@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Learning Paths</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:10px"><div class="skeleton skeleton-title" style="width:55%"></div>${[1,2,3,4].map(()=>`<div class="skeleton skeleton-card" style="height:76px;border-radius:12px"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide81(data,lang){
+  const lvlC={Advanced:'#FC8181',Intermediate:'#F6AD55',Beginner:'#68D391',
+    'متقدم':'#FC8181','متوسط':'#F6AD55','مبتدئ':'#68D391'};
+  return `
+    ${buildSlideHeader(data,'📚')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:8px">
+      ${data.paths.map((p,i)=>`
+        <div class="glass-card fade-in" style="padding:12px 14px;animation-delay:${i*70}ms;${p.id===data.your_active_path?'border:1px solid rgba(99,179,237,0.25);background:rgba(99,179,237,0.05)':''}">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px">
+            <div>
+              ${p.id===data.your_active_path?`<div style="font-size:9px;color:#63B3ED;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">ACTIVE PATH</div>`:''}
+              <div style="font-size:13px;font-weight:700;color:#fff">${p.title}</div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px">${p.modules} modules • ${p.duration}</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0">
+              <div style="font-size:13px;font-weight:700;color:#F6AD55">${p.ctc_reward} CTC</div>
+              <div style="font-size:10px;padding:2px 6px;border-radius:4px;background:${lvlC[p.level]||'#63B3ED'}15;color:${lvlC[p.level]||'#63B3ED'};margin-top:3px">${p.level}</div>
+            </div>
+          </div>
+          ${p.id===data.your_active_path?`
+          <div style="height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden">
+            <div style="height:100%;width:${data.completion}%;background:linear-gradient(90deg,#63B3ED,#9F7AEA);border-radius:2px;transition:width 1s ease"></div>
+          </div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px">${data.completion}% complete</div>`:''}
+          <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:4px">${p.enrolled.toLocaleString()} enrolled</div>
+        </div>`).join('')}
+    </div>`;
+}
+initSlide(81,renderSlide81,{jsonFile:'../en2.json',slideIndex:30});
+</script></body></html>

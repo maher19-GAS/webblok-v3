@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Privacy & Security</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:9px"><div class="skeleton skeleton-title" style="width:55%"></div>${[1,2,3,4,5].map(()=>`<div class="skeleton skeleton-card" style="height:60px;border-radius:10px"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide88(data,lang){
+  return `
+    ${buildSlideHeader(data,'🔒')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:8px">
+      ${data.principles.map((p,i)=>`
+        <div class="fade-in" style="animation-delay:${i*60}ms;display:flex;gap:10px;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:11px">
+          <div style="width:28px;height:28px;border-radius:8px;background:rgba(104,211,145,0.1);border:1px solid rgba(104,211,145,0.2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🛡️</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px">${p.title}</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.45);line-height:1.4">${p.desc}</div>
+          </div>
+        </div>`).join('')}
+      <!-- Certifications -->
+      <div class="glass-card fade-in" style="padding:10px 14px">
+        <div style="font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.35);margin-bottom:6px">Certifications</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          ${data.certifications.map(c=>`<span style="font-size:10px;padding:3px 9px;background:rgba(104,211,145,0.08);border:1px solid rgba(104,211,145,0.15);border-radius:5px;color:#68D391">${c}</span>`).join('')}
+        </div>
+      </div>
+      <div class="glass-card fade-in" style="padding:8px 14px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:11px;color:rgba(255,255,255,0.4)">Last Audit: ${data.last_audit}</span>
+        <span style="font-size:11px;font-weight:700;color:#68D391">0 Open Vulnerabilities ✓</span>
+      </div>
+    </div>`;
+}
+initSlide(88,renderSlide88,{jsonFile:'../en2.json',slideIndex:37});
+</script></body></html>

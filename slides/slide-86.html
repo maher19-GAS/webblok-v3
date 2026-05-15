@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – AI Layer</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:9px"><div class="skeleton skeleton-title" style="width:55%"></div>${[1,2,3,4,5].map(()=>`<div class="skeleton skeleton-card" style="height:64px;border-radius:11px"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide86(data,lang){
+  const icons={MatchMind:'🎯',CogniScore:'🧠',AuditBot:'🔍',TrendLens:'📈',FraudGuard:'🛡️'};
+  return `
+    ${buildSlideHeader(data,'🤖')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:8px">
+      ${data.systems.map((s,i)=>`
+        <div class="glass-card fade-in" style="padding:11px 13px;animation-delay:${i*60}ms">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:38px;height:38px;border-radius:10px;background:rgba(99,179,237,0.1);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">${icons[s.name]||'🤖'}</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:2px">${s.name}</div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.45)">${s.purpose}</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0">
+              <div style="font-size:13px;font-weight:800;color:#68D391">${s.accuracy}</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.3)">${s.calls_daily}/day</div>
+            </div>
+          </div>
+          <div style="height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;margin-top:8px">
+            <div style="height:100%;width:${parseFloat(s.accuracy)}%;background:linear-gradient(90deg,#68D391,#63B3ED);border-radius:2px;transition:width .9s ease ${i*70}ms"></div>
+          </div>
+        </div>`).join('')}
+      <div class="glass-card fade-in" style="padding:10px 14px;border-left:3px solid #63B3ED">
+        <div style="font-size:10px;color:rgba(255,255,255,0.5);line-height:1.5">🔒 ${data.data_privacy}</div>
+      </div>
+    </div>`;
+}
+initSlide(86,renderSlide86,{jsonFile:'../en2.json',slideIndex:35});
+</script></body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 103 – 7 Adaptive Dimensions</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(22px,4.5vw,40px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .dims-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;width:100%;max-width:740px}
+  .dim-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px 12px;display:flex;gap:10px;align-items:flex-start;transition:border-color .2s}
+  .dim-card:hover{border-color:rgba(67,233,123,.3)}
+  .dim-icon{font-size:24px;flex-shrink:0}
+  .dim-info{flex:1}
+  .dim-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .dim-desc{font-size:10px;color:var(--muted);line-height:1.4;margin-bottom:6px}
+  .dim-bar-bg{height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+  .dim-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .dim-val{font-size:10px;font-weight:700;color:var(--g1);margin-top:3px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 103 · NAE</div>
+<h1>7 Adaptive Dimensions</h1>
+<div class="dims-grid">
+  <div class="dim-card">
+    <div class="dim-icon">🔬</div>
+    <div class="dim-info">
+      <div class="dim-name">Analytical</div>
+      <div class="dim-desc">Logic, reasoning & problem decomposition</div>
+      <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:85%"></div></div>
+      <div class="dim-val">85 / 100</div>
+    </div>
+  </div>
+  <div class="dim-card">
+    <div class="dim-icon">🎨</div>
+    <div class="dim-info">
+      <div class="dim-name">Creative</div>
+      <div class="dim-desc">Divergent thinking & novel connections</div>
+      <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:61%"></div></div>
+      <div class="dim-val">61 / 100</div>
+    </div>
+  </div>
+  <div class="dim-card">
+    <div class="dim-icon">⚙️</div>
+    <div class="dim-info">
+      <div class="dim-name">Systems</div>
+      <div class="dim-desc">Complex system modeling & feedback loops</div>
+      <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:68%"></div></div>
+      <div class="dim-val">68 / 100</div>
+    </div>
+  </div>
+  <div class="dim-card">
+    <div class="dim-icon">🤝</div>
+    <div class="dim-info">
+      <div class="dim-name">Emotional</div>
+      <div class="dim-desc">Empathy, social cognition & EQ</div>
+      <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:58%"></div></div>
+      <div class="dim-val">58 / 100</div>
+    </div>
+  </div>
+  <div class="dim-card">
+    <div class="dim-icon">🔮</div>
+    <div class="dim-info">
+      <div class="dim-name">Pattern</div>
+      <div class="dim-desc">Recognition, prediction & abstraction</div>
+      <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:79%"></div></div>
+      <div class="dim-val">79 / 100</div>
+    </div>
+  </div>
+  <div class="dim-card">
+    <div class="dim-icon">🧠</div>
+    <div class="dim-info">
+      <div class="dim-name">Memory</div>
+      <div class="dim-desc">Encoding, consolidation & retrieval</div>
+      <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:72%"></div></div>
+      <div class="dim-val">72 / 100</div>
+    </div>
+  </div>
+  <div class="dim-card">
+    <div class="dim-icon">🌌</div>
+    <div class="dim-info">
+      <div class="dim-name">Consciousness</div>
+      <div class="dim-desc">Meta-cognition & self-awareness</div>
+      <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:43%"></div></div>
+      <div class="dim-val">43 / 100</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 115 – Multiplayer Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .room-preview{background:var(--bg2);border:1px solid rgba(108,99,255,.25);border-radius:16px;padding:16px;width:100%;max-width:660px;position:relative}
+  .room-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .room-name{font-size:13px;font-weight:700;color:#a09eff}
+  .live-badge{font-size:9px;font-weight:700;background:rgba(67,233,123,.15);border:1px solid rgba(67,233,123,.3);color:var(--g1);padding:2px 8px;border-radius:10px;animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+  .avatars-row{display:flex;gap:8px;align-items:center}
+  .avatar{width:40px;height:40px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+  .avatar-info{font-size:10px;color:var(--muted)}
+  .avatar-name{font-size:11px;font-weight:700;color:var(--text)}
+  .activity-feed{background:rgba(255,255,255,.02);border-radius:8px;padding:8px;margin-top:10px;font-size:10px;display:flex;flex-direction:column;gap:4px}
+  .af-item{color:var(--muted)}<br>
+  .af-item span{color:var(--g1)}
+  .modes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:660px}
+  .mode{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .mode-icon{font-size:20px;margin-bottom:4px}
+  .mode-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .mode-desc{font-size:9px;color:var(--muted)}
+  .mode-ctc{font-size:10px;font-weight:700;color:var(--g1);margin-top:4px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 115 · SPATIAL LEARNING</div>
+<h1>Multiplayer Learning</h1>
+<div class="room-preview">
+  <div class="room-header">
+    <div class="room-name">🤝 Systems Thinking Lab — Room 7</div>
+    <div class="live-badge">● LIVE 24 Users</div>
+  </div>
+  <div class="avatars-row">
+    <div class="avatar" style="background:rgba(108,99,255,.2);border-color:rgba(108,99,255,.4);color:#a09eff">AJ</div>
+    <div><div class="avatar-name">Alex Johnson</div><div class="avatar-info">Level 8 · Architect · 🌊 Flow</div></div>
+    <div style="margin-left:auto;display:flex;gap:-8px">
+      <div class="avatar" style="width:28px;height:28px;font-size:9px;background:rgba(67,233,123,.15);border-color:rgba(67,233,123,.3);color:var(--g1);margin-left:-8px">+22</div>
+    </div>
+  </div>
+  <div class="activity-feed">
+    <div class="af-item"><span>Riya K.</span> placed a concept node: "Feedback Loops"</div>
+    <div class="af-item"><span>Omar M.</span> challenged the group: "What breaks this system?"</div>
+    <div class="af-item"><span>CORA</span> 🤖 awarded 45 CTC to top contributors this round</div>
+    <div class="af-item"><span>Alex J.</span> linked "Emergence" to "Network Effects" ← +12 CTC</div>
+  </div>
+</div>
+<div class="modes-grid">
+  <div class="mode"><div class="mode-icon">⚔️</div><div class="mode-name">Debate Arena</div><div class="mode-desc">Structured argumentation for cognitive sharpening</div><div class="mode-ctc">+120 CTC/win</div></div>
+  <div class="mode"><div class="mode-icon">🎓</div><div class="mode-name">Teach-Back</div><div class="mode-desc">Explain concepts to others — deepest form of learning</div><div class="mode-ctc">+80 CTC</div></div>
+  <div class="mode"><div class="mode-icon">🧩</div><div class="mode-name">Group Solve</div><div class="mode-desc">Collaborative problem rooms with shared whiteboards</div><div class="mode-ctc">+60 CTC/member</div></div>
+  <div class="mode"><div class="mode-icon">🏆</div><div class="mode-name">Cognitive Tournament</div><div class="mode-desc">Weekly ranked competitions across all 7 dimensions</div><div class="mode-ctc">+500 CTC/top</div></div>
+  <div class="mode"><div class="mode-icon">🌍</div><div class="mode-name">Cross-Culture Bridge</div><div class="mode-desc">Learn with peers across 97 countries — diversity multiplier</div><div class="mode-ctc">+2× multiplier</div></div>
+  <div class="mode"><div class="mode-icon">🤖</div><div class="mode-name">AI Mediation</div><div class="mode-desc">CORA facilitates — ensures balanced contribution & fair CTC</div><div class="mode-ctc">Auto-balanced</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Regional Expansion</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:8px"><div class="skeleton skeleton-title" style="width:55%"></div>${[1,2,3,4,5,6].map(()=>`<div class="skeleton skeleton-card" style="height:56px;border-radius:10px"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide87(data,lang){
+  return `
+    ${buildSlideHeader(data,'🌐')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:7px">
+      ${data.regions.map((r,i)=>`
+        <div class="fade-in" style="animation-delay:${i*60}ms;padding:11px 12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:11px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:12px;font-weight:700;color:#fff">${r.name}</span>
+            <span style="font-size:12px;font-weight:700;color:#68D391">${r.growth}</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:4px;flex-wrap:wrap">
+              ${r.languages.map(l=>`<span style="font-size:9px;padding:1px 6px;background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.15);border-radius:3px;color:rgba(255,255,255,0.5)">${l}</span>`).join('')}
+            </div>
+            <div style="text-align:right">
+              <span style="font-size:12px;font-weight:700;color:#63B3ED">${r.users}</span>
+              <span style="font-size:9px;color:rgba(255,255,255,0.3);margin-left:4px">• ${r.top_sector}</span>
+            </div>
+          </div>
+        </div>`).join('')}
+      <div class="glass-card fade-in" style="padding:9px 14px;text-align:center">
+        <span style="font-size:11px;color:rgba(255,255,255,0.5)">🌍 ${data.localization_note}</span>
+      </div>
+    </div>`;
+}
+initSlide(87,renderSlide87,{jsonFile:'../en2.json',slideIndex:36});
+</script></body></html>

@@ -1,0 +1,138 @@
+{
+  "lang": "fr",
+  "dir": "ltr",
+  "name": "Français",
+  "nativeName": "Français",
+  "flag": "🇫🇷",
+  "font": "Inter",
+  "fontUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+
+  "brand": "2030B",
+  "brandSubtitle": "— Soyez Plus Intelligent",
+  "pageTitle": "2030B — Soyez Plus Intelligent | Livre Interactif",
+  "pageDesc": "2030B — Soyez Plus Intelligent : Livre interactif v5",
+  "ogTitle": "2030B — Soyez Plus Intelligent",
+  "ogDesc": "Lisez le livre interactif 2030B",
+
+  "nav": {
+    "toc": "Sommaire",
+    "stats": "Statistiques",
+    "history": "Historique",
+    "notes": "Notes",
+    "bookmarks": "Favoris",
+    "comments": "Commentaires",
+    "share": "Partager",
+    "lang": "Langue",
+    "theme": "Thème",
+    "close": "Fermer"
+  },
+
+  "loading": {
+    "preparing": "Préparation…",
+    "checkingCache": "Vérification du cache…",
+    "loading": "Chargement",
+    "processing": "Traitement",
+    "buildingSlides": "Construction de {n} diapositives…",
+    "settingUp": "Configuration de l'interface…",
+    "ready": "Prêt!"
+  },
+
+  "nav_bottom": { "prev": "Précédent", "next": "Suivant" },
+
+  "selection": {
+    "note": "Note",
+    "bookmark": "Favori",
+    "comment": "Commentaire",
+    "share": "Partager"
+  },
+
+  "panels": {
+    "toc": "Table des matières",
+    "stats": "Statistiques de lecture",
+    "history": "Journal d'activité",
+    "notes": "Mes notes",
+    "bookmarks": "Mes favoris",
+    "comments": "Commentaires",
+    "share": "Partager",
+    "lang": "Choisir la langue",
+    "theme": "Choisir le thème"
+  },
+
+  "stats": {
+    "slidesRead": "Diapositives lues",
+    "estTime": "Temps de lecture estimé",
+    "wpm": "200 mots/min",
+    "longestSession": "Session la plus longue",
+    "sessions": "{n} sessions",
+    "scrollTimeline": "Suivi de position & temps de focus",
+    "noScrollData": "Pas de données de position",
+    "clearStats": "Effacer toutes les statistiques",
+    "storageSize": "Taille des données locales",
+    "uploadToServer": "Envoyer au serveur",
+    "cleared": "🗑️ Statistiques effacées",
+    "uploadNotice": "Envoi vers 2030b.com/webbook — Bientôt!"
+  },
+
+  "history": { "noActivity": "Aucune activité", "openedPanel": "Ouvert: {name}" },
+
+  "annotations": {
+    "empty_note": "Aucune note pour l'instant.",
+    "empty_bookmark": "Aucun favori pour l'instant.",
+    "empty_comment": "Aucun commentaire pour l'instant.",
+    "empty_share": "Aucun extrait partagé",
+    "addHint": "Sélectionnez du texte pour commencer",
+    "delete": "Supprimer",
+    "jump": "Aller",
+    "save": "Sauvegarder",
+    "sending": "Envoyer",
+    "reply": "Ajouter une réponse…",
+    "editNote": "Modifier votre note…",
+    "noteSaved": "💾 Note sauvegardée",
+    "notFound": "⚠️ Texte surligné introuvable",
+    "sharedCount": "Extraits partagés ({n})",
+    "shareAll": "Partager le livre entier"
+  },
+
+  "share": {
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "copyLink": "Copier le lien",
+    "copyText": "Copier le texte",
+    "webShare": "Partager",
+    "linkCopied": "🔗 Lien copié",
+    "excerptCopied": "📋 Lien d'extrait copié"
+  },
+
+  "toast": { "restore": "Reprendre depuis:", "resumeBtn": "Reprendre", "openedBook": "Livre ouvert — v5" },
+
+  "slideTypes": {
+    "cover": "Couverture", "chapter": "Chapitre", "quote": "Citation",
+    "science": "Science", "equation": "Équation", "table": "Tableau",
+    "list": "Liste", "prose": "Prose", "cta": "Action"
+  },
+
+  "cta": { "start": "Commencer sur 2030B.com", "back": "Retour en haut" },
+
+  "scroll_hint": "Faites défiler ou utilisez les boutons",
+  "edge_prev": "Diapositive précédente",
+  "edge_next": "Diapositive suivante",
+  "slide_label": "Diapositive {n}",
+  "slide_count": "{n} diapositives",
+  "slide_of": "/ {total}",
+  "note_prompt": "Ajoutez votre note:",
+  "comment_prompt": "Ajoutez votre commentaire:",
+  "book_missing": "Fichiers du livre introuvables",
+
+  "themes": {
+    "dark_night": "Nuit sombre", "deep_ocean": "Océan profond", "emerald": "Émeraude",
+    "sunset": "Coucher de soleil", "royal_purple": "Violet royal", "rose_gold": "Or rose",
+    "slate": "Ardoise", "monochrome": "Monochrome", "desert": "Désert", "neon": "Néon"
+  },
+
+  "lang_panel": { "search": "Rechercher une langue…", "current": "Langue actuelle", "all": "Toutes les langues" },
+  "theme_panel": { "mode_light": "Clair", "mode_dark": "Sombre", "choose_theme": "Choisir le thème", "choose_mode": "Mode" }
+}

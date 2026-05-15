@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 140 – Vision 2030 Status</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--gold:#f6c90e;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);opacity:.9}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--gold),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .milestones{display:flex;flex-direction:column;gap:10px;width:100%;max-width:680px}
+  .ms-row{display:flex;gap:14px;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+  .ms-row.done{border-color:rgba(67,233,123,.3);background:rgba(67,233,123,.04)}
+  .ms-row.active{border-color:rgba(246,201,14,.3);background:rgba(246,201,14,.04)}
+  .ms-year{font-size:13px;font-weight:900;min-width:44px;flex-shrink:0}
+  .done .ms-year{color:var(--g1)} .active .ms-year{color:var(--gold)} .ms-row:not(.done):not(.active) .ms-year{color:var(--muted)}
+  .ms-title{font-size:12px;font-weight:700;color:var(--text);flex:1}
+  .ms-status{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;flex-shrink:0}
+  .done .ms-status{background:rgba(67,233,123,.15);color:var(--g1)}
+  .active .ms-status{background:rgba(246,201,14,.15);color:var(--gold)}
+  .ms-row:not(.done):not(.active) .ms-status{background:rgba(255,255,255,.05);color:var(--muted)}
+  .ms-progress{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;width:100px;flex-shrink:0}
+  .ms-fill{height:100%;border-radius:2px}
+  .done .ms-fill{background:var(--g1)}
+  .active .ms-fill{background:var(--gold)}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:680px}
+  .kpi{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .kpi-val{font-size:18px;font-weight:900;color:var(--gold)}
+  .kpi-label{font-size:9px;color:var(--muted);margin-top:1px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 140 · ENTERPRISE</div>
+<h1>Vision 2030 Status</h1>
+<div class="milestones">
+  <div class="ms-row done">
+    <div class="ms-year">2024</div>
+    <div class="ms-title">Platform Launch · V1 Live · 50 slides · Vol 1 complete</div>
+    <div class="ms-status">✓ Done</div>
+    <div class="ms-progress"><div class="ms-fill" style="width:100%"></div></div>
+  </div>
+  <div class="ms-row done">
+    <div class="ms-year">2025 Q1</div>
+    <div class="ms-title">2.4M users · Vol 2 live · MENA pilots · NAE v1</div>
+    <div class="ms-status">✓ Done</div>
+    <div class="ms-progress"><div class="ms-fill" style="width:100%"></div></div>
+  </div>
+  <div class="ms-row active">
+    <div class="ms-year">2025 Q2</div>
+    <div class="ms-title">Vol 3 launch · Cross-chain · Spatial v1 · Enterprise beta</div>
+    <div class="ms-status">⚡ Active</div>
+    <div class="ms-progress"><div class="ms-fill" style="width:62%"></div></div>
+  </div>
+  <div class="ms-row">
+    <div class="ms-year">2026</div>
+    <div class="ms-title">10M users · Exchange listing · UBCTC global · AR launch</div>
+    <div class="ms-status">Planned</div>
+    <div class="ms-progress"><div class="ms-fill" style="width:0%"></div></div>
+  </div>
+  <div class="ms-row">
+    <div class="ms-year">2028</div>
+    <div class="ms-title">Full decentralization · 50M users · CGDP in 20 countries</div>
+    <div class="ms-status">Vision</div>
+    <div class="ms-progress"><div class="ms-fill" style="width:0%"></div></div>
+  </div>
+  <div class="ms-row">
+    <div class="ms-year">2030</div>
+    <div class="ms-title">1 Billion Lives Impacted · Cognitive GDP standard global</div>
+    <div class="ms-status">North Star</div>
+    <div class="ms-progress"><div class="ms-fill" style="width:0%"></div></div>
+  </div>
+</div>
+<div class="kpis">
+  <div class="kpi"><div class="kpi-val">2.4M</div><div class="kpi-label">Current Users</div></div>
+  <div class="kpi"><div class="kpi-val">140B</div><div class="kpi-label">CTC Circulating</div></div>
+  <div class="kpi"><div class="kpi-val">97</div><div class="kpi-label">Countries</div></div>
+  <div class="kpi"><div class="kpi-val">62%</div><div class="kpi-label">Q2 2025 Progress</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Coming Soon</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:9px"><div class="skeleton skeleton-title" style="width:50%"></div>${[1,2,3,4,5].map(()=>`<div class="skeleton skeleton-card" style="height:66px;border-radius:11px"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide90(data,lang){
+  const stC={beta:'#68D391',dev:'#63B3ED',research:'#9F7AEA',vision:'rgba(255,255,255,0.3)'};
+  const stI={beta:'🟢',dev:'🔵',research:'🟣',vision:'⚪'};
+  return `
+    ${buildSlideHeader(data,'🚀')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:8px">
+      ${data.features.map((f,i)=>`
+        <div class="fade-in" style="animation-delay:${i*70}ms;padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;border-left:3px solid ${stC[f.status]||'#63B3ED'}">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+            <div style="font-size:13px;font-weight:700;color:#fff">${f.name}</div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <span style="font-size:10px;padding:2px 7px;background:${stC[f.status]||'#63B3ED'}15;color:${stC[f.status]||'#63B3ED'};border-radius:5px;font-weight:600">${f.status.toUpperCase()}</span>
+              <span style="font-size:10px;color:rgba(255,255,255,0.35)">${f.eta}</span>
+            </div>
+          </div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.5);line-height:1.4">${f.desc}</div>
+        </div>`).join('')}
+    </div>`;
+}
+initSlide(90,renderSlide90,{jsonFile:'../en2.json',slideIndex:39});
+</script></body></html>

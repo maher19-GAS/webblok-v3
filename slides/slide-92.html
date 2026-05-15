@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Developer Hub</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:9px"><div class="skeleton skeleton-title" style="width:55%"></div><div class="skeleton skeleton-card" style="height:36px;border-radius:8px"></div>${[1,2,3,4,5].map(()=>`<div class="skeleton skeleton-text" style="width:100%"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide92(data,lang){
+  const mC={GET:'#68D391',POST:'#F6AD55',PUT:'#63B3ED',DELETE:'#FC8181'};
+  return `
+    ${buildSlideHeader(data,'💻')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px">
+      <!-- SDK Languages -->
+      <div class="glass-card fade-in" style="padding:10px 14px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:6px">SDK Languages</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          ${data.sdk_languages.map(l=>`<span style="font-size:11px;padding:4px 10px;background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.15);border-radius:6px;color:#63B3ED;font-weight:600">${l}</span>`).join('')}
+        </div>
+      </div>
+      <!-- Endpoints -->
+      <div style="display:flex;flex-direction:column;gap:5px">
+        ${data.endpoints.map((e,i)=>`
+          <div class="fade-in" style="animation-delay:${i*50}ms;display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:9px;font-family:monospace">
+            <span style="font-size:10px;font-weight:700;color:${mC[e.method]||'#63B3ED'};min-width:36px">${e.method}</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.7);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.path}</span>
+            <span style="font-size:9px;color:rgba(255,255,255,0.35);text-align:right;min-width:80px">${e.desc}</span>
+          </div>`).join('')}
+      </div>
+      <!-- Rate Limits -->
+      <div class="glass-card fade-in" style="padding:10px 14px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:6px">Rate Limits</div>
+        <div style="display:flex;justify-content:space-around;text-align:center">
+          ${Object.entries(data.rate_limits).map(([k,v])=>`<div><div style="font-size:11px;font-weight:700;color:#63B3ED">${v}</div><div style="font-size:9px;color:rgba(255,255,255,0.35);text-transform:capitalize">${k.replace(/_/g,' ')}</div></div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+initSlide(92,renderSlide92,{jsonFile:'../en2.json',slideIndex:41});
+</script></body></html>

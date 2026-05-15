@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 114 – WebXR Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .arch-layers{display:flex;flex-direction:column;gap:8px;width:100%;max-width:660px}
+  .layer{border-radius:12px;padding:12px 16px;border:1px solid}
+  .layer-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+  .layer-items{display:flex;gap:8px;flex-wrap:wrap}
+  .layer-item{font-size:10px;padding:3px 10px;border-radius:20px;border:1px solid;font-weight:600}
+  .l1{background:rgba(108,99,255,.08);border-color:rgba(108,99,255,.2)}
+  .l1 .layer-label{color:#a09eff}
+  .l1 .layer-item{background:rgba(108,99,255,.1);border-color:rgba(108,99,255,.2);color:#a09eff}
+  .l2{background:rgba(67,233,123,.06);border-color:rgba(67,233,123,.2)}
+  .l2 .layer-label{color:var(--g1)}
+  .l2 .layer-item{background:rgba(67,233,123,.08);border-color:rgba(67,233,123,.2);color:var(--g1)}
+  .l3{background:rgba(56,249,215,.05);border-color:rgba(56,249,215,.15)}
+  .l3 .layer-label{color:var(--g2)}
+  .l3 .layer-item{background:rgba(56,249,215,.07);border-color:rgba(56,249,215,.15);color:var(--g2)}
+  .l4{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+  .l4 .layer-label{color:var(--muted)}
+  .l4 .layer-item{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:var(--muted)}
+  .compat{display:flex;gap:10px;width:100%;max-width:660px}
+  .dev{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .dev-icon{font-size:22px;margin-bottom:4px}
+  .dev-name{font-size:11px;font-weight:700;color:var(--text)}
+  .dev-status{font-size:10px;margin-top:2px}
+  .supported{color:var(--g1)}
+  .coming{color:#f6c90e}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 114 · SPATIAL LEARNING</div>
+<h1>WebXR Architecture</h1>
+<div class="arch-layers">
+  <div class="layer l1">
+    <div class="layer-label">🖥️ Presentation Layer</div>
+    <div class="layer-items">
+      <span class="layer-item">WebXR API</span>
+      <span class="layer-item">Three.js</span>
+      <span class="layer-item">WebGL 2.0</span>
+      <span class="layer-item">CSS 3D</span>
+      <span class="layer-item">WebAudio API</span>
+    </div>
+  </div>
+  <div class="layer l2">
+    <div class="layer-label">⚙️ Spatial Engine Layer</div>
+    <div class="layer-items">
+      <span class="layer-item">Spatial State Manager</span>
+      <span class="layer-item">Room Renderer</span>
+      <span class="layer-item">Physics (Rapier.js)</span>
+      <span class="layer-item">Collision Detection</span>
+    </div>
+  </div>
+  <div class="layer l3">
+    <div class="layer-label">📡 Data Layer</div>
+    <div class="layer-items">
+      <span class="layer-item">SessionEngine.spatial</span>
+      <span class="layer-item">IPFS (Palace Storage)</span>
+      <span class="layer-item">CTC Cosmos Nodes</span>
+      <span class="layer-item">WebRTC Multiplayer</span>
+    </div>
+  </div>
+  <div class="layer l4">
+    <div class="layer-label">🔗 Blockchain Layer</div>
+    <div class="layer-items">
+      <span class="layer-item">CTC Token Rewards</span>
+      <span class="layer-item">Spatial NFT Palaces</span>
+      <span class="layer-item">On-Chain Certifications</span>
+    </div>
+  </div>
+</div>
+<div class="compat">
+  <div class="dev"><div class="dev-icon">🖥️</div><div class="dev-name">Desktop</div><div class="dev-status supported">✓ Full Support</div></div>
+  <div class="dev"><div class="dev-icon">📱</div><div class="dev-name">Mobile</div><div class="dev-status supported">✓ Full Support</div></div>
+  <div class="dev"><div class="dev-icon">🥽</div><div class="dev-name">VR Headset</div><div class="dev-status coming">◎ Q3 2025</div></div>
+  <div class="dev"><div class="dev-icon">🕶️</div><div class="dev-name">AR Glasses</div><div class="dev-status coming">◎ Q1 2026</div></div>
+</div>
+</body>
+</html>

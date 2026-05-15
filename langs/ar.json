@@ -1,0 +1,178 @@
+{
+  "code": "ar",
+  "dir": "rtl",
+  "name": "العربية",
+  "nativeName": "العربية",
+  "flag": "🇸🇦",
+
+  "nav": {
+    "brand": "2030B",
+    "brandSub": "— كن أذكى",
+    "toc": "المحتويات",
+    "stats": "إحصاءات",
+    "history": "السجل",
+    "notes": "ملاحظات",
+    "bookmarks": "مفضلة",
+    "comments": "تعليقات",
+    "share": "مشاركة",
+    "language": "اللغة",
+    "theme": "المظهر"
+  },
+
+  "bottomNav": {
+    "prev": "السابق",
+    "next": "التالي"
+  },
+
+  "aside": {
+    "toc": "جدول المحتويات",
+    "stats": "إحصاءات القراءة",
+    "history": "سجل النشاط",
+    "notes": "ملاحظاتي",
+    "bookmarks": "مفضلتي",
+    "comments": "التعليقات",
+    "share": "المشاركة",
+    "language": "اختيار اللغة",
+    "theme": "اختيار المظهر",
+    "close": "إغلاق"
+  },
+
+  "stats": {
+    "slidesRead": "الشرائح المقروءة",
+    "readingTime": "وقت القراءة التقديري",
+    "wpm": "200 كلمة/دقيقة",
+    "longestSession": "أطول جلسة",
+    "sessions": "جلسة",
+    "scrollTimeline": "مسار المواضع وأوقات التركيز",
+    "noPositionData": "لا توجد بيانات مواضع بعد",
+    "clearStats": "مسح كل الإحصاءات",
+    "localStorageSize": "حجم التخزين المحلي",
+    "saveToServer": "حفظ على الخادم (2030b.com)",
+    "active": "نشط"
+  },
+
+  "history": {
+    "empty": "لا يوجد نشاط بعد"
+  },
+
+  "annotations": {
+    "note": "ملاحظة",
+    "bookmark": "مفضلة",
+    "comment": "تعليق",
+    "share": "مشاركة",
+    "noteEmpty": "لا توجد ملاحظات بعد.",
+    "bookmarkEmpty": "لا توجد مفضلة بعد.",
+    "commentEmpty": "لا توجد تعليقات بعد.",
+    "shareEmpty": "لا توجد نصوص مشاركة بعد",
+    "hint": "حدّد نصًا في الكتاب للبدء",
+    "addReply": "أضف ردًا…",
+    "send": "إرسال",
+    "save": "حفظ",
+    "delete": "حذف",
+    "slide": "شريحة",
+    "sharedTexts": "نصوص شاركتها",
+    "shareBook": "مشاركة الكتاب كاملاً"
+  },
+
+  "selMenu": {
+    "note": "ملاحظة",
+    "bookmark": "مفضلة",
+    "comment": "تعليق",
+    "share": "مشاركة"
+  },
+
+  "dialogs": {
+    "addNote": "أضف ملاحظتك",
+    "addComment": "أضف تعليقك",
+    "notePlaceholder": "اكتب ملاحظتك هنا…",
+    "commentPlaceholder": "اكتب تعليقك هنا…",
+    "confirm": "تأكيد",
+    "cancel": "إلغاء",
+    "deleteTitle": "تأكيد الحذف",
+    "deleteText": "هل أنت متأكد من حذف هذه الإضافة؟",
+    "clearStatsTitle": "مسح الإحصاءات",
+    "clearStatsText": "سيتم مسح جميع بيانات القراءة والمواضع. هل تريد المتابعة؟",
+    "saveToServerTitle": "حفظ على الخادم",
+    "saveToServerText": "سيتم رفع بياناتك إلى 2030b.com/webbook قريباً. هذه الميزة قيد التطوير.",
+    "noteSaved": "💾 تم حفظ الملاحظة",
+    "linkCopied": "🔗 تم نسخ الرابط",
+    "segmentCopied": "📋 تم نسخ رابط المقطع",
+    "statsClearDone": "🗑️ تم مسح الإحصاءات",
+    "highlightGone": "⚠️ النص المحدد لم يعد موجوداً"
+  },
+
+  "toast": {
+    "resumeFrom": "استمر من:",
+    "resume": "استمر",
+    "slideOf": "/"
+  },
+
+  "loading": {
+    "preparing": "جاري التحضير…",
+    "checkingCache": "فحص الذاكرة المؤقتة…",
+    "loading": "تحميل:",
+    "processing": "معالجة:",
+    "building": "بناء",
+    "slides": "شريحة…",
+    "initUI": "تهيئة الواجهة…",
+    "ready": "جاهز!",
+    "notFound": "لم يُعثر على ملفات الكتاب"
+  },
+
+  "slideTypes": {
+    "cover": "غلاف",
+    "chapter": "فصل",
+    "quote": "اقتباس",
+    "science": "علم",
+    "equation": "معادلة",
+    "table": "جدول",
+    "list": "قائمة",
+    "prose": "نص",
+    "cta": "دعوة"
+  },
+
+  "slideHints": {
+    "scroll": "مرّر للأسفل أو استخدم أزرار التنقل",
+    "prevSlide": "الشريحة السابقة",
+    "nextSlide": "الشريحة التالية",
+    "ctaButton": "ابدأ على 2030B.com",
+    "ctaBack": "العودة"
+  },
+
+  "share": {
+    "whatsapp": "واتساب",
+    "telegram": "تيليغرام",
+    "copyLink": "نسخ الرابط",
+    "twitter": "تويتر",
+    "facebook": "فيسبوك",
+    "linkedin": "لينكدإن",
+    "email": "بريد إلكتروني",
+    "sms": "رسالة نصية",
+    "reddit": "ريديت",
+    "pocket": "Pocket"
+  },
+
+  "themes": {
+    "title": "اختر مظهراً",
+    "dark": "داكن",
+    "light": "فاتح",
+    "cosmos": "الكون",
+    "emerald": "زمردي",
+    "rose": "وردي",
+    "amber": "عنبري",
+    "violet": "بنفسجي",
+    "slate": "رمادي",
+    "ocean": "المحيط",
+    "forest": "الغابة",
+    "crimson": "قرمزي"
+  },
+
+  "toc": {
+    "slides": "شريحة"
+  },
+
+  "edgeHints": {
+    "prev": "الشريحة السابقة",
+    "next": "الشريحة التالية"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "lang": "ar",
+  "dir": "rtl",
+  "name": "العربية",
+  "nativeName": "العربية",
+  "flag": "🇸🇦",
+  "font": "Cairo",
+  "fontUrl": "https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap",
+
+  "brand": "2030B",
+  "brandSubtitle": "— كن أذكى",
+  "pageTitle": "2030B — كن أذكى | الكتاب التفاعلي",
+  "pageDesc": "2030B — كن أذكى: الكتاب التفاعلي v5",
+  "ogTitle": "2030B — كن أذكى",
+  "ogDesc": "اقرأ الكتاب التفاعلي 2030B كن أذكى",
+
+  "nav": {
+    "toc": "المحتويات",
+    "stats": "إحصاءات",
+    "history": "السجل",
+    "notes": "ملاحظات",
+    "bookmarks": "مفضلة",
+    "comments": "تعليقات",
+    "share": "مشاركة",
+    "lang": "اللغة",
+    "theme": "المظهر",
+    "close": "إغلاق"
+  },
+
+  "loading": {
+    "preparing": "جاري التحضير…",
+    "checkingCache": "فحص الذاكرة المؤقتة…",
+    "loading": "تحميل",
+    "processing": "معالجة",
+    "buildingSlides": "بناء {n} شريحة…",
+    "settingUp": "تهيئة الواجهة…",
+    "ready": "جاهز!"
+  },
+
+  "nav_bottom": {
+    "prev": "السابق",
+    "next": "التالي"
+  },
+
+  "selection": {
+    "note": "ملاحظة",
+    "bookmark": "مفضلة",
+    "comment": "تعليق",
+    "share": "مشاركة"
+  },
+
+  "panels": {
+    "toc": "جدول المحتويات",
+    "stats": "إحصاءات القراءة",
+    "history": "سجل النشاط",
+    "notes": "ملاحظاتي",
+    "bookmarks": "مفضلتي",
+    "comments": "التعليقات",
+    "share": "المشاركة",
+    "lang": "اختر اللغة",
+    "theme": "اختر المظهر"
+  },
+
+  "stats": {
+    "slidesRead": "الشرائح المقروءة",
+    "estTime": "وقت القراءة التقديري",
+    "wpm": "200 كلمة/دقيقة",
+    "longestSession": "أطول جلسة",
+    "sessions": "{n} جلسة",
+    "scrollTimeline": "مسار المواضع وأوقات التركيز",
+    "noScrollData": "لا توجد بيانات مواضع بعد",
+    "clearStats": "مسح كل الإحصاءات",
+    "storageSize": "حجم البيانات المحلية",
+    "uploadToServer": "رفع إلى الخادم",
+    "cleared": "🗑️ تم مسح الإحصاءات",
+    "uploadNotice": "رفع البيانات إلى 2030b.com/webbook — قريباً!"
+  },
+
+  "history": {
+    "noActivity": "لا يوجد نشاط بعد",
+    "openedPanel": "فتح: {name}"
+  },
+
+  "annotations": {
+    "empty_note": "لا توجد ملاحظات بعد.",
+    "empty_bookmark": "لا توجد مفضلة بعد.",
+    "empty_comment": "لا توجد تعليقات بعد.",
+    "empty_share": "لا توجد نصوص مشاركة بعد",
+    "addHint": "حدّد نصًا في الكتاب للبدء",
+    "delete": "حذف",
+    "jump": "انتقل",
+    "save": "حفظ",
+    "sending": "إرسال",
+    "reply": "أضف ردًا…",
+    "editNote": "عدّل ملاحظتك…",
+    "noteSaved": "💾 تم حفظ الملاحظة",
+    "notFound": "⚠️ النص المحدد لم يعد موجوداً",
+    "sharedCount": "نصوص شاركتها ({n})",
+    "shareAll": "مشاركة الكتاب كاملاً"
+  },
+
+  "share": {
+    "whatsapp": "واتساب",
+    "telegram": "تيليغرام",
+    "twitter": "تويتر",
+    "facebook": "فيسبوك",
+    "linkedin": "لينكدإن",
+    "email": "البريد",
+    "copyLink": "نسخ الرابط",
+    "copyText": "نسخ النص",
+    "webShare": "مشاركة",
+    "linkCopied": "🔗 تم نسخ الرابط",
+    "excerptCopied": "📋 تم نسخ رابط المقطع"
+  },
+
+  "toast": {
+    "restore": "استمر من:",
+    "resumeBtn": "استمر",
+    "openedBook": "فتح الكتاب — v5"
+  },
+
+  "slideTypes": {
+    "cover": "غلاف",
+    "chapter": "فصل",
+    "quote": "اقتباس",
+    "science": "علم",
+    "equation": "معادلة",
+    "table": "جدول",
+    "list": "قائمة",
+    "prose": "نص",
+    "cta": "دعوة"
+  },
+
+  "cta": {
+    "start": "ابدأ على 2030B.com",
+    "back": "العودة"
+  },
+
+  "scroll_hint": "مرّر للأسفل أو استخدم أزرار التنقل",
+  "edge_prev": "الشريحة السابقة",
+  "edge_next": "الشريحة التالية",
+  "slide_label": "شريحة {n}",
+  "slide_count": "{n} شريحة",
+  "slide_of": "/ {total}",
+
+  "note_prompt": "أضف ملاحظتك:",
+  "comment_prompt": "أضف تعليقك:",
+  "book_missing": "لم يُعثر على ملفات الكتاب",
+
+  "themes": {
+    "dark_night": "ليل غامق",
+    "deep_ocean": "محيط عميق",
+    "emerald": "زمرد",
+    "sunset": "غروب",
+    "royal_purple": "بنفسجي ملكي",
+    "rose_gold": "ذهبي وردي",
+    "slate": "رمادي أردوازي",
+    "monochrome": "أحادي",
+    "desert": "صحراء",
+    "neon": "نيون"
+  },
+
+  "lang_panel": {
+    "search": "ابحث عن لغة…",
+    "current": "اللغة الحالية",
+    "all": "جميع اللغات"
+  },
+
+  "theme_panel": {
+    "mode_light": "فاتح",
+    "mode_dark": "داكن",
+    "choose_theme": "اختر قالباً",
+    "choose_mode": "الوضع"
+  }
+}

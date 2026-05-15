@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 125 – On-Chain Governance V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:14px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(20px,4vw,38px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .gov-model{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:680px}
+  .gm{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center}
+  .gm.active{border-color:rgba(108,99,255,.4);background:rgba(108,99,255,.07)}
+  .gm-icon{font-size:24px;margin-bottom:6px}
+  .gm-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .gm-desc{font-size:10px;color:var(--muted);line-height:1.4}
+  .active-proposals{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;width:100%;max-width:680px}
+  .ap-header{display:flex;justify-content:space-between;margin-bottom:10px}
+  .ap-title{font-size:12px;font-weight:700;color:var(--text)}
+  .ap-count{font-size:10px;color:var(--g1);font-weight:700}
+  .proposal{padding:8px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center}
+  .proposal:last-child{border-bottom:none}
+  .prop-status{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:2px}
+  .prop-info{flex:1}
+  .prop-title{font-size:11px;font-weight:700;color:var(--text)}
+  .prop-meta{font-size:9px;color:var(--muted);margin-top:1px}
+  .prop-vote-bar{display:flex;gap:4px;align-items:center;margin-top:4px}
+  .vote-seg{height:4px;border-radius:2px}
+  .vote-for{background:var(--g1)}
+  .vote-against{background:#ff6b6b}
+  .vote-abstain{background:var(--muted)}
+  .vote-text{font-size:8px;color:var(--muted)}
+  .voting-power{display:flex;gap:8px;width:100%;max-width:680px}
+  .vp{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .vp-val{font-size:16px;font-weight:900;color:#a09eff}
+  .vp-label{font-size:9px;color:var(--muted);margin-top:1px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 125 · CROSS-CHAIN</div>
+<h1>On-Chain Governance V2</h1>
+<div class="gov-model">
+  <div class="gm active">
+    <div class="gm-icon">🧠</div>
+    <div class="gm-name">Cognitive Voting</div>
+    <div class="gm-desc">Vote weight based on CQ score + CTC stake + reputation — expertise drives decisions</div>
+  </div>
+  <div class="gm">
+    <div class="gm-icon">🌐</div>
+    <div class="gm-name">Quadratic Voting</div>
+    <div class="gm-desc">Cost of additional votes grows quadratically — prevents whale dominance</div>
+  </div>
+  <div class="gm">
+    <div class="gm-icon">🏛️</div>
+    <div class="gm-name">Bicameral DAO</div>
+    <div class="gm-desc">Users chamber + Expert council — balanced between scale and expertise</div>
+  </div>
+  <div class="gm">
+    <div class="gm-icon">🔒</div>
+    <div class="gm-name">Time-Lock Safety</div>
+    <div class="gm-desc">48-hour execution delay on treasury moves, 7-day for protocol changes</div>
+  </div>
+  <div class="gm">
+    <div class="gm-icon">⚡</div>
+    <div class="gm-name">Signal Voting</div>
+    <div class="gm-desc">Off-chain temperature checks before binding on-chain proposals</div>
+  </div>
+  <div class="gm">
+    <div class="gm-icon">🔮</div>
+    <div class="gm-name">Prediction Markets</div>
+    <div class="gm-desc">Bet CTC on proposal outcomes — align incentives with accuracy</div>
+  </div>
+</div>
+<div class="active-proposals">
+  <div class="ap-header"><div class="ap-title">⚡ Active Proposals</div><div class="ap-count">5 live · 2 pending</div></div>
+  <div class="proposal">
+    <div class="prop-status" style="background:var(--g1)"></div>
+    <div class="prop-info">
+      <div class="prop-title">GIP-047: Increase UBCTC allocation to 10%</div>
+      <div class="prop-meta">4 days remaining · 1,840 voters · Quorum met</div>
+      <div class="prop-vote-bar"><div class="vote-seg vote-for" style="width:62px"></div><div class="vote-seg vote-against" style="width:28px"></div><div class="vote-seg vote-abstain" style="width:10px"></div><div class="vote-text">62% / 28% / 10%</div></div>
+    </div>
+  </div>
+  <div class="proposal">
+    <div class="prop-status" style="background:#f6c90e"></div>
+    <div class="prop-info">
+      <div class="prop-title">GIP-048: Add Solana cross-chain bridge</div>
+      <div class="prop-meta">6 days remaining · 924 voters · Quorum 68%</div>
+      <div class="prop-vote-bar"><div class="vote-seg vote-for" style="width:75px"></div><div class="vote-seg vote-against" style="width:15px"></div><div class="vote-seg vote-abstain" style="width:10px"></div><div class="vote-text">75% / 15% / 10%</div></div>
+    </div>
+  </div>
+</div>
+<div class="voting-power">
+  <div class="vp"><div class="vp-val">4,250</div><div class="vp-label">Your Rep Score</div></div>
+  <div class="vp"><div class="vp-val">4,000</div><div class="vp-label">Staked CTC</div></div>
+  <div class="vp"><div class="vp-val">67</div><div class="vp-label">CQ Score</div></div>
+  <div class="vp"><div class="vp-val">2.8K</div><div class="vp-label">Voting Power</div></div>
+</div>
+</body>
+</html>

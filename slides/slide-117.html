@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 117 – Spatial Social Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hub-zones{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:660px}
+  .zone{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;transition:border-color .2s}
+  .zone:hover{border-color:rgba(108,99,255,.35)}
+  .zone-icon{font-size:28px;margin-bottom:6px}
+  .zone-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .zone-desc{font-size:10px;color:var(--muted);line-height:1.4}
+  .zone-users{display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-size:10px;font-weight:700;color:var(--g1);background:rgba(67,233,123,.1);padding:2px 8px;border-radius:10px}
+  .social-features{background:rgba(108,99,255,.06);border:1px solid rgba(108,99,255,.18);border-radius:14px;padding:14px 16px;width:100%;max-width:660px}
+  .sf-title{font-size:11px;font-weight:700;color:#a09eff;margin-bottom:10px}
+  .sf-list{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+  .sf-item{display:flex;gap:6px;align-items:center;font-size:10px;color:var(--muted)}
+  .sf-item span{color:#a09eff;font-size:12px}
+  .leaderboard{display:flex;gap:10px;width:100%;max-width:660px}
+  .lb-entry{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;display:flex;gap:8px;align-items:center}
+  .lb-rank{font-size:16px;font-weight:900;color:var(--muted);width:20px;text-align:center}
+  .lb-rank.gold{color:#f6c90e}
+  .lb-rank.silver{color:#aaa}
+  .lb-rank.bronze{color:#cd7c3b}
+  .lb-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+  .lb-info{flex:1}
+  .lb-name{font-size:10px;font-weight:700;color:var(--text)}
+  .lb-score{font-size:9px;color:var(--g1)}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 117 · SPATIAL LEARNING</div>
+<h1>Spatial Social Hub</h1>
+<div class="hub-zones">
+  <div class="zone">
+    <div class="zone-icon">☕</div>
+    <div class="zone-name">The Agora</div>
+    <div class="zone-desc">Open social plaza — chat, share insights, form study groups</div>
+    <div class="zone-users">● 847 online</div>
+  </div>
+  <div class="zone">
+    <div class="zone-icon">🏟️</div>
+    <div class="zone-name">Tournament Arena</div>
+    <div class="zone-desc">Weekly cognitive tournaments — ranked global competitions</div>
+    <div class="zone-users">● 234 competing</div>
+  </div>
+  <div class="zone">
+    <div class="zone-icon">🎓</div>
+    <div class="zone-name">Mentor Hall</div>
+    <div class="zone-desc">Connect with Visionary-tier mentors for 1:1 spatial sessions</div>
+    <div class="zone-users">● 42 mentors live</div>
+  </div>
+  <div class="zone">
+    <div class="zone-icon">🌍</div>
+    <div class="zone-name">Cultural Exchange</div>
+    <div class="zone-desc">97-country diversity rooms — cross-cultural cognitive fusion</div>
+    <div class="zone-users">● 1,203 active</div>
+  </div>
+  <div class="zone">
+    <div class="zone-icon">🔬</div>
+    <div class="zone-name">Research Rooms</div>
+    <div class="zone-desc">Collaborative knowledge creation — contribute to DVM projects</div>
+    <div class="zone-users">● 156 researchers</div>
+  </div>
+  <div class="zone">
+    <div class="zone-icon">🎉</div>
+    <div class="zone-name">Achievement Hall</div>
+    <div class="zone-desc">Celebrate milestones — spatial NFT gallery of accomplishments</div>
+    <div class="zone-users">● Always open</div>
+  </div>
+</div>
+<div class="leaderboard">
+  <div class="lb-entry">
+    <div class="lb-rank gold">1</div>
+    <div class="lb-avatar" style="background:rgba(246,201,14,.2);color:#f6c90e">RK</div>
+    <div class="lb-info"><div class="lb-name">Riya Kumar</div><div class="lb-score">98 CQ · 2,840 nodes</div></div>
+  </div>
+  <div class="lb-entry">
+    <div class="lb-rank silver">2</div>
+    <div class="lb-avatar" style="background:rgba(170,170,170,.15);color:#aaa">OM</div>
+    <div class="lb-info"><div class="lb-name">Omar Mansour</div><div class="lb-score">94 CQ · 2,190 nodes</div></div>
+  </div>
+  <div class="lb-entry">
+    <div class="lb-rank bronze">3</div>
+    <div class="lb-avatar" style="background:rgba(205,124,59,.15);color:#cd7c3b">AJ</div>
+    <div class="lb-info"><div class="lb-name">Alex Johnson</div><div class="lb-score">92 CQ · 1,840 nodes</div></div>
+  </div>
+</div>
+</body>
+</html>

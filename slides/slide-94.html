@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Why 2030B?</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:8px"><div class="skeleton skeleton-title" style="width:55%"></div>${[1,2,3,4,5,6].map(()=>`<div class="skeleton skeleton-card" style="height:44px;border-radius:9px"></div>`).join('')}</div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide94(data,lang){
+  return `
+    ${buildSlideHeader(data,'⚡')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:7px">
+      <!-- Table Header -->
+      <div style="display:grid;grid-template-columns:2fr 1.4fr 1.4fr;gap:4px;padding:7px 10px">
+        <span style="font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:.07em">Feature</span>
+        <span style="font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:.07em;text-align:center">Traditional</span>
+        <span style="font-size:10px;color:#63B3ED;text-transform:uppercase;letter-spacing:.07em;text-align:center">2030B</span>
+      </div>
+      ${data.comparison.map((c,i)=>`
+        <div class="fade-in" style="animation-delay:${i*55}ms;display:grid;grid-template-columns:2fr 1.4fr 1.4fr;gap:4px;align-items:center;padding:9px 10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:9px">
+          <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.75)">${c.feature}</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.35);text-align:center;padding:3px 6px;background:rgba(252,129,129,0.06);border-radius:5px">${c.traditional}</div>
+          <div style="font-size:10px;color:#68D391;text-align:center;padding:3px 6px;background:rgba(104,211,145,0.08);border-radius:5px;font-weight:600">${c.b2030}</div>
+        </div>`).join('')}
+    </div>`;
+}
+initSlide(94,renderSlide94,{jsonFile:'../en2.json',slideIndex:43});
+</script></body></html>

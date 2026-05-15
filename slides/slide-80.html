@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Profile & Settings</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:10px"><div class="skeleton skeleton-title" style="width:55%"></div><div class="skeleton skeleton-card" style="height:80px;border-radius:12px"></div><div class="skeleton skeleton-card" style="height:120px;border-radius:12px"></div></div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide80(data,lang){
+  const p=data.profile;
+  return `
+    ${buildSlideHeader(data,'⚙️')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px">
+      <!-- Profile Card -->
+      <div class="glass-card fade-in" style="padding:14px;display:flex;align-items:center;gap:12px">
+        <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#63B3ED,#9F7AEA);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0">${p.avatar}</div>
+        <div>
+          <div style="font-size:15px;font-weight:800;color:#fff">${p.name}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:2px">${p.username}</div>
+          <div style="font-size:11px;color:#63B3ED;margin-top:2px">⚡ Level ${p.level} • ${p.level_name}</div>
+        </div>
+        <div style="margin-left:auto;text-align:right">
+          <div style="font-size:10px;color:rgba(255,255,255,0.35)">${p.joined}</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px">${p.location}</div>
+        </div>
+      </div>
+      <!-- Settings Groups -->
+      ${data.settings_groups.map((g,gi)=>`
+        <div class="glass-card fade-in" style="padding:12px 14px;animation-delay:${gi*0.07}s">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,0.35);margin-bottom:8px">${g.group}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            ${g.options.map(opt=>`
+              <div style="display:flex;align-items:center;gap:6px;padding:6px 10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;cursor:pointer">
+                <div style="width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);flex-shrink:0"></div>
+                <span style="font-size:11px;color:rgba(255,255,255,0.65)">${opt}</span>
+              </div>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+initSlide(80,renderSlide80,{jsonFile:'../en2.json',slideIndex:29});
+</script></body></html>

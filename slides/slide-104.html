@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 104 – Flow State Engineering</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:20px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(24px,5vw,46px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .subtitle{font-size:clamp(12px,1.8vw,15px);color:var(--muted);text-align:center;max-width:520px}
+  .flow-zones{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:660px}
+  .zone{border-radius:14px;padding:18px 14px;text-align:center;border:1px solid}
+  .zone.boredom{background:rgba(108,99,255,.08);border-color:rgba(108,99,255,.25)}
+  .zone.flow{background:rgba(67,233,123,.12);border-color:rgba(67,233,123,.4)}
+  .zone.anxiety{background:rgba(255,107,107,.08);border-color:rgba(255,107,107,.25)}
+  .zone-icon{font-size:28px;margin-bottom:8px}
+  .zone-name{font-size:13px;font-weight:700;margin-bottom:4px}
+  .zone.boredom .zone-name{color:#9d9aff}
+  .zone.flow .zone-name{color:var(--g1)}
+  .zone.anxiety .zone-name{color:#ff6b6b}
+  .zone-desc{font-size:11px;color:var(--muted);line-height:1.4}
+  .zone-load{font-size:11px;font-weight:700;margin-top:8px;padding:3px 10px;border-radius:20px;display:inline-block}
+  .zone.boredom .zone-load{background:rgba(108,99,255,.15);color:#9d9aff}
+  .zone.flow .zone-load{background:rgba(67,233,123,.15);color:var(--g1)}
+  .zone.anxiety .zone-load{background:rgba(255,107,107,.15);color:#ff6b6b}
+  .indicators{display:flex;gap:12px;width:100%;max-width:660px}
+  .ind{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .ind-val{font-size:20px;font-weight:900;color:var(--g1)}
+  .ind-label{font-size:10px;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 104 · NAE</div>
+<h1>Flow State Engineering</h1>
+<p class="subtitle">NAE continuously calibrates cognitive load to keep you in the optimal flow zone — not bored, not overwhelmed.</p>
+<div class="flow-zones">
+  <div class="zone boredom">
+    <div class="zone-icon">😴</div>
+    <div class="zone-name">Boredom Zone</div>
+    <div class="zone-desc">Load too low — skill exceeds challenge, engagement drops</div>
+    <div class="zone-load">Load &lt; 0.35</div>
+  </div>
+  <div class="zone flow">
+    <div class="zone-icon">🌊</div>
+    <div class="zone-name">Flow Zone ✓</div>
+    <div class="zone-desc">Optimal challenge-skill balance — peak performance & retention</div>
+    <div class="zone-load">Load 0.35–0.70</div>
+  </div>
+  <div class="zone anxiety">
+    <div class="zone-icon">😰</div>
+    <div class="zone-name">Anxiety Zone</div>
+    <div class="zone-desc">Challenge exceeds skill — cognitive overload & disengagement</div>
+    <div class="zone-load">Load &gt; 0.70</div>
+  </div>
+</div>
+<div class="indicators">
+  <div class="ind"><div class="ind-val">340ms</div><div class="ind-label">Adaptation Cycle</div></div>
+  <div class="ind"><div class="ind-val">68%</div><div class="ind-label">Users in Flow Zone</div></div>
+  <div class="ind"><div class="ind-val">+34%</div><div class="ind-label">Retention Boost</div></div>
+  <div class="ind"><div class="ind-val">2.1×</div><div class="ind-label">CTC Multiplier in Flow</div></div>
+</div>
+</body>
+</html>

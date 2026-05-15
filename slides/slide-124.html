@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 124 – ZK Identity</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .zk-card{background:linear-gradient(135deg,rgba(108,99,255,.1),rgba(56,249,215,.06));border:1px solid rgba(108,99,255,.3);border-radius:18px;padding:18px 20px;width:100%;max-width:640px}
+  .zk-header{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+  .zk-icon{font-size:40px}
+  .zk-title{font-size:16px;font-weight:900;color:#a09eff}
+  .zk-sub{font-size:11px;color:var(--muted);margin-top:2px}
+  .zk-proof{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .proof{background:rgba(255,255,255,.03);border-radius:8px;padding:8px 10px;font-size:10px}
+  .proof-label{font-weight:700;color:#a09eff;margin-bottom:2px}
+  .proof-value{color:var(--muted)}
+  .claims{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:640px}
+  .claim{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .claim-icon{font-size:20px;margin-bottom:4px}
+  .claim-type{font-size:10px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .claim-desc{font-size:9px;color:var(--muted);line-height:1.3}
+  .claim-badge{display:inline-block;margin-top:4px;font-size:8px;font-weight:700;padding:1px 6px;border-radius:8px;background:rgba(108,99,255,.12);color:#a09eff;border:1px solid rgba(108,99,255,.2)}
+  .privacy-row{display:flex;gap:8px;width:100%;max-width:640px}
+  .priv{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .priv-icon{font-size:18px;margin-bottom:3px}
+  .priv-text{font-size:10px;color:var(--muted);line-height:1.3}
+  .priv-text strong{color:var(--g1)}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 124 · CROSS-CHAIN</div>
+<h1>ZK Identity System</h1>
+<div class="zk-card">
+  <div class="zk-header">
+    <div class="zk-icon">🔒</div>
+    <div>
+      <div class="zk-title">Zero-Knowledge Cognitive Passport</div>
+      <div class="zk-sub">Prove your skills without revealing your data. Verifiable, portable, self-sovereign.</div>
+    </div>
+  </div>
+  <div class="zk-proof">
+    <div class="proof"><div class="proof-label">Claim</div><div class="proof-value">"I have Analytical score ≥ 80"</div></div>
+    <div class="proof"><div class="proof-label">ZK Proof</div><div class="proof-value">π = 0x4a3f...e91c [valid]</div></div>
+    <div class="proof"><div class="proof-label">Verifier sees</div><div class="proof-value">✓ Claim is TRUE — no score revealed</div></div>
+    <div class="proof"><div class="proof-label">On-Chain</div><div class="proof-value">Anchored to CTC Native Chain</div></div>
+  </div>
+</div>
+<div class="claims">
+  <div class="claim"><div class="claim-icon">🧠</div><div class="claim-type">Skill Claims</div><div class="claim-desc">Prove dimension scores without revealing exact values</div><div class="claim-badge">ZK-SNARK</div></div>
+  <div class="claim"><div class="claim-icon">🎓</div><div class="claim-type">Certification Proofs</div><div class="claim-desc">Portable credentials readable by any EVM-compatible platform</div><div class="claim-badge">ERC-735</div></div>
+  <div class="claim"><div class="claim-icon">🏦</div><div class="claim-type">Credit Scoring</div><div class="claim-desc">DeFi credit scores derived from cognitive track record</div><div class="claim-badge">ZK-Credit</div></div>
+  <div class="claim"><div class="claim-icon">🗳️</div><div class="claim-type">Governance Rights</div><div class="claim-desc">Voting power proven from reputation without ID exposure</div><div class="claim-badge">Anonymous</div></div>
+  <div class="claim"><div class="claim-icon">🌍</div><div class="claim-type">Geo-Proofs</div><div class="claim-desc">Prove regional eligibility for CGDP/UBCTC programs</div><div class="claim-badge">ZK-Location</div></div>
+  <div class="claim"><div class="claim-icon">💰</div><div class="claim-type">Yield Eligibility</div><div class="claim-desc">Prove growth rate tier for DeFi products anonymously</div><div class="claim-badge">ZK-Yield</div></div>
+</div>
+<div class="privacy-row">
+  <div class="priv"><div class="priv-icon">🛡️</div><div class="priv-text"><strong>GDPR Compliant</strong> by ZK design</div></div>
+  <div class="priv"><div class="priv-icon">🔑</div><div class="priv-text"><strong>Self-Sovereign</strong> — you own your identity</div></div>
+  <div class="priv"><div class="priv-icon">⛓️</div><div class="priv-text"><strong>Cross-Chain</strong> readable on all networks</div></div>
+</div>
+</body>
+</html>

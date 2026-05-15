@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 107 – CORA AI Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#6c63ff;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:18px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);opacity:.7}
+  h1{font-size:clamp(24px,5vw,46px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .cora-card{background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(67,233,123,.08));border:1px solid rgba(108,99,255,.3);border-radius:20px;padding:20px 24px;width:100%;max-width:640px;display:flex;gap:16px;align-items:center}
+  .cora-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--g3),var(--g1));display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;box-shadow:0 0 20px rgba(108,99,255,.4)}
+  .cora-name{font-size:18px;font-weight:900;color:#fff;margin-bottom:4px}
+  .cora-sub{font-size:12px;color:rgba(255,255,255,.5)}
+  .capabilities{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:640px}
+  .cap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .cap-icon{font-size:22px;margin-bottom:6px}
+  .cap-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .cap-desc{font-size:9px;color:var(--muted);line-height:1.4}
+  .chat-preview{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:12px 16px;width:100%;max-width:640px}
+  .chat-msg{margin-bottom:8px;font-size:11px;line-height:1.5}
+  .chat-msg.user{text-align:right;color:var(--muted)}
+  .chat-msg.cora{color:var(--g1)}
+  .chat-msg .bubble{display:inline-block;padding:6px 12px;border-radius:10px;max-width:85%}
+  .chat-msg.user .bubble{background:rgba(255,255,255,.06)}
+  .chat-msg.cora .bubble{background:rgba(67,233,123,.1);border:1px solid rgba(67,233,123,.2)}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 107 · NAE</div>
+<h1>CORA AI Assistant</h1>
+<div class="cora-card">
+  <div class="cora-avatar">🤖</div>
+  <div>
+    <div class="cora-name">CORA</div>
+    <div class="cora-sub">Cognitive Optimization & Reasoning Assistant · Your 24/7 AI learning coach</div>
+  </div>
+</div>
+<div class="capabilities">
+  <div class="cap"><div class="cap-icon">🧭</div><div class="cap-name">Learning Guide</div><div class="cap-desc">Curates your daily learning path based on NAE signals</div></div>
+  <div class="cap"><div class="cap-icon">💬</div><div class="cap-name">Socratic Tutor</div><div class="cap-desc">Asks questions to deepen understanding, not just answers</div></div>
+  <div class="cap"><div class="cap-icon">📊</div><div class="cap-name">Progress Analyst</div><div class="cap-desc">Tracks all 7 cognitive dimensions with actionable insights</div></div>
+  <div class="cap"><div class="cap-icon">💰</div><div class="cap-name">CTC Optimizer</div><div class="cap-desc">Maximizes your cognitive yield and CTC earning rate</div></div>
+  <div class="cap"><div class="cap-icon">🌐</div><div class="cap-name">Multilingual</div><div class="cap-desc">Fluent in 40+ languages including Arabic with full RTL</div></div>
+  <div class="cap"><div class="cap-icon">🔒</div><div class="cap-name">Private by Default</div><div class="cap-desc">Runs on-device inference — your data stays yours</div></div>
+</div>
+<div class="chat-preview">
+  <div class="chat-msg user"><span class="bubble">I'm struggling with systems thinking today</span></div>
+  <div class="chat-msg cora"><span class="bubble">🧬 I noticed your response latency increased by 40% this session. Let's shift to a lighter module — here's a 12-min systems pattern exercise that earns 85 CTC at your current flow level.</span></div>
+</div>
+</body>
+</html>

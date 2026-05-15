@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 119 – Cross-Chain Bridge</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--g3:#f093fb;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g3);opacity:.8}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g3),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .subtitle{font-size:clamp(12px,1.8vw,14px);color:var(--muted);text-align:center;max-width:500px}
+  .bridge-visual{display:flex;align-items:center;gap:0;width:100%;max-width:680px}
+  .chain{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center}
+  .chain-icon{font-size:28px;margin-bottom:6px}
+  .chain-name{font-size:13px;font-weight:700;color:var(--text)}
+  .chain-balance{font-size:11px;color:var(--g1);margin-top:4px}
+  .bridge-center{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 8px}
+  .bridge-box{background:linear-gradient(135deg,rgba(240,147,251,.15),rgba(67,233,123,.1));border:1px solid rgba(240,147,251,.3);border-radius:12px;padding:10px 14px;text-align:center}
+  .bridge-label{font-size:10px;font-weight:700;color:var(--g3);margin-bottom:2px}
+  .bridge-time{font-size:9px;color:var(--muted)}
+  .arrows{display:flex;flex-direction:column;gap:4px;align-items:center}
+  .arr{font-size:14px;color:rgba(240,147,251,.5);animation:flow 1.5s ease-in-out infinite}
+  @keyframes flow{0%,100%{opacity:.3;transform:translateX(0)}50%{opacity:1;transform:translateX(3px)}}
+  .chains-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:680px}
+  .c-chip{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .c-chip-icon{font-size:20px;margin-bottom:4px}
+  .c-chip-name{font-size:10px;font-weight:700;color:var(--text)}
+  .c-chip-status{font-size:9px;margin-top:2px}
+  .live{color:var(--g1)} .planned{color:#f6c90e}
+  .security-bar{background:rgba(67,233,123,.05);border:1px solid rgba(67,233,123,.15);border-radius:12px;padding:12px 16px;width:100%;max-width:680px;display:flex;gap:12px;align-items:center}
+  .security-icon{font-size:22px}
+  .security-text{font-size:11px;color:var(--muted);line-height:1.5}
+  .security-text strong{color:var(--g1)}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 119 · CROSS-CHAIN</div>
+<h1>Cross-Chain Bridge</h1>
+<p class="subtitle">CTC transcends a single blockchain — interoperable across all major networks via our secure zero-knowledge bridge protocol.</p>
+<div class="bridge-visual">
+  <div class="chain">
+    <div class="chain-icon">⟡</div>
+    <div class="chain-name">CTC Native</div>
+    <div class="chain-balance">Primary Chain</div>
+  </div>
+  <div class="bridge-center">
+    <div class="arrows"><div class="arr">→</div><div class="arr" style="animation-direction:reverse">←</div></div>
+    <div class="bridge-box"><div class="bridge-label">ZK Bridge</div><div class="bridge-time">~45 sec</div></div>
+    <div class="arrows"><div class="arr">→</div><div class="arr" style="animation-direction:reverse">←</div></div>
+  </div>
+  <div class="chain">
+    <div class="chain-icon">🔷</div>
+    <div class="chain-name">Ethereum</div>
+    <div class="chain-balance">wCTC · ERC-20</div>
+  </div>
+</div>
+<div class="chains-grid">
+  <div class="c-chip"><div class="c-chip-icon">🔷</div><div class="c-chip-name">Ethereum</div><div class="c-chip-status live">● Live Q2 2025</div></div>
+  <div class="c-chip"><div class="c-chip-icon">🟣</div><div class="c-chip-name">Polygon</div><div class="c-chip-status live">● Live Q2 2025</div></div>
+  <div class="c-chip"><div class="c-chip-icon">⚡</div><div class="c-chip-name">Solana</div><div class="c-chip-status planned">◎ Q3 2025</div></div>
+  <div class="c-chip"><div class="c-chip-icon">🔵</div><div class="c-chip-name">Base (L2)</div><div class="c-chip-status planned">◎ Q3 2025</div></div>
+  <div class="c-chip"><div class="c-chip-icon">🌊</div><div class="c-chip-name">Arbitrum</div><div class="c-chip-status planned">◎ Q4 2025</div></div>
+  <div class="c-chip"><div class="c-chip-icon">🔴</div><div class="c-chip-name">Optimism</div><div class="c-chip-status planned">◎ Q4 2025</div></div>
+  <div class="c-chip"><div class="c-chip-icon">🌙</div><div class="c-chip-name">Near</div><div class="c-chip-status planned">◎ 2026</div></div>
+  <div class="c-chip"><div class="c-chip-icon">🔗</div><div class="c-chip-name">Cosmos IBC</div><div class="c-chip-status planned">◎ 2026</div></div>
+</div>
+<div class="security-bar">
+  <div class="security-icon">🛡️</div>
+  <div class="security-text"><strong>Security:</strong> Zero-Knowledge Proof validation · Multi-sig guardian network · 72-hour challenge period · $50M bridge insurance fund · Audited by Certik + Trail of Bits</div>
+</div>
+</body>
+</html>

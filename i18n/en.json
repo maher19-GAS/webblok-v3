@@ -1,0 +1,175 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "name": "English",
+  "nativeName": "English",
+  "flag": "🇬🇧",
+  "font": "Inter",
+  "fontUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+
+  "brand": "2030B",
+  "brandSubtitle": "— Be Smarter",
+  "pageTitle": "2030B — Be Smarter | Interactive Book",
+  "pageDesc": "2030B — Be Smarter: Interactive Book v5",
+  "ogTitle": "2030B — Be Smarter",
+  "ogDesc": "Read the 2030B Be Smarter interactive book",
+
+  "nav": {
+    "toc": "Contents",
+    "stats": "Statistics",
+    "history": "History",
+    "notes": "Notes",
+    "bookmarks": "Bookmarks",
+    "comments": "Comments",
+    "share": "Share",
+    "lang": "Language",
+    "theme": "Theme",
+    "close": "Close"
+  },
+
+  "loading": {
+    "preparing": "Preparing…",
+    "checkingCache": "Checking cache…",
+    "loading": "Loading",
+    "processing": "Processing",
+    "buildingSlides": "Building {n} slides…",
+    "settingUp": "Setting up UI…",
+    "ready": "Ready!"
+  },
+
+  "nav_bottom": {
+    "prev": "Previous",
+    "next": "Next"
+  },
+
+  "selection": {
+    "note": "Note",
+    "bookmark": "Bookmark",
+    "comment": "Comment",
+    "share": "Share"
+  },
+
+  "panels": {
+    "toc": "Table of Contents",
+    "stats": "Reading Stats",
+    "history": "Activity Log",
+    "notes": "My Notes",
+    "bookmarks": "My Bookmarks",
+    "comments": "Comments",
+    "share": "Share",
+    "lang": "Choose Language",
+    "theme": "Choose Theme"
+  },
+
+  "stats": {
+    "slidesRead": "Slides Read",
+    "estTime": "Estimated Reading Time",
+    "wpm": "200 words/min",
+    "longestSession": "Longest Session",
+    "sessions": "{n} sessions",
+    "scrollTimeline": "Position Track & Focus Time",
+    "noScrollData": "No position data yet",
+    "clearStats": "Clear All Statistics",
+    "storageSize": "Local Data Size",
+    "uploadToServer": "Upload to Server",
+    "cleared": "🗑️ Statistics cleared",
+    "uploadNotice": "Uploading to 2030b.com/webbook — Coming soon!"
+  },
+
+  "history": {
+    "noActivity": "No activity yet",
+    "openedPanel": "Opened: {name}"
+  },
+
+  "annotations": {
+    "empty_note": "No notes yet.",
+    "empty_bookmark": "No bookmarks yet.",
+    "empty_comment": "No comments yet.",
+    "empty_share": "No shared excerpts yet",
+    "addHint": "Select text in the book to begin",
+    "delete": "Delete",
+    "jump": "Jump",
+    "save": "Save",
+    "sending": "Send",
+    "reply": "Add a reply…",
+    "editNote": "Edit your note…",
+    "noteSaved": "💾 Note saved",
+    "notFound": "⚠️ Highlighted text no longer found",
+    "sharedCount": "Shared excerpts ({n})",
+    "shareAll": "Share the entire book"
+  },
+
+  "share": {
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "copyLink": "Copy Link",
+    "copyText": "Copy Text",
+    "webShare": "Share",
+    "linkCopied": "🔗 Link copied",
+    "excerptCopied": "📋 Excerpt link copied"
+  },
+
+  "toast": {
+    "restore": "Continue from:",
+    "resumeBtn": "Resume",
+    "openedBook": "Opened book — v5"
+  },
+
+  "slideTypes": {
+    "cover": "Cover",
+    "chapter": "Chapter",
+    "quote": "Quote",
+    "science": "Science",
+    "equation": "Equation",
+    "table": "Table",
+    "list": "List",
+    "prose": "Prose",
+    "cta": "Action"
+  },
+
+  "cta": {
+    "start": "Start at 2030B.com",
+    "back": "Back to Top"
+  },
+
+  "scroll_hint": "Scroll down or use navigation buttons",
+  "edge_prev": "Previous Slide",
+  "edge_next": "Next Slide",
+  "slide_label": "Slide {n}",
+  "slide_count": "{n} slides",
+  "slide_of": "/ {total}",
+
+  "note_prompt": "Add your note:",
+  "comment_prompt": "Add your comment:",
+  "book_missing": "Book files not found",
+
+  "themes": {
+    "dark_night": "Dark Night",
+    "deep_ocean": "Deep Ocean",
+    "emerald": "Emerald",
+    "sunset": "Sunset",
+    "royal_purple": "Royal Purple",
+    "rose_gold": "Rose Gold",
+    "slate": "Slate",
+    "monochrome": "Monochrome",
+    "desert": "Desert",
+    "neon": "Neon"
+  },
+
+  "lang_panel": {
+    "search": "Search language…",
+    "current": "Current Language",
+    "all": "All Languages"
+  },
+
+  "theme_panel": {
+    "mode_light": "Light",
+    "mode_dark": "Dark",
+    "choose_theme": "Choose Theme",
+    "choose_mode": "Mode"
+  }
+}

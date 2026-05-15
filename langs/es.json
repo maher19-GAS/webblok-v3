@@ -1,0 +1,23 @@
+{
+  "code": "es",
+  "dir": "ltr",
+  "name": "Español",
+  "nativeName": "Español",
+  "flag": "🇪🇸",
+  "nav": { "brand": "2030B", "brandSub": "— Sé Más Inteligente", "toc": "Contenido", "stats": "Estadísticas", "history": "Historial", "notes": "Notas", "bookmarks": "Favoritos", "comments": "Comentarios", "share": "Compartir", "language": "Idioma", "theme": "Tema" },
+  "bottomNav": { "prev": "Anterior", "next": "Siguiente" },
+  "aside": { "toc": "Tabla de Contenidos", "stats": "Estadísticas de Lectura", "history": "Registro de Actividad", "notes": "Mis Notas", "bookmarks": "Mis Favoritos", "comments": "Comentarios", "share": "Compartir", "language": "Elegir Idioma", "theme": "Elegir Tema", "close": "Cerrar" },
+  "stats": { "slidesRead": "Diapositivas Leídas", "readingTime": "Tiempo de Lectura Estimado", "wpm": "200 pal/min", "longestSession": "Sesión más Larga", "sessions": "sesión(es)", "scrollTimeline": "Línea de Tiempo de Posición", "noPositionData": "Sin datos de posición aún", "clearStats": "Borrar Estadísticas", "localStorageSize": "Tamaño del Almacenamiento Local", "saveToServer": "Guardar en el Servidor", "active": "activo" },
+  "history": { "empty": "Sin actividad aún" },
+  "annotations": { "note": "Nota", "bookmark": "Favorito", "comment": "Comentario", "share": "Compartir", "noteEmpty": "Sin notas aún.", "bookmarkEmpty": "Sin favoritos aún.", "commentEmpty": "Sin comentarios aún.", "shareEmpty": "Sin textos compartidos aún", "hint": "Selecciona texto en el libro para empezar", "addReply": "Añadir respuesta…", "send": "Enviar", "save": "Guardar", "delete": "Eliminar", "slide": "Diapositiva", "sharedTexts": "Textos Compartidos", "shareBook": "Compartir el libro completo" },
+  "selMenu": { "note": "Nota", "bookmark": "Favorito", "comment": "Comentario", "share": "Compartir" },
+  "dialogs": { "addNote": "Añade tu nota", "addComment": "Añade tu comentario", "notePlaceholder": "Escribe tu nota aquí…", "commentPlaceholder": "Escribe tu comentario aquí…", "confirm": "Confirmar", "cancel": "Cancelar", "deleteTitle": "Confirmar Eliminación", "deleteText": "¿Seguro que quieres eliminar esta anotación?", "clearStatsTitle": "Borrar Estadísticas", "clearStatsText": "Se borrarán todos los datos de lectura. ¿Continuar?", "saveToServerTitle": "Guardar en el Servidor", "saveToServerText": "Tus datos se subirán a 2030b.com/webbook pronto.", "noteSaved": "💾 Nota guardada", "linkCopied": "🔗 Enlace copiado", "segmentCopied": "📋 Enlace del segmento copiado", "statsClearDone": "🗑️ Estadísticas borradas", "highlightGone": "⚠️ El texto seleccionado ya no existe" },
+  "toast": { "resumeFrom": "Continuar desde:", "resume": "Continuar", "slideOf": "/" },
+  "loading": { "preparing": "Preparando…", "checkingCache": "Verificando caché…", "loading": "Cargando:", "processing": "Procesando:", "building": "Construyendo", "slides": "diapositivas…", "initUI": "Inicializando UI…", "ready": "¡Listo!", "notFound": "Archivos del libro no encontrados" },
+  "slideTypes": { "cover": "Portada", "chapter": "Capítulo", "quote": "Cita", "science": "Ciencia", "equation": "Ecuación", "table": "Tabla", "list": "Lista", "prose": "Prosa", "cta": "Acción" },
+  "slideHints": { "scroll": "Desplázate o usa los botones de navegación", "prevSlide": "Diapositiva anterior", "nextSlide": "Diapositiva siguiente", "ctaButton": "Empezar en 2030B.com", "ctaBack": "Volver arriba" },
+  "share": { "whatsapp": "WhatsApp", "telegram": "Telegram", "copyLink": "Copiar Enlace", "twitter": "Twitter / X", "facebook": "Facebook", "linkedin": "LinkedIn", "email": "Correo", "sms": "SMS", "reddit": "Reddit", "pocket": "Pocket" },
+  "themes": { "title": "Elige un Tema", "dark": "Oscuro", "light": "Claro", "cosmos": "Cosmos", "emerald": "Esmeralda", "rose": "Rosa", "amber": "Ámbar", "violet": "Violeta", "slate": "Pizarra", "ocean": "Océano", "forest": "Bosque", "crimson": "Carmesí" },
+  "toc": { "slides": "diapositivas" },
+  "edgeHints": { "prev": "Diapositiva anterior", "next": "Diapositiva siguiente" }
+}

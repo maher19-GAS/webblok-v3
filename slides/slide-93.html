@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>2030B – Transparency Report</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="slide-container"><div class="slide-bg"></div>
+<div id="skeleton" class="slide-inner" style="padding-top:24px"><div style="display:flex;flex-direction:column;gap:10px"><div class="skeleton skeleton-title" style="width:55%"></div><div class="skeleton skeleton-card" style="height:70px;border-radius:12px"></div><div class="skeleton skeleton-card" style="height:90px;border-radius:12px"></div></div></div>
+<div id="content" class="slide-content" style="display:none;flex-direction:column"></div><div id="footer-nav"></div></div>
+<script src="../js/animations.js"></script><script src="../js/loader.js"></script><script src="../js/slide-utils.js"></script>
+<script>
+function renderSlide93(data,lang){
+  const fin=data.financial; const gov=data.governance; const sec=data.security;
+  return `
+    ${buildSlideHeader(data,'📋')}
+    <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px">
+      <div style="text-align:center;font-size:11px;color:rgba(255,255,255,0.4);padding:6px;background:rgba(255,255,255,0.03);border-radius:8px">Period: ${data.period}</div>
+      <!-- Financial -->
+      <div class="glass-card fade-in" style="padding:12px 14px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:8px">🏦 Financial</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
+          ${Object.entries(fin).map(([k,v])=>`<div style="padding:7px 10px;background:rgba(255,255,255,0.03);border-radius:8px">
+            <div style="font-size:12px;font-weight:700;color:${k==='net_treasury'?'#68D391':'#63B3ED'}">${v}</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:1px">${k.replace(/_/g,' ')}</div>
+          </div>`).join('')}
+        </div>
+      </div>
+      <!-- Governance -->
+      <div class="glass-card fade-in" style="padding:12px 14px;animation-delay:0.06s">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:8px">🗳️ Governance</div>
+        <div style="display:flex;justify-content:space-around;text-align:center">
+          <div><div style="font-size:15px;font-weight:800;color:#fff">${gov.proposals_submitted}</div><div style="font-size:9px;color:rgba(255,255,255,0.35)">Submitted</div></div>
+          <div><div style="font-size:15px;font-weight:800;color:#68D391">${gov.proposals_passed}</div><div style="font-size:9px;color:rgba(255,255,255,0.35)">Passed</div></div>
+          <div><div style="font-size:15px;font-weight:800;color:#FC8181">${gov.proposals_rejected}</div><div style="font-size:9px;color:rgba(255,255,255,0.35)">Rejected</div></div>
+        </div>
+      </div>
+      <!-- Security -->
+      <div class="glass-card fade-in" style="padding:10px 14px;animation-delay:0.1s;border-left:3px solid #68D391">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:6px">🛡️ Security</div>
+        <div style="display:flex;justify-content:space-around;text-align:center">
+          <div><div style="font-size:15px;font-weight:800;color:#68D391">${sec.incidents}</div><div style="font-size:9px;color:rgba(255,255,255,0.35)">Incidents</div></div>
+          <div><div style="font-size:15px;font-weight:800;color:#63B3ED">${sec.pen_tests}</div><div style="font-size:9px;color:rgba(255,255,255,0.35)">Pen Tests</div></div>
+          <div><div style="font-size:13px;font-weight:800;color:#F6AD55">${sec.bug_bounties_paid}</div><div style="font-size:9px;color:rgba(255,255,255,0.35)">Bounties Paid</div></div>
+        </div>
+      </div>
+    </div>`;
+}
+initSlide(93,renderSlide93,{jsonFile:'../en2.json',slideIndex:42});
+</script></body></html>

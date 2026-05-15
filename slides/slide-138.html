@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide 138 – IP Marketplace</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--g1:#43e97b;--g2:#38f9d7;--gold:#f6c90e;--bg:#080c18;--bg2:#0e1326;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.88);--muted:rgba(255,255,255,.45)}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;gap:16px}
+  [dir=rtl] body{font-family:'Cairo',sans-serif}
+  .slide-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);opacity:.9}
+  h1{font-size:clamp(22px,4.5vw,42px);font-weight:900;text-align:center;background:linear-gradient(135deg,var(--gold),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .listing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:680px}
+  .listing{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:12px;position:relative;overflow:hidden}
+  .listing-badge{position:absolute;top:8px;right:8px;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px}
+  .featured{background:rgba(246,201,14,.2);color:var(--gold)}
+  .new-badge{background:rgba(67,233,123,.15);color:var(--g1)}
+  .listing-icon{font-size:28px;margin-bottom:6px}
+  .listing-title{font-size:11px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .listing-creator{font-size:9px;color:var(--muted)}
+  .listing-price{font-size:12px;font-weight:900;color:var(--gold);margin-top:6px}
+  .listing-type{font-size:9px;color:var(--muted)}
+  .listing-stars{font-size:10px;margin-top:3px;color:var(--gold)}
+  .marketplace-stats{display:flex;gap:10px;width:100%;max-width:680px}
+  .ms{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+  .ms-val{font-size:18px;font-weight:900;color:var(--gold)}
+  .ms-label{font-size:9px;color:var(--muted);margin-top:1px}
+  .ip-types{display:flex;flex-wrap:wrap;gap:6px;width:100%;max-width:680px;justify-content:center}
+  .ip-chip{font-size:10px;padding:4px 12px;border-radius:20px;background:rgba(246,201,14,.08);border:1px solid rgba(246,201,14,.2);color:var(--gold);font-weight:600}
+</style>
+</head>
+<body>
+<div class="slide-num">SLIDE 138 · ENTERPRISE</div>
+<h1>IP Marketplace</h1>
+<div class="listing-grid">
+  <div class="listing">
+    <span class="listing-badge featured">Featured</span>
+    <div class="listing-icon">🧠</div>
+    <div class="listing-title">Systems Thinking Mastery</div>
+    <div class="listing-creator">by Dr. Sarah Chen</div>
+    <div class="listing-stars">★★★★★ (4.9)</div>
+    <div class="listing-price">8,400 CTC</div>
+    <div class="listing-type">Full Curriculum · 42 modules</div>
+  </div>
+  <div class="listing">
+    <span class="listing-badge new-badge">New</span>
+    <div class="listing-icon">🎨</div>
+    <div class="listing-title">Creative Cognition Bootcamp</div>
+    <div class="listing-creator">by Marcus Webb</div>
+    <div class="listing-stars">★★★★☆ (4.7)</div>
+    <div class="listing-price">3,200 CTC</div>
+    <div class="listing-type">Intensive · 18 modules</div>
+  </div>
+  <div class="listing">
+    <div class="listing-icon">📊</div>
+    <div class="listing-title">Data Pattern Recognition</div>
+    <div class="listing-creator">by Yuki Tanaka</div>
+    <div class="listing-stars">★★★★★ (4.8)</div>
+    <div class="listing-price">5,600 CTC</div>
+    <div class="listing-type">Advanced · 28 modules</div>
+  </div>
+  <div class="listing">
+    <div class="listing-icon">🌍</div>
+    <div class="listing-title">Cross-Cultural Leadership</div>
+    <div class="listing-creator">by Amara Diallo</div>
+    <div class="listing-stars">★★★★☆ (4.6)</div>
+    <div class="listing-price">4,100 CTC</div>
+    <div class="listing-type">Series · 24 modules</div>
+  </div>
+  <div class="listing">
+    <span class="listing-badge featured">Hot</span>
+    <div class="listing-icon">⚡</div>
+    <div class="listing-title">Deep Work Protocol</div>
+    <div class="listing-creator">by Alex K.</div>
+    <div class="listing-stars">★★★★★ (5.0)</div>
+    <div class="listing-price">2,800 CTC</div>
+    <div class="listing-type">Protocol · 12 modules</div>
+  </div>
+  <div class="listing">
+    <div class="listing-icon">🔮</div>
+    <div class="listing-title">Futures Thinking</div>
+    <div class="listing-creator">by Priya N.</div>
+    <div class="listing-stars">★★★★☆ (4.5)</div>
+    <div class="listing-price">3,600 CTC</div>
+    <div class="listing-type">Course · 20 modules</div>
+  </div>
+</div>
+<div class="marketplace-stats">
+  <div class="ms"><div class="ms-val">18,400</div><div class="ms-label">Active Listings</div></div>
+  <div class="ms"><div class="ms-val">$42M</div><div class="ms-label">CTC Volume / Month</div></div>
+  <div class="ms"><div class="ms-val">9,200</div><div class="ms-label">Active Creators</div></div>
+  <div class="ms"><div class="ms-val">70%</div><div class="ms-label">Creator Revenue Share</div></div>
+</div>
+<div class="ip-types">
+  <span class="ip-chip">Full Curricula</span>
+  <span class="ip-chip">Micro-Modules</span>
+  <span class="ip-chip">Assessment Banks</span>
+  <span class="ip-chip">Spatial Palaces</span>
+  <span class="ip-chip">Cognitive Tools</span>
+  <span class="ip-chip">Research Papers</span>
+  <span class="ip-chip">Live Sessions</span>
+</div>
+</body>
+</html>
