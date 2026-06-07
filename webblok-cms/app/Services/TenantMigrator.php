@@ -66,11 +66,12 @@ final class TenantMigrator
         sort($migrationFiles);
 
         foreach ($migrationFiles as $file) {
-            /** @var Migration|mixed $migration */
             $migration = require $file;
 
-            if ($migration instanceof Migration) {
-                $migration->up();
+            if ($migration instanceof Migration && method_exists($migration, 'up')) {
+                /** @var callable(): void $up */
+                $up = [$migration, 'up'];
+                $up();
             }
         }
     }

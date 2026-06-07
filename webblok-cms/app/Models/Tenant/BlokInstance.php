@@ -40,7 +40,7 @@ final class BlokInstance extends Model
 
     protected $table = 'blok_instances';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string|class-string> */

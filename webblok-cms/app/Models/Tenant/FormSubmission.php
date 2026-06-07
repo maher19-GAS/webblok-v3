@@ -28,7 +28,7 @@ final class FormSubmission extends Model
 
     protected $table = 'form_submissions';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

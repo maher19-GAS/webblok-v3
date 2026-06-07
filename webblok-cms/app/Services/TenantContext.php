@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Exceptions\TenantNotFoundException;
 use App\Models\Platform\Tenant;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,18 @@ final class TenantContext
     public function hasTenant(): bool
     {
         return $this->current !== null;
+    }
+
+    /**
+     * Return the current tenant or throw if none is active.
+     */
+    public function require(): Tenant
+    {
+        if ($this->current === null) {
+            throw new TenantNotFoundException('No active tenant in the current context.');
+        }
+
+        return $this->current;
     }
 
     public function forget(): void

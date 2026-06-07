@@ -32,7 +32,7 @@ final class StaticExport extends Model
 
     protected $table = 'static_exports';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string|class-string> */

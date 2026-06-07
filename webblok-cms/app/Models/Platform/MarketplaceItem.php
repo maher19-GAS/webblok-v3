@@ -39,7 +39,7 @@ final class MarketplaceItem extends Model
 
     protected $table = 'marketplace_items';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string|class-string> */

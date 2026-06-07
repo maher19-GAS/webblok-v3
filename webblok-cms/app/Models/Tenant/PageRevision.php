@@ -29,7 +29,7 @@ final class PageRevision extends Model
 
     protected $table = 'page_revisions';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

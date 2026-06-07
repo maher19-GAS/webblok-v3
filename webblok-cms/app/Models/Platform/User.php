@@ -39,7 +39,7 @@ final class User extends Authenticatable
 
     protected $table = 'users';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @var list<string> */

@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -11,15 +12,19 @@ class DatabaseSeeder extends Seeder
     use WithoutModelEvents;
 
     /**
-     * Seed the application's database.
+     * Seed the platform database.
+     *
+     * Platform bootstrap data is delegated to dedicated seeders so the order of
+     * dependent records (plans -> super admin -> blok definitions -> marketplace)
+     * is explicit and reproducible.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            PlanSeeder::class,
+            SuperAdminSeeder::class,
+            BlokDefinitionSeeder::class,
+            MarketplaceSeeder::class,
         ]);
     }
 }

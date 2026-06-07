@@ -27,7 +27,7 @@ final class Webhook extends Model
 
     protected $table = 'webhooks';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

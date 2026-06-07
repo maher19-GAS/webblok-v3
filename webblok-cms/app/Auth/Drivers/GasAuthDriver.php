@@ -8,6 +8,7 @@ use App\Auth\Contracts\AuthDriverInterface;
 use App\Exceptions\GasAuthException;
 use App\Models\Platform\User;
 use Illuminate\Http\Client\Factory as HttpClient;
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -24,12 +25,7 @@ final class GasAuthDriver implements AuthDriverInterface
         $cfg = $this->config();
 
         try {
-            $response = $this->http
-                ->timeout($cfg['timeout_seconds'])
-                ->withHeaders([
-                    'X-App-Id' => $cfg['app_id'],
-                    'X-Api-Key' => $cfg['api_key'],
-                ])
+            $response = $this->client($cfg)
                 ->post($cfg['base_url'].'/api/auth/login', compact('email', 'password'));
 
             if (! $response->ok()) {
@@ -59,12 +55,7 @@ final class GasAuthDriver implements AuthDriverInterface
         $cfg = $this->config();
 
         try {
-            $response = $this->http
-                ->timeout($cfg['timeout_seconds'])
-                ->withHeaders([
-                    'X-App-Id' => $cfg['app_id'],
-                    'X-Api-Key' => $cfg['api_key'],
-                ])
+            $response = $this->client($cfg)
                 ->post($cfg['base_url'].'/api/auth/verify', ['token' => $user->gas_token]);
 
             return $response->ok() ? $user : null;
@@ -103,12 +94,25 @@ final class GasAuthDriver implements AuthDriverInterface
                 'email' => $gasUser['email'],
                 'password' => null,
                 'gas_token' => $token,
-            ]
+            ],
         );
 
         Auth::login($user, remember: true);
 
         return $user;
+    }
+
+    /**
+     * @param  array{base_url: string, api_key: string, app_id: string, timeout_seconds: int}  $cfg
+     */
+    private function client(array $cfg): PendingRequest
+    {
+        return $this->http->createPendingRequest()
+            ->withHeaders([
+                'X-App-Id' => $cfg['app_id'],
+                'X-Api-Key' => $cfg['api_key'],
+            ])
+            ->timeout($cfg['timeout_seconds']);
     }
 
     /**

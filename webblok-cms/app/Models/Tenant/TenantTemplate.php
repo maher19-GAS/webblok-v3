@@ -24,7 +24,7 @@ final class TenantTemplate extends Model
 
     protected $table = 'tenant_templates';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

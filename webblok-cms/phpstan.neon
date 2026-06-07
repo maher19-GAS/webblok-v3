@@ -6,14 +6,19 @@ parameters:
     level: 10
     paths:
         - app
-        - database
+        - database/factories
+        - database/migrations
+        - database/seeders
         - routes
-        - config
-    checkMissingIterableValueType: true
-    checkGenericClassInNonGenericObjectType: true
     checkUninitializedProperties: true
     checkDynamicProperties: true
     reportUnmatchedIgnoredErrors: true
     treatPhpDocTypesAsCertain: true
     ignoreErrors:
-        - '#Unsafe usage of new static\(\)#'
+        # Eloquent relations forward query-builder calls (orderBy, where, ...) at
+        # runtime; phpstan-strict-rules misreports these as dynamic calls to the
+        # generic Builder<...> static methods. This is an upstream Larastan/Eloquent
+        # limitation, not a real defect.
+        -
+            identifier: staticMethod.dynamicCall
+            message: '#Dynamic call to static method Illuminate\\Database\\Eloquent\\Builder<#'

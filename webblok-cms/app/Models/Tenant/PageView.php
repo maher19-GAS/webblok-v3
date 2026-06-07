@@ -23,7 +23,7 @@ final class PageView extends Model
 
     protected $table = 'page_views';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

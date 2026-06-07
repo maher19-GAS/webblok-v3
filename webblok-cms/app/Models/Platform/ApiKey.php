@@ -30,7 +30,7 @@ final class ApiKey extends Model
 
     protected $table = 'api_keys';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

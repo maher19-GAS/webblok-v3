@@ -31,7 +31,7 @@ final class PageLocale extends Model
 
     protected $table = 'page_locales';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

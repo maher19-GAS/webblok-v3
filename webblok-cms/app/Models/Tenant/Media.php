@@ -28,7 +28,7 @@ final class Media extends Model
 
     protected $table = 'media';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

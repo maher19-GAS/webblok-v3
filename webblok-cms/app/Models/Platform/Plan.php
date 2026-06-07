@@ -32,7 +32,7 @@ final class Plan extends Model
 
     protected $table = 'plans';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

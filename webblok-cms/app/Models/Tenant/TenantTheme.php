@@ -26,7 +26,7 @@ final class TenantTheme extends Model
 
     protected $table = 'tenant_themes';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

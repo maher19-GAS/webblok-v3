@@ -23,7 +23,7 @@ final class ContentOverride extends Model
 
     protected $table = 'content_overrides';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

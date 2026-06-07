@@ -37,7 +37,7 @@ final class BlokDefinition extends Model
 
     protected $table = 'blok_definitions';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

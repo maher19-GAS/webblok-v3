@@ -22,7 +22,7 @@ final class BlokGrant extends Model
 
     protected $table = 'blok_grants';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

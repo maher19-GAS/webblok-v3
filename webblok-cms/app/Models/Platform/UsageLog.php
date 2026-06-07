@@ -25,7 +25,7 @@ final class UsageLog extends Model
 
     protected $table = 'usage_logs';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

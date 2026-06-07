@@ -44,7 +44,7 @@ final class Page extends Model
 
     protected $table = 'pages';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string|class-string> */

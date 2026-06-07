@@ -26,7 +26,7 @@ final class Menu extends Model
 
     protected $table = 'menus';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return HasMany<MenuItem, $this> */

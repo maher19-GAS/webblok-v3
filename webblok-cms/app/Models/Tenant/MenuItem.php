@@ -38,7 +38,7 @@ final class MenuItem extends Model
 
     protected $table = 'menu_items';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string> */

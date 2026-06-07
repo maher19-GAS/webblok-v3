@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Platform;
 
 use App\Enums\TenantStatus;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,7 +32,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $deleted_at
  * @property-read Plan $plan
  * @property-read User $owner
- * @property-read \Illuminate\Database\Eloquent\Collection<int, ApiKey> $apiKeys
+ * @property-read Collection<int, ApiKey> $apiKeys
  */
 final class Tenant extends Model
 {
@@ -40,7 +41,7 @@ final class Tenant extends Model
 
     protected $table = 'tenants';
 
-    /** @var list<string> */
+    /** @var array<string> */
     protected $guarded = [];
 
     /** @return array<string, string|class-string> */
