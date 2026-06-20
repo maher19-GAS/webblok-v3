@@ -14,6 +14,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Super Admin bootstrap credentials (seeded once)
+    |--------------------------------------------------------------------------
+    */
+    'super_admin' => [
+        'email' => env('WEBBLOK_SUPERADMIN_EMAIL', 'admin@webblok.test'),
+        'password' => env('WEBBLOK_SUPERADMIN_PASSWORD', 'password'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Web-triggered provisioning / cron secret
+    |--------------------------------------------------------------------------
+    */
+    'provision_secret' => env('WEBBLOK_PROVISION_SECRET', 'change-me'),
+    'cron_secret' => env('WEBBLOK_CRON_SECRET', 'change-me'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Supported Locales
     |--------------------------------------------------------------------------
     | code => [direction, font]

@@ -22,3 +22,13 @@ parameters:
         -
             identifier: staticMethod.dynamicCall
             message: '#Dynamic call to static method Illuminate\\Database\\Eloquent\\Builder<#'
+        # $request->validate() is a first-class Laravel instance method exposed via
+        # a macro/trait; strict-rules flags the facade-style call. Safe to allow.
+        -
+            identifier: staticMethod.dynamicCall
+            message: '#Dynamic call to static method Illuminate\\Http\\Request::validate\(\)#'
+        # view() resolves Blade templates by name at runtime; the view-string
+        # literal requirement is a static-analysis nicety, not a runtime contract.
+        -
+            identifier: argument.type
+            message: '#Parameter \#1 \$view of function view expects view-string\|null, string given#'
