@@ -25,3 +25,10 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# WebBlok runtime data (never commit per-tenant or platform databases)
+/storage/tenants/*
+!/storage/tenants/.gitkeep
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal

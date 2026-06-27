@@ -1,0 +1,12 @@
+{
+  "name": "Portfolio Basic",
+  "description": "A minimal portfolio template: intro heading, gallery and contact form.",
+  "author": "WebBlok",
+  "version": "1.0.0",
+  "category": "portfolio",
+  "tags": ["portfolio", "personal", "minimal"],
+  "locales": ["en", "ar"],
+  "featured": false,
+  "thumbnail": "https://placehold.co/600x400?text=Portfolio",
+  "preview": "https://placehold.co/1200x800?text=Portfolio"
+}

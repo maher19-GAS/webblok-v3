@@ -1,0 +1,49 @@
+{
+  "blok_key": "stat_row",
+  "label": "Stat Row",
+  "description": "Row of key statistics with icons.",
+  "category": "content",
+  "icon": "chart",
+  "accepts_children": false,
+  "blade_component": "bloks.content.stat-row",
+  "langs": ["en", "ar"],
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "title": "By the numbers",
+    "stats": [
+      { "value": "10k+", "label": "Users", "icon": "users" },
+      { "value": "99.9%", "label": "Uptime", "icon": "check" },
+      { "value": "24/7", "label": "Support", "icon": "headset" }
+    ],
+    "bg": "#f1f5f9",
+    "columns": 3
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "title", "type": "text", "label": "Section title", "localized": true },
+          {
+            "key": "stats", "type": "repeater", "label": "Stats", "max": 6,
+            "fields": [
+              { "key": "value", "type": "text", "label": "Value", "localized": true },
+              { "key": "label", "type": "text", "label": "Label", "localized": true },
+              { "key": "icon", "type": "icon", "label": "Icon" }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "fields": [
+          { "key": "bg", "type": "color", "label": "Background", "cssVar": "--wb-bg-secondary", "default": "#f1f5f9" },
+          { "key": "columns", "type": "range", "label": "Columns", "min": 1, "max": 6, "default": 3 }
+        ]
+      }
+    ]
+  }
+}

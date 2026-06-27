@@ -1,0 +1,51 @@
+{
+  "blok_key": "hero",
+  "label": "Hero",
+  "description": "Large hero banner with heading, subheading, background and call-to-action.",
+  "category": "content",
+  "icon": "sparkles",
+  "accepts_children": false,
+  "blade_component": "bloks.content.hero",
+  "langs": ["en", "ar"],
+  "has_skeleton": true,
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "title": "Build beautiful websites",
+    "subtitle": "Drag, drop, publish. No code required.",
+    "align": "center",
+    "bg": "#0f172a",
+    "fg": "#f8fafc",
+    "cta_label": "Get started",
+    "cta_link": { "url": "#", "target": "_self" },
+    "min_height": 60
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "title", "type": "text", "label": "Heading", "localized": true },
+          { "key": "subtitle", "type": "textarea", "label": "Subheading", "localized": true },
+          { "key": "cta_label", "type": "text", "label": "Button text", "localized": true },
+          { "key": "cta_link", "type": "link", "label": "Button link" }
+        ]
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "fields": [
+          { "key": "align", "type": "radio", "label": "Alignment", "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ], "default": "center" },
+          { "key": "bg", "type": "color", "label": "Background", "cssVar": "--wb-hero-bg", "default": "#0f172a" },
+          { "key": "fg", "type": "color", "label": "Text colour", "cssVar": "--wb-hero-fg", "default": "#f8fafc" },
+          { "key": "min_height", "type": "range", "label": "Min height (vh)", "min": 20, "max": 100, "default": 60 }
+        ]
+      }
+    ]
+  }
+}

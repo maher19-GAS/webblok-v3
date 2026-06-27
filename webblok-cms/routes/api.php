@@ -4,9 +4,20 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Api\V1\BlokDataController;
 use App\Http\Controllers\Api\V1\SiteGenerationController;
+use App\Http\Controllers\Api\V1\TenantProvisionController;
 use App\Http\Controllers\Api\V2\BlokInstanceController;
 use App\Http\Controllers\Api\V2\PageController;
 use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| V1 — Partner-scoped headless provisioning (X-Provision-Secret guarded)
+|--------------------------------------------------------------------------
+| Registered outside the api.key group: it authenticates with the platform
+| provisioning secret, not a tenant API key.
+*/
+Route::post('/v1/tenants', [TenantProvisionController::class, 'store'])
+    ->middleware('throttle:10,1');
 
 /*
 |--------------------------------------------------------------------------

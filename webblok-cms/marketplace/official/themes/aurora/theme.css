@@ -1,0 +1,21 @@
+:root{
+  --wb-bg:#ffffff;
+  --wb-fg:#0f172a;
+  --wb-primary:#4f46e5;
+  --wb-bg-secondary:#f1f5f9;
+  --wb-radius:12px;
+  --wb-font:Inter,system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--wb-font);color:var(--wb-fg);background:var(--wb-bg);line-height:1.6}
+.wb-section{width:100%}
+.wb-page{min-height:100vh}
+img{max-width:100%;height:auto}
+a{color:var(--wb-primary)}
+h1,h2,h3{letter-spacing:-.02em}
+.webblok-blok{padding:1rem}
+@media(max-width:640px){
+  .wb-columns--stack{grid-template-columns:1fr !important}
+  .wb-gallery,.wb-feature-grid div[style*="grid"]{grid-template-columns:1fr !important}
+}
+[dir="rtl"] body{text-align:right}

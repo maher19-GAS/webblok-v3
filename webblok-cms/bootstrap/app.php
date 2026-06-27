@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Middleware\AuthenticateApiKey;
 use App\Http\Middleware\EnforcePlanLimits;
+use App\Http\Middleware\EnsureSuperAdmin;
 use App\Http\Middleware\EnsureTenantActive;
 use App\Http\Middleware\SetTenantDatabaseConnection;
 use App\Http\Middleware\TrackPageView;
@@ -23,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'tenant.db' => SetTenantDatabaseConnection::class,
             'tenant.active' => EnsureTenantActive::class,
+            'super.admin' => EnsureSuperAdmin::class,
             'api.key' => AuthenticateApiKey::class,
             'plan.limits' => EnforcePlanLimits::class,
             'track.view' => TrackPageView::class,

@@ -1,0 +1,24 @@
+{
+  "blok_key": "spacer",
+  "label": "Spacer",
+  "description": "Vertical spacing.",
+  "category": "layout",
+  "icon": "space",
+  "accepts_children": false,
+  "blade_component": "bloks.layout.spacer",
+  "langs": ["en"],
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": { "height": 48 },
+  "schema": {
+    "steps": [
+      {
+        "key": "style",
+        "label": "Style",
+        "fields": [
+          { "key": "height", "type": "number", "label": "Height (px)", "min": 0, "max": 400, "default": 48 }
+        ]
+      }
+    ]
+  }
+}

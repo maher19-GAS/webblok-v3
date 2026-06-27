@@ -1,0 +1,12 @@
+{
+  "name": "Startup Landing",
+  "description": "A single-page startup landing template: hero, features, stats and CTA.",
+  "author": "WebBlok",
+  "version": "1.0.0",
+  "category": "landing",
+  "tags": ["landing", "startup", "saas"],
+  "locales": ["en", "ar"],
+  "featured": true,
+  "thumbnail": "https://placehold.co/600x400?text=Startup+Landing",
+  "preview": "https://placehold.co/1200x800?text=Startup+Landing"
+}

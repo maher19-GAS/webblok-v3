@@ -1,0 +1,34 @@
+{
+  "blok_key": "rich_text",
+  "label": "Rich Text",
+  "description": "Sanitised WYSIWYG body content.",
+  "category": "content",
+  "icon": "text",
+  "accepts_children": false,
+  "blade_component": "bloks.content.rich-text",
+  "langs": ["en", "ar"],
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "body": "<p>Write your content here…</p>",
+    "max_width": 720
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "body", "type": "richtext", "label": "Body", "localized": true }
+        ]
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "fields": [
+          { "key": "max_width", "type": "range", "label": "Max width (px)", "min": 320, "max": 1200, "default": 720 }
+        ]
+      }
+    ]
+  }
+}

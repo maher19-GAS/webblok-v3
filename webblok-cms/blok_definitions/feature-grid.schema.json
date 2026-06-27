@@ -1,0 +1,52 @@
+{
+  "blok_key": "feature_grid",
+  "label": "Feature Grid",
+  "description": "Grid of feature cards with icon, title and text.",
+  "category": "content",
+  "icon": "grid",
+  "accepts_children": false,
+  "blade_component": "bloks.content.feature-grid",
+  "langs": ["en", "ar"],
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "heading": "Why choose us",
+    "features": [
+      { "icon": "bolt", "title": "Fast", "body": "Blazing performance out of the box." },
+      { "icon": "lock", "title": "Secure", "body": "Isolated per-tenant databases." },
+      { "icon": "globe", "title": "Global", "body": "Multilingual and RTL ready." }
+    ],
+    "columns": 3,
+    "layout": "grid"
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "heading", "type": "text", "label": "Heading", "localized": true },
+          {
+            "key": "features", "type": "repeater", "label": "Features", "max": 9,
+            "fields": [
+              { "key": "icon", "type": "icon", "label": "Icon" },
+              { "key": "title", "type": "text", "label": "Title", "localized": true },
+              { "key": "body", "type": "textarea", "label": "Body", "localized": true }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "layout",
+        "label": "Layout",
+        "fields": [
+          { "key": "layout", "type": "select", "label": "Layout", "options": [
+            { "value": "grid", "label": "Grid" },
+            { "value": "list", "label": "List" }
+          ], "default": "grid" },
+          { "key": "columns", "type": "range", "label": "Columns", "min": 1, "max": 4, "default": 3, "showIf": { "field": "layout", "equals": "grid" } }
+        ]
+      }
+    ]
+  }
+}

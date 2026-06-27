@@ -2,11 +2,17 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\CommunityReviewController;
+use App\Http\Controllers\Admin\MarketplaceReviewController;
+use App\Http\Controllers\Admin\PlanManagementController;
+use App\Http\Controllers\Admin\TenantManagementController;
 use App\Http\Controllers\Auth\GasCallbackController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Cms\BuilderController;
+use App\Http\Controllers\Cms\CreatorStudioController;
 use App\Http\Controllers\Cms\DashboardController;
 use App\Http\Controllers\Cms\ExportController;
 use App\Http\Controllers\Cms\PageManagerController;
@@ -64,6 +70,42 @@ Route::middleware('auth')->prefix('cms')->name('cms.')->group(function (): void 
     Route::get('/export', [ExportController::class, 'index'])->name('export.index');
     Route::post('/export', [ExportController::class, 'store'])->name('export.store');
     Route::get('/export/{exportId}/download', [ExportController::class, 'download'])->name('export.download');
+
+    // Creator Studio (community contributions)
+    Route::get('/studio', [CreatorStudioController::class, 'index'])->name('studio.index');
+    Route::post('/studio', [CreatorStudioController::class, 'store'])->name('studio.store');
+    Route::post('/studio/{artifactId}/submit', [CreatorStudioController::class, 'submit'])->name('studio.submit');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Super-admin (platform control)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'super.admin'])->prefix('admin')->name('admin.')->group(function (): void {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    // Tenants
+    Route::get('/tenants', [TenantManagementController::class, 'index'])->name('tenants.index');
+    Route::post('/tenants/{tenantId}/suspend', [TenantManagementController::class, 'suspend'])->name('tenants.suspend');
+    Route::post('/tenants/{tenantId}/reactivate', [TenantManagementController::class, 'reactivate'])->name('tenants.reactivate');
+
+    // Plans
+    Route::get('/plans', [PlanManagementController::class, 'index'])->name('plans.index');
+    Route::post('/plans', [PlanManagementController::class, 'store'])->name('plans.store');
+    Route::post('/plans/{planId}/toggle', [PlanManagementController::class, 'toggle'])->name('plans.toggle');
+
+    // Marketplace
+    Route::get('/marketplace', [MarketplaceReviewController::class, 'index'])->name('marketplace.index');
+    Route::post('/marketplace/{itemId}/approve', [MarketplaceReviewController::class, 'approve'])->name('marketplace.approve');
+    Route::post('/marketplace/{itemId}/reject', [MarketplaceReviewController::class, 'reject'])->name('marketplace.reject');
+    Route::post('/marketplace/{itemId}/feature', [MarketplaceReviewController::class, 'toggleFeatured'])->name('marketplace.feature');
+
+    // Community Review Queue
+    Route::get('/community/review', [CommunityReviewController::class, 'index'])->name('community.review');
+    Route::post('/community/{artifactId}/approve', [CommunityReviewController::class, 'approve'])->name('community.approve');
+    Route::post('/community/{artifactId}/reject', [CommunityReviewController::class, 'reject'])->name('community.reject');
+    Route::post('/community/{artifactId}/publish', [CommunityReviewController::class, 'publish'])->name('community.publish');
 });
 
 Route::get('/', fn () => redirect()->route('login'))->name('home');

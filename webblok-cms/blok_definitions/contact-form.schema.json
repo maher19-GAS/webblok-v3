@@ -1,0 +1,56 @@
+{
+  "blok_key": "contact_form",
+  "label": "Contact Form",
+  "description": "Configurable contact / lead capture form.",
+  "category": "content",
+  "icon": "mail",
+  "accepts_children": false,
+  "blade_component": "bloks.content.contact-form",
+  "langs": ["en", "ar"],
+  "has_interactive": true,
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "heading": "Get in touch",
+    "fields": ["name", "email", "message"],
+    "consent_required": true,
+    "topics": ["sales", "support"],
+    "submit_label": "Send",
+    "success_message": "Thanks! We'll be in touch.",
+    "deadline": "",
+    "form_id": ""
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "heading", "type": "text", "label": "Heading", "localized": true },
+          { "key": "fields", "type": "checkbox-group", "label": "Visible fields", "options": [
+            { "value": "name", "label": "Name" },
+            { "value": "email", "label": "Email" },
+            { "value": "phone", "label": "Phone" },
+            { "value": "message", "label": "Message" }
+          ], "default": ["name", "email", "message"] },
+          { "key": "topics", "type": "multiselect", "label": "Enquiry topics", "options": [
+            { "value": "sales", "label": "Sales" },
+            { "value": "support", "label": "Support" },
+            { "value": "partnership", "label": "Partnership" }
+          ], "default": ["sales", "support"] },
+          { "key": "submit_label", "type": "text", "label": "Submit button", "localized": true },
+          { "key": "success_message", "type": "textarea", "label": "Success message", "localized": true }
+        ]
+      },
+      {
+        "key": "behaviour",
+        "label": "Behaviour",
+        "fields": [
+          { "key": "consent_required", "type": "toggle", "label": "Require consent checkbox", "default": true },
+          { "key": "deadline", "type": "date", "label": "Close submissions after" },
+          { "key": "form_id", "type": "hidden" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "blok_key": "button",
+  "label": "Button",
+  "description": "Call-to-action button.",
+  "category": "content",
+  "icon": "click",
+  "accepts_children": false,
+  "blade_component": "bloks.content.button",
+  "langs": ["en", "ar"],
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "label": "Click me",
+    "link": { "url": "#", "target": "_self" },
+    "variant": "primary",
+    "size": "md",
+    "icon": "arrow-right",
+    "full_width": false
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "label", "type": "text", "label": "Label", "localized": true },
+          { "key": "link", "type": "link", "label": "Link" },
+          { "key": "icon", "type": "icon", "label": "Icon" }
+        ]
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "fields": [
+          { "key": "variant", "type": "select", "label": "Variant", "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" },
+            { "value": "outline", "label": "Outline" }
+          ], "default": "primary" },
+          { "key": "size", "type": "radio", "label": "Size", "options": [
+            { "value": "sm", "label": "Small" },
+            { "value": "md", "label": "Medium" },
+            { "value": "lg", "label": "Large" }
+          ], "default": "md" },
+          { "key": "full_width", "type": "toggle", "label": "Full width", "default": false }
+        ]
+      }
+    ]
+  }
+}
