@@ -1,0 +1,60 @@
+{
+  "page": {
+    "title": "Home",
+    "slug": "home",
+    "is_homepage": true
+  },
+  "bloks": [
+    {
+      "blok_key": "hero",
+      "section": "body",
+      "config": {
+        "title": "Launch your idea faster",
+        "subtitle": "The all-in-one platform to build, ship and grow your product.",
+        "cta_label": "Start free trial",
+        "cta_link": { "url": "#signup", "target": "_self" },
+        "align": "center",
+        "bg": "#0f172a",
+        "fg": "#f8fafc",
+        "min_height": 70
+      }
+    },
+    {
+      "blok_key": "feature_grid",
+      "section": "body",
+      "config": {
+        "heading": "Everything you need",
+        "layout": "grid",
+        "columns": 3,
+        "features": [
+          { "icon": "bolt", "title": "Fast", "body": "Ship in minutes, not weeks." },
+          { "icon": "lock", "title": "Secure", "body": "Enterprise-grade isolation." },
+          { "icon": "globe", "title": "Global", "body": "Multilingual & RTL ready." }
+        ]
+      }
+    },
+    {
+      "blok_key": "stat_row",
+      "section": "body",
+      "config": {
+        "title": "Trusted worldwide",
+        "columns": 3,
+        "stats": [
+          { "value": "12k+", "label": "Teams" },
+          { "value": "99.99%", "label": "Uptime" },
+          { "value": "150+", "label": "Countries" }
+        ]
+      }
+    },
+    {
+      "blok_key": "cta_banner",
+      "section": "body",
+      "config": {
+        "title": "Ready to get started?",
+        "text": "Create your account in seconds.",
+        "button_label": "Sign up free",
+        "button_link": { "url": "#signup", "target": "_self" }
+      }
+    }
+  ]
+}

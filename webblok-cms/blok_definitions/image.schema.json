@@ -1,0 +1,40 @@
+{
+  "blok_key": "image",
+  "label": "Image",
+  "description": "Single responsive image with caption and link.",
+  "category": "content",
+  "icon": "image",
+  "accepts_children": false,
+  "blade_component": "bloks.content.image",
+  "langs": ["en", "ar"],
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "src": "https://placehold.co/1200x600",
+    "alt": "Image",
+    "caption": "",
+    "link": { "url": "", "target": "_self" },
+    "rounded": true
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "src", "type": "image", "label": "Image" },
+          { "key": "alt", "type": "text", "label": "Alt text", "localized": true },
+          { "key": "caption", "type": "text", "label": "Caption", "localized": true },
+          { "key": "link", "type": "link", "label": "Link (optional)" }
+        ]
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "fields": [
+          { "key": "rounded", "type": "toggle", "label": "Rounded corners", "default": true }
+        ]
+      }
+    ]
+  }
+}

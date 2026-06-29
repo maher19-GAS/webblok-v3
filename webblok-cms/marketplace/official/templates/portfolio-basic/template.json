@@ -1,0 +1,32 @@
+{
+  "page": {
+    "title": "Portfolio",
+    "slug": "portfolio",
+    "is_homepage": true
+  },
+  "bloks": [
+    {
+      "blok_key": "heading",
+      "section": "body",
+      "config": { "text": "Hi, I'm a creator.", "level": "h1", "align": "center" }
+    },
+    {
+      "blok_key": "gallery",
+      "section": "body",
+      "config": {
+        "columns": 3,
+        "gap": 12,
+        "images": [
+          "https://placehold.co/600x400?text=Work+1",
+          "https://placehold.co/600x400?text=Work+2",
+          "https://placehold.co/600x400?text=Work+3"
+        ]
+      }
+    },
+    {
+      "blok_key": "contact_form",
+      "section": "body",
+      "config": { "heading": "Work with me", "fields": ["name", "email", "message"] }
+    }
+  ]
+}

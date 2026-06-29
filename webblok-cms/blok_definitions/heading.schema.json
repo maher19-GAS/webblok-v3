@@ -1,0 +1,41 @@
+{
+  "blok_key": "heading",
+  "label": "Heading",
+  "description": "A single heading line with selectable level and alignment.",
+  "category": "content",
+  "icon": "heading",
+  "accepts_children": false,
+  "blade_component": "bloks.content.heading",
+  "langs": ["en", "ar"],
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "text": "Section heading",
+    "level": "h2",
+    "align": "left",
+    "color": "#0f172a"
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "text", "type": "text", "label": "Text", "localized": true },
+          { "key": "level", "type": "select", "label": "Level", "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" }
+          ], "default": "h2" },
+          { "key": "align", "type": "select", "label": "Alignment", "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ], "default": "left" },
+          { "key": "color", "type": "color", "label": "Colour", "default": "#0f172a" }
+        ]
+      }
+    ]
+  }
+}

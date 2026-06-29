@@ -1,0 +1,40 @@
+{
+  "blok_key": "gallery",
+  "label": "Gallery",
+  "description": "Responsive image grid.",
+  "category": "content",
+  "icon": "images",
+  "accepts_children": false,
+  "blade_component": "bloks.content.gallery",
+  "langs": ["en", "ar"],
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "images": [
+      "https://placehold.co/600x400?text=1",
+      "https://placehold.co/600x400?text=2",
+      "https://placehold.co/600x400?text=3"
+    ],
+    "columns": 3,
+    "gap": 12
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "images", "type": "gallery", "label": "Images" }
+        ]
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "fields": [
+          { "key": "columns", "type": "range", "label": "Columns", "min": 1, "max": 6, "default": 3 },
+          { "key": "gap", "type": "range", "label": "Gap (px)", "min": 0, "max": 48, "default": 12 }
+        ]
+      }
+    ]
+  }
+}

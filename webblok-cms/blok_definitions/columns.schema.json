@@ -1,0 +1,38 @@
+{
+  "blok_key": "columns",
+  "label": "Columns",
+  "description": "Multi-column layout with child slots.",
+  "category": "layout",
+  "icon": "columns",
+  "accepts_children": true,
+  "blade_component": "bloks.layout.columns",
+  "langs": ["en", "ar"],
+  "cdn_ready": true,
+  "is_active": true,
+  "slots": [
+    { "name": "left", "label": "Left column", "max_children": 10 },
+    { "name": "right", "label": "Right column", "max_children": 10 }
+  ],
+  "default_config": {
+    "ratio": "1-1",
+    "gap": 24,
+    "stack_on_mobile": true
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "layout",
+        "label": "Layout",
+        "fields": [
+          { "key": "ratio", "type": "select", "label": "Ratio", "options": [
+            { "value": "1-1", "label": "50 / 50" },
+            { "value": "1-2", "label": "33 / 66" },
+            { "value": "2-1", "label": "66 / 33" }
+          ], "default": "1-1" },
+          { "key": "gap", "type": "range", "label": "Gap (px)", "min": 0, "max": 64, "default": 24 },
+          { "key": "stack_on_mobile", "type": "toggle", "label": "Stack on mobile", "default": true }
+        ]
+      }
+    ]
+  }
+}

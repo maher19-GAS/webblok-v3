@@ -1,0 +1,42 @@
+{
+  "blok_key": "cta_banner",
+  "label": "CTA Banner",
+  "description": "Full-width call-to-action strip.",
+  "category": "content",
+  "icon": "megaphone",
+  "accepts_children": false,
+  "blade_component": "bloks.content.cta-banner",
+  "langs": ["en", "ar"],
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "title": "Ready to launch?",
+    "text": "Start building your website today.",
+    "button_label": "Start free",
+    "button_link": { "url": "#", "target": "_self" },
+    "bg": "#4f46e5",
+    "fg": "#ffffff"
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "title", "type": "text", "label": "Title", "localized": true },
+          { "key": "text", "type": "textarea", "label": "Text", "localized": true },
+          { "key": "button_label", "type": "text", "label": "Button label", "localized": true },
+          { "key": "button_link", "type": "link", "label": "Button link" }
+        ]
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "fields": [
+          { "key": "bg", "type": "color", "label": "Background", "default": "#4f46e5" },
+          { "key": "fg", "type": "color", "label": "Text colour", "default": "#ffffff" }
+        ]
+      }
+    ]
+  }
+}

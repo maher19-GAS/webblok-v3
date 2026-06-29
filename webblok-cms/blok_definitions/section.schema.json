@@ -1,0 +1,35 @@
+{
+  "blok_key": "section",
+  "label": "Section",
+  "description": "A container section that accepts child bloks.",
+  "category": "layout",
+  "icon": "layout",
+  "accepts_children": true,
+  "blade_component": "bloks.layout.section",
+  "langs": ["en", "ar"],
+  "cdn_ready": true,
+  "is_active": true,
+  "slots": [
+    { "name": "default", "label": "Content", "max_children": 20 }
+  ],
+  "default_config": {
+    "bg": "#ffffff",
+    "padding": 48,
+    "max_width": 1100,
+    "full_bleed": false
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "style",
+        "label": "Style",
+        "fields": [
+          { "key": "bg", "type": "color", "label": "Background", "default": "#ffffff" },
+          { "key": "padding", "type": "range", "label": "Padding (px)", "min": 0, "max": 160, "default": 48 },
+          { "key": "max_width", "type": "range", "label": "Max width (px)", "min": 480, "max": 1600, "default": 1100 },
+          { "key": "full_bleed", "type": "toggle", "label": "Full-bleed background", "default": false }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Aurora",
+  "description": "A clean, modern light theme with indigo accents and generous spacing.",
+  "author": "WebBlok",
+  "version": "1.0.0",
+  "category": "business",
+  "tags": ["light", "modern", "business"],
+  "locales": ["en", "ar"],
+  "featured": true,
+  "thumbnail": "https://placehold.co/600x400?text=Aurora",
+  "preview": "https://placehold.co/1200x800?text=Aurora+Preview"
+}

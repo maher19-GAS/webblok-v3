@@ -1,0 +1,28 @@
+{
+  "blok_key": "html_embed",
+  "label": "HTML Embed",
+  "description": "Restricted, escaped custom HTML snippet.",
+  "category": "content",
+  "icon": "code",
+  "accepts_children": false,
+  "blade_component": "bloks.content.html-embed",
+  "langs": ["en"],
+  "cdn_ready": true,
+  "is_active": true,
+  "default_config": {
+    "code": "<!-- paste safe HTML here -->",
+    "ratio": 0
+  },
+  "schema": {
+    "steps": [
+      {
+        "key": "content",
+        "label": "Content",
+        "fields": [
+          { "key": "code", "type": "code", "label": "HTML", "language": "html" },
+          { "key": "ratio", "type": "number", "label": "Aspect ratio padding (%)", "min": 0, "max": 100, "default": 0 }
+        ]
+      }
+    ]
+  }
+}

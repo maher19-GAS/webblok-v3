@@ -1,0 +1,12 @@
+{
+  "name": "Midnight",
+  "description": "A bold dark theme with high contrast and vivid accents.",
+  "author": "WebBlok",
+  "version": "1.0.0",
+  "category": "portfolio",
+  "tags": ["dark", "bold", "portfolio"],
+  "locales": ["en", "ar"],
+  "featured": false,
+  "thumbnail": "https://placehold.co/600x400/0f172a/ffffff?text=Midnight",
+  "preview": "https://placehold.co/1200x800/0f172a/ffffff?text=Midnight+Preview"
+}
